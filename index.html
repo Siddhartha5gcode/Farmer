@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KrishiDeal - Enterprise Farmer Platform & Mandi Market Yard</title>
-  <meta name="description" content="Direct agricultural dealing platform connecting Farmers with APMC Mandi Traders, Cold Storages, and Wholesale Buyers. Features AI Valuation, SMS Alerts, Logistics Estimator, and Cold Storage Reservations.">
+  <title>KrishiDeal - Mentha Oil & Farmer Commodity Trading Platform</title>
+  <meta name="description" content="Direct agricultural dealing platform for Mentha Oil (Essential Oil), Wheat, Basmati Rice, and Produce. Real-time Mentha mandi prices for Sambhal, Barabanki, Chandausi, and MCX India.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,10 +20,10 @@
   <header class="navbar">
     <div class="nav-wrapper">
       <div class="brand-logo" onclick="switchTab('samples')">
-        <div class="brand-icon">🌾</div>
+        <div class="brand-icon">🌿</div>
         <div class="brand-text">
           <h1>KrishiDeal</h1>
-          <span>Direct Farm Platform</span>
+          <span>Mentha & Crop Platform</span>
         </div>
       </div>
 
@@ -37,7 +37,7 @@
         </button>
       </div>
 
-      <!-- Nav Actions (SMS Log + Auth + Post + Theme) -->
+      <!-- Nav Actions -->
       <div class="nav-actions">
         <button class="btn-secondary" onclick="openSmsLogsModal()" title="View SMS & WhatsApp Alerts">
           📱 Trade SMS (<span id="smsBadgeCount">2</span>)
@@ -63,21 +63,21 @@
   <!-- Main App Content Container -->
   <main class="app-container">
 
-    <!-- Hero Banner (Dynamic based on Role) -->
+    <!-- Hero Banner -->
     <section class="hero-banner" id="heroBanner">
       <div class="hero-content">
         <div class="hero-text">
-          <h2 id="heroTitle">Sell Your Produce Directly From Home 🏡</h2>
-          <p id="heroSubtitle">Share clean crop sample metrics (moisture, purity, grain size) with APMC Mandi buyers, Cold Storages, and exporters. Get competitive doorstep price quotes without transport risk.</p>
+          <h2 id="heroTitle">Mentha Oil & Crop Produce Direct Dealing 🌿🏡</h2>
+          <p id="heroSubtitle">Connect with verified Essential Oil exporters, APMC Mandi buyers, and Flour Mills. Check real-time Mentha prices for your district (Sambhal, Barabanki, Chandausi) or Pan-India MCX benchmark.</p>
         </div>
         <div class="hero-stats">
           <div class="hero-stat-card">
-            <div class="hero-stat-num" id="statActiveSamples">24</div>
+            <div class="hero-stat-num" id="statActiveSamples">28</div>
             <div class="hero-stat-label">Active Samples</div>
           </div>
           <div class="hero-stat-card">
-            <div class="hero-stat-num" id="statActiveBids">₹4,850</div>
-            <div class="hero-stat-label">Avg Wheat Quote</div>
+            <div class="hero-stat-num" id="statActiveMentha">₹1,060/Kg</div>
+            <div class="hero-stat-label">Mentha Oil Rate</div>
           </div>
           <div class="hero-stat-card">
             <div class="hero-stat-num" id="statMandiCount">18 Mandis</div>
@@ -87,18 +87,48 @@
       </div>
     </section>
 
-    <!-- FEATURE 4: 7-Day Harvest Weather & Moisture Risk Advisory Widget -->
+    <!-- SPECIAL MENTHA OIL LOCALITY & GENUINE MANDI PRICE WIDGET -->
+    <section style="background: linear-gradient(135deg, #064E3B 0%, #0F5A47 100%); border-radius: var(--radius-md); padding: 22px 28px; color: white; margin-bottom: 24px; box-shadow: var(--shadow-md);">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <span style="font-size: 2.2rem;">🌿</span>
+          <div>
+            <h3 style="font-size: 1.25rem; font-weight: 800;">Mentha Oil Live Locality & Genuine Mandi Benchmark</h3>
+            <p style="font-size: 0.85rem; opacity: 0.9;">Real-time steam distilled Mentha oil prices verified from Mandi Committee Registers & MCX India.</p>
+          </div>
+        </div>
+        
+        <!-- Locality Selector for Farmer -->
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 0.85rem; font-weight: 700;">📍 Select Your Locality:</span>
+          <select id="menthaLocalitySelect" class="filter-select" onchange="renderMenthaLocalityWidget()" style="background: #092B22; color: #4ADE80; font-weight: 700; border-color: #144738;">
+            <option value="Sambhal">Sambhal Mandi, UP (Primary)</option>
+            <option value="Barabanki">Barabanki Market, UP</option>
+            <option value="Chandausi">Chandausi Mandi, UP</option>
+            <option value="Rampur">Rampur Mandi Yard, UP</option>
+            <option value="MCX">MCX Pan-India Benchmark</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Locality Live Price Card Grid -->
+      <div id="menthaLocalityGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+        <!-- Rendered via app.js -->
+      </div>
+    </section>
+
+    <!-- 7-Day Harvest Weather & Moisture Advisory Widget -->
     <section class="weather-advisory-banner">
       <div class="weather-header">
         <div style="display: flex; align-items: center; gap: 10px;">
           <span style="font-size: 1.8rem;">🌤️</span>
           <div>
-            <h4 style="font-size: 1rem; color: var(--primary);">7-Day District Harvest Weather & Moisture Advisory</h4>
-            <span style="font-size: 0.8rem; color: var(--text-muted);">Region: Malwa Wheat Belt (Sehore & Indore) | Updated Live</span>
+            <h4 style="font-size: 1rem; color: var(--primary);">7-Day Harvest Weather & Mentha Distillation Moisture Advisory</h4>
+            <span style="font-size: 0.8rem; color: var(--text-muted);">Region: UP Mentha Belt (Sambhal & Barabanki) | Updated Live</span>
           </div>
         </div>
         <div class="weather-badge-safe">
-          ✅ Ideal Grain Moisture Window (10.5% - 11.8%)
+          ✅ Optimal Steam Distillation Window
         </div>
       </div>
       <div class="weather-forecast-row">
@@ -118,7 +148,7 @@
           <span class="day-name">Sat</span>
           <span class="day-icon">⛅</span>
           <span class="day-temp">29°C / 18°C</span>
-          <span class="day-risk text-warn">Cover Grain • 25% Rain</span>
+          <span class="day-risk text-warn">Cover Drum • 20% Rain</span>
         </div>
         <div class="weather-day-card">
           <span class="day-name">Sun</span>
@@ -139,9 +169,7 @@
     <section class="filter-toolbar">
       <div class="search-box">
         <span class="search-icon">🔍</span>
-        <input type="text" id="searchInput" placeholder="Search crops (e.g. Basmati Rice, Wheat)..." oninput="renderApp()">
-        
-        <!-- FEATURE 6: Multilingual Voice Assistant Button -->
+        <input type="text" id="searchInput" placeholder="Search crops (e.g. Mentha Oil, Sharbati Wheat, Sambhal)..." oninput="renderApp()">
         <button class="voice-search-btn" id="voiceSearchBtn" onclick="startVoiceRecognition()" title="Click to Speak Search in Hindi / English">
           🎙️ Speak
         </button>
@@ -150,6 +178,7 @@
       <div class="filter-group">
         <select class="filter-select" id="cropFilter" onchange="renderApp()">
           <option value="all">🌾 All Produce Categories</option>
+          <option value="Mentha Oil">🌿 Mentha Oil (Menthol)</option>
           <option value="Wheat">🌾 Wheat / Grains</option>
           <option value="Rice">🍚 Paddy & Rice</option>
           <option value="Cotton">☁️ Cotton Bales</option>
@@ -159,7 +188,7 @@
 
         <select class="filter-select" id="gradeFilter" onchange="renderApp()">
           <option value="all">⭐ All Quality Grades</option>
-          <option value="Grade A+">Grade A+ (Export Quality)</option>
+          <option value="Grade A+">Grade A+ (Export / Pure L-Menthol)</option>
           <option value="Grade A">Grade A (Standard Mandi)</option>
           <option value="Grade B">Grade B (Processing Bulk)</option>
         </select>
@@ -172,7 +201,7 @@
         🌾 Crop Samples & Bids
       </button>
       <button class="tab-btn" id="tabMandi" onclick="switchTab('mandi')">
-        📊 Live Mandi Rates
+        📊 Live Mandi & Mentha Rates
       </button>
       <button class="tab-btn" id="tabLogistics" onclick="switchTab('logistics')">
         🚛 Logistics Freight Estimator
@@ -195,20 +224,20 @@
       </div>
     </section>
 
-    <!-- TAB 2: Live Mandi Rates -->
+    <!-- TAB 2: Live Mandi & Mentha Rates -->
     <section id="viewMandi" class="tab-view" style="display: none;">
       <div class="section-card">
-        <h3 class="section-title">📊 Live APMC Mandi & Cold Storage Price Benchmarks</h3>
-        <p class="section-subtitle">Compare live APMC market rates across major Mandis with direct farmer sample quotes.</p>
+        <h3 class="section-title">📊 Live Mandi Rates & Mentha Oil Benchmarks</h3>
+        <p class="section-subtitle">Compare live market rates across major APMC Mandis, Sambhal/Barabanki essential oil hubs, and MCX Futures.</p>
         <div class="mandi-table-wrap">
           <table class="custom-table">
             <thead>
               <tr>
-                <th>Mandi / Cold Storage</th>
+                <th>Mandi / Exchange</th>
                 <th>State</th>
                 <th>Crop Variety</th>
-                <th>Min Rate (₹/Qtl)</th>
-                <th>Max Rate (₹/Qtl)</th>
+                <th>Min Rate</th>
+                <th>Max Rate</th>
                 <th>Modal Price</th>
                 <th>24h Trend</th>
               </tr>
@@ -221,11 +250,11 @@
       </div>
     </section>
 
-    <!-- FEATURE 2: Logistics & Truck Booking Freight Estimator Tab -->
+    <!-- TAB 3: Logistics Estimator -->
     <section id="viewLogistics" class="tab-view" style="display: none;">
       <div class="section-card">
         <h3 class="section-title">🚛 Doorstep Truck Freight & Logistics Calculator</h3>
-        <p class="section-subtitle">Estimate transport costs for shipping grain samples directly from farm gate to buyer Mandi godown.</p>
+        <p class="section-subtitle">Estimate transport costs for shipping grain samples or Mentha oil drums directly from farm gate to buyer godown.</p>
         
         <div class="calculator-grid">
           <div class="calc-form">
@@ -235,7 +264,7 @@
             </div>
 
             <div class="form-group">
-              <label>Crop Load Weight (Quintals) *</label>
+              <label>Crop Load Weight (Quintals / Drums) *</label>
               <input type="number" class="form-control" id="logisticsWeight" value="120" placeholder="e.g. 120 Qtl" oninput="calculateFreight()">
             </div>
           </div>
@@ -250,7 +279,7 @@
       </div>
     </section>
 
-    <!-- FEATURE 3: Cold Storage Slot Reservation Module Tab -->
+    <!-- TAB 4: Cold Storage Booking -->
     <section id="viewColdstorage" class="tab-view" style="display: none;">
       <div class="section-card">
         <h3 class="section-title">🧊 Cold Storage Chamber & Slot Reservations</h3>
@@ -269,17 +298,18 @@
       </div>
     </section>
 
-    <!-- TAB 5: AI Sample Quality Estimator -->
+    <!-- TAB 5: AI Quality & Mentha Estimator -->
     <section id="viewQuality" class="tab-view" style="display: none;">
       <div class="section-card">
-        <h3 class="section-title">🧪 Instant Crop Quality & Valuation Estimator</h3>
-        <p class="section-subtitle">Adjust your sample test parameters to estimate quality grade and expected doorstep mandi price.</p>
+        <h3 class="section-title">🧪 Instant Crop & Mentha Oil Quality Estimator</h3>
+        <p class="section-subtitle">Adjust sample test parameters (Moisture, Purity, L-Menthol %) to estimate expected doorstep mandi price.</p>
         
         <div class="calculator-grid">
           <div class="calc-form">
             <div class="form-group">
               <label>Crop Category</label>
               <select class="form-control" id="calcCropType" onchange="calculateQualityScore()">
+                <option value="Mentha Oil">🌿 Mentha Oil (Essential Mint Oil)</option>
                 <option value="Wheat">Sharbati Wheat Grains</option>
                 <option value="Rice">1121 Basmati Rice</option>
                 <option value="Cotton">Raw Cotton Bales</option>
@@ -289,26 +319,26 @@
             </div>
 
             <div class="form-group">
-              <label>Moisture Content (%) - Optimal: 10-12%</label>
+              <label>Moisture Content (%) - Optimal: Mentha &lt;0.5%, Wheat 10-12%</label>
               <div class="range-slider-wrap">
-                <input type="range" id="sliderMoisture" min="8" max="22" value="11" oninput="calculateQualityScore()">
-                <strong id="valMoisture">11%</strong>
+                <input type="range" id="sliderMoisture" min="0" max="22" value="0.4" step="0.1" oninput="calculateQualityScore()">
+                <strong id="valMoisture">0.4%</strong>
               </div>
             </div>
 
             <div class="form-group">
-              <label>Grain / Produce Purity (%)</label>
+              <label>Purity / L-Menthol Content (%)</label>
               <div class="range-slider-wrap">
-                <input type="range" id="sliderPurity" min="80" max="100" value="96" oninput="calculateQualityScore()">
-                <strong id="valPurity">96%</strong>
+                <input type="range" id="sliderPurity" min="65" max="100" value="81" oninput="calculateQualityScore()">
+                <strong id="valPurity">81%</strong>
               </div>
             </div>
 
             <div class="form-group">
-              <label>Foreign Matter & Dust (%)</label>
+              <label>Foreign Matter & Terpene Impurities (%)</label>
               <div class="range-slider-wrap">
-                <input type="range" id="sliderForeign" min="0" max="10" value="1.5" step="0.5" oninput="calculateQualityScore()">
-                <strong id="valForeign">1.5%</strong>
+                <input type="range" id="sliderForeign" min="0" max="10" value="0.5" step="0.1" oninput="calculateQualityScore()">
+                <strong id="valForeign">0.5%</strong>
               </div>
             </div>
           </div>
@@ -316,18 +346,18 @@
           <div class="score-display-card">
             <div class="score-circle">
               <div class="score-circle-inner">
-                <div class="score-number" id="calcScoreNum">94</div>
+                <div class="score-number" id="calcScoreNum">95</div>
                 <div class="score-grade" id="calcGradeTag">Grade A+</div>
               </div>
             </div>
-            <h4 style="margin-bottom: 6px;" id="calcEstimatedVal">Estimated Doorstep Value: ₹4,950 / Quintal</h4>
-            <p style="font-size: 0.85rem; color: var(--text-muted);">High purity & optimal moisture level commands +6% premium over standard Mandi rate.</p>
+            <h4 style="margin-bottom: 6px;" id="calcEstimatedVal">Estimated Value: ₹1,065 / Kg</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">81%+ L-Menthol purity commands premium in Sambhal & Barabanki markets.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- TAB 6: Sealed Doorstep Deals & Escrow -->
+    <!-- TAB 6: Sealed Deals -->
     <section id="viewDeals" class="tab-view" style="display: none;">
       <div class="section-card">
         <h3 class="section-title">📜 Sealed Doorstep Deals & Escrow Vault Receipts</h3>
@@ -340,7 +370,7 @@
 
   </main>
 
-  <!-- FEATURE 1: SMS & WhatsApp Log Modal -->
+  <!-- SMS & WhatsApp Log Modal -->
   <div class="modal-backdrop" id="smsLogsModal">
     <div class="modal-container" style="max-width: 500px;">
       <div class="modal-header">
@@ -353,7 +383,7 @@
     </div>
   </div>
 
-  <!-- AUTH MODAL: Login & Registration -->
+  <!-- AUTH MODAL -->
   <div class="modal-backdrop" id="authModal">
     <div class="modal-container" style="max-width: 560px;">
       <div class="modal-header">
@@ -379,8 +409,8 @@
 
         <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 16px;">
           💡 <strong>Demo Verified Credentials:</strong><br>
-          • Genuine Farmer: <code>9876543210</code> / <code>password123</code><br>
-          • APMC Verified Buyer: <code>9123456789</code> / <code>password123</code>
+          • Mentha Farmer: <code>9876543210</code> / <code>password123</code><br>
+          • Essential Oil Buyer: <code>9123456789</code> / <code>password123</code>
         </div>
 
         <button type="submit" class="btn-primary" style="width: 100%; padding: 12px;">
@@ -392,15 +422,15 @@
         <div class="form-group">
           <label style="font-size: 0.95rem; color: var(--primary);">Account Registration Type *</label>
           <select class="form-control" id="regRole" onchange="toggleRegRoleFields()" style="font-weight: 700;">
-            <option value="farmer">🧑‍🌾 FARMER REGISTRATION (Produce Seller)</option>
-            <option value="buyer">🏢 BUYER REGISTRATION (Mandi Trader / Processor / Exporter)</option>
+            <option value="farmer">🧑‍🌾 FARMER REGISTRATION (Mentha / Crop Seller)</option>
+            <option value="buyer">🏢 BUYER REGISTRATION (Essential Oil Exporter / Mandi Trader)</option>
           </select>
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
           <div class="form-group">
             <label>Full Name / Owner Name *</label>
-            <input type="text" class="form-control" id="regName" placeholder="e.g. Rameshwar Patel" required>
+            <input type="text" class="form-control" id="regName" placeholder="e.g. Dharamvir Singh" required>
           </div>
           <div class="form-group">
             <label>Mobile Number *</label>
@@ -421,45 +451,44 @@
 
         <div class="form-group">
           <label>District & State Location *</label>
-          <input type="text" class="form-control" id="regLocation" placeholder="e.g. Sehore, MP or Azadpur APMC Mandi, Delhi" required>
+          <input type="text" class="form-control" id="regLocation" placeholder="e.g. Sambhal, UP or Barabanki, UP" required>
         </div>
 
         <div id="sectionFarmerVerification" style="background: var(--bg-subtle); padding: 16px; border-radius: var(--radius-md); border: 1px solid var(--border-color); margin-bottom: 16px;">
           <h4 style="color: var(--primary); font-size: 0.95rem; margin-bottom: 10px;">🛡️ Genuine Farmer Verification Details</h4>
           <div class="form-group">
             <label>Khasra / Khatoni Land Record No. *</label>
-            <input type="text" class="form-control" id="regKhasraNo" placeholder="e.g. K-402/1A (Verifies land ownership)">
+            <input type="text" class="form-control" id="regKhasraNo" placeholder="e.g. UP-SMB-902 (Verifies land ownership)">
           </div>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
             <div class="form-group">
               <label>Kisan Credit Card (KCC) ID</label>
-              <input type="text" class="form-control" id="regKccId" placeholder="e.g. KCC-MP-4402">
+              <input type="text" class="form-control" id="regKccId" placeholder="e.g. KCC-UP-9901">
             </div>
             <div class="form-group">
-              <label>Land Area (Acres)</label>
-              <input type="text" class="form-control" id="regLandAcres" placeholder="e.g. 10 Acres">
+              <label>Mentha Cultivation Area (Acres)</label>
+              <input type="text" class="form-control" id="regLandAcres" placeholder="e.g. 5 Acres">
             </div>
           </div>
         </div>
 
         <div id="sectionBuyerVerification" style="background: var(--gold-light); padding: 16px; border-radius: var(--radius-md); border: 1px solid #FCD34D; margin-bottom: 16px; display: none;">
-          <h4 style="color: var(--gold-hover); font-size: 0.95rem; margin-bottom: 10px;">🏢 APMC Genuine Buyer & License Verification</h4>
+          <h4 style="color: var(--gold-hover); font-size: 0.95rem; margin-bottom: 10px;">🏢 Genuine Essential Oil Buyer License</h4>
           <div class="form-group">
-            <label>Buyer Firm / Business Type *</label>
+            <label>Buyer Firm Type *</label>
             <select class="form-control" id="regFirmType">
-              <option value="Flour Mill / Grain Processor">Flour Mill / Processing Plant</option>
-              <option value="APMC Mandi Wholesaler">APMC Mandi Commission Agent / Wholesaler</option>
-              <option value="Cold Storage Operator">Cold Storage & Fruit Logistics</option>
-              <option value="Exporter / Export House">Agricultural Export House</option>
+              <option value="Essential Oil Distiller & Exporter">Essential Oil Distiller & Exporter</option>
+              <option value="APMC Mandi Wholesaler">APMC Mandi Commission Agent</option>
+              <option value="Pharma & Fragrance Processor">Pharma & Fragrance Processing Unit</option>
             </select>
           </div>
           <div class="form-group">
             <label>GSTIN Registration Number *</label>
-            <input type="text" class="form-control" id="regGstin" placeholder="e.g. 23AABCI8821K1ZM">
+            <input type="text" class="form-control" id="regGstin" placeholder="e.g. 09AABCB5512K1ZN">
           </div>
           <div class="form-group" style="margin-bottom: 0;">
             <label>APMC Mandi License Number *</label>
-            <input type="text" class="form-control" id="regMandiLicense" placeholder="e.g. MP-IND-APMC-8821">
+            <input type="text" class="form-control" id="regMandiLicense" placeholder="e.g. UP-BBK-APMC-9901">
           </div>
         </div>
 
@@ -470,22 +499,23 @@
     </div>
   </div>
 
-  <!-- MODAL 1: Post New Produce Sample (Farmer) -->
+  <!-- MODAL 1: Post New Produce Sample -->
   <div class="modal-backdrop" id="postSampleModal">
     <div class="modal-container">
       <div class="modal-header">
-        <h3 class="modal-title">🌾 Share Produce Sample for Valuation</h3>
+        <h3 class="modal-title">🌿 Share Mentha Oil or Crop Sample</h3>
         <button class="close-modal-btn" onclick="closeModal('postSampleModal')">&times;</button>
       </div>
       <form id="postSampleForm" onsubmit="handlePostSample(event)">
         <div class="form-group">
           <label>Crop Name & Variety *</label>
-          <input type="text" class="form-control" id="formCropTitle" placeholder="e.g. Premium Sharbati Wheat" required>
+          <input type="text" class="form-control" id="formCropTitle" placeholder="e.g. Pure Shivalik Mentha Oil (80%+ Menthol)" required>
         </div>
 
         <div class="form-group">
           <label>Produce Category *</label>
           <select class="form-control" id="formCategory" required>
+            <option value="Mentha Oil">🌿 Mentha Oil (Essential Mint Oil)</option>
             <option value="Wheat">Wheat / Grains</option>
             <option value="Rice">Paddy & Basmati Rice</option>
             <option value="Cotton">Cotton Bales</option>
@@ -496,24 +526,24 @@
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
           <div class="form-group">
-            <label>Total Quantity (Quintals) *</label>
-            <input type="number" class="form-control" id="formQuantity" placeholder="e.g. 150" required>
+            <label>Quantity (Kg for Oil / Qtl for Grain) *</label>
+            <input type="number" class="form-control" id="formQuantity" placeholder="e.g. 45" required>
           </div>
           <div class="form-group">
-            <label>Reserve Price (₹/Quintal) *</label>
-            <input type="number" class="form-control" id="formPrice" placeholder="e.g. 4600" required>
+            <label>Reserve Price (₹ per Kg/Qtl) *</label>
+            <input type="number" class="form-control" id="formPrice" placeholder="e.g. 1050" required>
           </div>
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
           <div class="form-group">
             <label>Moisture Content (%) *</label>
-            <input type="number" step="0.1" class="form-control" id="formMoisture" placeholder="e.g. 11.5" required>
+            <input type="number" step="0.1" class="form-control" id="formMoisture" placeholder="e.g. 0.4" required>
           </div>
           <div class="form-group">
             <label>Quality Grade *</label>
             <select class="form-control" id="formGrade" required>
-              <option value="Grade A+">Grade A+ (Organic / Export)</option>
+              <option value="Grade A+">Grade A+ (Export / Pure L-Menthol)</option>
               <option value="Grade A">Grade A (Standard Mandi)</option>
               <option value="Grade B">Grade B (Bulk Commercial)</option>
             </select>
@@ -521,18 +551,19 @@
         </div>
 
         <div class="form-group">
-          <label>Farm Location / Village / Pincode *</label>
-          <input type="text" class="form-control" id="formLocation" placeholder="e.g. Sehore, Madhya Pradesh (Pin: 466001)" required>
+          <label>District & Village Location *</label>
+          <input type="text" class="form-control" id="formLocation" placeholder="e.g. Sambhal, Uttar Pradesh (Pin: 244302)" required>
         </div>
 
         <div class="form-group">
           <label>Khasra Land Record No. (For Verification Badge)</label>
-          <input type="text" class="form-control" id="formKhasraNo" placeholder="e.g. K-402/1A">
+          <input type="text" class="form-control" id="formKhasraNo" placeholder="e.g. UP-SMB-902">
         </div>
 
         <div class="form-group">
           <label>Sample Photo Selection</label>
           <select class="form-control" id="formImageSelect">
+            <option value="assets/mentha.png">🌿 Pure Mentha Mint Oil Photo</option>
             <option value="assets/wheat.png">🌾 Sharbati Wheat Sample Photo</option>
             <option value="assets/rice.png">🍚 1121 Basmati Rice Sample Photo</option>
             <option value="assets/cotton.png">☁️ Natural Raw Cotton Photo</option>
@@ -542,13 +573,13 @@
         </div>
 
         <button type="submit" class="btn-primary" style="width: 100%; margin-top: 14px; padding: 12px;">
-          🚀 Publish Sample for Mandi & Buyer Bids
+          🚀 Publish Sample for Mandi & Exporter Bids
         </button>
       </form>
     </div>
   </div>
 
-  <!-- MODAL 2: Submit Buyer Offer / Bid Modal -->
+  <!-- MODAL 2: Submit Buyer Offer -->
   <div class="modal-backdrop" id="bidModal">
     <div class="modal-container">
       <div class="modal-header">
@@ -558,24 +589,24 @@
       <form id="bidForm" onsubmit="handlePlaceBid(event)">
         <input type="hidden" id="bidSampleId">
         <div style="background: var(--bg-subtle); padding: 14px; border-radius: var(--radius-sm); margin-bottom: 16px;">
-          <h4 id="bidCropName" style="color: var(--primary);">Sharbati Wheat</h4>
-          <p id="bidCropDetails" style="font-size: 0.85rem; color: var(--text-muted);">Quantity: 150 Qtl | Reserve: ₹4,600/Qtl | Location: Sehore, MP</p>
+          <h4 id="bidCropName" style="color: var(--primary);">Pure Shivalik Mentha Oil</h4>
+          <p id="bidCropDetails" style="font-size: 0.85rem; color: var(--text-muted);">Quantity: 45 Kg | Reserve: ₹1,045/Kg | Location: Sambhal, UP</p>
         </div>
 
         <div class="form-group">
           <label>Buyer / Mandi Entity Name *</label>
-          <input type="text" class="form-control" id="buyerEntity" placeholder="e.g. Indore APMC Mandi Trader / Central Cold Storage" required>
+          <input type="text" class="form-control" id="buyerEntity" placeholder="e.g. Barabanki Essential Oils & Distillers" required>
         </div>
 
         <div class="form-group">
           <label>GSTIN Registration No. (For Verified Buyer Badge)</label>
-          <input type="text" class="form-control" id="buyerGstin" placeholder="e.g. 23AABCI8821K1ZM">
+          <input type="text" class="form-control" id="buyerGstin" placeholder="e.g. 09AABCB5512K1ZN">
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
           <div class="form-group">
-            <label>Offered Price (₹ / Quintal) *</label>
-            <input type="number" class="form-control" id="offeredPrice" placeholder="e.g. 4750" required>
+            <label>Offered Price (₹ / Kg or Qtl) *</label>
+            <input type="number" class="form-control" id="offeredPrice" placeholder="e.g. 1065" required>
           </div>
           <div class="form-group">
             <label>Token Deposit Advance (₹) *</label>
@@ -586,9 +617,8 @@
         <div class="form-group">
           <label>Logistics & Pickup Option *</label>
           <select class="form-control" id="pickupTerm" required>
-            <option value="Buyer Doorstep Pickup">🚛 Buyer Arranges Truck Doorstep Pickup</option>
-            <option value="Mandi Delivery Bonus">🏢 Farmer Delivers to Mandi Yard (+₹100/Qtl Bonus)</option>
-            <option value="Cold Storage Booking">🧊 Direct Deposit to Cold Storage Unit</option>
+            <option value="Buyer Doorstep Drum Pickup">🚛 Buyer Arranges Drum Doorstep Pickup</option>
+            <option value="Mandi Delivery Bonus">🏢 Farmer Delivers to Mandi Yard (+₹20/Kg Bonus)</option>
           </select>
         </div>
 
@@ -599,7 +629,7 @@
     </div>
   </div>
 
-  <!-- MODAL 3: Sample Details & Offers Drawer (Farmer View) -->
+  <!-- MODAL 3: Offers Drawer -->
   <div class="modal-backdrop" id="offersModal">
     <div class="modal-container" style="max-width: 700px;">
       <div class="modal-header">
@@ -612,7 +642,7 @@
     </div>
   </div>
 
-  <!-- MODAL 4: Printable Trade Contract Modal (with Escrow Vault Status) -->
+  <!-- MODAL 4: Printable Trade Contract -->
   <div class="modal-backdrop" id="contractModal">
     <div class="modal-container" style="max-width: 650px;">
       <div class="modal-header">

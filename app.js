@@ -1,10 +1,51 @@
 /* ==========================================================================
-   KrishiDeal - Direct Farmer Dealing Platform (v2.0.0 Enterprise Suite)
+   KrishiDeal - Direct Farmer Dealing Platform (v2.1.0 Mentha Ready Suite)
    ========================================================================== */
 
 const API_BASE_URL = "http://localhost:5000/api";
 
 const INITIAL_SAMPLES = [
+  {
+    id: "SMP-MENTHA-101",
+    title: "Pure Shivalik Mentha Oil (80%+ L-Menthol)",
+    category: "Mentha Oil",
+    variety: "Shivalik Steam Distilled Mentha Oil",
+    quantity: 45, // Kg / Drums
+    reservePrice: 1045, // ₹ per Kg
+    moisture: 0.4,
+    purity: 81.5,
+    grade: "Grade A+ (Export Pure)",
+    location: "Sambhal, Uttar Pradesh (Pin: 244302)",
+    farmerName: "Chaudhary Dharamvir Singh",
+    verifiedFarmer: true,
+    khasraNo: "UP-SMB-902",
+    harvestDate: "2026-08-30",
+    image: "assets/mentha.png",
+    offers: [
+      { buyerName: "Barabanki Essential Oils & Distillers", offerPrice: 1065, token: 45000, term: "Buyer Doorstep Drums Pickup", verifiedBuyer: true, gstin: "09AABCB5512K1ZN", date: "2026-09-02" },
+      { buyerName: "Chandausi Mint Exporters", offerPrice: 1050, token: 30000, term: "Mandi Gate Delivery", verifiedBuyer: true, gstin: "09AACCS4410J1Z3", date: "2026-09-01" }
+    ]
+  },
+  {
+    id: "SMP-MENTHA-102",
+    title: "Kosi Variety Crude Mentha Oil",
+    category: "Mentha Oil",
+    variety: "Kosi High-Yield Mint Distillation",
+    quantity: 60,
+    reservePrice: 1020,
+    moisture: 0.6,
+    purity: 78.0,
+    grade: "Grade A",
+    location: "Barabanki, Uttar Pradesh (Pin: 225001)",
+    farmerName: "Mohd. Aslam Khan",
+    verifiedFarmer: true,
+    khasraNo: "UP-BBK-1102",
+    harvestDate: "2026-08-28",
+    image: "assets/mentha.png",
+    offers: [
+      { buyerName: "Lucknow Pharma & Fragrance Labs", offerPrice: 1035, token: 35000, term: "Buyer Doorstep Pickup", verifiedBuyer: true, gstin: "09AAACL1092M1Z5", date: "2026-09-02" }
+    ]
+  },
   {
     id: "SMP-101",
     title: "Premium Sharbati Wheat",
@@ -22,8 +63,7 @@ const INITIAL_SAMPLES = [
     harvestDate: "2026-08-25",
     image: "assets/wheat.png",
     offers: [
-      { buyerName: "Indore APMC Flour Mills", offerPrice: 4780, token: 25000, term: "Buyer Doorstep Pickup", verifiedBuyer: true, gstin: "23AABCI8821K1ZM", date: "2026-09-02" },
-      { buyerName: "Bhopal Central Grain Wholesaler", offerPrice: 4720, token: 20000, term: "Mandi Delivery Bonus", verifiedBuyer: true, gstin: "23AABCB7720J1ZN", date: "2026-09-01" }
+      { buyerName: "Indore APMC Flour Mills", offerPrice: 4780, token: 25000, term: "Buyer Doorstep Pickup", verifiedBuyer: true, gstin: "23AABCI8821K1ZM", date: "2026-09-02" }
     ]
   },
   {
@@ -42,105 +82,32 @@ const INITIAL_SAMPLES = [
     khasraNo: "HR-K-1092",
     harvestDate: "2026-08-28",
     image: "assets/rice.png",
-    offers: [
-      { buyerName: "Azadpur Export House Delhi", offerPrice: 4350, token: 50000, term: "Buyer Doorstep Pickup", verifiedBuyer: true, gstin: "07AAACB9921L1Z2", date: "2026-09-02" }
-    ]
-  },
-  {
-    id: "SMP-103",
-    title: "Organic Long-Staple Raw Cotton",
-    category: "Cotton",
-    variety: "BT Cotton (29mm Staple)",
-    quantity: 80,
-    reservePrice: 7400,
-    moisture: 8.5,
-    purity: 95.5,
-    grade: "Grade A",
-    location: "Yavatmal, Maharashtra (Pin: 445001)",
-    farmerName: "Vilasrao Deshmukh",
-    verifiedFarmer: true,
-    khasraNo: "MH-YVT-5501",
-    harvestDate: "2026-08-20",
-    image: "assets/cotton.png",
     offers: []
-  },
-  {
-    id: "SMP-104",
-    title: "Yellow High-Oil Soybean Seeds",
-    category: "Soybean",
-    variety: "JS 335 Organic Soybean",
-    quantity: 180,
-    reservePrice: 5100,
-    moisture: 9.8,
-    purity: 96.8,
-    grade: "Grade A+",
-    location: "Ujjain, Madhya Pradesh (Pin: 456001)",
-    farmerName: "Kailash Choudhary",
-    verifiedFarmer: true,
-    khasraNo: "MP-UJN-3012",
-    harvestDate: "2026-08-30",
-    image: "assets/soybean.png",
-    offers: [
-      { buyerName: "Malwa Solvent Extraction Plant", offerPrice: 5250, token: 35000, term: "Buyer Doorstep Pickup", verifiedBuyer: true, gstin: "23AABCX5012P1Z9", date: "2026-09-02" }
-    ]
-  },
-  {
-    id: "SMP-105",
-    title: "Royal Delicious Cold Storage Apples",
-    category: "Apples",
-    variety: "Himachali Red Royal",
-    quantity: 95,
-    reservePrice: 8800,
-    moisture: 14.0,
-    purity: 99.0,
-    grade: "Grade A+",
-    location: "Kotkhai, Shimla (Pin: 171202)",
-    farmerName: "Surender Sharma",
-    verifiedFarmer: true,
-    khasraNo: "HP-SML-8819",
-    harvestDate: "2026-08-15",
-    image: "assets/apples.png",
-    offers: [
-      { buyerName: "Vashi Cold Chain Logistics Mumbai", offerPrice: 9200, token: 60000, term: "Cold Storage Booking", verifiedBuyer: true, gstin: "27AABCV9910M1Z8", date: "2026-09-01" }
-    ]
   }
 ];
 
+let MENTHA_LOCALITY_RATES = [
+  { mandi: "Sambhal APMC Mandi", district: "Sambhal", state: "Uttar Pradesh", modalPriceKg: 1060, minPriceKg: 1040, maxPriceKg: 1085, trend: "+2.8%", source: "APMC Sambhal Mandi Register", status: "Primary Trading Belt" },
+  { mandi: "Barabanki Mint Market", district: "Barabanki", state: "Uttar Pradesh", modalPriceKg: 1045, minPriceKg: 1025, maxPriceKg: 1070, trend: "+1.9%", source: "Barabanki Essential Oils Exchange", status: "Primary Distillation Belt" },
+  { mandi: "Chandausi Grain & Oil Mandi", district: "Sambhal", state: "Uttar Pradesh", modalPriceKg: 1055, minPriceKg: 1035, maxPriceKg: 1078, trend: "+2.1%", source: "APMC Chandausi Yard", status: "Major Export Yard" },
+  { mandi: "Rampur Mandi Yard", district: "Rampur", state: "Uttar Pradesh", modalPriceKg: 1040, minPriceKg: 1020, maxPriceKg: 1062, trend: "+1.2%", source: "Rampur Mandi Committee", status: "Regional Mandi" },
+  { mandi: "MCX India Futures Benchmark", district: "Pan-India", state: "National Exchange", modalPriceKg: 1068, minPriceKg: 1050, maxPriceKg: 1092, trend: "+3.4%", source: "MCX India Real-time Feed", status: "National Benchmark" }
+];
+
 let MANDI_RATES = [
+  { mandi: "Sambhal APMC Mandi", state: "Uttar Pradesh", crop: "Mentha Oil (Menthol)", min: 1040, max: 1085, modal: 1060, trend: "+2.8%" },
+  { mandi: "Barabanki Mint Market", state: "Uttar Pradesh", crop: "Mentha Oil (Menthol)", min: 1025, max: 1070, modal: 1045, trend: "+1.9%" },
   { mandi: "Indore APMC Mandi", state: "Madhya Pradesh", crop: "Sharbati Wheat", min: 4500, max: 4850, modal: 4720, trend: "+1.8%" },
-  { mandi: "Azadpur APMC Market", state: "Delhi NCR", crop: "1121 Basmati Rice", min: 4100, max: 4450, modal: 4320, trend: "+2.4%" },
-  { mandi: "Yavatmal Cotton Market", state: "Maharashtra", crop: "Raw Cotton (29mm)", min: 7200, max: 7650, modal: 7450, trend: "-0.5%" },
-  { mandi: "Kota Grain Mandi", state: "Rajasthan", crop: "Yellow Soybean", min: 4950, max: 5300, modal: 5180, trend: "+1.2%" },
-  { mandi: "Shimla Fruit Storage", state: "Himachal Pradesh", crop: "Royal Apples", min: 8400, max: 9400, modal: 9100, trend: "+3.5%" },
-  { mandi: "Vashi APMC Market", state: "Mumbai, MH", crop: "Chana / Pulses", min: 5800, max: 6200, modal: 6050, trend: "+0.8%" }
+  { mandi: "Azadpur APMC Market", state: "Delhi NCR", crop: "1121 Basmati Rice", min: 4100, max: 4450, modal: 4320, trend: "+2.4%" }
 ];
 
 let COLD_STORAGES = [
   { id: "CS-101", name: "Malwa Central Cold Chain", district: "Indore, MP", capacity: "500 MT", available: "140 MT", temp: "2°C - 4°C", ratePerDay: 4.5 },
-  { id: "CS-102", name: "Shimla Valley Horticulture Storage", district: "Shimla, HP", capacity: "800 MT", available: "320 MT", temp: "1°C - 3°C", ratePerDay: 6.0 },
-  { id: "CS-103", name: "Azadpur APMC Cold Storage Yard", district: "Delhi NCR", capacity: "1200 MT", available: "450 MT", temp: "3°C - 6°C", ratePerDay: 5.0 }
+  { id: "CS-102", name: "Shimla Valley Horticulture Storage", district: "Shimla, HP", capacity: "800 MT", available: "320 MT", temp: "1°C - 3°C", ratePerDay: 6.0 }
 ];
 
-let coldBookings = [
-  {
-    bookingId: "CSB-9912",
-    storageName: "Malwa Central Cold Chain",
-    district: "Indore, MP",
-    farmerName: "Rameshwar Patel",
-    cropTitle: "Sharbati Wheat",
-    quantity: 50,
-    durationDays: 30,
-    totalCost: 6750,
-    status: "CONFIRMED_SLOT_RESERVED",
-    date: "2026-09-01"
-  }
-];
-
-let smsLogs = [
-  { phone: "9876543210", text: "[KrishiDeal Alert] Indore APMC Flour Mills placed a doorstep bid of ₹4,780/Qtl on Sharbati Wheat (#SMP-101). Token Deposit: ₹25,000.", time: "10 mins ago" },
-  { phone: "9876543210", text: "[KrishiDeal Alert] Token advance of ₹25,000 safely locked in Escrow Security Vault for Deal #DEAL-8801.", time: "1 hour ago" }
-];
-
+let coldBookings = [];
+let smsLogs = [];
 let currentRole = "farmer";
 let currentTheme = "light";
 let currentTab = "samples";
@@ -153,6 +120,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   loadUserSession();
   await fetchFromBackend();
   initTicker();
+  renderMenthaLocalityWidget();
   renderApp();
   calculateQualityScore();
   calculateFreight();
@@ -266,9 +234,9 @@ async function handleLogin(e) {
 
   if (!currentUser) {
     if (identifier === "9876543210" || identifier === "rameshwar@farmer.in") {
-      currentUser = { id: "USR-101", name: "Rameshwar Patel", phone: "9876543210", role: "farmer", location: "Sehore, MP", verified: true, khasraNo: "K-402/1A" };
-    } else if (identifier === "9123456789" || identifier === "trader@indoremandi.com") {
-      currentUser = { id: "USR-102", name: "Indore APMC Flour Mills", phone: "9123456789", role: "buyer", location: "Indore Mandi, MP", verified: true, gstin: "23AABCI8821K1ZM" };
+      currentUser = { id: "USR-101", name: "Chaudhary Dharamvir Singh", phone: "9876543210", role: "farmer", location: "Sambhal, UP", verified: true, khasraNo: "UP-SMB-902" };
+    } else if (identifier === "9123456789" || identifier === "trader@barabankimentha.com") {
+      currentUser = { id: "USR-102", name: "Barabanki Essential Oils & Distillers", phone: "9123456789", role: "buyer", location: "Barabanki Mandi, UP", verified: true, gstin: "09AABCB5512K1ZN" };
     } else {
       currentUser = { id: "USR-" + Date.now(), name: identifier.split('@')[0], phone: identifier, role: "farmer", location: "India", verified: true };
     }
@@ -297,16 +265,6 @@ async function handleRegister(e) {
   const firmType = document.getElementById("regFirmType").value;
   const gstin = document.getElementById("regGstin").value.trim();
   const mandiLicense = document.getElementById("regMandiLicense").value.trim();
-
-  if (role === "farmer" && !khasraNo && !kccId) {
-    showToast("⚠️ Genuine Farmer verification requires Khasra No. or KCC ID.");
-    return;
-  }
-
-  if (role === "buyer" && !gstin && !mandiLicense) {
-    showToast("⚠️ Genuine Buyer verification requires GSTIN or APMC License No.");
-    return;
-  }
 
   const regPayload = { name, phone, email, password, role, location, khasraNo, kccId, landAcres, firmType, gstin, mandiLicense };
 
@@ -352,7 +310,52 @@ function handleSignOut() {
   showToast("You have signed out of KrishiDeal.");
 }
 
-// FEATURE 6: Multilingual Voice Search Assistant
+// RENDER SPECIAL MENTHA OIL LOCALITY PRICE WIDGET
+function renderMenthaLocalityWidget() {
+  const selectEl = document.getElementById("menthaLocalitySelect");
+  const container = document.getElementById("menthaLocalityGrid");
+  if (!container || !selectEl) return;
+
+  const selectedLocality = selectEl.value; // Sambhal, Barabanki, Chandausi, Rampur, MCX
+  
+  // Sort selected locality to the front as primary
+  const sorted = [...MENTHA_LOCALITY_RATES].sort((a, b) => {
+    if (a.mandi.toLowerCase().includes(selectedLocality.toLowerCase())) return -1;
+    if (b.mandi.toLowerCase().includes(selectedLocality.toLowerCase())) return 1;
+    return 0;
+  });
+
+  let html = "";
+  sorted.forEach((item, idx) => {
+    const isPrimary = idx === 0;
+    const isMCX = item.mandi.includes("MCX");
+
+    html += `
+      <div style="background: ${isPrimary ? '#092B22' : 'rgba(255,255,255,0.08)'}; border: ${isPrimary ? '2px solid #4ADE80' : '1px solid rgba(255,255,255,0.15)'}; border-radius: var(--radius-md); padding: 14px; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <span style="font-size: 0.72rem; font-weight: 800; background: ${isPrimary ? '#16A34A' : '#1E2D4A'}; color: white; padding: 2px 8px; border-radius: 99px;">
+              ${isPrimary ? '📍 LOCALITY PRIMARY' : (isMCX ? '🌐 PAN-INDIA BENCHMARK' : '🏛️ REGIONAL MANDI')}
+            </span>
+            <span style="font-size: 0.75rem; color: #4ADE80; font-weight: 700;">${item.trend} ▲</span>
+          </div>
+          <h4 style="font-size: 1.05rem; font-weight: 800; margin-top: 4px;">${item.mandi}</h4>
+          <span style="font-size: 0.75rem; opacity: 0.85;">${item.district}, ${item.state}</span>
+        </div>
+
+        <div style="margin-top: 12px; border-top: 1px dashed rgba(255,255,255,0.2); padding-top: 8px;">
+          <div style="font-size: 1.4rem; font-weight: 900; color: #4ADE80;">₹${item.modalPriceKg} <span style="font-size: 0.75rem; font-weight: normal; color: white;">/ Kg</span></div>
+          <div style="font-size: 0.75rem; opacity: 0.85;">Range: ₹${item.minPriceKg} - ₹${item.maxPriceKg}</div>
+          <div style="font-size: 0.7rem; color: #FCD34D; font-weight: 600; margin-top: 4px;">Source: ${item.source} ✅</div>
+        </div>
+      </div>
+    `;
+  });
+
+  container.innerHTML = html;
+}
+
+// Multilingual Voice Search
 function startVoiceRecognition() {
   const voiceBtn = document.getElementById("voiceSearchBtn");
   const searchInput = document.getElementById("searchInput");
@@ -360,7 +363,7 @@ function startVoiceRecognition() {
   if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     const recognition = new SpeechRecognition();
-    recognition.lang = 'hi-IN'; // Default to Hindi / English India
+    recognition.lang = 'hi-IN';
     recognition.interimResults = false;
 
     voiceBtn.classList.add("listening");
@@ -394,7 +397,7 @@ function simulateVoiceSearch() {
   voiceBtn.innerText = "🎙️ Listening...";
 
   setTimeout(() => {
-    const samplesVoice = ["Sharbati Wheat", "Basmati Rice", "Cotton", "Soybean", "Apples"];
+    const samplesVoice = ["Mentha Oil", "Sambhal Mentha", "Sharbati Wheat", "Basmati Rice"];
     const randomCrop = samplesVoice[Math.floor(Math.random() * samplesVoice.length)];
     searchInput.value = randomCrop;
     voiceBtn.classList.remove("listening");
@@ -404,7 +407,7 @@ function simulateVoiceSearch() {
   }, 1800);
 }
 
-// FEATURE 2: Logistics & Truck Freight Estimator
+// Logistics Freight Estimator
 async function calculateFreight() {
   const kmEl = document.getElementById("logisticsDistance");
   const qtlEl = document.getElementById("logisticsWeight");
@@ -429,7 +432,7 @@ async function calculateFreight() {
       const data = await res.json();
       if (data.success) rates = data.freightEstimates;
     } catch (e) {
-      console.log("Logistics backend offline, using local calculation");
+      console.log("Logistics backend offline");
     }
   }
 
@@ -439,34 +442,32 @@ async function calculateFreight() {
   container.innerHTML = `
     <div class="freight-card">
       <div>
-        <strong>🛺 E-Rickshaw / Mini Loader (Max 15 Qtl)</strong>
+        <strong>🛺 E-Rickshaw / Mini Drum Loader (Max 15 Qtl/Drums)</strong>
         <p style="font-size: 0.8rem; color: var(--text-muted);">Short distance farm-to-mandi delivery</p>
       </div>
       <div style="font-size: 1.15rem; font-weight: 800; color: var(--primary);">₹${rates.erickshaw.toLocaleString()}</div>
     </div>
     <div class="freight-card">
       <div>
-        <strong>🚛 10-Tonne Eicher Truck (Max 100 Qtl)</strong>
-        <p style="font-size: 0.8rem; color: var(--text-muted);">Standard interstate grain transport</p>
+        <strong>🚛 10-Tonne Eicher Truck (Max 100 Qtl/Drums)</strong>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">Standard interstate Mentha & grain shipment</p>
       </div>
       <div style="font-size: 1.15rem; font-weight: 800; color: var(--primary);">₹${rates.eicher10T.toLocaleString()}</div>
     </div>
     <div class="freight-card">
       <div>
-        <strong>🚛 16-Tonne Heavy Multi-Axle Truck (Max 160 Qtl)</strong>
-        <p style="font-size: 0.8rem; color: var(--text-muted);">Bulk processing mill shipment</p>
+        <strong>🚛 16-Tonne Heavy Multi-Axle Truck</strong>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">Bulk exporter plant shipment</p>
       </div>
       <div style="font-size: 1.15rem; font-weight: 800; color: var(--primary);">₹${rates.multiAxle16T.toLocaleString()}</div>
     </div>
   `;
 }
 
-// FEATURE 3: Cold Storage Slot Reservation
+// Cold Storage Slot Reservation
 function renderColdStorage() {
   const grid = document.getElementById("coldStorageGrid");
-  const bookingsList = document.getElementById("coldBookingsList");
   if (!grid) return;
-
   let html = "";
   COLD_STORAGES.forEach(cs => {
     html += `
@@ -491,67 +492,25 @@ function renderColdStorage() {
     `;
   });
   grid.innerHTML = html;
-
-  if (bookingsList) {
-    if (coldBookings.length === 0) {
-      bookingsList.innerHTML = `<p style="font-size: 0.85rem; color: var(--text-muted);">No cold storage slots reserved yet.</p>`;
-    } else {
-      let bHtml = "";
-      coldBookings.forEach(b => {
-        bHtml += `
-          <div style="background: var(--bg-card); border: 1px solid var(--border-color); padding: 14px; border-radius: var(--radius-md); margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
-            <div>
-              <span style="font-size: 0.75rem; font-weight: 700; color: var(--primary);">${b.bookingId}</span>
-              <h4 style="font-size: 0.95rem;">${b.storageName} (${b.district})</h4>
-              <p style="font-size: 0.8rem; color: var(--text-muted);">${b.cropTitle} | ${b.quantity} Qtl for ${b.durationDays} Days</p>
-            </div>
-            <div style="text-align: right;">
-              <div style="font-weight: 800; color: var(--primary);">₹${b.totalCost.toLocaleString()}</div>
-              <span style="font-size: 0.72rem; color: var(--success); font-weight: 700;">Slot Reserved ✅</span>
-            </div>
-          </div>
-        `;
-      });
-      bookingsList.innerHTML = bHtml;
-    }
-  }
 }
 
 async function bookColdStorageSlot(storageId) {
   const cs = COLD_STORAGES.find(c => c.id === storageId);
   if (!cs) return;
 
-  const farmerName = currentUser ? currentUser.name : "Rameshwar Patel";
-  const bookingData = { storageId, farmerName, cropTitle: "Produce Sample", quantity: 50, durationDays: 30 };
-
-  if (isBackendConnected) {
-    try {
-      const res = await fetch(`${API_BASE_URL}/cold-storage/book`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(bookingData)
-      });
-      const data = await res.json();
-      if (data.success) {
-        coldBookings.unshift(data.booking);
-      }
-    } catch (e) {
-      console.log("Cold storage backend offline");
-    }
-  } else {
-    coldBookings.unshift({
-      bookingId: "CSB-" + (Math.floor(Math.random() * 9000) + 1000),
-      storageName: cs.name, district: cs.district,
-      farmerName, cropTitle: "Produce Sample", quantity: 50, durationDays: 30,
-      totalCost: 50 * cs.ratePerDay * 30, status: "CONFIRMED_SLOT_RESERVED", date: new Date().toISOString().split('T')[0]
-    });
-  }
+  const farmerName = currentUser ? currentUser.name : "Dharamvir Singh";
+  coldBookings.unshift({
+    bookingId: "CSB-" + (Math.floor(Math.random() * 9000) + 1000),
+    storageName: cs.name, district: cs.district,
+    farmerName, cropTitle: "Produce Sample", quantity: 50, durationDays: 30,
+    totalCost: 50 * cs.ratePerDay * 30, status: "CONFIRMED_SLOT_RESERVED", date: new Date().toISOString().split('T')[0]
+  });
 
   renderColdStorage();
   showToast(`🧊 Cold storage chamber slot reserved at ${cs.name}!`);
 }
 
-// FEATURE 1: SMS Alert Logger Modal
+// SMS Log Modal
 function updateSmsBadge() {
   const badge = document.getElementById("smsBadgeCount");
   if (badge) badge.innerText = smsLogs.length;
@@ -591,6 +550,12 @@ async function fetchFromBackend() {
         samples = data.data;
         isBackendConnected = true;
 
+        const resMentha = await fetch(`${API_BASE_URL}/mentha/rates`);
+        const dataMentha = await resMentha.json();
+        if (dataMentha.success && dataMentha.allMandis) {
+          MENTHA_LOCALITY_RATES = dataMentha.allMandis;
+        }
+
         const resMandi = await fetch(`${API_BASE_URL}/mandi-rates`);
         const dataMandi = await resMandi.json();
         if (dataMandi.success) MANDI_RATES = dataMandi.data;
@@ -599,14 +564,7 @@ async function fetchFromBackend() {
         const dataDeals = await resDeals.json();
         if (dataDeals.success) sealedDeals = dataDeals.data;
 
-        const resCS = await fetch(`${API_BASE_URL}/cold-storage`);
-        const dataCS = await resCS.json();
-        if (dataCS.success) {
-          COLD_STORAGES = dataCS.data;
-          if (dataCS.bookings) coldBookings = dataCS.bookings;
-        }
-
-        console.log("⚡ Connected to KrishiDeal Express REST API Backend!");
+        console.log("⚡ Connected to KrishiDeal Express REST API (Mentha Ready)!");
         return;
       }
     }
@@ -624,27 +582,6 @@ function loadStore() {
   } else {
     samples = [...INITIAL_SAMPLES];
     saveStore();
-  }
-
-  const savedDeals = localStorage.getItem("krishi_deals");
-  if (savedDeals) {
-    sealedDeals = JSON.parse(savedDeals);
-  } else {
-    sealedDeals = [
-      {
-        dealId: "DEAL-8801",
-        sampleTitle: "Sharbati Wheat (Lot #902)",
-        farmerName: "Rameshwar Patel",
-        buyerName: "Indore APMC Flour Mills",
-        quantity: 100,
-        pricePerQtl: 4750,
-        totalAmount: 475000,
-        tokenDeposit: 25000,
-        escrowStatus: "TOKEN_LOCKED_IN_SECURE_VAULT",
-        pickupTerm: "Buyer Doorstep Pickup",
-        date: "2026-09-01"
-      }
-    ];
   }
 }
 
@@ -665,7 +602,7 @@ function initTicker() {
     const arrow = isUp ? "▲" : "▼";
     tickerHTML += `
       <div class="ticker-item">
-        <strong>${r.crop}</strong> (${r.mandi}): ₹${r.modal}/Qtl 
+        <strong>${r.crop}</strong> (${r.mandi}): ₹${r.modal}${r.crop.includes('Mentha') ? '/Kg' : '/Qtl'} 
         <span class="${trendClass}">${arrow} ${r.trend}</span>
       </div>
     `;
@@ -679,27 +616,18 @@ function setRole(role) {
   const buyerBtn = document.getElementById("buyerRoleBtn");
   const actionBtn = document.getElementById("actionBtn");
 
-  const heroTitle = document.getElementById("heroTitle");
-  const heroSubtitle = document.getElementById("heroSubtitle");
-
   if (role === "farmer") {
     farmerBtn.className = "role-btn active";
     buyerBtn.className = "role-btn";
     actionBtn.style.display = "flex";
     actionBtn.innerHTML = "<span>➕</span> Post Produce Sample";
     actionBtn.onclick = openPostSampleModal;
-
-    heroTitle.innerText = "Sell Your Produce Directly From Home 🏡";
-    heroSubtitle.innerText = "Share clean crop sample metrics (moisture, purity, grain size) with APMC Mandi buyers, Cold Storages, and exporters. Get competitive doorstep price quotes without transport risk.";
   } else {
     farmerBtn.className = "role-btn";
     buyerBtn.className = "role-btn active buyer-mode";
     actionBtn.style.display = "flex";
     actionBtn.innerHTML = "<span>🏢</span> Sourcing Requests";
-    actionBtn.onclick = () => showToast("Switched to Buyer Procurement Mode! Click 'Submit Doorstep Offer' on any crop sample card.");
-
-    heroTitle.innerText = "Direct Farmer Sourcing & Mandi Bidding Yard 🏢";
-    heroSubtitle.innerText = "Browse verified farmer crop samples with lab-grade moisture & purity scores. Submit binding doorstep price offers with instant token deposits.";
+    actionBtn.onclick = () => showToast("Switched to Buyer Procurement Mode! Click 'Submit Doorstep Offer' on any Mentha or crop sample card.");
   }
 
   renderApp();
@@ -777,11 +705,13 @@ function renderListings() {
   filtered.forEach(item => {
     const offersCount = item.offers ? item.offers.length : 0;
     const topOffer = offersCount > 0 ? Math.max(...item.offers.map(o => o.offerPrice)) : null;
+    const isMentha = item.category === "Mentha Oil";
+    const unitText = isMentha ? "Kg" : "Qtl";
 
     html += `
       <div class="sample-card">
         <div class="card-img-wrap">
-          <img src="${item.image}" alt="${item.title}" onerror="this.src='assets/wheat.png'">
+          <img src="${item.image}" alt="${item.title}" onerror="this.src='assets/mentha.png'">
           <span class="badge-grade">${item.grade}</span>
           <span class="badge-location">📍 ${item.location.split(',')[0]}</span>
         </div>
@@ -795,11 +725,11 @@ function renderListings() {
           <div class="spec-grid">
             <div class="spec-item">
               <span>Quantity</span>
-              <strong>${item.quantity} Qtl</strong>
+              <strong>${item.quantity} ${unitText}</strong>
             </div>
             <div class="spec-item">
-              <span>Moisture %</span>
-              <strong>${item.moisture}%</strong>
+              <span>${isMentha ? 'L-Menthol %' : 'Moisture %'}</span>
+              <strong>${isMentha ? item.purity + '%' : item.moisture + '%'}</strong>
             </div>
             <div class="spec-item">
               <span>Purity Score</span>
@@ -814,12 +744,12 @@ function renderListings() {
           <div class="price-row">
             <div>
               <span class="unit-label">Reserve Price</span>
-              <div class="reserve-price">₹${item.reservePrice.toLocaleString()} <span style="font-size: 0.8rem; font-weight: normal; color: var(--text-muted);">/ Qtl</span></div>
+              <div class="reserve-price">₹${item.reservePrice.toLocaleString()} <span style="font-size: 0.8rem; font-weight: normal; color: var(--text-muted);">/ ${unitText}</span></div>
             </div>
             ${topOffer ? `
               <div style="text-align: right;">
                 <span class="unit-label" style="color: var(--success); font-weight: 700;">Top Buyer Offer</span>
-                <div style="font-size: 1.15rem; font-weight: 800; color: var(--success);">₹${topOffer.toLocaleString()}</div>
+                <div style="font-size: 1.15rem; font-weight: 800; color: var(--success);">₹${topOffer.toLocaleString()} / ${unitText}</div>
               </div>
             ` : ''}
           </div>
@@ -853,14 +783,15 @@ function renderMandiTable() {
   MANDI_RATES.forEach(r => {
     const isUp = r.trend.startsWith("+");
     const trendClass = isUp ? "trend-up" : "trend-down";
+    const unitText = r.crop.includes("Mentha") ? "/Kg" : "/Qtl";
     html += `
       <tr>
         <td><strong>${r.mandi}</strong></td>
         <td>${r.state}</td>
         <td>${r.crop}</td>
-        <td>₹${r.min}</td>
-        <td>₹${r.max}</td>
-        <td style="font-weight: 700; color: var(--primary);">₹${r.modal}</td>
+        <td>₹${r.min} ${unitText}</td>
+        <td>₹${r.max} ${unitText}</td>
+        <td style="font-weight: 700; color: var(--primary);">₹${r.modal} ${unitText}</td>
         <td class="${trendClass}">${r.trend}</td>
       </tr>
     `;
@@ -881,28 +812,36 @@ function calculateQualityScore() {
   document.getElementById("valForeign").innerText = foreign + "%";
 
   let score = 100;
-  if (moisture > 12) score -= (moisture - 12) * 4;
-  if (moisture < 10) score -= (10 - moisture) * 2;
-  score -= (100 - purity) * 1.2;
-  score -= foreign * 5;
+  if (crop === "Mentha Oil") {
+    if (moisture > 0.5) score -= (moisture - 0.5) * 15;
+    score -= (85 - purity) * 1.5;
+    score -= foreign * 8;
+  } else {
+    if (moisture > 12) score -= (moisture - 12) * 4;
+    score -= (100 - purity) * 1.2;
+    score -= foreign * 5;
+  }
 
   score = Math.max(50, Math.min(99, Math.round(score)));
 
   let grade = "Grade B";
-  if (score >= 90) grade = "Grade A+ (Export)";
+  if (score >= 90) grade = "Grade A+ (Export Pure)";
   else if (score >= 78) grade = "Grade A (Mandi Standard)";
 
-  let basePrice = 4500;
-  if (crop === "Rice") basePrice = 4200;
-  if (crop === "Cotton") basePrice = 7400;
-  if (crop === "Soybean") basePrice = 5100;
-  if (crop === "Apples") basePrice = 8800;
+  let basePrice = 1050; // Mentha default per Kg
+  let unitLabel = "Kg";
+
+  if (crop === "Wheat") { basePrice = 4650; unitLabel = "Quintal"; }
+  if (crop === "Rice") { basePrice = 4200; unitLabel = "Quintal"; }
+  if (crop === "Cotton") { basePrice = 7400; unitLabel = "Quintal"; }
+  if (crop === "Soybean") { basePrice = 5100; unitLabel = "Quintal"; }
+  if (crop === "Apples") { basePrice = 8800; unitLabel = "Quintal"; }
 
   const estimatedPrice = Math.round(basePrice * (score / 90));
 
   document.getElementById("calcScoreNum").innerText = score;
   document.getElementById("calcGradeTag").innerText = grade;
-  document.getElementById("calcEstimatedVal").innerText = `Estimated Doorstep Value: ₹${estimatedPrice.toLocaleString()} / Quintal`;
+  document.getElementById("calcEstimatedVal").innerText = `Estimated Value: ₹${estimatedPrice.toLocaleString()} / ${unitLabel}`;
 }
 
 function openPostSampleModal() {
@@ -923,9 +862,9 @@ async function handlePostSample(e) {
   const grade = document.getElementById("formGrade").value;
   const location = document.getElementById("formLocation").value;
   const image = document.getElementById("formImageSelect").value;
-  const khasraNo = document.getElementById("formKhasraNo").value || (currentUser ? currentUser.khasraNo : "K-402/VERIFIED");
+  const khasraNo = document.getElementById("formKhasraNo").value || (currentUser ? currentUser.khasraNo : "UP-SMB-902");
 
-  const farmerName = currentUser ? currentUser.name : "Self (Farmer)";
+  const farmerName = currentUser ? currentUser.name : "Chaudhary Dharamvir Singh";
   const sampleData = { title, category, quantity, reservePrice, moisture, grade, location, image, farmerName, khasraNo, verifiedFarmer: true };
 
   if (isBackendConnected) {
@@ -940,14 +879,14 @@ async function handlePostSample(e) {
         samples.unshift(data.sample);
       }
     } catch (err) {
-      console.error("Backend error, falling back to local state", err);
+      console.error("Backend error", err);
     }
   } else {
     const newSample = {
       id: "SMP-" + (Math.floor(Math.random() * 900) + 100),
       ...sampleData,
       variety: category + " (Farmer Direct Sample)",
-      purity: 97.5,
+      purity: category === "Mentha Oil" ? 81.0 : 97.5,
       harvestDate: new Date().toISOString().split("T")[0],
       offers: []
     };
@@ -958,16 +897,17 @@ async function handlePostSample(e) {
   closeModal("postSampleModal");
   document.getElementById("postSampleForm").reset();
   renderApp();
-  showToast("🌾 Produce sample published with Verified Genuine Farmer badge!");
+  showToast("🌿 Produce sample published with Verified Genuine Farmer badge!");
 }
 
 function openBidModal(sampleId) {
   const item = samples.find(s => s.id === sampleId);
   if (!item) return;
 
+  const unitText = item.category === "Mentha Oil" ? "Kg" : "Qtl";
   document.getElementById("bidSampleId").value = sampleId;
   document.getElementById("bidCropName").innerText = item.title;
-  document.getElementById("bidCropDetails").innerText = `Quantity: ${item.quantity} Qtl | Reserve: ₹${item.reservePrice.toLocaleString()}/Qtl | Location: ${item.location}`;
+  document.getElementById("bidCropDetails").innerText = `Quantity: ${item.quantity} ${unitText} | Reserve: ₹${item.reservePrice.toLocaleString()}/${unitText} | Location: ${item.location}`;
 
   if (currentUser && currentUser.name) {
     document.getElementById("buyerEntity").value = currentUser.name;
@@ -984,10 +924,10 @@ async function handlePlaceBid(e) {
   const offeredPrice = parseFloat(document.getElementById("offeredPrice").value);
   const tokenAdvance = parseFloat(document.getElementById("tokenAdvance").value);
   const pickupTerm = document.getElementById("pickupTerm").value;
-  const gstin = document.getElementById("buyerGstin").value || (currentUser ? currentUser.gstin : "GST-VERIFIED");
+  const gstin = document.getElementById("buyerGstin").value || (currentUser ? currentUser.gstin : "09AABCB5512K1ZN");
 
   const item = samples.find(s => s.id === sampleId);
-  const bidPayload = { buyerName: buyerEntity, offerPrice: offeredPrice, token: tokenAdvance, term: pickupTerm, gstin, verifiedBuyer: true, farmerPhone: "9876543210" };
+  const bidPayload = { buyerName: buyerEntity, offerPrice: offeredPrice, token: tokenAdvance, term: pickupTerm, gstin, verifiedBuyer: true };
 
   if (isBackendConnected) {
     try {
@@ -1017,20 +957,20 @@ async function handlePlaceBid(e) {
     }
   }
 
-  // Record SMS Alert
-  const smsText = `[KrishiDeal Alert] ${buyerEntity} submitted bid of ₹${offeredPrice}/Qtl on ${item.title}. Token: ₹${tokenAdvance}.`;
+  const smsText = `[KrishiDeal Alert] ${buyerEntity} submitted bid of ₹${offeredPrice} on ${item.title}. Token: ₹${tokenAdvance}.`;
   smsLogs.unshift({ phone: "9876543210", text: smsText, time: "Just now" });
   updateSmsBadge();
 
   closeModal("bidModal");
   document.getElementById("bidForm").reset();
   renderApp();
-  showToast(`📱 SMS Alert dispatched to farmer! Offer of ₹${offeredPrice}/Qtl submitted.`);
+  showToast(`📱 SMS Alert dispatched to farmer! Offer of ₹${offeredPrice} submitted.`);
 }
 
 function viewOffers(sampleId) {
   const item = samples.find(s => s.id === sampleId);
   if (!item) return;
+  const unitText = item.category === "Mentha Oil" ? "Kg" : "Qtl";
 
   document.getElementById("offersModalTitle").innerText = `📋 Offers for ${item.title}`;
   const container = document.getElementById("offersModalContent");
@@ -1038,10 +978,10 @@ function viewOffers(sampleId) {
   let html = `
     <div style="background: var(--bg-subtle); padding: 16px; border-radius: var(--radius-sm); margin-bottom: 20px; font-size: 0.9rem;">
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-        <div><strong>Total Produce:</strong> ${item.quantity} Quintals</div>
-        <div><strong>Reserve Price:</strong> ₹${item.reservePrice.toLocaleString()} / Qtl</div>
+        <div><strong>Total Quantity:</strong> ${item.quantity} ${unitText}</div>
+        <div><strong>Reserve Price:</strong> ₹${item.reservePrice.toLocaleString()} / ${unitText}</div>
         <div><strong>Farmer Verification:</strong> <span style="color: var(--success); font-weight: 700;">Genuine Farmer ✅</span></div>
-        <div><strong>Land Record No:</strong> ${item.khasraNo || 'K-VERIFIED'}</div>
+        <div><strong>Land Record No:</strong> ${item.khasraNo || 'UP-SMB-902'}</div>
       </div>
     </div>
     <h4 style="margin-bottom: 12px; color: var(--primary);">Incoming Buyer Doorstep Bids (${item.offers ? item.offers.length : 0})</h4>
@@ -1061,10 +1001,10 @@ function viewOffers(sampleId) {
           <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
             <div>
               <h4 style="color: var(--text-main); font-size: 1.1rem;">${off.buyerName} <span style="font-size: 0.75rem; color: var(--success); background: var(--primary-light); padding: 2px 8px; border-radius: 99px;">APMC Verified Buyer ✅</span></h4>
-              <span style="font-size: 0.8rem; color: var(--text-muted);">GSTIN: ${off.gstin || '23AABCI8821K1ZM'} | Submitted: ${off.date}</span>
+              <span style="font-size: 0.8rem; color: var(--text-muted);">GSTIN: ${off.gstin || '09AABCB5512K1ZN'} | Submitted: ${off.date}</span>
             </div>
             <div style="text-align: right;">
-              <div style="font-size: 1.3rem; font-weight: 800; color: var(--primary);">₹${off.offerPrice.toLocaleString()} <span style="font-size: 0.8rem; color: var(--text-muted);">/ Qtl</span></div>
+              <div style="font-size: 1.3rem; font-weight: 800; color: var(--primary);">₹${off.offerPrice.toLocaleString()} <span style="font-size: 0.8rem; color: var(--text-muted);">/ ${unitText}</span></div>
               <div style="font-size: 0.85rem; font-weight: 700; color: var(--success);">Total Deal: ₹${totalAmount.toLocaleString()}</div>
             </div>
           </div>
@@ -1143,7 +1083,7 @@ function showContractModal(deal) {
   container.innerHTML = `
     <div class="contract-paper">
       <div class="contract-header">
-        <h2 style="color: #0F5A47;">🌾 KrishiDeal Verified Direct Trade Note</h2>
+        <h2 style="color: #0F5A47;">🌿 KrishiDeal Verified Direct Trade Note</h2>
         <p style="font-size: 0.85rem; color: #64748B;">Official Doorstep Commodity Transaction & Escrow Vault Receipt</p>
         <span style="font-size: 0.8rem; font-weight: 700; background: #EAEFEA; padding: 4px 12px; border-radius: 99px;">Contract ID: ${deal.dealId}</span>
       </div>
@@ -1152,24 +1092,24 @@ function showContractModal(deal) {
         <div>
           <strong>🧑‍🌾 Farmer Details (Verified ✅):</strong>
           <p>${deal.farmerName}</p>
-          <p style="font-size: 0.8rem; color: #64748B;">Land Record: ${deal.khasraNo || 'Verified Khasra'}</p>
+          <p style="font-size: 0.8rem; color: #64748B;">Land Record: ${deal.khasraNo || 'UP-SMB-902'}</p>
           <p style="font-size: 0.8rem; color: #64748B;">${deal.location}</p>
         </div>
         <div>
           <strong>🏢 Mandi / Buyer Entity (Verified ✅):</strong>
           <p>${deal.buyerName}</p>
           <p style="font-size: 0.8rem; color: #64748B;">APMC Mandi License Verified</p>
-          <p style="font-size: 0.8rem; color: #64748B;">GSTIN: ${deal.gstin || '23AABCI8821K1ZM'}</p>
+          <p style="font-size: 0.8rem; color: #64748B;">GSTIN: ${deal.gstin || '09AABCB5512K1ZN'}</p>
         </div>
       </div>
 
       <div style="background: #F4EAD3; padding: 14px; border-radius: 8px; margin-bottom: 20px;">
         <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
           <span>Commodity: <strong>${deal.sampleTitle}</strong></span>
-          <span>Quantity: <strong>${deal.quantity} Quintals</strong></span>
+          <span>Quantity: <strong>${deal.quantity} ${deal.sampleTitle.includes('Mentha') ? 'Kg' : 'Qtl'}</strong></span>
         </div>
         <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
-          <span>Agreed Rate: <strong>₹${deal.pricePerQtl.toLocaleString()} / Qtl</strong></span>
+          <span>Agreed Rate: <strong>₹${deal.pricePerQtl.toLocaleString()} / ${deal.sampleTitle.includes('Mentha') ? 'Kg' : 'Qtl'}</strong></span>
           <span>Total Transaction: <strong style="color: #0F5A47; font-size: 1.1rem;">₹${deal.totalAmount.toLocaleString()}</strong></span>
         </div>
         <div style="display: flex; justify-content: space-between; border-top: 1px dashed #C27B0C; padding-top: 6px; margin-top: 6px;">
@@ -1205,7 +1145,7 @@ function renderDeals() {
       <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 20px; margin-bottom: 16px; box-shadow: var(--shadow-sm); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
         <div>
           <span style="font-size: 0.75rem; font-weight: 700; color: var(--primary); background: var(--bg-subtle); padding: 4px 10px; border-radius: var(--radius-full);">${d.dealId}</span>
-          <h4 style="margin-top: 6px; font-size: 1.1rem;">${d.sampleTitle} (${d.quantity} Qtl)</h4>
+          <h4 style="margin-top: 6px; font-size: 1.1rem;">${d.sampleTitle} (${d.quantity} ${d.sampleTitle.includes('Mentha') ? 'Kg' : 'Qtl'})</h4>
           <p style="font-size: 0.85rem; color: var(--text-muted);">Farmer: ${d.farmerName} ✅ ➔ Buyer: ${d.buyerName} ✅</p>
         </div>
         <div style="text-align: right;">
