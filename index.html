@@ -68,7 +68,7 @@
       <div class="hero-content">
         <div class="hero-text">
           <h2 id="heroTitle">Mentha Oil & Crop Produce Direct Dealing 🌿🏡</h2>
-          <p id="heroSubtitle">Connect with verified Essential Oil exporters, APMC Mandi buyers, and Flour Mills. Check real-time Mentha prices for your district (Sambhal, Barabanki, Chandausi) or Pan-India MCX benchmark.</p>
+          <p id="heroSubtitle">Connect with verified Essential Oil exporters, APMC Mandi buyers, and Flour Mills. Check real-time Mentha prices for your district (Sambhal, Barabanki, Chandausi) powered by background MCX live feeds.</p>
         </div>
         <div class="hero-stats">
           <div class="hero-stat-card">
@@ -76,8 +76,8 @@
             <div class="hero-stat-label">Active Samples</div>
           </div>
           <div class="hero-stat-card">
-            <div class="hero-stat-num" id="statActiveMentha">₹1,060/Kg</div>
-            <div class="hero-stat-label">Mentha Oil Rate</div>
+            <div class="hero-stat-num" id="statActiveMentha">₹1,208/Kg</div>
+            <div class="hero-stat-label">Sambhal Mentha Rate</div>
           </div>
           <div class="hero-stat-card">
             <div class="hero-stat-num" id="statMandiCount">18 Mandis</div>
@@ -87,27 +87,40 @@
       </div>
     </section>
 
-    <!-- SPECIAL MENTHA OIL LOCALITY & GENUINE MANDI PRICE WIDGET -->
+    <!-- SPECIAL MENTHA OIL LOCALITY & BACKGROUND MCX REFERENCE ENGINE WIDGET -->
     <section style="background: linear-gradient(135deg, #064E3B 0%, #0F5A47 100%); border-radius: var(--radius-md); padding: 22px 28px; color: white; margin-bottom: 24px; box-shadow: var(--shadow-md);">
+      
+      <!-- Top Status Header: Background Engine Banner + Locality Filter -->
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
         <div style="display: flex; align-items: center; gap: 12px;">
           <span style="font-size: 2.2rem;">🌿</span>
           <div>
-            <h3 style="font-size: 1.25rem; font-weight: 800;">Mentha Oil Live Locality & Genuine Mandi Benchmark</h3>
-            <p style="font-size: 0.85rem; opacity: 0.9;">Real-time steam distilled Mentha oil prices verified from Mandi Committee Registers & MCX India.</p>
+            <h3 style="font-size: 1.25rem; font-weight: 800;">Mentha Oil Local District Mandi Options</h3>
+            <p style="font-size: 0.85rem; opacity: 0.9;">Real-time mandi rates calculated dynamically for your district.</p>
           </div>
         </div>
-        
-        <!-- Locality Selector for Farmer -->
+
+        <!-- Locality District Select -->
         <div style="display: flex; align-items: center; gap: 10px;">
-          <span style="font-size: 0.85rem; font-weight: 700;">📍 Select Your Locality:</span>
+          <span style="font-size: 0.85rem; font-weight: 700;">📍 Select Your District:</span>
           <select id="menthaLocalitySelect" class="filter-select" onchange="renderMenthaLocalityWidget()" style="background: #092B22; color: #4ADE80; font-weight: 700; border-color: #144738;">
             <option value="Sambhal">Sambhal Mandi, UP (Primary)</option>
             <option value="Barabanki">Barabanki Market, UP</option>
             <option value="Chandausi">Chandausi Mandi, UP</option>
             <option value="Rampur">Rampur Mandi Yard, UP</option>
-            <option value="MCX">MCX Pan-India Benchmark</option>
           </select>
+        </div>
+      </div>
+
+      <!-- Background MCX ET Reference Engine Status Bar -->
+      <div style="background: rgba(0, 0, 0, 0.25); border: 1px dashed rgba(74, 222, 128, 0.4); border-radius: var(--radius-sm); padding: 10px 16px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <div style="display: flex; align-items: center; gap: 8px; font-size: 0.82rem;">
+          <span style="display: inline-block; width: 8px; height: 8px; background: #4ADE80; border-radius: 50%; box-shadow: 0 0 8px #4ADE80;"></span>
+          <strong>BACKGROUND REFERENCE ENGINE:</strong>
+          <span style="opacity: 0.9;">Economic Times / MCX Futures Live Feed (`symbol: MENTHAOIL`)</span>
+        </div>
+        <div style="font-size: 0.85rem; font-weight: 800; color: #4ADE80;" id="mcxEngineStatusTag">
+          MCX Benchmark: ₹1,215.50 / Kg (+2.45% ▲)
         </div>
       </div>
 
@@ -350,7 +363,7 @@
                 <div class="score-grade" id="calcGradeTag">Grade A+</div>
               </div>
             </div>
-            <h4 style="margin-bottom: 6px;" id="calcEstimatedVal">Estimated Value: ₹1,065 / Kg</h4>
+            <h4 style="margin-bottom: 6px;" id="calcEstimatedVal">Estimated Value: ₹1,208 / Kg</h4>
             <p style="font-size: 0.85rem; color: var(--text-muted);">81%+ L-Menthol purity commands premium in Sambhal & Barabanki markets.</p>
           </div>
         </div>
@@ -399,7 +412,7 @@
       <form id="loginForm" onsubmit="handleLogin(event)">
         <div class="form-group">
           <label>Mobile Number or Email *</label>
-          <input type="text" class="form-control" id="loginIdentifier" placeholder="e.g. 9876543210 or rameshwar@farmer.in" required>
+          <input type="text" class="form-control" id="loginIdentifier" placeholder="e.g. 9876543210 or dharamvir@menthafarmer.in" required>
         </div>
 
         <div class="form-group">
@@ -509,7 +522,7 @@
       <form id="postSampleForm" onsubmit="handlePostSample(event)">
         <div class="form-group">
           <label>Crop Name & Variety *</label>
-          <input type="text" class="form-control" id="formCropTitle" placeholder="e.g. Pure Shivalik Mentha Oil (80%+ Menthol)" required>
+          <input type="text" class="form-control" id="formCropTitle" placeholder="e.g. Pure Shivalik Mentha Oil (81%+ Menthol)" required>
         </div>
 
         <div class="form-group">
@@ -531,7 +544,7 @@
           </div>
           <div class="form-group">
             <label>Reserve Price (₹ per Kg/Qtl) *</label>
-            <input type="number" class="form-control" id="formPrice" placeholder="e.g. 1050" required>
+            <input type="number" class="form-control" id="formPrice" placeholder="e.g. 1208" required>
           </div>
         </div>
 
@@ -590,7 +603,7 @@
         <input type="hidden" id="bidSampleId">
         <div style="background: var(--bg-subtle); padding: 14px; border-radius: var(--radius-sm); margin-bottom: 16px;">
           <h4 id="bidCropName" style="color: var(--primary);">Pure Shivalik Mentha Oil</h4>
-          <p id="bidCropDetails" style="font-size: 0.85rem; color: var(--text-muted);">Quantity: 45 Kg | Reserve: ₹1,045/Kg | Location: Sambhal, UP</p>
+          <p id="bidCropDetails" style="font-size: 0.85rem; color: var(--text-muted);">Quantity: 45 Kg | Reserve: ₹1,208/Kg | Location: Sambhal, UP</p>
         </div>
 
         <div class="form-group">
@@ -606,7 +619,7 @@
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
           <div class="form-group">
             <label>Offered Price (₹ / Kg or Qtl) *</label>
-            <input type="number" class="form-control" id="offeredPrice" placeholder="e.g. 1065" required>
+            <input type="number" class="form-control" id="offeredPrice" placeholder="e.g. 1220" required>
           </div>
           <div class="form-group">
             <label>Token Deposit Advance (₹) *</label>

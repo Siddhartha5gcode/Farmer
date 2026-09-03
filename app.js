@@ -1,5 +1,5 @@
 /* ==========================================================================
-   KrishiDeal - Direct Farmer Platform (v2.3.0 Live Automated Polling Client)
+   KrishiDeal - Direct Farmer Platform (v2.4.0 Background MCX Engine & Local Options)
    ========================================================================== */
 
 const API_BASE_URL = "http://localhost:5000/api";
@@ -11,7 +11,7 @@ const INITIAL_SAMPLES = [
     category: "Mentha Oil",
     variety: "Shivalik Steam Distilled Mentha Oil",
     quantity: 45, // Kg / Drums
-    reservePrice: 1205, // Live ET MCX Benchmark Price per Kg
+    reservePrice: 1208, // Calculated from MCX Live benchmark minus local Sambhal spread
     moisture: 0.4,
     purity: 81.5,
     grade: "Grade A+ (Export Pure)",
@@ -32,7 +32,7 @@ const INITIAL_SAMPLES = [
     category: "Mentha Oil",
     variety: "Kosi High-Yield Mint Distillation",
     quantity: 60,
-    reservePrice: 1190,
+    reservePrice: 1198,
     moisture: 0.6,
     purity: 78.0,
     grade: "Grade A",
@@ -86,18 +86,22 @@ const INITIAL_SAMPLES = [
   }
 ];
 
+let backgroundMcxEngine = {
+  symbol: "MENTHAOIL",
+  benchmarkPriceKg: 1215.50,
+  changePercent: "+2.45%"
+};
+
 let MENTHA_LOCALITY_RATES = [
-  { mandi: "MCX India Live Benchmark", district: "Pan-India", state: "Economic Times / MCX Live Feed", modalPriceKg: 1215.50, minPriceKg: 1200.00, maxPriceKg: 1230.00, trend: "+2.45%", source: "Economic Times (symbol: MENTHAOIL) / MCX", status: "National Exchange Live Rate" },
-  { mandi: "Sambhal APMC Mandi", district: "Sambhal", state: "Uttar Pradesh", modalPriceKg: 1208.00, minPriceKg: 1195.00, maxPriceKg: 1222.00, trend: "+2.20%", source: "APMC Sambhal Mandi Gate Register", status: "Primary Locality Trading Belt" },
-  { mandi: "Barabanki Mint Market", district: "Barabanki", state: "Uttar Pradesh", modalPriceKg: 1198.00, minPriceKg: 1180.00, maxPriceKg: 1215.00, trend: "+1.85%", source: "Barabanki Essential Oils Exchange (ex-Barabanki)", status: "Primary Distillation Hub" },
-  { mandi: "Chandausi Grain & Oil Mandi", district: "Sambhal", state: "Uttar Pradesh", modalPriceKg: 1212.00, minPriceKg: 1198.00, maxPriceKg: 1226.00, trend: "+2.10%", source: "APMC Chandausi Yard Register", status: "Major Export Yard" },
-  { mandi: "Rampur Mandi Yard", district: "Rampur", state: "Uttar Pradesh", modalPriceKg: 1192.00, minPriceKg: 1175.00, maxPriceKg: 1205.00, trend: "+1.50%", source: "Rampur Mandi Committee", status: "Regional Mandi Yard" }
+  { mandi: "Sambhal APMC Mandi", district: "Sambhal", state: "Uttar Pradesh", modalPriceKg: 1208.00, minPriceKg: 1195.00, maxPriceKg: 1222.00, trend: "+2.45%", source: "APMC Sambhal Mandi Register (Derived from MCX Live Feed)", status: "Primary Locality Trading Belt" },
+  { mandi: "Barabanki Mint Market", district: "Barabanki", state: "Uttar Pradesh", modalPriceKg: 1198.00, minPriceKg: 1180.00, maxPriceKg: 1215.00, trend: "+2.45%", source: "Barabanki Essential Oils Exchange (ex-Barabanki)", status: "Primary Distillation Hub" },
+  { mandi: "Chandausi Grain & Oil Mandi", district: "Sambhal", state: "Uttar Pradesh", modalPriceKg: 1212.00, minPriceKg: 1198.00, maxPriceKg: 1226.00, trend: "+2.45%", source: "APMC Chandausi Yard Register", status: "Major Export Yard" },
+  { mandi: "Rampur Mandi Yard", district: "Rampur", state: "Uttar Pradesh", modalPriceKg: 1192.00, minPriceKg: 1175.00, maxPriceKg: 1205.00, trend: "+2.45%", source: "Rampur Mandi Committee Register", status: "Regional Mandi Yard" }
 ];
 
 let MANDI_RATES = [
-  { mandi: "MCX India Live (ET Feed)", state: "National Exchange", crop: "Mentha Oil (MENTHAOIL)", min: 1200.00, max: 1230.00, modal: 1215.50, trend: "+2.45%" },
-  { mandi: "Sambhal APMC Mandi", state: "Uttar Pradesh", crop: "Mentha Oil (Menthol)", min: 1195.00, max: 1222.00, modal: 1208.00, trend: "+2.20%" },
-  { mandi: "Barabanki Mint Market", state: "Uttar Pradesh", crop: "Mentha Oil (ex-Barabanki)", min: 1180.00, max: 1215.00, modal: 1198.00, trend: "+1.85%" },
+  { mandi: "Sambhal APMC Mandi", state: "Uttar Pradesh", crop: "Mentha Oil (Menthol)", min: 1195.00, max: 1222.00, modal: 1208.00, trend: "+2.45%" },
+  { mandi: "Barabanki Mint Market", state: "Uttar Pradesh", crop: "Mentha Oil (ex-Barabanki)", min: 1180.00, max: 1215.00, modal: 1198.00, trend: "+2.45%" },
   { mandi: "Indore APMC Mandi", state: "Madhya Pradesh", crop: "Sharbati Wheat", min: 4500.00, max: 4850.00, modal: 4720.00, trend: "+1.80%" }
 ];
 
@@ -127,21 +131,19 @@ document.addEventListener("DOMContentLoaded", async () => {
   renderColdStorage();
   updateSmsBadge();
 
-  // Poll live ET endpoint every 30 seconds for continuous real-time updates
   setInterval(fetchLiveMenthaRateFromBackend, 30000);
 });
 
 async function fetchLiveMenthaRateFromBackend() {
   try {
-    const res = await fetch(`${API_BASE_URL}/mentha/live-rate`);
+    const res = await fetch(`${API_BASE_URL}/mentha/rates`);
     if (res.ok) {
       const data = await res.json();
       if (data.success) {
-        if (data.localityRates) {
-          MENTHA_LOCALITY_RATES = data.localityRates;
-          renderMenthaLocalityWidget();
-          initTicker();
-        }
+        if (data.backgroundMcxEngine) backgroundMcxEngine = data.backgroundMcxEngine;
+        if (data.allLocalMandis) MENTHA_LOCALITY_RATES = data.allLocalMandis;
+        renderMenthaLocalityWidget();
+        initTicker();
       }
     }
   } catch (e) {
@@ -331,11 +333,16 @@ function handleSignOut() {
   showToast("You have signed out of KrishiDeal.");
 }
 
-// RENDER SPECIAL MENTHA OIL LOCALITY PRICE WIDGET (With ET MCX Live Benchmark)
+// RENDER SPECIAL MENTHA OIL LOCAL DISTRICT OPTIONS (Driven by background MCX Live Feed)
 function renderMenthaLocalityWidget() {
   const selectEl = document.getElementById("menthaLocalitySelect");
   const container = document.getElementById("menthaLocalityGrid");
+  const engineTag = document.getElementById("mcxEngineStatusTag");
   if (!container || !selectEl) return;
+
+  if (engineTag && backgroundMcxEngine) {
+    engineTag.innerText = `MCX Benchmark: ₹${backgroundMcxEngine.benchmarkPriceKg.toFixed(2)} / Kg (${backgroundMcxEngine.changePercent} ▲)`;
+  }
 
   const selectedLocality = selectEl.value;
   
@@ -348,24 +355,23 @@ function renderMenthaLocalityWidget() {
   let html = "";
   sorted.forEach((item, idx) => {
     const isPrimary = idx === 0;
-    const isMCX = item.mandi.includes("MCX");
 
     html += `
-      <div style="background: ${isPrimary ? '#092B22' : 'rgba(255,255,255,0.08)'}; border: ${isPrimary ? '2px solid #4ADE80' : '1px solid rgba(255,255,255,0.15)'}; border-radius: var(--radius-md); padding: 14px; display: flex; flex-direction: column; justify-content: space-between;">
+      <div style="background: ${isPrimary ? '#092B22' : 'rgba(255,255,255,0.08)'}; border: ${isPrimary ? '2px solid #4ADE80' : '1px solid rgba(255,255,255,0.15)'}; border-radius: var(--radius-md); padding: 16px; display: flex; flex-direction: column; justify-content: space-between;">
         <div>
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
             <span style="font-size: 0.72rem; font-weight: 800; background: ${isPrimary ? '#16A34A' : '#1E2D4A'}; color: white; padding: 2px 8px; border-radius: 99px;">
-              ${isPrimary ? '📍 LOCALITY PRIMARY' : (isMCX ? '🌐 MCX / ET LIVE FEED' : '🏛️ REGIONAL MANDI')}
+              ${isPrimary ? '📍 LOCAL DISTRICT PRIMARY' : '🏛️ REGIONAL MANDI'}
             </span>
             <span style="font-size: 0.75rem; color: #4ADE80; font-weight: 700;">${item.trend} ▲</span>
           </div>
-          <h4 style="font-size: 1.05rem; font-weight: 800; margin-top: 4px;">${item.mandi}</h4>
+          <h4 style="font-size: 1.08rem; font-weight: 800; margin-top: 4px;">${item.mandi}</h4>
           <span style="font-size: 0.75rem; opacity: 0.85;">${item.district}, ${item.state}</span>
         </div>
 
         <div style="margin-top: 12px; border-top: 1px dashed rgba(255,255,255,0.2); padding-top: 8px;">
-          <div style="font-size: 1.4rem; font-weight: 900; color: #4ADE80;">₹${item.modalPriceKg.toFixed(2)} <span style="font-size: 0.75rem; font-weight: normal; color: white;">/ Kg</span></div>
-          <div style="font-size: 0.75rem; opacity: 0.85;">Day Range: ₹${item.minPriceKg.toFixed(2)} - ₹${item.maxPriceKg.toFixed(2)}</div>
+          <div style="font-size: 1.45rem; font-weight: 900; color: #4ADE80;">₹${item.modalPriceKg.toFixed(2)} <span style="font-size: 0.75rem; font-weight: normal; color: white;">/ Kg</span></div>
+          <div style="font-size: 0.75rem; opacity: 0.85;">Mandi Range: ₹${item.minPriceKg.toFixed(2)} - ₹${item.maxPriceKg.toFixed(2)}</div>
           <div style="font-size: 0.7rem; color: #FCD34D; font-weight: 600; margin-top: 4px;">Source: ${item.source} ✅</div>
         </div>
       </div>
@@ -375,8 +381,8 @@ function renderMenthaLocalityWidget() {
   container.innerHTML = html;
 
   const statMentha = document.getElementById("statActiveMentha");
-  if (statMentha && MENTHA_LOCALITY_RATES[0]) {
-    statMentha.innerText = `₹${MENTHA_LOCALITY_RATES[0].modalPriceKg.toFixed(2)}/Kg`;
+  if (statMentha && sorted[0]) {
+    statMentha.innerText = `₹${sorted[0].modalPriceKg.toFixed(2)}/Kg`;
   }
 }
 
@@ -577,8 +583,9 @@ async function fetchFromBackend() {
 
         const resMentha = await fetch(`${API_BASE_URL}/mentha/rates`);
         const dataMentha = await resMentha.json();
-        if (dataMentha.success && dataMentha.allMandis) {
-          MENTHA_LOCALITY_RATES = dataMentha.allMandis;
+        if (dataMentha.success) {
+          if (dataMentha.backgroundMcxEngine) backgroundMcxEngine = dataMentha.backgroundMcxEngine;
+          if (dataMentha.allLocalMandis) MENTHA_LOCALITY_RATES = dataMentha.allLocalMandis;
         }
 
         const resMandi = await fetch(`${API_BASE_URL}/mandi-rates`);
@@ -853,7 +860,7 @@ function calculateQualityScore() {
   if (score >= 90) grade = "Grade A+ (Export Pure)";
   else if (score >= 78) grade = "Grade A (Mandi Standard)";
 
-  let basePrice = MENTHA_LOCALITY_RATES[0] ? MENTHA_LOCALITY_RATES[0].modalPriceKg : 1215.50;
+  let basePrice = MENTHA_LOCALITY_RATES[0] ? MENTHA_LOCALITY_RATES[0].modalPriceKg : 1208.00;
   let unitLabel = "Kg";
 
   if (crop === "Wheat") { basePrice = 4650; unitLabel = "Quintal"; }
