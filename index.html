@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KrishiDeal - Direct Farmer Produce & Mandi Dealing Platform</title>
-  <meta name="description" content="Direct agricultural dealing platform connecting Farmers with APMC Mandi Traders, Cold Storages, and Wholesale Buyers. Share crop samples directly from home for real-time doorstep valuation.">
+  <title>KrishiDeal - Enterprise Farmer Platform & Mandi Market Yard</title>
+  <meta name="description" content="Direct agricultural dealing platform connecting Farmers with APMC Mandi Traders, Cold Storages, and Wholesale Buyers. Features AI Valuation, SMS Alerts, Logistics Estimator, and Cold Storage Reservations.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -23,7 +23,7 @@
         <div class="brand-icon">🌾</div>
         <div class="brand-text">
           <h1>KrishiDeal</h1>
-          <span>Direct Farm Dealing</span>
+          <span>Direct Farm Platform</span>
         </div>
       </div>
 
@@ -37,11 +37,22 @@
         </button>
       </div>
 
-      <!-- Nav Actions -->
+      <!-- Nav Actions (SMS Log + Auth + Post + Theme) -->
       <div class="nav-actions">
+        <button class="btn-secondary" onclick="openSmsLogsModal()" title="View SMS & WhatsApp Alerts">
+          📱 Trade SMS (<span id="smsBadgeCount">2</span>)
+        </button>
+
+        <div id="authNavContainer">
+          <button class="btn-auth-nav" onclick="openAuthModal('login')">
+            🔑 Sign In / Register
+          </button>
+        </div>
+
         <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode" id="themeBtn">
           🌙
         </button>
+
         <button class="post-sample-btn" id="actionBtn" onclick="openPostSampleModal()">
           <span>➕</span> Post Produce Sample
         </button>
@@ -76,12 +87,66 @@
       </div>
     </section>
 
-    <!-- Toolbar: Search & Filters -->
+    <!-- FEATURE 4: 7-Day Harvest Weather & Moisture Risk Advisory Widget -->
+    <section class="weather-advisory-banner">
+      <div class="weather-header">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 1.8rem;">🌤️</span>
+          <div>
+            <h4 style="font-size: 1rem; color: var(--primary);">7-Day District Harvest Weather & Moisture Advisory</h4>
+            <span style="font-size: 0.8rem; color: var(--text-muted);">Region: Malwa Wheat Belt (Sehore & Indore) | Updated Live</span>
+          </div>
+        </div>
+        <div class="weather-badge-safe">
+          ✅ Ideal Grain Moisture Window (10.5% - 11.8%)
+        </div>
+      </div>
+      <div class="weather-forecast-row">
+        <div class="weather-day-card">
+          <span class="day-name">Thu (Today)</span>
+          <span class="day-icon">☀️</span>
+          <span class="day-temp">31°C / 18°C</span>
+          <span class="day-risk text-safe">Dry • 0% Rain</span>
+        </div>
+        <div class="weather-day-card">
+          <span class="day-name">Fri</span>
+          <span class="day-icon">🌤️</span>
+          <span class="day-temp">30°C / 19°C</span>
+          <span class="day-risk text-safe">Sunny • 5% Rain</span>
+        </div>
+        <div class="weather-day-card">
+          <span class="day-name">Sat</span>
+          <span class="day-icon">⛅</span>
+          <span class="day-temp">29°C / 18°C</span>
+          <span class="day-risk text-warn">Cover Grain • 25% Rain</span>
+        </div>
+        <div class="weather-day-card">
+          <span class="day-name">Sun</span>
+          <span class="day-icon">🌧️</span>
+          <span class="day-temp">27°C / 17°C</span>
+          <span class="day-risk text-danger">⚠️ Light Rain Alert</span>
+        </div>
+        <div class="weather-day-card">
+          <span class="day-name">Mon</span>
+          <span class="day-icon">☀️</span>
+          <span class="day-temp">32°C / 18°C</span>
+          <span class="day-risk text-safe">Clear Sky</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Toolbar: Search, Filters & Voice Assistant -->
     <section class="filter-toolbar">
       <div class="search-box">
         <span class="search-icon">🔍</span>
-        <input type="text" id="searchInput" placeholder="Search crops (e.g. Basmati Rice, Sharbati Wheat, Cotton, Indore Mandi)..." oninput="renderApp()">
+        <input type="text" id="searchInput" placeholder="Search crops (e.g. Basmati Rice, Wheat)..." oninput="renderApp()">
+        
+        <!-- FEATURE 6: Multilingual Voice Assistant Button -->
+        <button class="voice-search-btn" id="voiceSearchBtn" onclick="startVoiceRecognition()" title="Click to Speak Search in Hindi / English">
+          🎙️ Speak
+        </button>
       </div>
+
       <div class="filter-group">
         <select class="filter-select" id="cropFilter" onchange="renderApp()">
           <option value="all">🌾 All Produce Categories</option>
@@ -109,11 +174,17 @@
       <button class="tab-btn" id="tabMandi" onclick="switchTab('mandi')">
         📊 Live Mandi Rates
       </button>
+      <button class="tab-btn" id="tabLogistics" onclick="switchTab('logistics')">
+        🚛 Logistics Freight Estimator
+      </button>
+      <button class="tab-btn" id="tabColdstorage" onclick="switchTab('coldstorage')">
+        🧊 Cold Storage Booking
+      </button>
       <button class="tab-btn" id="tabQuality" onclick="switchTab('quality')">
-        🧪 AI Sample Quality Estimator
+        🧪 AI Quality Estimator
       </button>
       <button class="tab-btn" id="tabDeals" onclick="switchTab('deals')">
-        📜 Sealed Doorstep Deals
+        📜 Sealed Deals & Escrow
       </button>
     </nav>
 
@@ -124,7 +195,7 @@
       </div>
     </section>
 
-    <!-- TAB 2: Live Mandi & Cold Storage Rates -->
+    <!-- TAB 2: Live Mandi Rates -->
     <section id="viewMandi" class="tab-view" style="display: none;">
       <div class="section-card">
         <h3 class="section-title">📊 Live APMC Mandi & Cold Storage Price Benchmarks</h3>
@@ -150,7 +221,55 @@
       </div>
     </section>
 
-    <!-- TAB 3: AI Sample Quality Estimator -->
+    <!-- FEATURE 2: Logistics & Truck Booking Freight Estimator Tab -->
+    <section id="viewLogistics" class="tab-view" style="display: none;">
+      <div class="section-card">
+        <h3 class="section-title">🚛 Doorstep Truck Freight & Logistics Calculator</h3>
+        <p class="section-subtitle">Estimate transport costs for shipping grain samples directly from farm gate to buyer Mandi godown.</p>
+        
+        <div class="calculator-grid">
+          <div class="calc-form">
+            <div class="form-group">
+              <label>Estimated Distance (Kilometers) *</label>
+              <input type="number" class="form-control" id="logisticsDistance" value="45" placeholder="e.g. 45 km" oninput="calculateFreight()">
+            </div>
+
+            <div class="form-group">
+              <label>Crop Load Weight (Quintals) *</label>
+              <input type="number" class="form-control" id="logisticsWeight" value="120" placeholder="e.g. 120 Qtl" oninput="calculateFreight()">
+            </div>
+          </div>
+
+          <div style="background: var(--bg-subtle); padding: 20px; border-radius: var(--radius-md);">
+            <h4 style="color: var(--primary); margin-bottom: 12px;">🚛 Freight Quotes Comparison</h4>
+            <div id="freightQuotesList">
+              <!-- Rendered via app.js -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURE 3: Cold Storage Slot Reservation Module Tab -->
+    <section id="viewColdstorage" class="tab-view" style="display: none;">
+      <div class="section-card">
+        <h3 class="section-title">🧊 Cold Storage Chamber & Slot Reservations</h3>
+        <p class="section-subtitle">Reserve temperature-controlled chambers near your district for Apples, Onions, Potatoes, and Pulses.</p>
+        
+        <div class="listings-grid" id="coldStorageGrid">
+          <!-- Rendered via app.js -->
+        </div>
+
+        <div style="margin-top: 30px;" id="coldStorageBookingsSection">
+          <h4 style="margin-bottom: 12px; color: var(--primary);">📋 Your Reserved Storage Slots</h4>
+          <div id="coldBookingsList">
+            <!-- Rendered via app.js -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: AI Sample Quality Estimator -->
     <section id="viewQuality" class="tab-view" style="display: none;">
       <div class="section-card">
         <h3 class="section-title">🧪 Instant Crop Quality & Valuation Estimator</h3>
@@ -208,11 +327,11 @@
       </div>
     </section>
 
-    <!-- TAB 4: Sealed Doorstep Deals -->
+    <!-- TAB 6: Sealed Doorstep Deals & Escrow -->
     <section id="viewDeals" class="tab-view" style="display: none;">
       <div class="section-card">
-        <h3 class="section-title">📜 Sealed Doorstep Deals & Trade Contracts</h3>
-        <p class="section-subtitle">Confirmed trade agreements between farmers and verified buyers with token deposit receipts.</p>
+        <h3 class="section-title">📜 Sealed Doorstep Deals & Escrow Vault Receipts</h3>
+        <p class="section-subtitle">Confirmed trade agreements between farmers and verified buyers with token deposits locked in Escrow vault.</p>
         <div id="dealsHistoryList">
           <!-- Rendered via app.js -->
         </div>
@@ -220,6 +339,136 @@
     </section>
 
   </main>
+
+  <!-- FEATURE 1: SMS & WhatsApp Log Modal -->
+  <div class="modal-backdrop" id="smsLogsModal">
+    <div class="modal-container" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3 class="modal-title">📱 SMS & WhatsApp Trade Alerts</h3>
+        <button class="close-modal-btn" onclick="closeModal('smsLogsModal')">&times;</button>
+      </div>
+      <div id="smsLogsList" style="max-height: 400px; overflow-y: auto;">
+        <!-- Rendered via app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTH MODAL: Login & Registration -->
+  <div class="modal-backdrop" id="authModal">
+    <div class="modal-container" style="max-width: 560px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="authModalTitle">🔑 Sign In to KrishiDeal</h3>
+        <button class="close-modal-btn" onclick="closeModal('authModal')">&times;</button>
+      </div>
+
+      <div style="display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
+        <button id="authSubTabLogin" class="tab-btn active" onclick="switchAuthTab('login')">Sign In</button>
+        <button id="authSubTabRegister" class="tab-btn" onclick="switchAuthTab('register')">New Registration</button>
+      </div>
+
+      <form id="loginForm" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label>Mobile Number or Email *</label>
+          <input type="text" class="form-control" id="loginIdentifier" placeholder="e.g. 9876543210 or rameshwar@farmer.in" required>
+        </div>
+
+        <div class="form-group">
+          <label>Password *</label>
+          <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password" required>
+        </div>
+
+        <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 16px;">
+          💡 <strong>Demo Verified Credentials:</strong><br>
+          • Genuine Farmer: <code>9876543210</code> / <code>password123</code><br>
+          • APMC Verified Buyer: <code>9123456789</code> / <code>password123</code>
+        </div>
+
+        <button type="submit" class="btn-primary" style="width: 100%; padding: 12px;">
+          🔓 Sign In
+        </button>
+      </form>
+
+      <form id="registerForm" onsubmit="handleRegister(event)" style="display: none;">
+        <div class="form-group">
+          <label style="font-size: 0.95rem; color: var(--primary);">Account Registration Type *</label>
+          <select class="form-control" id="regRole" onchange="toggleRegRoleFields()" style="font-weight: 700;">
+            <option value="farmer">🧑‍🌾 FARMER REGISTRATION (Produce Seller)</option>
+            <option value="buyer">🏢 BUYER REGISTRATION (Mandi Trader / Processor / Exporter)</option>
+          </select>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="form-group">
+            <label>Full Name / Owner Name *</label>
+            <input type="text" class="form-control" id="regName" placeholder="e.g. Rameshwar Patel" required>
+          </div>
+          <div class="form-group">
+            <label>Mobile Number *</label>
+            <input type="tel" class="form-control" id="regPhone" placeholder="10-digit mobile number" required>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="form-group">
+            <label>Password *</label>
+            <input type="password" class="form-control" id="regPassword" placeholder="Min 6 characters" required>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" class="form-control" id="regEmail" placeholder="name@domain.com">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>District & State Location *</label>
+          <input type="text" class="form-control" id="regLocation" placeholder="e.g. Sehore, MP or Azadpur APMC Mandi, Delhi" required>
+        </div>
+
+        <div id="sectionFarmerVerification" style="background: var(--bg-subtle); padding: 16px; border-radius: var(--radius-md); border: 1px solid var(--border-color); margin-bottom: 16px;">
+          <h4 style="color: var(--primary); font-size: 0.95rem; margin-bottom: 10px;">🛡️ Genuine Farmer Verification Details</h4>
+          <div class="form-group">
+            <label>Khasra / Khatoni Land Record No. *</label>
+            <input type="text" class="form-control" id="regKhasraNo" placeholder="e.g. K-402/1A (Verifies land ownership)">
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label>Kisan Credit Card (KCC) ID</label>
+              <input type="text" class="form-control" id="regKccId" placeholder="e.g. KCC-MP-4402">
+            </div>
+            <div class="form-group">
+              <label>Land Area (Acres)</label>
+              <input type="text" class="form-control" id="regLandAcres" placeholder="e.g. 10 Acres">
+            </div>
+          </div>
+        </div>
+
+        <div id="sectionBuyerVerification" style="background: var(--gold-light); padding: 16px; border-radius: var(--radius-md); border: 1px solid #FCD34D; margin-bottom: 16px; display: none;">
+          <h4 style="color: var(--gold-hover); font-size: 0.95rem; margin-bottom: 10px;">🏢 APMC Genuine Buyer & License Verification</h4>
+          <div class="form-group">
+            <label>Buyer Firm / Business Type *</label>
+            <select class="form-control" id="regFirmType">
+              <option value="Flour Mill / Grain Processor">Flour Mill / Processing Plant</option>
+              <option value="APMC Mandi Wholesaler">APMC Mandi Commission Agent / Wholesaler</option>
+              <option value="Cold Storage Operator">Cold Storage & Fruit Logistics</option>
+              <option value="Exporter / Export House">Agricultural Export House</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>GSTIN Registration Number *</label>
+            <input type="text" class="form-control" id="regGstin" placeholder="e.g. 23AABCI8821K1ZM">
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label>APMC Mandi License Number *</label>
+            <input type="text" class="form-control" id="regMandiLicense" placeholder="e.g. MP-IND-APMC-8821">
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary btn-gold" style="width: 100%; padding: 12px; font-size: 1rem;">
+          🛡️ Register Account & Verify Credentials
+        </button>
+      </form>
+    </div>
+  </div>
 
   <!-- MODAL 1: Post New Produce Sample (Farmer) -->
   <div class="modal-backdrop" id="postSampleModal">
@@ -277,6 +526,11 @@
         </div>
 
         <div class="form-group">
+          <label>Khasra Land Record No. (For Verification Badge)</label>
+          <input type="text" class="form-control" id="formKhasraNo" placeholder="e.g. K-402/1A">
+        </div>
+
+        <div class="form-group">
           <label>Sample Photo Selection</label>
           <select class="form-control" id="formImageSelect">
             <option value="assets/wheat.png">🌾 Sharbati Wheat Sample Photo</option>
@@ -313,6 +567,11 @@
           <input type="text" class="form-control" id="buyerEntity" placeholder="e.g. Indore APMC Mandi Trader / Central Cold Storage" required>
         </div>
 
+        <div class="form-group">
+          <label>GSTIN Registration No. (For Verified Buyer Badge)</label>
+          <input type="text" class="form-control" id="buyerGstin" placeholder="e.g. 23AABCI8821K1ZM">
+        </div>
+
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
           <div class="form-group">
             <label>Offered Price (₹ / Quintal) *</label>
@@ -334,7 +593,7 @@
         </div>
 
         <button type="submit" class="btn-primary btn-gold" style="width: 100%; margin-top: 14px; padding: 12px;">
-          🤝 Send Direct Offer to Farmer
+          🤝 Send Direct Offer & Dispatch SMS Alert
         </button>
       </form>
     </div>
@@ -353,11 +612,11 @@
     </div>
   </div>
 
-  <!-- MODAL 4: Printable Trade Contract Modal -->
+  <!-- MODAL 4: Printable Trade Contract Modal (with Escrow Vault Status) -->
   <div class="modal-backdrop" id="contractModal">
     <div class="modal-container" style="max-width: 650px;">
       <div class="modal-header">
-        <h3 class="modal-title">🤝 Sealed Trade Deal Contract</h3>
+        <h3 class="modal-title">🤝 Sealed Trade Deal Contract & Escrow Note</h3>
         <button class="close-modal-btn" onclick="closeModal('contractModal')">&times;</button>
       </div>
       <div id="contractModalContent">

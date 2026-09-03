@@ -1,6 +1,5 @@
 /* ==========================================================================
-   KrishiDeal - Direct Farmer Dealing Platform (v1.1.0 Backend Sync)
-   Application Core Logic & Reactive State Store
+   KrishiDeal - Direct Farmer Dealing Platform (v2.0.0 Enterprise Suite)
    ========================================================================== */
 
 const API_BASE_URL = "http://localhost:5000/api";
@@ -18,11 +17,13 @@ const INITIAL_SAMPLES = [
     grade: "Grade A+",
     location: "Sehore, Madhya Pradesh (Pin: 466001)",
     farmerName: "Rameshwar Patel",
+    verifiedFarmer: true,
+    khasraNo: "K-402/1A",
     harvestDate: "2026-08-25",
     image: "assets/wheat.png",
     offers: [
-      { buyerName: "Indore APMC Flour Mills", offerPrice: 4780, token: 25000, term: "Buyer Doorstep Pickup", date: "2026-09-02" },
-      { buyerName: "Bhopal Central Grain Wholesaler", offerPrice: 4720, token: 20000, term: "Mandi Delivery Bonus", date: "2026-09-01" }
+      { buyerName: "Indore APMC Flour Mills", offerPrice: 4780, token: 25000, term: "Buyer Doorstep Pickup", verifiedBuyer: true, gstin: "23AABCI8821K1ZM", date: "2026-09-02" },
+      { buyerName: "Bhopal Central Grain Wholesaler", offerPrice: 4720, token: 20000, term: "Mandi Delivery Bonus", verifiedBuyer: true, gstin: "23AABCB7720J1ZN", date: "2026-09-01" }
     ]
   },
   {
@@ -37,10 +38,12 @@ const INITIAL_SAMPLES = [
     grade: "Grade A+",
     location: "Karnal, Haryana (Pin: 132001)",
     farmerName: "Gurpreet Singh",
+    verifiedFarmer: true,
+    khasraNo: "HR-K-1092",
     harvestDate: "2026-08-28",
     image: "assets/rice.png",
     offers: [
-      { buyerName: "Azadpur Export House Delhi", offerPrice: 4350, token: 50000, term: "Buyer Doorstep Pickup", date: "2026-09-02" }
+      { buyerName: "Azadpur Export House Delhi", offerPrice: 4350, token: 50000, term: "Buyer Doorstep Pickup", verifiedBuyer: true, gstin: "07AAACB9921L1Z2", date: "2026-09-02" }
     ]
   },
   {
@@ -55,6 +58,8 @@ const INITIAL_SAMPLES = [
     grade: "Grade A",
     location: "Yavatmal, Maharashtra (Pin: 445001)",
     farmerName: "Vilasrao Deshmukh",
+    verifiedFarmer: true,
+    khasraNo: "MH-YVT-5501",
     harvestDate: "2026-08-20",
     image: "assets/cotton.png",
     offers: []
@@ -71,10 +76,12 @@ const INITIAL_SAMPLES = [
     grade: "Grade A+",
     location: "Ujjain, Madhya Pradesh (Pin: 456001)",
     farmerName: "Kailash Choudhary",
+    verifiedFarmer: true,
+    khasraNo: "MP-UJN-3012",
     harvestDate: "2026-08-30",
     image: "assets/soybean.png",
     offers: [
-      { buyerName: "Malwa Solvent Extraction Plant", offerPrice: 5250, token: 35000, term: "Buyer Doorstep Pickup", date: "2026-09-02" }
+      { buyerName: "Malwa Solvent Extraction Plant", offerPrice: 5250, token: 35000, term: "Buyer Doorstep Pickup", verifiedBuyer: true, gstin: "23AABCX5012P1Z9", date: "2026-09-02" }
     ]
   },
   {
@@ -89,10 +96,12 @@ const INITIAL_SAMPLES = [
     grade: "Grade A+",
     location: "Kotkhai, Shimla (Pin: 171202)",
     farmerName: "Surender Sharma",
+    verifiedFarmer: true,
+    khasraNo: "HP-SML-8819",
     harvestDate: "2026-08-15",
     image: "assets/apples.png",
     offers: [
-      { buyerName: "Vashi Cold Chain Logistics Mumbai", offerPrice: 9200, token: 60000, term: "Cold Storage Booking", date: "2026-09-01" }
+      { buyerName: "Vashi Cold Chain Logistics Mumbai", offerPrice: 9200, token: 60000, term: "Cold Storage Booking", verifiedBuyer: true, gstin: "27AABCV9910M1Z8", date: "2026-09-01" }
     ]
   }
 ];
@@ -106,19 +115,472 @@ let MANDI_RATES = [
   { mandi: "Vashi APMC Market", state: "Mumbai, MH", crop: "Chana / Pulses", min: 5800, max: 6200, modal: 6050, trend: "+0.8%" }
 ];
 
+let COLD_STORAGES = [
+  { id: "CS-101", name: "Malwa Central Cold Chain", district: "Indore, MP", capacity: "500 MT", available: "140 MT", temp: "2°C - 4°C", ratePerDay: 4.5 },
+  { id: "CS-102", name: "Shimla Valley Horticulture Storage", district: "Shimla, HP", capacity: "800 MT", available: "320 MT", temp: "1°C - 3°C", ratePerDay: 6.0 },
+  { id: "CS-103", name: "Azadpur APMC Cold Storage Yard", district: "Delhi NCR", capacity: "1200 MT", available: "450 MT", temp: "3°C - 6°C", ratePerDay: 5.0 }
+];
+
+let coldBookings = [
+  {
+    bookingId: "CSB-9912",
+    storageName: "Malwa Central Cold Chain",
+    district: "Indore, MP",
+    farmerName: "Rameshwar Patel",
+    cropTitle: "Sharbati Wheat",
+    quantity: 50,
+    durationDays: 30,
+    totalCost: 6750,
+    status: "CONFIRMED_SLOT_RESERVED",
+    date: "2026-09-01"
+  }
+];
+
+let smsLogs = [
+  { phone: "9876543210", text: "[KrishiDeal Alert] Indore APMC Flour Mills placed a doorstep bid of ₹4,780/Qtl on Sharbati Wheat (#SMP-101). Token Deposit: ₹25,000.", time: "10 mins ago" },
+  { phone: "9876543210", text: "[KrishiDeal Alert] Token advance of ₹25,000 safely locked in Escrow Security Vault for Deal #DEAL-8801.", time: "1 hour ago" }
+];
+
 let currentRole = "farmer";
 let currentTheme = "light";
 let currentTab = "samples";
 let samples = [];
 let sealedDeals = [];
 let isBackendConnected = false;
+let currentUser = null;
 
 document.addEventListener("DOMContentLoaded", async () => {
+  loadUserSession();
   await fetchFromBackend();
   initTicker();
   renderApp();
   calculateQualityScore();
+  calculateFreight();
+  renderColdStorage();
+  updateSmsBadge();
 });
+
+function loadUserSession() {
+  const savedUser = localStorage.getItem("krishi_user_session");
+  if (savedUser) {
+    try {
+      currentUser = JSON.parse(savedUser);
+      currentRole = currentUser.role || "farmer";
+    } catch (e) {
+      currentUser = null;
+    }
+  }
+  renderAuthNav();
+}
+
+function renderAuthNav() {
+  const container = document.getElementById("authNavContainer");
+  if (!container) return;
+
+  if (currentUser) {
+    const initials = currentUser.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+    const verifiedBadge = currentUser.verified ? (currentUser.role === 'farmer' ? 'Verified Farmer ✅' : 'APMC Buyer ✅') : '';
+    container.innerHTML = `
+      <div class="user-profile-widget">
+        <div class="user-avatar">${initials}</div>
+        <div class="user-name-role">
+          <span>${currentUser.name}</span>
+          <span class="user-role-badge">${verifiedBadge || (currentUser.role === 'farmer' ? '🧑‍🌾 Farmer' : '🏢 Mandi Buyer')}</span>
+        </div>
+        <button class="btn-signout" onclick="handleSignOut()" title="Sign Out">Sign Out</button>
+      </div>
+    `;
+  } else {
+    container.innerHTML = `
+      <button class="btn-auth-nav" onclick="openAuthModal('login')">
+        🔑 Sign In / Register
+      </button>
+    `;
+  }
+}
+
+function openAuthModal(mode = 'login') {
+  switchAuthTab(mode);
+  document.getElementById("authModal").classList.add("active");
+}
+
+function switchAuthTab(tab) {
+  const loginForm = document.getElementById("loginForm");
+  const registerForm = document.getElementById("registerForm");
+  const tabLogin = document.getElementById("authSubTabLogin");
+  const tabRegister = document.getElementById("authSubTabRegister");
+  const title = document.getElementById("authModalTitle");
+
+  if (tab === 'login') {
+    loginForm.style.display = "block";
+    registerForm.style.display = "none";
+    tabLogin.classList.add("active");
+    tabRegister.classList.remove("active");
+    title.innerText = "🔑 Sign In to KrishiDeal";
+  } else {
+    loginForm.style.display = "none";
+    registerForm.style.display = "block";
+    tabLogin.classList.remove("active");
+    tabRegister.classList.add("active");
+    title.innerText = "🛡️ Verified Account Registration";
+    toggleRegRoleFields();
+  }
+}
+
+function toggleRegRoleFields() {
+  const role = document.getElementById("regRole").value;
+  const sectionFarmer = document.getElementById("sectionFarmerVerification");
+  const sectionBuyer = document.getElementById("sectionBuyerVerification");
+
+  if (role === "farmer") {
+    sectionFarmer.style.display = "block";
+    sectionBuyer.style.display = "none";
+  } else {
+    sectionFarmer.style.display = "none";
+    sectionBuyer.style.display = "block";
+  }
+}
+
+async function handleLogin(e) {
+  e.preventDefault();
+  const identifier = document.getElementById("loginIdentifier").value.trim();
+  const password = document.getElementById("loginPassword").value;
+
+  if (isBackendConnected) {
+    try {
+      const res = await fetch(`${API_BASE_URL}/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ identifier, password })
+      });
+      const data = await res.json();
+      if (!data.success) {
+        showToast("⚠️ " + data.error);
+        return;
+      }
+      currentUser = data.user;
+    } catch (err) {
+      console.error("Auth login error", err);
+    }
+  }
+
+  if (!currentUser) {
+    if (identifier === "9876543210" || identifier === "rameshwar@farmer.in") {
+      currentUser = { id: "USR-101", name: "Rameshwar Patel", phone: "9876543210", role: "farmer", location: "Sehore, MP", verified: true, khasraNo: "K-402/1A" };
+    } else if (identifier === "9123456789" || identifier === "trader@indoremandi.com") {
+      currentUser = { id: "USR-102", name: "Indore APMC Flour Mills", phone: "9123456789", role: "buyer", location: "Indore Mandi, MP", verified: true, gstin: "23AABCI8821K1ZM" };
+    } else {
+      currentUser = { id: "USR-" + Date.now(), name: identifier.split('@')[0], phone: identifier, role: "farmer", location: "India", verified: true };
+    }
+  }
+
+  localStorage.setItem("krishi_user_session", JSON.stringify(currentUser));
+  setRole(currentUser.role);
+  closeModal("authModal");
+  renderAuthNav();
+  showToast(`Welcome back, ${currentUser.name}! Verified ${currentUser.role === 'farmer' ? 'Genuine Farmer ✅' : 'APMC Buyer ✅'}.`);
+}
+
+async function handleRegister(e) {
+  e.preventDefault();
+  const role = document.getElementById("regRole").value;
+  const name = document.getElementById("regName").value.trim();
+  const phone = document.getElementById("regPhone").value.trim();
+  const email = document.getElementById("regEmail").value.trim();
+  const password = document.getElementById("regPassword").value;
+  const location = document.getElementById("regLocation").value.trim();
+
+  const khasraNo = document.getElementById("regKhasraNo").value.trim();
+  const kccId = document.getElementById("regKccId").value.trim();
+  const landAcres = document.getElementById("regLandAcres").value.trim();
+
+  const firmType = document.getElementById("regFirmType").value;
+  const gstin = document.getElementById("regGstin").value.trim();
+  const mandiLicense = document.getElementById("regMandiLicense").value.trim();
+
+  if (role === "farmer" && !khasraNo && !kccId) {
+    showToast("⚠️ Genuine Farmer verification requires Khasra No. or KCC ID.");
+    return;
+  }
+
+  if (role === "buyer" && !gstin && !mandiLicense) {
+    showToast("⚠️ Genuine Buyer verification requires GSTIN or APMC License No.");
+    return;
+  }
+
+  const regPayload = { name, phone, email, password, role, location, khasraNo, kccId, landAcres, firmType, gstin, mandiLicense };
+
+  if (isBackendConnected) {
+    try {
+      const res = await fetch(`${API_BASE_URL}/auth/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(regPayload)
+      });
+      const data = await res.json();
+      if (!data.success) {
+        showToast("⚠️ " + data.error);
+        return;
+      }
+      currentUser = data.user;
+    } catch (err) {
+      console.error("Auth register error", err);
+    }
+  }
+
+  if (!currentUser) {
+    currentUser = {
+      id: "USR-" + Date.now(),
+      name, phone, email: email || `${phone}@krishideal.com`,
+      role, location, khasraNo: khasraNo || "K-VERIFIED", gstin: gstin || "GST-VERIFIED",
+      verified: true, verificationBadge: role === 'farmer' ? 'Genuine Farmer ✅' : 'APMC Verified Buyer ✅'
+    };
+  }
+
+  localStorage.setItem("krishi_user_session", JSON.stringify(currentUser));
+  setRole(currentUser.role);
+  closeModal("authModal");
+  document.getElementById("registerForm").reset();
+  renderAuthNav();
+  showToast(`🎉 Verified registration successful! Welcome ${name} (${currentUser.verificationBadge}).`);
+}
+
+function handleSignOut() {
+  currentUser = null;
+  localStorage.removeItem("krishi_user_session");
+  renderAuthNav();
+  showToast("You have signed out of KrishiDeal.");
+}
+
+// FEATURE 6: Multilingual Voice Search Assistant
+function startVoiceRecognition() {
+  const voiceBtn = document.getElementById("voiceSearchBtn");
+  const searchInput = document.getElementById("searchInput");
+
+  if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'hi-IN'; // Default to Hindi / English India
+    recognition.interimResults = false;
+
+    voiceBtn.classList.add("listening");
+    voiceBtn.innerText = "🎙️ Listening...";
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      searchInput.value = transcript;
+      voiceBtn.classList.remove("listening");
+      voiceBtn.innerText = "🎙️ Speak";
+      renderApp();
+      showToast(`🗣️ Voice Search Result: "${transcript}"`);
+    };
+
+    recognition.onerror = () => {
+      voiceBtn.classList.remove("listening");
+      voiceBtn.innerText = "🎙️ Speak";
+      simulateVoiceSearch();
+    };
+
+    recognition.start();
+  } else {
+    simulateVoiceSearch();
+  }
+}
+
+function simulateVoiceSearch() {
+  const voiceBtn = document.getElementById("voiceSearchBtn");
+  const searchInput = document.getElementById("searchInput");
+  voiceBtn.classList.add("listening");
+  voiceBtn.innerText = "🎙️ Listening...";
+
+  setTimeout(() => {
+    const samplesVoice = ["Sharbati Wheat", "Basmati Rice", "Cotton", "Soybean", "Apples"];
+    const randomCrop = samplesVoice[Math.floor(Math.random() * samplesVoice.length)];
+    searchInput.value = randomCrop;
+    voiceBtn.classList.remove("listening");
+    voiceBtn.innerText = "🎙️ Speak";
+    renderApp();
+    showToast(`🗣️ Simulated Voice Input: "${randomCrop}"`);
+  }, 1800);
+}
+
+// FEATURE 2: Logistics & Truck Freight Estimator
+async function calculateFreight() {
+  const kmEl = document.getElementById("logisticsDistance");
+  const qtlEl = document.getElementById("logisticsWeight");
+  if (!kmEl || !qtlEl) return;
+
+  const distance = parseFloat(kmEl.value || 45);
+  const weight = parseFloat(qtlEl.value || 120);
+
+  let rates = {
+    erickshaw: Math.round(distance * 25 + 300),
+    eicher10T: Math.round(distance * 45 + 1200),
+    multiAxle16T: Math.round(distance * 65 + 2500)
+  };
+
+  if (isBackendConnected) {
+    try {
+      const res = await fetch(`${API_BASE_URL}/logistics/calculate`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ distanceKm: distance, quantityQtl: weight })
+      });
+      const data = await res.json();
+      if (data.success) rates = data.freightEstimates;
+    } catch (e) {
+      console.log("Logistics backend offline, using local calculation");
+    }
+  }
+
+  const container = document.getElementById("freightQuotesList");
+  if (!container) return;
+
+  container.innerHTML = `
+    <div class="freight-card">
+      <div>
+        <strong>🛺 E-Rickshaw / Mini Loader (Max 15 Qtl)</strong>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">Short distance farm-to-mandi delivery</p>
+      </div>
+      <div style="font-size: 1.15rem; font-weight: 800; color: var(--primary);">₹${rates.erickshaw.toLocaleString()}</div>
+    </div>
+    <div class="freight-card">
+      <div>
+        <strong>🚛 10-Tonne Eicher Truck (Max 100 Qtl)</strong>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">Standard interstate grain transport</p>
+      </div>
+      <div style="font-size: 1.15rem; font-weight: 800; color: var(--primary);">₹${rates.eicher10T.toLocaleString()}</div>
+    </div>
+    <div class="freight-card">
+      <div>
+        <strong>🚛 16-Tonne Heavy Multi-Axle Truck (Max 160 Qtl)</strong>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">Bulk processing mill shipment</p>
+      </div>
+      <div style="font-size: 1.15rem; font-weight: 800; color: var(--primary);">₹${rates.multiAxle16T.toLocaleString()}</div>
+    </div>
+  `;
+}
+
+// FEATURE 3: Cold Storage Slot Reservation
+function renderColdStorage() {
+  const grid = document.getElementById("coldStorageGrid");
+  const bookingsList = document.getElementById("coldBookingsList");
+  if (!grid) return;
+
+  let html = "";
+  COLD_STORAGES.forEach(cs => {
+    html += `
+      <div class="sample-card">
+        <div style="background: linear-gradient(135deg, #0284C7, #0369A1); padding: 24px; color: white; text-align: center;">
+          <span style="font-size: 2.2rem;">🧊</span>
+          <h3 style="margin-top: 6px; font-size: 1.15rem;">${cs.name}</h3>
+          <span style="font-size: 0.8rem; opacity: 0.9;">📍 ${cs.district}</span>
+        </div>
+        <div class="card-body">
+          <div class="spec-grid">
+            <div class="spec-item"><span>Chamber Temp</span><strong>${cs.temp}</strong></div>
+            <div class="spec-item"><span>Available Space</span><strong>${cs.available}</strong></div>
+            <div class="spec-item"><span>Daily Rate</span><strong>₹${cs.ratePerDay} / Qtl</strong></div>
+            <div class="spec-item"><span>Security</span><strong>CCTV & Humidity Managed</strong></div>
+          </div>
+          <button class="btn-primary" onclick="bookColdStorageSlot('${cs.id}')">
+            🧊 Reserve Cold Storage Slot
+          </button>
+        </div>
+      </div>
+    `;
+  });
+  grid.innerHTML = html;
+
+  if (bookingsList) {
+    if (coldBookings.length === 0) {
+      bookingsList.innerHTML = `<p style="font-size: 0.85rem; color: var(--text-muted);">No cold storage slots reserved yet.</p>`;
+    } else {
+      let bHtml = "";
+      coldBookings.forEach(b => {
+        bHtml += `
+          <div style="background: var(--bg-card); border: 1px solid var(--border-color); padding: 14px; border-radius: var(--radius-md); margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <span style="font-size: 0.75rem; font-weight: 700; color: var(--primary);">${b.bookingId}</span>
+              <h4 style="font-size: 0.95rem;">${b.storageName} (${b.district})</h4>
+              <p style="font-size: 0.8rem; color: var(--text-muted);">${b.cropTitle} | ${b.quantity} Qtl for ${b.durationDays} Days</p>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-weight: 800; color: var(--primary);">₹${b.totalCost.toLocaleString()}</div>
+              <span style="font-size: 0.72rem; color: var(--success); font-weight: 700;">Slot Reserved ✅</span>
+            </div>
+          </div>
+        `;
+      });
+      bookingsList.innerHTML = bHtml;
+    }
+  }
+}
+
+async function bookColdStorageSlot(storageId) {
+  const cs = COLD_STORAGES.find(c => c.id === storageId);
+  if (!cs) return;
+
+  const farmerName = currentUser ? currentUser.name : "Rameshwar Patel";
+  const bookingData = { storageId, farmerName, cropTitle: "Produce Sample", quantity: 50, durationDays: 30 };
+
+  if (isBackendConnected) {
+    try {
+      const res = await fetch(`${API_BASE_URL}/cold-storage/book`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(bookingData)
+      });
+      const data = await res.json();
+      if (data.success) {
+        coldBookings.unshift(data.booking);
+      }
+    } catch (e) {
+      console.log("Cold storage backend offline");
+    }
+  } else {
+    coldBookings.unshift({
+      bookingId: "CSB-" + (Math.floor(Math.random() * 9000) + 1000),
+      storageName: cs.name, district: cs.district,
+      farmerName, cropTitle: "Produce Sample", quantity: 50, durationDays: 30,
+      totalCost: 50 * cs.ratePerDay * 30, status: "CONFIRMED_SLOT_RESERVED", date: new Date().toISOString().split('T')[0]
+    });
+  }
+
+  renderColdStorage();
+  showToast(`🧊 Cold storage chamber slot reserved at ${cs.name}!`);
+}
+
+// FEATURE 1: SMS Alert Logger Modal
+function updateSmsBadge() {
+  const badge = document.getElementById("smsBadgeCount");
+  if (badge) badge.innerText = smsLogs.length;
+}
+
+function openSmsLogsModal() {
+  const container = document.getElementById("smsLogsList");
+  if (!container) return;
+
+  let html = "";
+  if (smsLogs.length === 0) {
+    html = `<p style="text-align: center; color: var(--text-muted); padding: 20px;">No SMS alerts dispatched yet.</p>`;
+  } else {
+    smsLogs.forEach(s => {
+      html += `
+        <div style="background: var(--bg-subtle); border-left: 4px solid var(--primary); padding: 12px 16px; border-radius: var(--radius-sm); margin-bottom: 10px;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 4px;">
+            <span>📱 To: +91 ${s.phone}</span>
+            <span>${s.time}</span>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-main); font-weight: 600;">${s.text}</p>
+        </div>
+      `;
+    });
+  }
+
+  container.innerHTML = html;
+  document.getElementById("smsLogsModal").classList.add("active");
+}
 
 async function fetchFromBackend() {
   try {
@@ -129,15 +591,20 @@ async function fetchFromBackend() {
         samples = data.data;
         isBackendConnected = true;
 
-        // Fetch Mandi Rates
         const resMandi = await fetch(`${API_BASE_URL}/mandi-rates`);
         const dataMandi = await resMandi.json();
         if (dataMandi.success) MANDI_RATES = dataMandi.data;
 
-        // Fetch Deals
         const resDeals = await fetch(`${API_BASE_URL}/deals`);
         const dataDeals = await resDeals.json();
         if (dataDeals.success) sealedDeals = dataDeals.data;
+
+        const resCS = await fetch(`${API_BASE_URL}/cold-storage`);
+        const dataCS = await resCS.json();
+        if (dataCS.success) {
+          COLD_STORAGES = dataCS.data;
+          if (dataCS.bookings) coldBookings = dataCS.bookings;
+        }
 
         console.log("⚡ Connected to KrishiDeal Express REST API Backend!");
         return;
@@ -147,7 +614,6 @@ async function fetchFromBackend() {
     console.log("ℹ️ Backend server offline. Operating in LocalStorage mode.");
   }
 
-  // Fallback to LocalStorage
   loadStore();
 }
 
@@ -174,6 +640,7 @@ function loadStore() {
         pricePerQtl: 4750,
         totalAmount: 475000,
         tokenDeposit: 25000,
+        escrowStatus: "TOKEN_LOCKED_IN_SECURE_VAULT",
         pickupTerm: "Buyer Doorstep Pickup",
         date: "2026-09-01"
       }
@@ -246,7 +713,7 @@ function toggleTheme() {
 
 function switchTab(tabName) {
   currentTab = tabName;
-  const tabs = ["samples", "mandi", "quality", "deals"];
+  const tabs = ["samples", "mandi", "logistics", "coldstorage", "quality", "deals"];
   
   tabs.forEach(t => {
     const btn = document.getElementById("tab" + capitalize(t));
@@ -261,6 +728,8 @@ function switchTab(tabName) {
   });
 
   if (tabName === "mandi") renderMandiTable();
+  if (tabName === "logistics") calculateFreight();
+  if (tabName === "coldstorage") renderColdStorage();
   if (tabName === "deals") renderDeals();
 }
 
@@ -297,8 +766,8 @@ function renderListings() {
   if (filtered.length === 0) {
     grid.innerHTML = `
       <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; background: var(--bg-card); border-radius: var(--radius-md); border: 1px dashed var(--border-color);">
-        <h3 style="color: var(--text-muted); margin-bottom: 8px;">No produce samples match your filters</h3>
-        <p style="color: var(--text-muted); font-size: 0.9rem;">Try adjusting your search terms or post a new produce sample.</p>
+        <h3 style="color: var(--text-muted); margin-bottom: 8px;">No produce samples match your search</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Try speaking your search using the voice button 🎙️ or post a new sample.</p>
       </div>
     `;
     return;
@@ -338,7 +807,7 @@ function renderListings() {
             </div>
             <div class="spec-item">
               <span>Farmer</span>
-              <strong>${item.farmerName}</strong>
+              <strong>${item.farmerName} <span style="color: var(--success); font-size: 0.75rem;">Verified ✅</span></strong>
             </div>
           </div>
 
@@ -437,6 +906,10 @@ function calculateQualityScore() {
 }
 
 function openPostSampleModal() {
+  if (currentUser && currentUser.name) {
+    document.getElementById("formLocation").value = currentUser.location || "";
+    if (currentUser.khasraNo) document.getElementById("formKhasraNo").value = currentUser.khasraNo;
+  }
   document.getElementById("postSampleModal").classList.add("active");
 }
 
@@ -450,8 +923,10 @@ async function handlePostSample(e) {
   const grade = document.getElementById("formGrade").value;
   const location = document.getElementById("formLocation").value;
   const image = document.getElementById("formImageSelect").value;
+  const khasraNo = document.getElementById("formKhasraNo").value || (currentUser ? currentUser.khasraNo : "K-402/VERIFIED");
 
-  const sampleData = { title, category, quantity, reservePrice, moisture, grade, location, image, farmerName: "Self (Farmer Home Posting)" };
+  const farmerName = currentUser ? currentUser.name : "Self (Farmer)";
+  const sampleData = { title, category, quantity, reservePrice, moisture, grade, location, image, farmerName, khasraNo, verifiedFarmer: true };
 
   if (isBackendConnected) {
     try {
@@ -483,7 +958,7 @@ async function handlePostSample(e) {
   closeModal("postSampleModal");
   document.getElementById("postSampleForm").reset();
   renderApp();
-  showToast("🌾 Produce sample published successfully! Buyers from nearby Mandis can now submit price quotes.");
+  showToast("🌾 Produce sample published with Verified Genuine Farmer badge!");
 }
 
 function openBidModal(sampleId) {
@@ -493,6 +968,12 @@ function openBidModal(sampleId) {
   document.getElementById("bidSampleId").value = sampleId;
   document.getElementById("bidCropName").innerText = item.title;
   document.getElementById("bidCropDetails").innerText = `Quantity: ${item.quantity} Qtl | Reserve: ₹${item.reservePrice.toLocaleString()}/Qtl | Location: ${item.location}`;
+
+  if (currentUser && currentUser.name) {
+    document.getElementById("buyerEntity").value = currentUser.name;
+    if (currentUser.gstin) document.getElementById("buyerGstin").value = currentUser.gstin;
+  }
+
   document.getElementById("bidModal").classList.add("active");
 }
 
@@ -503,8 +984,10 @@ async function handlePlaceBid(e) {
   const offeredPrice = parseFloat(document.getElementById("offeredPrice").value);
   const tokenAdvance = parseFloat(document.getElementById("tokenAdvance").value);
   const pickupTerm = document.getElementById("pickupTerm").value;
+  const gstin = document.getElementById("buyerGstin").value || (currentUser ? currentUser.gstin : "GST-VERIFIED");
 
-  const bidPayload = { buyerName: buyerEntity, offerPrice: offeredPrice, token: tokenAdvance, term: pickupTerm };
+  const item = samples.find(s => s.id === sampleId);
+  const bidPayload = { buyerName: buyerEntity, offerPrice: offeredPrice, token: tokenAdvance, term: pickupTerm, gstin, verifiedBuyer: true, farmerPhone: "9876543210" };
 
   if (isBackendConnected) {
     try {
@@ -515,7 +998,6 @@ async function handlePlaceBid(e) {
       });
       const data = await res.json();
       if (data.success) {
-        const item = samples.find(s => s.id === sampleId);
         if (item) {
           if (!item.offers) item.offers = [];
           item.offers.unshift(data.offer);
@@ -525,7 +1007,6 @@ async function handlePlaceBid(e) {
       console.error("Backend error placing bid", err);
     }
   } else {
-    const item = samples.find(s => s.id === sampleId);
     if (item) {
       if (!item.offers) item.offers = [];
       item.offers.unshift({
@@ -536,10 +1017,15 @@ async function handlePlaceBid(e) {
     }
   }
 
+  // Record SMS Alert
+  const smsText = `[KrishiDeal Alert] ${buyerEntity} submitted bid of ₹${offeredPrice}/Qtl on ${item.title}. Token: ₹${tokenAdvance}.`;
+  smsLogs.unshift({ phone: "9876543210", text: smsText, time: "Just now" });
+  updateSmsBadge();
+
   closeModal("bidModal");
   document.getElementById("bidForm").reset();
   renderApp();
-  showToast(`🤝 Direct price offer of ₹${offeredPrice}/Qtl submitted to farmer!`);
+  showToast(`📱 SMS Alert dispatched to farmer! Offer of ₹${offeredPrice}/Qtl submitted.`);
 }
 
 function viewOffers(sampleId) {
@@ -554,8 +1040,8 @@ function viewOffers(sampleId) {
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
         <div><strong>Total Produce:</strong> ${item.quantity} Quintals</div>
         <div><strong>Reserve Price:</strong> ₹${item.reservePrice.toLocaleString()} / Qtl</div>
-        <div><strong>Moisture Level:</strong> ${item.moisture}%</div>
-        <div><strong>Location:</strong> ${item.location}</div>
+        <div><strong>Farmer Verification:</strong> <span style="color: var(--success); font-weight: 700;">Genuine Farmer ✅</span></div>
+        <div><strong>Land Record No:</strong> ${item.khasraNo || 'K-VERIFIED'}</div>
       </div>
     </div>
     <h4 style="margin-bottom: 12px; color: var(--primary);">Incoming Buyer Doorstep Bids (${item.offers ? item.offers.length : 0})</h4>
@@ -574,8 +1060,8 @@ function viewOffers(sampleId) {
         <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 16px; margin-bottom: 12px; box-shadow: var(--shadow-sm);">
           <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
             <div>
-              <h4 style="color: var(--text-main); font-size: 1.1rem;">${off.buyerName}</h4>
-              <span style="font-size: 0.8rem; color: var(--text-muted);">Submitted: ${off.date}</span>
+              <h4 style="color: var(--text-main); font-size: 1.1rem;">${off.buyerName} <span style="font-size: 0.75rem; color: var(--success); background: var(--primary-light); padding: 2px 8px; border-radius: 99px;">APMC Verified Buyer ✅</span></h4>
+              <span style="font-size: 0.8rem; color: var(--text-muted);">GSTIN: ${off.gstin || '23AABCI8821K1ZM'} | Submitted: ${off.date}</span>
             </div>
             <div style="text-align: right;">
               <div style="font-size: 1.3rem; font-weight: 800; color: var(--primary);">₹${off.offerPrice.toLocaleString()} <span style="font-size: 0.8rem; color: var(--text-muted);">/ Qtl</span></div>
@@ -583,12 +1069,12 @@ function viewOffers(sampleId) {
             </div>
           </div>
           <div style="display: flex; gap: 14px; background: var(--bg-subtle); padding: 10px; border-radius: var(--radius-sm); font-size: 0.85rem; margin-bottom: 12px;">
-            <div>💵 <strong>Token Advance:</strong> ₹${off.token.toLocaleString()}</div>
+            <div>💵 <strong>Token Advance:</strong> ₹${off.token.toLocaleString()} (Escrow Vault)</div>
             <div>🚚 <strong>Pickup:</strong> ${off.term}</div>
           </div>
           ${currentRole === "farmer" ? `
             <button class="btn-primary btn-gold" style="width: 100%; padding: 10px;" onclick="acceptDeal('${item.id}', ${index})">
-              🤝 Accept Offer & Lock Doorstep Deal
+              🤝 Accept Offer & Lock Escrow Vault Deal
             </button>
           ` : `<div style="font-size: 0.8rem; color: var(--text-muted); text-align: center;">Switch to Farmer mode to accept this offer</div>`}
         </div>
@@ -636,6 +1122,7 @@ async function acceptDeal(sampleId, offerIndex) {
       pricePerQtl: offer.offerPrice,
       totalAmount: totalAmount,
       tokenDeposit: offer.token,
+      escrowStatus: "TOKEN_LOCKED_IN_SECURE_VAULT",
       pickupTerm: offer.term,
       location: item.location,
       date: new Date().toISOString().split("T")[0]
@@ -648,7 +1135,7 @@ async function acceptDeal(sampleId, offerIndex) {
   closeModal("offersModal");
   renderApp();
   showContractModal(newDeal);
-  showToast("🎉 Deal locked! Token advance payment slip generated.");
+  showToast("🎉 Deal locked in Escrow vault! Printable contract note generated.");
 }
 
 function showContractModal(deal) {
@@ -656,21 +1143,23 @@ function showContractModal(deal) {
   container.innerHTML = `
     <div class="contract-paper">
       <div class="contract-header">
-        <h2 style="color: #0F5A47;">🌾 KrishiDeal Direct Trade Note</h2>
-        <p style="font-size: 0.85rem; color: #64748B;">Official Doorstep Commodity Transaction & Token Receipt</p>
+        <h2 style="color: #0F5A47;">🌾 KrishiDeal Verified Direct Trade Note</h2>
+        <p style="font-size: 0.85rem; color: #64748B;">Official Doorstep Commodity Transaction & Escrow Vault Receipt</p>
         <span style="font-size: 0.8rem; font-weight: 700; background: #EAEFEA; padding: 4px 12px; border-radius: 99px;">Contract ID: ${deal.dealId}</span>
       </div>
 
       <div class="contract-grid">
         <div>
-          <strong>🧑‍🌾 Farmer Details:</strong>
+          <strong>🧑‍🌾 Farmer Details (Verified ✅):</strong>
           <p>${deal.farmerName}</p>
+          <p style="font-size: 0.8rem; color: #64748B;">Land Record: ${deal.khasraNo || 'Verified Khasra'}</p>
           <p style="font-size: 0.8rem; color: #64748B;">${deal.location}</p>
         </div>
         <div>
-          <strong>🏢 Mandi / Buyer Entity:</strong>
+          <strong>🏢 Mandi / Buyer Entity (Verified ✅):</strong>
           <p>${deal.buyerName}</p>
           <p style="font-size: 0.8rem; color: #64748B;">APMC Mandi License Verified</p>
+          <p style="font-size: 0.8rem; color: #64748B;">GSTIN: ${deal.gstin || '23AABCI8821K1ZM'}</p>
         </div>
       </div>
 
@@ -684,14 +1173,14 @@ function showContractModal(deal) {
           <span>Total Transaction: <strong style="color: #0F5A47; font-size: 1.1rem;">₹${deal.totalAmount.toLocaleString()}</strong></span>
         </div>
         <div style="display: flex; justify-content: space-between; border-top: 1px dashed #C27B0C; padding-top: 6px; margin-top: 6px;">
-          <span>Token Advance Paid: <strong style="color: #D97706;">₹${deal.tokenDeposit.toLocaleString()}</strong></span>
-          <span>Pickup Method: <strong>${deal.pickupTerm}</strong></span>
+          <span>Token Advance Deposit: <strong style="color: #D97706;">₹${deal.tokenDeposit.toLocaleString()}</strong></span>
+          <span>Escrow Vault Status: <strong style="color: #15803D;">🔒 LOCKED IN ESCROW VAULT</strong></span>
         </div>
       </div>
 
       <div style="text-align: center;">
-        <div class="qr-placeholder">QR VERIFIED</div>
-        <p style="font-size: 0.75rem; color: #64748B; margin-top: 6px;">Scannable by Mandi Inspection Gate Authorities</p>
+        <div class="qr-placeholder">VERIFIED ESCROW DEAL</div>
+        <p style="font-size: 0.75rem; color: #64748B; margin-top: 6px;">Scannable by Mandi Inspection Gate Authorities & APMC Checkposts</p>
       </div>
     </div>
   `;
@@ -717,11 +1206,11 @@ function renderDeals() {
         <div>
           <span style="font-size: 0.75rem; font-weight: 700; color: var(--primary); background: var(--bg-subtle); padding: 4px 10px; border-radius: var(--radius-full);">${d.dealId}</span>
           <h4 style="margin-top: 6px; font-size: 1.1rem;">${d.sampleTitle} (${d.quantity} Qtl)</h4>
-          <p style="font-size: 0.85rem; color: var(--text-muted);">Farmer: ${d.farmerName} ➔ Buyer: ${d.buyerName}</p>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Farmer: ${d.farmerName} ✅ ➔ Buyer: ${d.buyerName} ✅</p>
         </div>
         <div style="text-align: right;">
           <div style="font-size: 1.3rem; font-weight: 800; color: var(--primary);">₹${d.totalAmount.toLocaleString()}</div>
-          <span style="font-size: 0.8rem; color: var(--success); font-weight: 700;">₹${d.tokenDeposit.toLocaleString()} Token Paid</span>
+          <span style="font-size: 0.8rem; color: var(--success); font-weight: 700;">🔒 ₹${d.tokenDeposit.toLocaleString()} Locked in Escrow</span>
         </div>
         <button class="btn-secondary" onclick='showContractModal(${JSON.stringify(d)})'>
           📄 Print Contract

@@ -1,0 +1,193 @@
+{
+  "samples": [
+    {
+      "id": "SMP-101",
+      "title": "Premium Sharbati Wheat",
+      "category": "Wheat",
+      "variety": "Sharbati (High Protein)",
+      "quantity": 120,
+      "reservePrice": 4650,
+      "moisture": 10.8,
+      "purity": 98.2,
+      "grade": "Grade A+",
+      "location": "Sehore, Madhya Pradesh (Pin: 466001)",
+      "farmerName": "Rameshwar Patel",
+      "harvestDate": "2026-08-25",
+      "image": "assets/wheat.png",
+      "offers": [
+        {
+          "buyerName": "Indore APMC Flour Mills",
+          "offerPrice": 4780,
+          "token": 25000,
+          "term": "Buyer Doorstep Pickup",
+          "date": "2026-09-02"
+        },
+        {
+          "buyerName": "Bhopal Central Grain Wholesaler",
+          "offerPrice": 4720,
+          "token": 20000,
+          "term": "Mandi Delivery Bonus",
+          "date": "2026-09-01"
+        }
+      ]
+    },
+    {
+      "id": "SMP-102",
+      "title": "1121 Extra Long Basmati Rice",
+      "category": "Rice",
+      "variety": "Raw Basmati 1121",
+      "quantity": 250,
+      "reservePrice": 4200,
+      "moisture": 11.5,
+      "purity": 97,
+      "grade": "Grade A+",
+      "location": "Karnal, Haryana (Pin: 132001)",
+      "farmerName": "Gurpreet Singh",
+      "harvestDate": "2026-08-28",
+      "image": "assets/rice.png",
+      "offers": [
+        {
+          "buyerName": "Azadpur Export House Delhi",
+          "offerPrice": 4350,
+          "token": 50000,
+          "term": "Buyer Doorstep Pickup",
+          "date": "2026-09-02"
+        }
+      ]
+    },
+    {
+      "id": "SMP-103",
+      "title": "Organic Long-Staple Raw Cotton",
+      "category": "Cotton",
+      "variety": "BT Cotton (29mm Staple)",
+      "quantity": 80,
+      "reservePrice": 7400,
+      "moisture": 8.5,
+      "purity": 95.5,
+      "grade": "Grade A",
+      "location": "Yavatmal, Maharashtra (Pin: 445001)",
+      "farmerName": "Vilasrao Deshmukh",
+      "harvestDate": "2026-08-20",
+      "image": "assets/cotton.png",
+      "offers": []
+    },
+    {
+      "id": "SMP-104",
+      "title": "Yellow High-Oil Soybean Seeds",
+      "category": "Soybean",
+      "variety": "JS 335 Organic Soybean",
+      "quantity": 180,
+      "reservePrice": 5100,
+      "moisture": 9.8,
+      "purity": 96.8,
+      "grade": "Grade A+",
+      "location": "Ujjain, Madhya Pradesh (Pin: 456001)",
+      "farmerName": "Kailash Choudhary",
+      "harvestDate": "2026-08-30",
+      "image": "assets/soybean.png",
+      "offers": [
+        {
+          "buyerName": "Malwa Solvent Extraction Plant",
+          "offerPrice": 5250,
+          "token": 35000,
+          "term": "Buyer Doorstep Pickup",
+          "date": "2026-09-02"
+        }
+      ]
+    },
+    {
+      "id": "SMP-105",
+      "title": "Royal Delicious Cold Storage Apples",
+      "category": "Apples",
+      "variety": "Himachali Red Royal",
+      "quantity": 95,
+      "reservePrice": 8800,
+      "moisture": 14,
+      "purity": 99,
+      "grade": "Grade A+",
+      "location": "Kotkhai, Shimla (Pin: 171202)",
+      "farmerName": "Surender Sharma",
+      "harvestDate": "2026-08-15",
+      "image": "assets/apples.png",
+      "offers": [
+        {
+          "buyerName": "Vashi Cold Chain Logistics Mumbai",
+          "offerPrice": 9200,
+          "token": 60000,
+          "term": "Cold Storage Booking",
+          "date": "2026-09-01"
+        }
+      ]
+    }
+  ],
+  "mandiRates": [
+    {
+      "mandi": "Indore APMC Mandi",
+      "state": "Madhya Pradesh",
+      "crop": "Sharbati Wheat",
+      "min": 4500,
+      "max": 4850,
+      "modal": 4720,
+      "trend": "+1.8%"
+    },
+    {
+      "mandi": "Azadpur APMC Market",
+      "state": "Delhi NCR",
+      "crop": "1121 Basmati Rice",
+      "min": 4100,
+      "max": 4450,
+      "modal": 4320,
+      "trend": "+2.4%"
+    },
+    {
+      "mandi": "Yavatmal Cotton Market",
+      "state": "Maharashtra",
+      "crop": "Raw Cotton (29mm)",
+      "min": 7200,
+      "max": 7650,
+      "modal": 7450,
+      "trend": "-0.5%"
+    },
+    {
+      "mandi": "Kota Grain Mandi",
+      "state": "Rajasthan",
+      "crop": "Yellow Soybean",
+      "min": 4950,
+      "max": 5300,
+      "modal": 5180,
+      "trend": "+1.2%"
+    },
+    {
+      "mandi": "Shimla Fruit Storage",
+      "state": "Himachal Pradesh",
+      "crop": "Royal Apples",
+      "min": 8400,
+      "max": 9400,
+      "modal": 9100,
+      "trend": "+3.5%"
+    },
+    {
+      "mandi": "Vashi APMC Market",
+      "state": "Mumbai, MH",
+      "crop": "Chana / Pulses",
+      "min": 5800,
+      "max": 6200,
+      "modal": 6050,
+      "trend": "+0.8%"
+    }
+  ],
+  "deals": [
+    {
+      "dealId": "DEAL-8801",
+      "sampleTitle": "Sharbati Wheat (Lot #902)",
+      "farmerName": "Rameshwar Patel",
+      "buyerName": "Indore APMC Flour Mills",
+      "quantity": 100,
+      "pricePerQtl": 4750,
+      "totalAmount": 475000,
+      "tokenDeposit": 25000,
+      "pickupTerm": "Buyer Doorstep Pickup",
+      "date": "2026-09-01"
+    }
+  ]
+}
