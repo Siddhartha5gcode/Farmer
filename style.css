@@ -1,5 +1,5 @@
 /* ==========================================================================
-   KrishiDeal / IndianPotato - Modern Responsive Stylesheet (v3.1.0 Enterprise)
+   KrishiDeal / Hamara Kisan - Modern Responsive Stylesheet (v3.1.0 Enterprise)
    ========================================================================== */
 
 :root {
@@ -993,7 +993,7 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   EXACT IMAGE MATCH: INDIANPOTATO DARK PURPLE FOOTER & FLOATING CHATBOT
+   EXACT IMAGE MATCH: HAMARA KISAN DARK PURPLE FOOTER & FLOATING CHATBOT
    -------------------------------------------------------------------------- */
 .site-footer {
   background: #1C172B;
@@ -1157,7 +1157,7 @@ body {
   color: #D3CDE2;
 }
 
-/* FLOATING CHAT WITH AI POTATO BUTTON */
+/* FLOATING CHAT WITH HAMARA KISAN AI BUTTON */
 .chatbot-fab-btn {
   position: fixed;
   bottom: 24px;

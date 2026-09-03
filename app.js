@@ -1,5 +1,5 @@
 /* ==========================================================================
-   IndianPotato / KrishiDeal - Intelligence Platform (v3.1.0 Enterprise)
+   Hamara Kisan / KrishiDeal - Intelligence Platform (v3.1.0 Enterprise)
    ========================================================================== */
 
 const API_BASE_URL = "http://localhost:5000/api";
@@ -41,16 +41,16 @@ const TRANSLATIONS = {
     bidModalTitle: "🏢 डोरस्टेप बोली (Offer) जमा करें", lblBuyerName: "खरीदार / मंडी फर्म का नाम *", lblOfferedPrice: "प्रस्तावित दर (₹ / कट्टा या कुंतल) *", lblTokenAdvance: "टोकन एडवांस (₹) *",
     lblPickupTerm: "परिवहन व पिकअप विकल्प *", btnSubmitBid: "🤝 बोली भेजें एवं किसान को एसएमएस अलर्ट जारी करें", offersModalTitle: "📋 प्राप्त बोलियां व गुणवत्ता जांच पर्ची", contractModalTitle: "🤝 पक्का सौदा अनुबंध पत्र एवं एस्क्रो रसीद",
     btnPrintContract: "🖨️ अनुबंध पत्र प्रिंट करें", btnClose: "बंद करें",
-    footerBrandName: "IndianPotato", footerBrandTagline: "भारत का पहला आलू उद्योग इंटेलिजेंस प्लेटफॉर्म। किसानों, व्यापारियों और निर्यातकों को सटीक भाव जानकारी।",
+    footerBrandName: "Hamara Kisan", footerBrandTagline: "भारत का पहला कृषि उद्योग एवं मंडी इंटेलिजेंस प्लेटफॉर्म। किसानों, व्यापारियों और निर्यातकों को सटीक भाव जानकारी।",
     colExplore: "EXPLORE", colCategories: "CATEGORIES", colResources: "RESOURCES", colConnect: "CONNECT",
     linkAboutUs: "About Us", linkAboutEditor: "About the Editor", linkContactUs: "Contact Us", linkAdvertise: "Advertise",
     linkHowWePublish: "How We Publish", linkPublishingPolicy: "Publishing Policy", linkCollaborate: "Collaborate", linkServicesFees: "Services & Fees", linkCareers: "Careers",
     linkCompaniesPeople: "Companies & People", linkGovtSchemes: "Government Schemes", linkGuidesResearch: "Guides & Research", linkPotatoEvents: "Potato Events", linkMarketIntel: "Market Intelligence", linkTradeExports: "Trade & Exports", linkProcessingTech: "Processing & Technology", linkSeedsFarming: "Seeds & Farming",
     linkPotatoPrices: "Potato Prices", linkGuides: "Guides", linkStateReports: "State Reports", linkCompanyDir: "Company Directory", linkIndustryEvents: "Industry Events", linkPotatoVarieties: "Potato Varieties",
     linkTerms: "Terms", linkPrivacyPolicy: "Privacy Policy", linkDisclaimer: "Disclaimer",
-    btnChatAiPotato: "Chat with AI Potato", botModalTitle: "AI Potato Intelligence Assistant", botModalSub: "24x7 Potato Prices, Varieties, Seeds & Escrow Help",
-    botWelcomeMsg: "नमस्कार! मैं AI Potato असिस्टेंट हूँ। फर्रुखाबाद व आगरा आलू भाव, CPRI Kufri बीज किस्मों, या कोल्ड स्टोरेज बुकिंग के बारे में पूछें।",
-    botInputPlaceholder: "AI Potato से पूछें (उदा. कुफरी बहार 3797 आलू भाव)...", botSendBtn: "Ask AI 🚀"
+    btnChatAiPotato: "Chat with Hamara Kisan AI", botModalTitle: "Hamara Kisan AI Platform Assistant", botModalSub: "24x7 Mandi Rates, Crop Prices, Freight, Cold Storage & Escrow Help",
+    botWelcomeMsg: "नमस्कार! मैं हमारा किसान AI असिस्टेंट हूँ। आलू, मेंटहा तेल, गेहूं, चावल, कपास, भाड़ा, कोल्ड स्टोरेज या एस्क्रो सुरक्षा के बारे में पूछें।",
+    botInputPlaceholder: "Ask Hamara Kisan AI (उदा. शरबाती गेहूं भाव, भाड़ा, कोल्ड स्टोरेज)...", botSendBtn: "Ask AI 🚀"
   },
   en: {
     brandSubtitle: "KrishiDeal Intelligence Platform", roleFarmer: "Farmer (Seller)", roleBuyer: "Buyer / Mandi Trader",
@@ -87,16 +87,16 @@ const TRANSLATIONS = {
     bidModalTitle: "🏢 Submit Doorstep Buyer Bid", lblBuyerName: "Buyer / Mandi Firm Name *", lblOfferedPrice: "Offered Rate (₹ / Bag or Qtl) *", lblTokenAdvance: "Token Advance (₹) *",
     lblPickupTerm: "Transport Pickup Term *", btnSubmitBid: "🤝 Send Bid & Dispatch SMS", offersModalTitle: "📋 Received Bids & Quality Slip", contractModalTitle: "🤝 Sealed Trade Contract & Escrow Receipt",
     btnPrintContract: "🖨️ Print Contract Note", btnClose: "Close",
-    footerBrandName: "IndianPotato", footerBrandTagline: "India's only intelligence platform for the potato industry. Connecting farmers, traders, processors, and exporters with actionable insights.",
+    footerBrandName: "Hamara Kisan", footerBrandTagline: "India's premier intelligence platform for agriculture and trade. Connecting farmers, traders, processors, and exporters with actionable insights.",
     colExplore: "EXPLORE", colCategories: "CATEGORIES", colResources: "RESOURCES", colConnect: "CONNECT",
     linkAboutUs: "About Us", linkAboutEditor: "About the Editor", linkContactUs: "Contact Us", linkAdvertise: "Advertise",
     linkHowWePublish: "How We Publish", linkPublishingPolicy: "Publishing Policy", linkCollaborate: "Collaborate", linkServicesFees: "Services & Fees", linkCareers: "Careers",
     linkCompaniesPeople: "Companies & People", linkGovtSchemes: "Government Schemes", linkGuidesResearch: "Guides & Research", linkPotatoEvents: "Potato Events", linkMarketIntel: "Market Intelligence", linkTradeExports: "Trade & Exports", linkProcessingTech: "Processing & Technology", linkSeedsFarming: "Seeds & Farming",
     linkPotatoPrices: "Potato Prices", linkGuides: "Guides", linkStateReports: "State Reports", linkCompanyDir: "Company Directory", linkIndustryEvents: "Industry Events", linkPotatoVarieties: "Potato Varieties",
     linkTerms: "Terms", linkPrivacyPolicy: "Privacy Policy", linkDisclaimer: "Disclaimer",
-    btnChatAiPotato: "Chat with AI Potato", botModalTitle: "AI Potato Intelligence Assistant", botModalSub: "24x7 Potato Prices, Varieties, Seeds & Escrow Help",
-    botWelcomeMsg: "Welcome to IndianPotato Intelligence! Ask me anything about UP Potato mandi rates (Farrukhabad, Agra), CPRI Kufri seed varieties, cold storage slot bookings, or market insights.",
-    botInputPlaceholder: "Ask AI Potato (e.g. Kufri Bahar 3797 price today)...", botSendBtn: "Ask AI 🚀"
+    btnChatAiPotato: "Chat with Hamara Kisan AI", botModalTitle: "Hamara Kisan AI Platform Assistant", botModalSub: "24x7 Mandi Rates, Crop Prices, Freight, Cold Storage & Escrow Help",
+    botWelcomeMsg: "Welcome to Hamara Kisan AI! Ask me anything about Potato, Mentha Oil, Wheat, Rice, Cotton, Soybean, Apples, Truck Freight, Cold Storage, or Escrow Token security.",
+    botInputPlaceholder: "Ask Hamara Kisan AI (e.g. Sharbati Wheat rate, Freight, Cold Storage)...", botSendBtn: "Ask AI 🚀"
   }
 };
 
@@ -297,7 +297,7 @@ function filterVariety(varietyName) {
   }
 }
 
-// AGRIPLUS AI CHATBOT HANDLERS (ALL PLATFORM CROPS & FEATURES)
+// HAMARA KISAN AI CHATBOT HANDLERS (ALL PLATFORM CROPS & FEATURES)
 function openChatBotModal() {
   document.getElementById("chatBotModal").classList.add("active");
 }
@@ -378,12 +378,12 @@ function handleBotFormSubmit(e) {
     }
     // 13. DEFAULT MULTI-CROP WELCOME
     else {
-      responseText = `🤖 <strong>AgriPlus AI Assistant:</strong> I provide real-time price & trade assistance across <strong>Potato (Farrukhabad/Agra), Mentha Oil (Sambhal MCX), Wheat, Basmati Rice, Cotton, Soybean, Apples</strong>, Freight calculation, Cold Storage slots, and Escrow Vault security!`;
+      responseText = `🤖 <strong>Hamara Kisan AI Assistant:</strong> I provide real-time price & trade assistance across <strong>Potato (Farrukhabad/Agra), Mentha Oil (Sambhal MCX), Wheat, Basmati Rice, Cotton, Soybean, Apples</strong>, Freight calculation, Cold Storage slots, and Escrow Vault security!`;
     }
 
     const botMsgHtml = `
       <div style="background: var(--bg-card); border-left: 4px solid #16A34A; padding: 10px 14px; border-radius: var(--radius-sm); font-size: 0.88rem;">
-        <strong>🤖 AgriPlus AI Assistant:</strong>
+        <strong>🤖 Hamara Kisan AI Assistant:</strong>
         <p style="margin-top: 4px;">${responseText}</p>
       </div>
     `;
@@ -399,29 +399,29 @@ function openInfoModal(pageType) {
   if (!titleEl || !contentEl) return;
 
   const pageDetails = {
-    about: { title: "About Us - IndianPotato", text: "<strong>IndianPotato</strong> is India's premier intelligence platform for the potato industry. Connecting farmers, traders, processors, cold storage owners, and exporters with real-time APMC Mandi rates, seed insights, and Escrow Vault trading." },
-    editor: { title: "About the Editor - IndianPotato", text: "Curated by leading agri-tech research editors, agricultural economists, and APMC Mandi analysts specializing in UP Potato belts (Farrukhabad, Agra, Kannauj) and CPRI seed technology." },
-    contact: { title: "Contact Us - IndianPotato Intelligence", text: "<strong>Corporate Helpline:</strong> +91 94996 68498<br><strong>Email:</strong> info@indpotato.com<br><strong>Mandi Address:</strong> Seven Pond APMC Yard, Farrukhabad & Sambhal Essential Oils Hub, Uttar Pradesh." },
-    advertise: { title: "Advertise on IndianPotato", text: "Reach over 1,50,000+ verified potato farmers, cold storage owners, seed companies (ICAR-CPRI, MHZPC, Technico), and potato chip processors across India." },
+    about: { title: "About Us - Hamara Kisan", text: "<strong>Hamara Kisan</strong> is India's premier intelligence platform for agricultural crops and trade. Connecting farmers, traders, processors, cold storage owners, and exporters with real-time APMC Mandi rates, seed insights, and Escrow Vault trading." },
+    editor: { title: "About the Editor - Hamara Kisan", text: "Curated by leading agri-tech research editors, agricultural economists, and APMC Mandi analysts specializing in UP crops, Mandi belts, and seed technology." },
+    contact: { title: "Contact Us - Hamara Kisan Intelligence", text: "<strong>Corporate Helpline:</strong> +91 94996 68498<br><strong>Email:</strong> info@hamarakisan.com<br><strong>Mandi Address:</strong> Seven Pond APMC Yard, Farrukhabad & Sambhal Essential Oils Hub, Uttar Pradesh." },
+    advertise: { title: "Advertise on Hamara Kisan", text: "Reach over 1,50,000+ verified farmers, cold storage owners, seed companies, and agri-processors across India." },
     publish: { title: "How We Publish", text: "Our prices and state reports are directly sourced from APMC Mandi samiti registers, e-NAM feeds, cold storage bay logs, and background MCX commodity references." },
     policy: { title: "Publishing Policy", text: "We enforce 100% data integrity, independent price audit checks, and verified Khasra land record matching for genuine farmer listings." },
-    collaborate: { title: "Collaborate with IndianPotato", text: "We partner with ICAR-CPRI, state horticulture boards, cold storage associations, and processing firms (ITC Technico, Agrico) for joint research." },
+    collaborate: { title: "Collaborate with Hamara Kisan", text: "We partner with agricultural research institutes, state horticulture boards, cold storage associations, and processing firms for joint research." },
     services: { title: "Services & Fees", text: "Free for verified farmers. Premium analytics, doorstep transport calculation, and cold storage reservation services for commercial traders." },
-    careers: { title: "Careers at IndianPotato", text: "Join our team of agricultural data engineers, Mandi field reporters, and AI developers building India's #1 Potato Intelligence Platform." },
-    companies: { title: "Companies & People Directory", text: "Database of top potato seed breeders (Mahindra HZPC, ITC Technico, CPRI), cold chain logistics operators, and APMC wholesalers." },
-    schemes: { title: "Government Schemes for Farmers", text: "Latest updates on PM Krishi Sinchayee Yojana, UP Potato Cold Storage Subsidies, e-NAM APMC integration, and KCC loans." },
-    guides: { title: "Potato Guides & Research", text: "Technical research papers on potato post-harvest management, cold storage temperature control (2°C-4°C), and L-Menthol steam distillation." },
-    events: { title: "Potato Industry Events", text: "Upcoming National Potato Expo, ICAR-CPRI Seed Workshops, and Cold Storage Association Conventions across UP and Punjab." },
-    processing: { title: "Processing & Technology", text: "Standards for high-dry-matter chipsona potatoes required by crisp manufacturers (3797, Chipsona 1, Lady Rosetta)." },
-    seeds: { title: "Seeds & Farming Insights", text: "Certified seed potato cultivation guidelines, disease-free tissue culture tubers, and soil moisture optimization." },
-    statereports: { title: "State Potato Reports", text: "State-wise arrival and rate reports for Uttar Pradesh, Punjab, West Bengal, Gujarat, and Madhya Pradesh." },
-    varieties: { title: "Potato Varieties Catalog", text: "Catalog of ICAR-CPRI Kufri Bahar 3797, Kufri Pukhraj, Kufri Chipsona 1, Red Sindhuri, and MHZPC varieties." },
-    terms: { title: "Terms of Service", text: "© 2026 Indpotato Private Limited. Terms governing user registration, APMC Mandi gate pass compliance, and Escrow Vault deposits." },
+    careers: { title: "Careers at Hamara Kisan", text: "Join our team of agricultural data engineers, Mandi field reporters, and AI developers building India's #1 Agriculture Intelligence Platform." },
+    companies: { title: "Companies & People Directory", text: "Database of top seed breeders, cold chain logistics operators, and APMC wholesalers." },
+    schemes: { title: "Government Schemes for Farmers", text: "Latest updates on PM Krishi Sinchayee Yojana, Cold Storage Subsidies, e-NAM APMC integration, and KCC loans." },
+    guides: { title: "Agricultural Guides & Research", text: "Technical research papers on post-harvest management, cold storage temperature control, and crop health." },
+    events: { title: "Agricultural Industry Events", text: "Upcoming National Agri Expo, Seed Workshops, and Cold Storage Association Conventions across India." },
+    processing: { title: "Processing & Technology", text: "Standards for high-quality processing produce required by food manufacturing industries." },
+    seeds: { title: "Seeds & Farming Insights", text: "Certified seed potato and crop cultivation guidelines, disease-free tubers, and soil moisture optimization." },
+    statereports: { title: "State Agricultural Reports", text: "State-wise arrival and rate reports for Uttar Pradesh, Punjab, West Bengal, Gujarat, and Madhya Pradesh." },
+    varieties: { title: "Crop Varieties Catalog", text: "Catalog of certified crop varieties, seed grades, and high-yield hybrids." },
+    terms: { title: "Terms of Service", text: "© 2026 Hamara Kisan Private Limited. Terms governing user registration, APMC Mandi gate pass compliance, and Escrow Vault deposits." },
     privacy: { title: "Privacy Policy", text: "Land record numbers (Khasra) and contact info are encrypted under strict privacy protocols for farmer protection." },
-    disclaimer: { title: "Market Rates Disclaimer", text: "Mandi prices displayed on IndianPotato reflect real-time APMC samples and benchmark feeds; final trade terms depend on physical quality inspection." }
+    disclaimer: { title: "Market Rates Disclaimer", text: "Mandi prices displayed on Hamara Kisan reflect real-time APMC samples and benchmark feeds; final trade terms depend on physical quality inspection." }
   };
 
-  const info = pageDetails[pageType] || { title: "IndianPotato Portal", text: "India's premier intelligence platform for the potato and agricultural industry." };
+  const info = pageDetails[pageType] || { title: "Hamara Kisan Portal", text: "India's premier intelligence platform for agriculture and trade." };
   titleEl.innerText = info.title;
   contentEl.innerHTML = `<p>${info.text}</p>`;
   document.getElementById("infoPagesModal").classList.add("active");
@@ -671,7 +671,7 @@ function handleSignOut() {
   currentUser = null;
   localStorage.removeItem("krishi_user_session");
   renderAuthNav();
-  showToast("You have signed out of IndianPotato Platform.");
+  showToast("You have signed out of Hamara Kisan Platform.");
 }
 
 async function fetchLiveMenthaRateFromBackend() {
@@ -1475,8 +1475,8 @@ function showContractModal(deal) {
   container.innerHTML = `
     <div class="contract-paper">
       <div class="contract-header">
-        <h2 style="color: #0F5A47;">🌿 IndianPotato & KrishiDeal Verified Trade Contract Note</h2>
-        <p style="font-size: 0.85rem; color: #64748B;">Indpotato Private Limited - Trade Receipt & Escrow Proof</p>
+        <h2 style="color: #0F5A47;">🌿 Hamara Kisan & KrishiDeal Verified Trade Contract Note</h2>
+        <p style="font-size: 0.85rem; color: #64748B;">Hamara Kisan Private Limited - Trade Receipt & Escrow Proof</p>
         <span style="font-size: 0.8rem; font-weight: 700; background: #EAEFEA; padding: 4px 12px; border-radius: 99px;">Contract No: ${deal.dealId}</span>
       </div>
 
@@ -1511,7 +1511,7 @@ function showContractModal(deal) {
       </div>
 
       <div style="text-align: center;">
-        <div class="qr-placeholder">INDPOTATO VERIFIED ESCROW</div>
+        <div class="qr-placeholder">HAMARA KISAN VERIFIED ESCROW</div>
         <p style="font-size: 0.75rem; color: #64748B; margin-top: 6px;">Valid pass for APMC Mandi Officers & Cold Storage Gate Checkposts</p>
       </div>
     </div>
