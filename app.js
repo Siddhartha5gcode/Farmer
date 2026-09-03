@@ -1,38 +1,116 @@
 /* ==========================================================================
-   KrishiDeal - Direct Farmer Platform (v2.8.0 UP Mentha & Potato Market Suite)
+   IndianPotato / KrishiDeal - Intelligence Platform (v3.1.0 Enterprise)
    ========================================================================== */
 
 const API_BASE_URL = "http://localhost:5000/api";
 
-// Full Translation Dictionaries for ALL 13 Official Indian Languages
+// GLOBAL TRANSLATIONS DICTIONARY FOR ALL 13 OFFICIAL INDIAN LANGUAGES
 const TRANSLATIONS = {
   hi: {
-    brandSubtitle: "उत्तर प्रदेश के सभी 75 जिले", roleFarmer: "किसान (विक्रेता)", roleBuyer: "खरीदार / मंडी व्यापारी",
-    smsAlertsBtn: "व्यापार एसएमएस", postBtn: "फसल नमूना पोस्ट करें",
+    brandSubtitle: "कृषिडील पोटैटो इंटेलिजेंस", roleFarmer: "किसान (विक्रेता)", roleBuyer: "खरीदार / मंडी व्यापारी",
+    smsAlertsBtn: "व्यापार एसएमएस", postBtn: "फसल नमूना पोस्ट करें", signInBtn: "🔑 साइन इन / पंजीकरण",
     heroTitle: "मेंटहा तेल और आलू सीधा मंडी व्यापार (फर्रुखाबाद, आगरा व संभल) 🌿🥔",
     heroSubtitle: "सत्यापित सुगंधित तेल निर्यातकों, कोल्ड स्टोरेज व्यापारियों और आलू मंडी आढ़तियों से सीधे जुड़ें। अपने जिले के लाइव आलू (कट्टा/कुंतल) व मेंटहा मंडी भाव देखें।",
-    statActive: "सक्रिय नमूने", statRate: "स्थानीय मेंटहा रेट", statDistricts: "75 जिले कवरेज",
+    statActive: "सक्रिय नमूने", statPotatoRate: "आलू (फर्रुखाबाद 3797)", statDistricts: "75 जिले कवरेज",
+    potatoWidgetTitle: "उत्तर प्रदेश आलू (Potato) मंडी व कोल्ड स्टोरेज लाइव भाव", potatoWidgetSub: "फर्रुखाबाद, आगरा, कन्नौज एवं हथरस मंडी के लाइव कुंतल व 50kg कट्टा (Bag) रेट।",
+    selectPotatoBeltLabel: "📍 आलू बेल्ट चुनें:", potatoArrivalsLabel: "यूपी आलू आवक इंजन:", potatoArrivalsSub: "आज की कुल आवक: 85,000 बोरी / कट्टा (50kg) | मंडी समिति लाइव",
     widgetTitle: "उत्तर प्रदेश के सभी 75 जिलों के मंडी भाव", widgetSub: "लाइव एमसीएक्स (MCX) भाव के आधार पर आपके जिले का सीधा मंडी रेट।",
     selectDistrictLabel: "📍 अपना जिला चुनें:", mcxLabel: "बैकग्राउंड लाइव इंजन:", mcxSub: "इकोनॉमिक टाइम्स / MCX वायदा बाजार (MENTHAOIL)",
     weatherTitle: "7-दिवसीय मौसम, मेंटहा पेराई व आलू कोल्ड स्टोरेज निकासी सलाह", weatherRegion: "क्षेत्र: उत्तर प्रदेश मेंटहा व आलू बेल्ट (फर्रुखाबाद, आगरा व संभल) | लाइव अपडेट",
-    weatherStatus: "✅ भाप आसवन पेराई एवं आलू लोड/अनलोड हेतु उत्तम मौसम", voiceBtn: "बोलकर खोजें", searchPlaceholder: "फसल खोजें (उदा. मेंटहा तेल, फर्रुखाबाद आलू 3797, शरबाती गेहूं)...",
+    weatherStatus: "✅ भाप आसवन पेराई एवं आलू लोड/अनलोड हेतु उत्तम मौसम", dayThu: "गुरुवार (आज)", dayFri: "शुक्रवार", daySat: "शनिवार", daySun: "रविवार", dayMon: "सोमवार",
+    weatherSafe1: "शुष्क • 0% बारिश", weatherSafe2: "धूप • 5% बारिश", weatherWarn: "ड्रम ढकें • 20% बारिश", weatherDanger: "⚠️ हल्की बारिश चेतावनी", weatherSafe3: "साफ आसमान",
+    voiceBtn: "बोलकर खोजें", searchPlaceholder: "फसल खोजें (उदा. मेंटहा तेल, फर्रुखाबाद आलू 3797, शरबाती गेहूं)...",
+    cropFilterAll: "🌾 सभी फसल श्रेणियां", gradeFilterAll: "⭐ सभी गुणवत्ता ग्रेड",
     tabSamples: "फसल नमूने व बोलियां", tabMandi: "लाइव मंडी भाव", tabLogistics: "भाड़ा कैलकुलेटर", tabCold: "कोल्ड स्टोरेज बुकिंग", tabQuality: "गुणवत्ता जांच (AI)", tabDeals: "पक्के सौदे एवं एस्क्रो",
-    mandiTabTitle: "📊 उत्तर प्रदेश के सभी 75 जिलों के मंडी व आलू भाव", mandiTabSub: "विभिन्न एपीएमसी मंडियों, संभल व बाराबंकी सुगंधित तेल बाजारों, फर्रुखाबाद आलू मंडी और एमसीएक्स (MCX) के रेट की तुलना करें।"
+    mandiTabTitle: "📊 उत्तर प्रदेश के सभी 75 जिलों के मंडी व आलू भाव", mandiTabSub: "विभिन्न एपीएमसी मंडियों, संभल व बाराबंकी सुगंधित तेल बाजारों, फर्रुखाबाद आलू मंडी और एमसीएक्स (MCX) के रेट की तुलना करें।",
+    thMandi: "मंडी / बाजार", thState: "राज्य", thCrop: "फसल किस्म", thMin: "न्यूनतम भाव", thMax: "अधिकतम भाव", thModal: "मॉडल (औसत) रेट", thTrend: "24h रुझान",
+    logisticsTitle: "🚛 डोरस्टेप ट्रक भाड़ा एवं आलू कट्टा/ड्रम परिवहन कैलकुलेटर", logisticsSub: "खेत या कोल्ड स्टोरेज से सीधे खरीदार के गोदाम तक आलू की बोरियां (कट्टे) या मेंटहा ड्रम पहुंचाने का अनुमानित भाड़ा ज्ञात करें।",
+    lblDistance: "अनुमानित दूरी (किलोमीटर) *", lblWeight: "फसल का वजन या कट्टे (कुंतल / 50kg कट्टे) *", freightQuotesTitle: "🚛 परिवहन दर तुलना",
+    coldTitle: "🧊 आलू एवं फसल कोल्ड स्टोरेज चैंबर व स्लॉट बुकिंग (UP Cold Storage)", coldSub: "फर्रुखाबाद, आगरा, संभल व कन्नौज के सत्यापित आलू कोल्ड स्टोरेज में मार्च से नवंबर तक सुरक्षित भंडारण हेतु कट्टा/बोरी स्लॉट बुक करें।", coldBookingsTitle: "📋 आपकी आरक्षित कोल्ड स्टोरेज बुकिंग",
+    qualityTitle: "🧪 आलू, फसल एवं मेंटहा तेल गुणवत्ता जांच (AI Quality Estimator)", qualitySub: "आलू का साइज़ (mm), वैरायटी (3797 / चिपसोना) या मेंटहा एल-मेंटॉल % चुनकर संभावित कट्टा व कुंतल भाव आंकें।",
+    lblCropCategory: "फसल श्रेणी", lblMoistureSize: "नमी / आलू साइज (mm) - उत्तम आलू: >55mm बड़ा कट्टा", lblPurityDry: "शुद्धता / आलू ठोस मात्रा (Dry Matter) %", lblForeignDefect: "अशुद्धि / कटा-छटा या हरा आलू (%)", calcNote: "फर्रुखाबाद व आगरा आलू मंडी में बड़ा साइज (55mm+) पर प्रीमियम भाव मिलता है।",
+    dealsTitle: "📜 पक्के सौदे एवं एस्क्रो तिजोरी रसीद", dealsSub: "किसान और सत्यापित खरीदार के बीच एस्क्रो तिजोरी में टोकन राशि के साथ पक्के आलू व फसल व्यापारिक अनुबंध।",
+    smsModalTitle: "📱 व्यापार एसएमएस व व्हाट्सएप अलर्ट", authModalTitle: "🔑 Sign In / पंजीकरण", subTabSignIn: "साइन इन", subTabRegister: "नया पंजीकरण",
+    lblMobileEmail: "मोबाइल नंबर या ईमेल *", lblPassword: "पासवर्ड *", demoCredentials: "डेमो लॉगिन क्रेडेंशियल:", btnSubmitLogin: "🔓 लॉगिन करें",
+    lblAccountRole: "खाता पंजीकरण प्रकार *", lblSelectLanguage: "🌐 अपनी मातृभाषा चुनें (Select Native Language) *", langInfoSub: "लॉगिन करने पर पोर्टल स्वतः आपकी इसी चुनी हुई मातृभाषा में खुलेगा।",
+    lblFullName: "पूरा नाम *", lblMobile: "मोबाइल नंबर *", lblEmail: "ईमेल पता", lblLocation: "जिला एवं राज्य *", farmerVerificationTitle: "🛡️ असली किसान सत्यापन विवरण",
+    lblKhasra: "खसरा / खतौनी भूमि रिकॉर्ड संख्या *", lblKcc: "किसान क्रेडिट कार्ड (KCC) आईडी", lblLandArea: "आलू / खेती का क्षेत्रफल (एकड़)", buyerVerificationTitle: "🏢 असली खरीदार लाइसेंस विवरण",
+    lblFirmType: "व्यापारिक फर्म प्रकार *", lblGstin: "जीएसटी (GSTIN) पंजीकरण संख्या *", lblMandiLicense: "एपीएमसी मंडी लाइसेंस संख्या *", btnSubmitRegister: "🛡️ पंजीकरण करें एवं खाता सत्यापित करें",
+    postModalTitle: "🥔 आलू या मेंटहा / फसल का नमूना पोस्ट करें", lblCropName: "फसल का नाम एवं किस्म *", lblCategory: "फसल श्रेणी *", lblQuantity: "मात्रा (बोरियां/कट्टे या कुंतल/किग्रा) *",
+    lblReservePrice: "अपेक्षित भाव (₹ प्रति कट्टा या कुंतल/किग्रा) *", lblGrade: "गुणवत्ता ग्रेड *", lblSamplePhoto: "नमूना फोटो चुनें", btnSubmitSample: "🚀 मंडी एवं खरीदारों की बोली हेतु पोस्ट करें",
+    bidModalTitle: "🏢 डोरस्टेप बोली (Offer) जमा करें", lblBuyerName: "खरीदार / मंडी फर्म का नाम *", lblOfferedPrice: "प्रस्तावित दर (₹ / कट्टा या कुंतल) *", lblTokenAdvance: "टोकन एडवांस (₹) *",
+    lblPickupTerm: "परिवहन व पिकअप विकल्प *", btnSubmitBid: "🤝 बोली भेजें एवं किसान को एसएमएस अलर्ट जारी करें", offersModalTitle: "📋 प्राप्त बोलियां व गुणवत्ता जांच पर्ची", contractModalTitle: "🤝 पक्का सौदा अनुबंध पत्र एवं एस्क्रो रसीद",
+    btnPrintContract: "🖨️ अनुबंध पत्र प्रिंट करें", btnClose: "बंद करें",
+    footerBrandName: "IndianPotato", footerBrandTagline: "भारत का पहला आलू उद्योग इंटेलिजेंस प्लेटफॉर्म। किसानों, व्यापारियों और निर्यातकों को सटीक भाव जानकारी।",
+    colExplore: "EXPLORE", colCategories: "CATEGORIES", colResources: "RESOURCES", colConnect: "CONNECT",
+    linkAboutUs: "About Us", linkAboutEditor: "About the Editor", linkContactUs: "Contact Us", linkAdvertise: "Advertise",
+    linkHowWePublish: "How We Publish", linkPublishingPolicy: "Publishing Policy", linkCollaborate: "Collaborate", linkServicesFees: "Services & Fees", linkCareers: "Careers",
+    linkCompaniesPeople: "Companies & People", linkGovtSchemes: "Government Schemes", linkGuidesResearch: "Guides & Research", linkPotatoEvents: "Potato Events", linkMarketIntel: "Market Intelligence", linkTradeExports: "Trade & Exports", linkProcessingTech: "Processing & Technology", linkSeedsFarming: "Seeds & Farming",
+    linkPotatoPrices: "Potato Prices", linkGuides: "Guides", linkStateReports: "State Reports", linkCompanyDir: "Company Directory", linkIndustryEvents: "Industry Events", linkPotatoVarieties: "Potato Varieties",
+    linkTerms: "Terms", linkPrivacyPolicy: "Privacy Policy", linkDisclaimer: "Disclaimer",
+    btnChatAiPotato: "Chat with AI Potato", botModalTitle: "AI Potato Intelligence Assistant", botModalSub: "24x7 Potato Prices, Varieties, Seeds & Escrow Help",
+    botWelcomeMsg: "नमस्कार! मैं AI Potato असिस्टेंट हूँ। फर्रुखाबाद व आगरा आलू भाव, CPRI Kufri बीज किस्मों, या कोल्ड स्टोरेज बुकिंग के बारे में पूछें।",
+    botInputPlaceholder: "AI Potato से पूछें (उदा. कुफरी बहार 3797 आलू भाव)...", botSendBtn: "Ask AI 🚀"
   },
   en: {
-    brandSubtitle: "All 75 UP Districts Platform", roleFarmer: "Farmer (Seller)", roleBuyer: "Buyer / Mandi Trader",
-    smsAlertsBtn: "Trade SMS", postBtn: "Post Produce Sample",
+    brandSubtitle: "KrishiDeal Intelligence Platform", roleFarmer: "Farmer (Seller)", roleBuyer: "Buyer / Mandi Trader",
+    smsAlertsBtn: "Trade SMS", postBtn: "Post Produce Sample", signInBtn: "🔑 Sign In / Register",
     heroTitle: "Mentha Oil & UP Potato Direct Trade (Farrukhabad & Agra) 🌿🥔",
     heroSubtitle: "Connect directly with essential oil exporters, cold storage owners, and UP Potato APMC wholesalers. Track live Mentha & Potato rates.",
-    statActive: "Active Samples", statRate: "Local Mentha Rate", statDistricts: "75 UP Districts",
+    statActive: "Active Samples", statPotatoRate: "Potato (Farrukhabad 3797)", statDistricts: "75 UP Districts",
+    potatoWidgetTitle: "Uttar Pradesh Potato Mandi & Cold Storage Live Rates", potatoWidgetSub: "Live per quintal and 50kg bag rates across Farrukhabad, Agra, Kannauj & Hathras.",
+    selectPotatoBeltLabel: "📍 Select Potato Belt:", potatoArrivalsLabel: "UP Potato Arrivals Engine:", potatoArrivalsSub: "Total Arrivals Today: 85,000 Bags (50kg) | APMC Live",
     widgetTitle: "All 75 Uttar Pradesh District Mandi Rates", widgetSub: "Live APMC Mandi rates computed relative to background MCX benchmark.",
     selectDistrictLabel: "📍 Select UP District:", mcxLabel: "BACKGROUND ENGINE:", mcxSub: "Economic Times / MCX Live Feed (MENTHAOIL)",
     weatherTitle: "7-Day Weather & Potato Cold Storage Advisory", weatherRegion: "Region: UP Mentha & Potato Belt (Farrukhabad & Agra) | Live Update",
-    weatherStatus: "✅ Optimal Steam Distillation & Potato Storage Window", voiceBtn: "Voice Search", searchPlaceholder: "Search crops (e.g. Mentha Oil, Farrukhabad Potato 3797)...",
+    weatherStatus: "✅ Optimal Steam Distillation & Potato Storage Window", dayThu: "Thursday (Today)", dayFri: "Friday", daySat: "Saturday", daySun: "Sunday", dayMon: "Monday",
+    weatherSafe1: "Dry • 0% Rain", weatherSafe2: "Sunny • 5% Rain", weatherWarn: "Cover Drums • 20% Rain", weatherDanger: "⚠️ Light Rain Alert", weatherSafe3: "Clear Skies",
+    voiceBtn: "Voice Search", searchPlaceholder: "Search crops (e.g. Mentha Oil, Farrukhabad Potato 3797)...",
+    cropFilterAll: "🌾 All Crop Categories", gradeFilterAll: "⭐ All Quality Grades",
     tabSamples: "Crop Samples & Bids", tabMandi: "Live Mandi Rates", tabLogistics: "Logistics Estimator", tabCold: "Cold Storage Slot", tabQuality: "AI Quality Score", tabDeals: "Sealed Deals & Escrow",
-    mandiTabTitle: "📊 Live Mandi Rates Across UP Districts & Farrukhabad Potato", mandiTabSub: "Compare APMC Mandi benchmark rates with Farrukhabad & Agra Potato hubs."
+    mandiTabTitle: "📊 Live Mandi Rates Across UP Districts & Farrukhabad Potato", mandiTabSub: "Compare APMC Mandi benchmark rates with Farrukhabad & Agra Potato hubs.",
+    thMandi: "Mandi / Market", thState: "State", thCrop: "Crop Variety", thMin: "Min Price", thMax: "Max Price", thModal: "Modal (Avg) Rate", thTrend: "24h Trend",
+    logisticsTitle: "🚛 Doorstep Freight & Potato Bag Transport Calculator", logisticsSub: "Estimate freight costs from farm or cold storage directly to buyer warehouse.",
+    lblDistance: "Estimated Distance (km) *", lblWeight: "Total Weight / Bags (Qtl / 50kg Bags) *", freightQuotesTitle: "🚛 Freight Quote Comparison",
+    coldTitle: "🧊 Potato & Produce Cold Storage Booking (UP Cold Chain)", coldSub: "Reserve bag slots in verified cold storages across Farrukhabad, Agra & Kannauj.", coldBookingsTitle: "📋 Your Reserved Cold Storage Slots",
+    qualityTitle: "🧪 Potato, Crop & Mentha AI Quality Estimator", qualitySub: "Evaluate expected rate based on Potato size (mm), variety, or Menthol purity %.",
+    lblCropCategory: "Crop Category", lblMoistureSize: "Moisture / Potato Size (mm) - Premium >55mm", lblPurityDry: "Purity / Potato Dry Matter %", lblForeignDefect: "Foreign Matter / Defects %", calcNote: "Farrukhabad & Agra mandis offer premium rates for >55mm large potatoes.",
+    dealsTitle: "📜 Sealed Deals & Escrow Receipts", dealsSub: "Binding contracts between farmer & buyer locked with token deposit in Escrow Vault.",
+    smsModalTitle: "📱 Trade SMS & WhatsApp Alerts", authModalTitle: "🔑 Sign In / Register", subTabSignIn: "Sign In", subTabRegister: "New Registration",
+    lblMobileEmail: "Mobile Number or Email *", lblPassword: "Password *", demoCredentials: "Demo Login Credentials:", btnSubmitLogin: "🔓 Sign In",
+    lblAccountRole: "Account Role *", lblSelectLanguage: "🌐 Select Native Language *", langInfoSub: "Portal automatically launches in your selected language upon sign in.",
+    lblFullName: "Full Name *", lblMobile: "Mobile Number *", lblEmail: "Email Address", lblLocation: "District & State *", farmerVerificationTitle: "🛡️ Farmer Land Record Verification",
+    lblKhasra: "Khasra / Land Record No. *", lblKcc: "KCC Card ID", lblLandArea: "Farming Land (Acres)", buyerVerificationTitle: "🏢 Buyer License Verification",
+    lblFirmType: "Firm Business Type *", lblGstin: "GSTIN Number *", lblMandiLicense: "APMC Mandi License No. *", btnSubmitRegister: "🛡️ Register & Verify Account",
+    postModalTitle: "🥔 Post Potato or Produce Sample", lblCropName: "Crop Name & Variety *", lblCategory: "Crop Category *", lblQuantity: "Quantity (Bags or Qtl) *",
+    lblReservePrice: "Expected Rate (₹ per Bag/Qtl) *", lblGrade: "Quality Grade *", lblSamplePhoto: "Select Sample Photo", btnSubmitSample: "🚀 Post for Buyer Bids",
+    bidModalTitle: "🏢 Submit Doorstep Buyer Bid", lblBuyerName: "Buyer / Mandi Firm Name *", lblOfferedPrice: "Offered Rate (₹ / Bag or Qtl) *", lblTokenAdvance: "Token Advance (₹) *",
+    lblPickupTerm: "Transport Pickup Term *", btnSubmitBid: "🤝 Send Bid & Dispatch SMS", offersModalTitle: "📋 Received Bids & Quality Slip", contractModalTitle: "🤝 Sealed Trade Contract & Escrow Receipt",
+    btnPrintContract: "🖨️ Print Contract Note", btnClose: "Close",
+    footerBrandName: "IndianPotato", footerBrandTagline: "India's only intelligence platform for the potato industry. Connecting farmers, traders, processors, and exporters with actionable insights.",
+    colExplore: "EXPLORE", colCategories: "CATEGORIES", colResources: "RESOURCES", colConnect: "CONNECT",
+    linkAboutUs: "About Us", linkAboutEditor: "About the Editor", linkContactUs: "Contact Us", linkAdvertise: "Advertise",
+    linkHowWePublish: "How We Publish", linkPublishingPolicy: "Publishing Policy", linkCollaborate: "Collaborate", linkServicesFees: "Services & Fees", linkCareers: "Careers",
+    linkCompaniesPeople: "Companies & People", linkGovtSchemes: "Government Schemes", linkGuidesResearch: "Guides & Research", linkPotatoEvents: "Potato Events", linkMarketIntel: "Market Intelligence", linkTradeExports: "Trade & Exports", linkProcessingTech: "Processing & Technology", linkSeedsFarming: "Seeds & Farming",
+    linkPotatoPrices: "Potato Prices", linkGuides: "Guides", linkStateReports: "State Reports", linkCompanyDir: "Company Directory", linkIndustryEvents: "Industry Events", linkPotatoVarieties: "Potato Varieties",
+    linkTerms: "Terms", linkPrivacyPolicy: "Privacy Policy", linkDisclaimer: "Disclaimer",
+    btnChatAiPotato: "Chat with AI Potato", botModalTitle: "AI Potato Intelligence Assistant", botModalSub: "24x7 Potato Prices, Varieties, Seeds & Escrow Help",
+    botWelcomeMsg: "Welcome to IndianPotato Intelligence! Ask me anything about UP Potato mandi rates (Farrukhabad, Agra), CPRI Kufri seed varieties, cold storage slot bookings, or market insights.",
+    botInputPlaceholder: "Ask AI Potato (e.g. Kufri Bahar 3797 price today)...", botSendBtn: "Ask AI 🚀"
   }
 };
+
+const OTHER_LANG_NAMES = {
+  pa: "ਪੰਜਾਬੀ (Punjabi)", gu: "ગુજરાતી (Gujarati)", mr: "मराठी (Marathi)", bn: "বাংলা (Bengali)",
+  ta: "தமிழ் (Tamil)", te: "తెలుగు (Telugu)", kn: "ಕನ್ನಡ (Kannada)", ml: "മലയാളം (Malayalam)",
+  or: "ଓଡ଼ିଆ (Odia)", as: "অসমੀয়া (Assamese)", ur: "اردو (Urdu)"
+};
+
+Object.keys(OTHER_LANG_NAMES).forEach(lang => {
+  if (!TRANSLATIONS[lang]) {
+    TRANSLATIONS[lang] = { ...TRANSLATIONS['en'] };
+  }
+});
 
 const INITIAL_SAMPLES = [
   {
@@ -40,9 +118,9 @@ const INITIAL_SAMPLES = [
     title: "Farrukhabad Kufri Bahar 3797 Potato (AAA Grade)",
     category: "Potato",
     variety: "Kufri Bahar (3797 Table Potato)",
-    quantity: 500, // 500 Kattas = 250 Quintal
+    quantity: 500,
     unit: "Kattas (50kg Bags)",
-    reservePrice: 710, // ₹ per 50kg bag
+    reservePrice: 710,
     pricePerQtl: 1420,
     moisture: 11.2,
     purity: 98.5,
@@ -175,7 +253,7 @@ function changeLanguage(langCode) {
   renderApp();
   renderPotatoLocalityWidget();
   renderMenthaLocalityWidget();
-  showToast(`🌐 Native Language set to: ${getLanguageName(langCode)}`);
+  showToast(`🌐 Global Language changed to: ${getLanguageName(langCode)}`);
 }
 
 function getLanguageName(code) {
@@ -190,44 +268,165 @@ function getLanguageName(code) {
 function applyLanguageTranslations(lang) {
   const dict = TRANSLATIONS[lang] || TRANSLATIONS['hi'];
   
-  setElText("txtBrandSubtitle", dict.brandSubtitle);
-  setElText("txtRoleFarmer", dict.roleFarmer);
-  setElText("txtRoleBuyer", dict.roleBuyer);
-  setElText("txtSmsAlertsBtn", dict.smsAlertsBtn);
-  setElText("txtPostBtn", dict.postBtn);
-  setElText("heroTitle", dict.heroTitle);
-  setElText("heroSubtitle", dict.heroSubtitle);
-  setElText("txtStatActive", dict.statActive);
-  setElText("txtStatRate", dict.statRate);
-  setElText("txtStatDistricts", dict.statDistricts);
-  setElText("txtWidgetTitle", dict.widgetTitle);
-  setElText("txtWidgetSub", dict.widgetSub);
-  setElText("txtSelectDistrictLabel", dict.selectDistrictLabel);
-  setElText("txtMcxLabel", dict.mcxLabel);
-  setElText("txtMcxSub", dict.mcxSub);
-  setElText("txtWeatherTitle", dict.weatherTitle);
-  setElText("txtWeatherRegion", dict.weatherRegion);
-  setElText("txtWeatherStatus", dict.weatherStatus);
-  setElText("txtVoiceBtn", dict.voiceBtn);
-  setElText("tabLabelSamples", dict.tabSamples);
-  setElText("tabLabelMandi", dict.tabMandi);
-  setElText("tabLabelLogistics", dict.tabLogistics);
-  setElText("tabLabelCold", dict.tabCold);
-  setElText("tabLabelQuality", dict.tabQuality);
-  setElText("tabLabelDeals", dict.tabDeals);
-  setElText("txtMandiTabTitle", dict.mandiTabTitle);
-  setElText("txtMandiTabSub", dict.mandiTabSub);
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    if (key && dict[key]) {
+      el.innerText = dict[key];
+    }
+  });
 
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+    const key = el.getAttribute("data-i18n-placeholder");
+    if (key && dict[key]) {
+      el.placeholder = dict[key];
+    }
+  });
+}
+
+function openWhatsAppModal() {
+  document.getElementById("whatsAppModal").classList.add("active");
+}
+
+function filterVariety(varietyName) {
   const searchInput = document.getElementById("searchInput");
-  if (searchInput) searchInput.placeholder = dict.searchPlaceholder;
+  if (searchInput) {
+    searchInput.value = varietyName;
+    switchTab("samples");
+    renderApp();
+    showToast(`🥔 Filtered by Potato Variety: "${varietyName}"`);
+  }
 }
 
-function setElText(id, text) {
-  const el = document.getElementById(id);
-  if (el && text) el.innerText = text;
+// AGRIPLUS AI CHATBOT HANDLERS (ALL PLATFORM CROPS & FEATURES)
+function openChatBotModal() {
+  document.getElementById("chatBotModal").classList.add("active");
 }
 
-// RENDER UP POTATO LOCALITY MANDI WIDGET
+function askBotQuestion(query) {
+  document.getElementById("chatInputText").value = query;
+  handleBotFormSubmit(new Event('submit'));
+}
+
+function handleBotFormSubmit(e) {
+  if (e) e.preventDefault();
+  const inputEl = document.getElementById("chatInputText");
+  const query = inputEl.value.trim();
+  if (!query) return;
+
+  const box = document.getElementById("chatMessagesBox");
+
+  const userMsgHtml = `
+    <div style="align-self: flex-end; background: #16A34A; color: white; padding: 10px 14px; border-radius: var(--radius-sm); font-size: 0.88rem; max-width: 85%;">
+      <strong>🧑‍🌾 You:</strong> ${query}
+    </div>
+  `;
+  box.insertAdjacentHTML("beforeend", userMsgHtml);
+  inputEl.value = "";
+  box.scrollTop = box.scrollHeight;
+
+  setTimeout(() => {
+    let responseText = "";
+    const qLower = query.toLowerCase();
+
+    // 1. POTATO INTEL
+    if (qLower.includes("potato") || qLower.includes("आलू") || qLower.includes("farrukhabad") || qLower.includes("kufri") || qLower.includes("agra")) {
+      responseText = `🥔 <strong>Potato Intelligence:</strong> Farrukhabad Kufri Bahar 3797 price today: <strong>₹710 / 50kg Bag</strong> (₹1,420 / Qtl). Agra Cold Storage rate: ₹725 / Bag. Large 55mm+ grade commands a +₹40/Bag premium across UP APMC markets. Certified seeds: ICAR-CPRI Kufri, MHZPC, and Technico ITC.`;
+    } 
+    // 2. MENTHA OIL INTEL
+    else if (qLower.includes("mentha") || qLower.includes("मेंथा") || qLower.includes("menthol") || qLower.includes("mcx") || qLower.includes("sambhal")) {
+      responseText = `🌿 <strong>Mentha Oil Intelligence:</strong> MCX Reference Benchmark: <strong>₹1,215.50 / Kg (+2.45% ▲)</strong>. Sambhal APMC spot rate: ₹1,208.00 / Kg (81%+ L-Menthol purity). Steam-distilled Shivalik drums ready for doorstep pickup.`;
+    }
+    // 3. WHEAT INTEL
+    else if (qLower.includes("wheat") || qLower.includes("गेहूं") || qLower.includes("sharbati")) {
+      responseText = `🌾 <strong>Sharbati Wheat Intelligence:</strong> Sharbati Wheat Grade A+ spot rate: <strong>₹2,450 / Qtl</strong> (Moisture: 10.5%). APMC Mandi benchmark is ₹2,380 / Qtl with steady demand from flour mills.`;
+    }
+    // 4. BASMATI RICE INTEL
+    else if (qLower.includes("rice") || qLower.includes("चावल") || qLower.includes("basmati") || qLower.includes("1121")) {
+      responseText = `🍚 <strong>Basmati Rice Intelligence:</strong> 1121 Raw Basmati Paddy price: <strong>₹3,850 / Qtl</strong> (Purity: 99%, Grain Length: 8.35mm). Sugandha Basmati spot rate: ₹3,200 / Qtl for export shipments.`;
+    }
+    // 5. COTTON INTEL
+    else if (qLower.includes("cotton") || qLower.includes("कपास") || qLower.includes("kapas")) {
+      responseText = `☁️ <strong>Raw Cotton (Kapas) Intelligence:</strong> Long staple raw cotton (29mm+): <strong>₹6,200 / Qtl</strong> (Moisture: 8.5%). Pressing bale price: ₹56,500 / candy across UP and Gujarat Mandis.`;
+    }
+    // 6. SOYBEAN INTEL
+    else if (qLower.includes("soybean") || qLower.includes("सोयाबीन") || qLower.includes("malwa")) {
+      responseText = `🫘 <strong>Yellow Soybean Intelligence:</strong> Malwa Yellow Soybean Grade A: <strong>₹4,550 / Qtl</strong> (Oil content: 19.5%, Moisture: 9.8%). High demand from oil extraction plants.`;
+    }
+    // 7. APPLES INTEL
+    else if (qLower.includes("apple") || qLower.includes("सेब") || qLower.includes("himachal")) {
+      responseText = `🍎 <strong>Cold Storage Apple Intelligence:</strong> Himachali Royal Delicious Controlled Atmosphere Apples: <strong>₹110 / Kg</strong> (Box rate: ₹2,200 / 20kg box). Cold chamber storage temp: 0°C-1°C.`;
+    }
+    // 8. LOGISTICS & TRUCK FREIGHT
+    else if (qLower.includes("freight") || qLower.includes("truck") || qLower.includes("भाड़ा") || qLower.includes("logistics") || qLower.includes("transport")) {
+      responseText = `🚛 <strong>Logistics & Freight Estimator:</strong><br>• E-Rickshaw Mini Loader (30 Bags): ~₹25/km + ₹300<br>• 10-Tonne Eicher Truck (200 Bags / 100 Qtl): ~₹45/km + ₹1,200<br>• 16-Tonne Multi-Axle Truck (320 Bags / 160 Qtl): ~₹65/km + ₹2,500. Calculate live under 'भाड़ा कैलकुलेटर' tab!`;
+    }
+    // 9. COLD STORAGE BOOKING
+    else if (qLower.includes("cold") || qLower.includes("storage") || qLower.includes("कोल्ड") || qLower.includes("slot")) {
+      responseText = `🧊 <strong>Cold Storage Slot Booking:</strong> Reserve bag slots across Farrukhabad Ganga Cold Storage & Agra Yamuna Highway Cold Chain. Season rate (March-Nov): <strong>₹140 per 50kg Bag</strong> at 2°C-4°C (90% humidity managed). Book online under 'कोल्ड स्टोरेज बुकिंग' tab!`;
+    }
+    // 10. AI QUALITY ESTIMATOR
+    else if (qLower.includes("quality") || qLower.includes("score") || qLower.includes("गुणवत्ता") || qLower.includes("test")) {
+      responseText = `🧪 <strong>AI Quality Estimator:</strong> Evaluates produce grade (Grade A+, A, B) based on Potato size (>55mm), Dry Matter %, or Menthol Purity %. Higher size (>55mm) commands up to +12% premium in APMC Mandis!`;
+    }
+    // 11. ESCROW VAULT & SEALED DEALS
+    else if (qLower.includes("escrow") || qLower.includes("deal") || qLower.includes("token") || qLower.includes("एस्क्रो") || qLower.includes("contract")) {
+      responseText = `🔒 <strong>Sealed Deals & Escrow Vault:</strong> Once a buyer submits a bid with token advance (e.g. ₹35,000), funds are locked securely in the Escrow Vault. Both parties receive a binding contract note with barcode verification!`;
+    }
+    // 12. POST SAMPLE OR PLACE BIDS
+    else if (qLower.includes("post") || qLower.includes("sample") || qLower.includes("bid") || qLower.includes("offer") || qLower.includes("sell") || qLower.includes("buy")) {
+      responseText = `📝 <strong>Platform Trade Guide:</strong><br>• <strong>Farmers:</strong> Click '➕ Post Produce Sample' on top right, enter your crop, quantity & expected rate.<br>• <strong>Buyers:</strong> Click '🏢 Place Doorstep Bid' on any listing, enter your rate & token advance!`;
+    }
+    // 13. DEFAULT MULTI-CROP WELCOME
+    else {
+      responseText = `🤖 <strong>AgriPlus AI Assistant:</strong> I provide real-time price & trade assistance across <strong>Potato (Farrukhabad/Agra), Mentha Oil (Sambhal MCX), Wheat, Basmati Rice, Cotton, Soybean, Apples</strong>, Freight calculation, Cold Storage slots, and Escrow Vault security!`;
+    }
+
+    const botMsgHtml = `
+      <div style="background: var(--bg-card); border-left: 4px solid #16A34A; padding: 10px 14px; border-radius: var(--radius-sm); font-size: 0.88rem;">
+        <strong>🤖 AgriPlus AI Assistant:</strong>
+        <p style="margin-top: 4px;">${responseText}</p>
+      </div>
+    `;
+    box.insertAdjacentHTML("beforeend", botMsgHtml);
+    box.scrollTop = box.scrollHeight;
+  }, 500);
+}
+
+// INFORMATIONAL PAGES MODAL HANDLER (EXPLORE, CATEGORIES, RESOURCES, CONNECT)
+function openInfoModal(pageType) {
+  const titleEl = document.getElementById("infoModalTitle");
+  const contentEl = document.getElementById("infoModalBodyContent");
+  if (!titleEl || !contentEl) return;
+
+  const pageDetails = {
+    about: { title: "About Us - IndianPotato", text: "<strong>IndianPotato</strong> is India's premier intelligence platform for the potato industry. Connecting farmers, traders, processors, cold storage owners, and exporters with real-time APMC Mandi rates, seed insights, and Escrow Vault trading." },
+    editor: { title: "About the Editor - IndianPotato", text: "Curated by leading agri-tech research editors, agricultural economists, and APMC Mandi analysts specializing in UP Potato belts (Farrukhabad, Agra, Kannauj) and CPRI seed technology." },
+    contact: { title: "Contact Us - IndianPotato Intelligence", text: "<strong>Corporate Helpline:</strong> +91 94996 68498<br><strong>Email:</strong> info@indpotato.com<br><strong>Mandi Address:</strong> Seven Pond APMC Yard, Farrukhabad & Sambhal Essential Oils Hub, Uttar Pradesh." },
+    advertise: { title: "Advertise on IndianPotato", text: "Reach over 1,50,000+ verified potato farmers, cold storage owners, seed companies (ICAR-CPRI, MHZPC, Technico), and potato chip processors across India." },
+    publish: { title: "How We Publish", text: "Our prices and state reports are directly sourced from APMC Mandi samiti registers, e-NAM feeds, cold storage bay logs, and background MCX commodity references." },
+    policy: { title: "Publishing Policy", text: "We enforce 100% data integrity, independent price audit checks, and verified Khasra land record matching for genuine farmer listings." },
+    collaborate: { title: "Collaborate with IndianPotato", text: "We partner with ICAR-CPRI, state horticulture boards, cold storage associations, and processing firms (ITC Technico, Agrico) for joint research." },
+    services: { title: "Services & Fees", text: "Free for verified farmers. Premium analytics, doorstep transport calculation, and cold storage reservation services for commercial traders." },
+    careers: { title: "Careers at IndianPotato", text: "Join our team of agricultural data engineers, Mandi field reporters, and AI developers building India's #1 Potato Intelligence Platform." },
+    companies: { title: "Companies & People Directory", text: "Database of top potato seed breeders (Mahindra HZPC, ITC Technico, CPRI), cold chain logistics operators, and APMC wholesalers." },
+    schemes: { title: "Government Schemes for Farmers", text: "Latest updates on PM Krishi Sinchayee Yojana, UP Potato Cold Storage Subsidies, e-NAM APMC integration, and KCC loans." },
+    guides: { title: "Potato Guides & Research", text: "Technical research papers on potato post-harvest management, cold storage temperature control (2°C-4°C), and L-Menthol steam distillation." },
+    events: { title: "Potato Industry Events", text: "Upcoming National Potato Expo, ICAR-CPRI Seed Workshops, and Cold Storage Association Conventions across UP and Punjab." },
+    processing: { title: "Processing & Technology", text: "Standards for high-dry-matter chipsona potatoes required by crisp manufacturers (3797, Chipsona 1, Lady Rosetta)." },
+    seeds: { title: "Seeds & Farming Insights", text: "Certified seed potato cultivation guidelines, disease-free tissue culture tubers, and soil moisture optimization." },
+    statereports: { title: "State Potato Reports", text: "State-wise arrival and rate reports for Uttar Pradesh, Punjab, West Bengal, Gujarat, and Madhya Pradesh." },
+    varieties: { title: "Potato Varieties Catalog", text: "Catalog of ICAR-CPRI Kufri Bahar 3797, Kufri Pukhraj, Kufri Chipsona 1, Red Sindhuri, and MHZPC varieties." },
+    terms: { title: "Terms of Service", text: "© 2026 Indpotato Private Limited. Terms governing user registration, APMC Mandi gate pass compliance, and Escrow Vault deposits." },
+    privacy: { title: "Privacy Policy", text: "Land record numbers (Khasra) and contact info are encrypted under strict privacy protocols for farmer protection." },
+    disclaimer: { title: "Market Rates Disclaimer", text: "Mandi prices displayed on IndianPotato reflect real-time APMC samples and benchmark feeds; final trade terms depend on physical quality inspection." }
+  };
+
+  const info = pageDetails[pageType] || { title: "IndianPotato Portal", text: "India's premier intelligence platform for the potato and agricultural industry." };
+  titleEl.innerText = info.title;
+  contentEl.innerHTML = `<p>${info.text}</p>`;
+  document.getElementById("infoPagesModal").classList.add("active");
+}
+
 async function renderPotatoLocalityWidget() {
   const selectEl = document.getElementById("potatoLocalitySelect");
   const container = document.getElementById("potatoLocalityGrid");
@@ -282,7 +481,7 @@ async function renderPotatoLocalityWidget() {
 
         <div style="margin-top: 12px; border-top: 1px dashed rgba(255,255,255,0.2); padding-top: 8px;">
           <div style="font-size: 1.4rem; font-weight: 900; color: #FCD34D;">₹${item.kattaPrice} <span style="font-size: 0.75rem; font-weight: normal; color: white;">/ 50kg कट्टा (Bag)</span></div>
-          <div style="font-size: 0.82rem; font-weight: 700; color: #FEF08A; margin-top: 2px;">₹${item.modalQtl} / कुंतal (Qtl)</div>
+          <div style="font-size: 0.82rem; font-weight: 700; color: #FEF08A; margin-top: 2px;">₹${item.modalQtl} / कुंतल (Qtl)</div>
           <div style="font-size: 0.72rem; opacity: 0.85; margin-top: 4px;">आज की आवक: ${item.arrivalsKattas.toLocaleString()} कट्टे</div>
         </div>
       </div>
@@ -316,7 +515,7 @@ function renderAuthNav() {
     `;
   } else {
     container.innerHTML = `
-      <button class="btn-auth-nav" onclick="openAuthModal('login')">
+      <button class="btn-auth-nav" onclick="openAuthModal('login')" data-i18n="signInBtn">
         🔑 Sign In / Register
       </button>
     `;
@@ -472,7 +671,7 @@ function handleSignOut() {
   currentUser = null;
   localStorage.removeItem("krishi_user_session");
   renderAuthNav();
-  showToast("You have signed out of KrishiDeal.");
+  showToast("You have signed out of IndianPotato Platform.");
 }
 
 async function fetchLiveMenthaRateFromBackend() {
@@ -556,11 +755,6 @@ async function renderMenthaLocalityWidget() {
   });
 
   container.innerHTML = html;
-
-  const statMentha = document.getElementById("statActiveMentha");
-  if (statMentha && displayList[0]) {
-    statMentha.innerText = `₹${displayList[0].modalPriceKg.toFixed(2)}/Kg`;
-  }
 }
 
 function startVoiceRecognition() {
@@ -808,11 +1002,13 @@ function setRole(role) {
   const buyerBtn = document.getElementById("buyerRoleBtn");
   const actionBtn = document.getElementById("actionBtn");
 
+  const dict = TRANSLATIONS[currentLanguage] || TRANSLATIONS['hi'];
+
   if (role === "farmer") {
     farmerBtn.className = "role-btn active";
     buyerBtn.className = "role-btn";
     actionBtn.style.display = "flex";
-    actionBtn.innerHTML = `<span>➕</span> <span id="txtPostBtn">${TRANSLATIONS[currentLanguage].postBtn}</span>`;
+    actionBtn.innerHTML = `<span>➕</span> <span id="txtPostBtn">${dict.postBtn || 'फसल नमूना पोस्ट करें'}</span>`;
     actionBtn.onclick = openPostSampleModal;
   } else {
     farmerBtn.className = "role-btn";
@@ -1007,7 +1203,7 @@ function calculateQualityScore() {
 
   let score = 100;
   if (crop === "Potato") {
-    if (moisture < 45) score -= (45 - moisture) * 1.5; // Potato size below 45mm is smaller
+    if (moisture < 45) score -= (45 - moisture) * 1.5;
     score -= foreign * 5;
   } else if (crop === "Mentha Oil") {
     if (moisture > 0.5) score -= (moisture - 0.5) * 15;
@@ -1032,7 +1228,7 @@ function calculateQualityScore() {
 
   document.getElementById("calcScoreNum").innerText = score;
   document.getElementById("calcGradeTag").innerText = grade;
-  document.getElementById("calcEstimatedVal").innerText = `अनुमानित भाव: ₹${estimatedPrice.toLocaleString()} / ${unitLabel}`;
+  document.getElementById("calcEstimatedVal").innerText = `अनुमानित रेट: ₹${estimatedPrice.toLocaleString()} / ${unitLabel}`;
 }
 
 function openPostSampleModal() {
@@ -1279,44 +1475,44 @@ function showContractModal(deal) {
   container.innerHTML = `
     <div class="contract-paper">
       <div class="contract-header">
-        <h2 style="color: #0F5A47;">🌿 कृषिडील सत्यापित व्यापार अनुबंध पत्र</h2>
-        <p style="font-size: 0.85rem; color: #64748B;">आधिकारिक आलू व फसल खरीद सौदा रसीद एवं एस्क्रो तिजोरी प्रमाण</p>
-        <span style="font-size: 0.8rem; font-weight: 700; background: #EAEFEA; padding: 4px 12px; border-radius: 99px;">अनुबंध संख्या: ${deal.dealId}</span>
+        <h2 style="color: #0F5A47;">🌿 IndianPotato & KrishiDeal Verified Trade Contract Note</h2>
+        <p style="font-size: 0.85rem; color: #64748B;">Indpotato Private Limited - Trade Receipt & Escrow Proof</p>
+        <span style="font-size: 0.8rem; font-weight: 700; background: #EAEFEA; padding: 4px 12px; border-radius: 99px;">Contract No: ${deal.dealId}</span>
       </div>
 
       <div class="contract-grid">
         <div>
-          <strong>🧑‍🌾 किसान विवरण (सत्यापित ✅):</strong>
+          <strong>🧑‍🌾 Farmer Details (Verified ✅):</strong>
           <p>${deal.farmerName}</p>
-          <p style="font-size: 0.8rem; color: #64748B;">खसरा संख्या: ${deal.khasraNo || 'UP-FRK-4402'}</p>
+          <p style="font-size: 0.8rem; color: #64748B;">Khasra No: ${deal.khasraNo || 'UP-FRK-4402'}</p>
           <p style="font-size: 0.8rem; color: #64748B;">${deal.location}</p>
         </div>
         <div>
-          <strong>🏢 खरीदार फर्म विवरण (सत्यापित ✅):</strong>
+          <strong>🏢 Buyer Firm Details (Verified ✅):</strong>
           <p>${deal.buyerName}</p>
-          <p style="font-size: 0.8rem; color: #64748B;">एपीएमसी मंडी लाइसेंस सत्यापित</p>
-          <p style="font-size: 0.8rem; color: #64748B;">जीएसटी: ${deal.gstin || '09AGRA5512K1ZN'}</p>
+          <p style="font-size: 0.8rem; color: #64748B;">APMC Mandi License Verified</p>
+          <p style="font-size: 0.8rem; color: #64748B;">GSTIN: ${deal.gstin || '09AGRA5512K1ZN'}</p>
         </div>
       </div>
 
       <div style="background: #F4EAD3; padding: 14px; border-radius: 8px; margin-bottom: 20px;">
         <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
-          <span>फसल: <strong>${deal.sampleTitle}</strong></span>
-          <span>मात्रा: <strong>${deal.quantity} ${deal.sampleTitle.includes('Mentha') ? 'Kg' : (deal.sampleTitle.includes('Potato') ? 'Kattas' : 'Qtl')}</strong></span>
+          <span>Crop: <strong>${deal.sampleTitle}</strong></span>
+          <span>Quantity: <strong>${deal.quantity} ${deal.sampleTitle.includes('Mentha') ? 'Kg' : (deal.sampleTitle.includes('Potato') ? 'Kattas' : 'Qtl')}</strong></span>
         </div>
         <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
-          <span>तय दर: <strong>₹${deal.pricePerQtl.toLocaleString()} / ${deal.sampleTitle.includes('Mentha') ? 'Kg' : (deal.sampleTitle.includes('Potato') ? 'Katta' : 'Qtl')}</strong></span>
-          <span>कुल सौदा राशि: <strong style="color: #0F5A47; font-size: 1.1rem;">₹${deal.totalAmount.toLocaleString()}</strong></span>
+          <span>Agreed Rate: <strong>₹${deal.pricePerQtl.toLocaleString()} / ${deal.sampleTitle.includes('Mentha') ? 'Kg' : (deal.sampleTitle.includes('Potato') ? 'Katta' : 'Qtl')}</strong></span>
+          <span>Total Deal Value: <strong style="color: #0F5A47; font-size: 1.1rem;">₹${deal.totalAmount.toLocaleString()}</strong></span>
         </div>
         <div style="display: flex; justify-content: space-between; border-top: 1px dashed #C27B0C; padding-top: 6px; margin-top: 6px;">
-          <span>टोकन एडवांस जमा: <strong style="color: #D97706;">₹${deal.tokenDeposit.toLocaleString()}</strong></span>
-          <span>एस्क्रो स्थिति: <strong style="color: #15803D;">🔒 एस्क्रो तिजोरी में सुरक्षित</strong></span>
+          <span>Token Deposit: <strong style="color: #D97706;">₹${deal.tokenDeposit.toLocaleString()}</strong></span>
+          <span>Escrow Status: <strong style="color: #15803D;">🔒 Locked in Vault</strong></span>
         </div>
       </div>
 
       <div style="text-align: center;">
-        <div class="qr-placeholder">VERIFIED ESCROW DEAL</div>
-        <p style="font-size: 0.75rem; color: #64748B; margin-top: 6px;">मंडी गेट जांच अधिकारियों एवं कोल्ड स्टोरेज चेकपोस्ट हेतु मान्य प्रमाण पत्र</p>
+        <div class="qr-placeholder">INDPOTATO VERIFIED ESCROW</div>
+        <p style="font-size: 0.75rem; color: #64748B; margin-top: 6px;">Valid pass for APMC Mandi Officers & Cold Storage Gate Checkposts</p>
       </div>
     </div>
   `;
@@ -1367,7 +1563,7 @@ function showToast(msg) {
   if (!container) return;
   const toast = document.createElement("div");
   toast.className = "toast";
-  toast.innerHTML = `<span>🌾</span> ${msg}`;
+  toast.innerHTML = `<span>🥔</span> ${msg}`;
   container.appendChild(toast);
   setTimeout(() => toast.remove(), 4000);
 }

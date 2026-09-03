@@ -1,5 +1,5 @@
 /* ==========================================================================
-   KrishiDeal - Design System & Modern Responsive Stylesheet (v2.0.0 Enterprise)
+   KrishiDeal / IndianPotato - Modern Responsive Stylesheet (v3.1.0 Enterprise)
    ========================================================================== */
 
 :root {
@@ -61,6 +61,8 @@ body {
   line-height: 1.5;
   transition: background-color 0.3s ease, color 0.3s ease;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* --------------------------------------------------------------------------
@@ -303,6 +305,7 @@ body {
   max-width: 1280px;
   margin: 0 auto;
   padding: 24px;
+  flex: 1;
 }
 
 .hero-banner {
@@ -361,7 +364,7 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   Weather Advisory Banner (Feature 4)
+   Weather Advisory Banner
    -------------------------------------------------------------------------- */
 .weather-advisory-banner {
   background: var(--bg-card);
@@ -416,7 +419,7 @@ body {
 .text-danger { color: var(--danger); }
 
 /* --------------------------------------------------------------------------
-   Voice Assistant Search Button (Feature 6)
+   Voice Assistant Search Button
    -------------------------------------------------------------------------- */
 .voice-search-btn {
   position: absolute;
@@ -987,4 +990,204 @@ body {
 @keyframes slideUp {
   from { transform: translateY(20px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   EXACT IMAGE MATCH: INDIANPOTATO DARK PURPLE FOOTER & FLOATING CHATBOT
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background: #1C172B;
+  color: #B2ADC4;
+  border-top: 1px solid #2B253F;
+  padding: 48px 0 24px 0;
+  margin-top: 50px;
+  font-size: 0.86rem;
+  line-height: 1.6;
+}
+
+.footer-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr 1.2fr 1.2fr 1fr;
+  gap: 28px;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer-brand-title {
+  color: #FFFFFF;
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  letter-spacing: -0.3px;
+}
+
+.footer-brand-desc {
+  color: #9D96B4;
+  font-size: 0.84rem;
+  line-height: 1.55;
+  margin-bottom: 16px;
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #D3CDE2;
+  font-size: 0.84rem;
+  margin-bottom: 8px;
+}
+
+.btn-whatsapp-join {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #A855F7;
+  color: #FFFFFF;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 10px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 14px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-whatsapp-join:hover {
+  background: #9333EA;
+  transform: translateY(-1px);
+}
+
+.footer-col-title {
+  color: #FFFFFF;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.footer-links-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links-list li {
+  margin-bottom: 9px;
+}
+
+.footer-links-list a {
+  color: #A39CBA;
+  text-decoration: none;
+  font-size: 0.84rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.footer-links-list a:hover {
+  color: #FFFFFF;
+}
+
+.sub-variety-list {
+  list-style: none;
+  padding-left: 8px;
+  margin-top: 6px;
+}
+
+.sub-variety-list li {
+  margin-bottom: 6px;
+}
+
+.sub-variety-list a {
+  color: #8C84A6;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sub-variety-list a:hover {
+  color: #C084FC;
+}
+
+/* FOOTER BOTTOM BAR */
+.footer-bottom-bar {
+  border-top: 1px solid #28223B;
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 0.8rem;
+  color: #837B9C;
+}
+
+.footer-bottom-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-bottom-links a {
+  color: #837B9C;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-bottom-links a:hover {
+  color: #D3CDE2;
+}
+
+/* FLOATING CHAT WITH AI POTATO BUTTON */
+.chatbot-fab-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+  background: #251F38;
+  color: #FFFFFF;
+  border: 1px solid #453B61;
+  border-radius: var(--radius-full);
+  padding: 10px 22px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.25s ease;
+}
+
+.chatbot-fab-btn:hover {
+  background: #322B4A;
+  border-color: #A855F7;
+  transform: translateY(-2px);
+}
+
+.chat-badge-dot {
+  width: 9px;
+  height: 9px;
+  background: #C084FC;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #C084FC;
 }

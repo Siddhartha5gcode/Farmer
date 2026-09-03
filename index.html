@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KrishiDeal - UP Mentha & Potato Mandi Commodity Platform</title>
-  <meta name="description" content="Direct agricultural dealing platform for Mentha Oil, UP Potato (Farrukhabad/Agra Kattas), Wheat, Basmati Rice across all 75 Uttar Pradesh districts. Live Mandi & Cold Storage Rates.">
+  <title>IndianPotato & AgriPlus - All Crops & UP Mandi Intelligence Platform | KrishiDeal</title>
+  <meta name="description" content="India's leading agricultural & potato intelligence platform. Connecting farmers, traders, processors, and exporters with actionable insights for Potato, Mentha Oil, Wheat, Rice, Cotton, Soybean, and Apples in 13 Indian languages.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,27 +20,27 @@
   <header class="navbar">
     <div class="nav-wrapper">
       <div class="brand-logo" onclick="switchTab('samples')">
-        <div class="brand-icon">🌿</div>
+        <div class="brand-icon">🥔</div>
         <div class="brand-text">
-          <h1>KrishiDeal</h1>
-          <span id="txtBrandSubtitle">All 75 UP Districts Platform</span>
+          <h1>IndianPotato</h1>
+          <span id="txtBrandSubtitle" data-i18n="brandSubtitle">KrishiDeal Intelligence Platform</span>
         </div>
       </div>
 
       <!-- Role Switcher (Farmer vs Buyer) -->
       <div class="role-switcher-container">
         <button id="farmerRoleBtn" class="role-btn active" onclick="setRole('farmer')">
-          <span>🧑‍🌾</span> <span id="txtRoleFarmer">Farmer (Seller)</span>
+          <span>🧑‍🌾</span> <span id="txtRoleFarmer" data-i18n="roleFarmer">Farmer (Seller)</span>
         </button>
         <button id="buyerRoleBtn" class="role-btn" onclick="setRole('buyer')">
-          <span>🏢</span> <span id="txtRoleBuyer">Buyer / Mandi Trader</span>
+          <span>🏢</span> <span id="txtRoleBuyer" data-i18n="roleBuyer">Buyer / Mandi Trader</span>
         </button>
       </div>
 
-      <!-- Nav Actions & All Indian Languages Selector -->
+      <!-- Nav Actions & Global Indian Languages Selector -->
       <div class="nav-actions">
-        <!-- ALL INDIAN LANGUAGES SELECTOR DROPDOWN -->
-        <div style="display: flex; align-items: center; gap: 6px; background: var(--bg-subtle); padding: 4px 10px; border-radius: var(--radius-full); border: 1px solid var(--border-color);" title="Change Native Indian Language">
+        <!-- GLOBAL ALL INDIAN LANGUAGES SELECTOR DROPDOWN -->
+        <div style="display: flex; align-items: center; gap: 6px; background: var(--bg-subtle); padding: 4px 10px; border-radius: var(--radius-full); border: 1px solid var(--border-color);" title="Select Global Indian Language">
           <span style="font-size: 1rem;">🌐</span>
           <select id="languageSelect" onchange="changeLanguage(this.value)" style="background: transparent; border: none; font-size: 0.85rem; font-weight: 700; color: var(--text-main); cursor: pointer; outline: none; max-width: 150px;">
             <option value="hi" selected>🇮🇳 हिंदी (Hindi)</option>
@@ -60,11 +60,11 @@
         </div>
 
         <button class="btn-secondary" onclick="openSmsLogsModal()" title="View SMS & WhatsApp Alerts">
-          📱 <span id="txtSmsAlertsBtn">Trade SMS</span> (<span id="smsBadgeCount">2</span>)
+          📱 <span id="txtSmsAlertsBtn" data-i18n="smsAlertsBtn">Trade SMS</span> (<span id="smsBadgeCount">2</span>)
         </button>
 
         <div id="authNavContainer">
-          <button class="btn-auth-nav" onclick="openAuthModal('login')">
+          <button class="btn-auth-nav" onclick="openAuthModal('login')" data-i18n="signInBtn">
             🔑 Sign In / Register
           </button>
         </div>
@@ -74,7 +74,7 @@
         </button>
 
         <button class="post-sample-btn" id="actionBtn" onclick="openPostSampleModal()">
-          <span>➕</span> <span id="txtPostBtn">Post Produce Sample</span>
+          <span>➕</span> <span id="txtPostBtn" data-i18n="postBtn">Post Produce Sample</span>
         </button>
       </div>
     </div>
@@ -87,39 +87,39 @@
     <section class="hero-banner" id="heroBanner">
       <div class="hero-content">
         <div class="hero-text">
-          <h2 id="heroTitle">मेंटहा तेल और आलू सीधा मंडी व्यापार (फर्रुखाबाद, आगरा व संभल) 🌿🥔</h2>
-          <p id="heroSubtitle">सत्यापित सुगंधित तेल निर्यातकों, कोल्ड स्टोरेज व्यापारियों और आलू मंडी आढ़तियों से सीधे जुड़ें। अपने जिले के लाइव आलू (कट्टा/कुंतल) व मेंटहा मंडी भाव देखें।</p>
+          <h2 id="heroTitle" data-i18n="heroTitle">मेंटहा तेल और आलू सीधा मंडी व्यापार (फर्रुखाबाद, आगरा व संभल) 🌿🥔</h2>
+          <p id="heroSubtitle" data-i18n="heroSubtitle">सत्यापित सुगंधित तेल निर्यातकों, कोल्ड स्टोरेज व्यापारियों और आलू मंडी आढ़तियों से सीधे जुड़ें। अपने जिले के लाइव आलू (कट्टा/कुंतल) व मेंटहा मंडी भाव देखें।</p>
         </div>
         <div class="hero-stats">
           <div class="hero-stat-card">
             <div class="hero-stat-num" id="statActiveSamples">28</div>
-            <div class="hero-stat-label" id="txtStatActive">सक्रिय नमूने</div>
+            <div class="hero-stat-label" id="txtStatActive" data-i18n="statActive">सक्रिय नमूने</div>
           </div>
           <div class="hero-stat-card">
-            <div class="hero-stat-num" id="statActivePotato">₹710/कट्टा</div>
-            <div class="hero-stat-label" id="txtStatPotatoRate">आलू (फर्रुखाबाद 3797)</div>
+            <div class="hero-stat-num" id="statActivePotatoRate">₹710/कट्टा</div>
+            <div class="hero-stat-label" id="txtStatPotatoRate" data-i18n="statPotatoRate">आलू (फर्रुखाबाद 3797)</div>
           </div>
           <div class="hero-stat-card">
             <div class="hero-stat-num">75 UP Mandis</div>
-            <div class="hero-stat-label" id="txtStatDistricts">75 जिले कवरेज</div>
+            <div class="hero-stat-label" id="txtStatDistricts" data-i18n="statDistricts">75 जिले कवरेज</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- UP POTATO (आलू) MANDI & COLD STORAGE LIVE MARKET ENGINE WIDGET -->
+    <!-- UP POTATO MANDI & COLD STORAGE LIVE MARKET ENGINE WIDGET -->
     <section style="background: linear-gradient(135deg, #78350F 0%, #451A03 100%); border-radius: var(--radius-md); padding: 22px 28px; color: white; margin-bottom: 24px; box-shadow: var(--shadow-md);">
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
         <div style="display: flex; align-items: center; gap: 12px;">
           <span style="font-size: 2.2rem;">🥔</span>
           <div>
-            <h3 style="font-size: 1.25rem; font-weight: 800; color: #FCD34D;" id="txtPotatoWidgetTitle">उत्तर प्रदेश आलू (Potato) मंडी व कोल्ड स्टोरेज लाइव भाव</h3>
-            <p style="font-size: 0.85rem; opacity: 0.9;" id="txtPotatoWidgetSub">फर्रुखाबाद, आगरा, कन्नौज एवं हथरस मंडी के लाइव कुंतल व 50kg कट्टा (Bag) रेट।</p>
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: #FCD34D;" id="txtPotatoWidgetTitle" data-i18n="potatoWidgetTitle">उत्तर प्रदेश आलू (Potato) मंडी व कोल्ड स्टोरेज लाइव भाव</h3>
+            <p style="font-size: 0.85rem; opacity: 0.9;" id="txtPotatoWidgetSub" data-i18n="potatoWidgetSub">फर्रुखाबाद, आगरा, कन्नौज एवं हथरस मंडी के लाइव कुंतल व 50kg कट्टा (Bag) रेट।</p>
           </div>
         </div>
 
         <div style="display: flex; align-items: center; gap: 10px;">
-          <span style="font-size: 0.85rem; font-weight: 700; color: #FDE68A;">📍 आलू बेल्ट चुनें:</span>
+          <span style="font-size: 0.85rem; font-weight: 700; color: #FDE68A;" data-i18n="selectPotatoBeltLabel">📍 आलू बेल्ट चुनें:</span>
           <select id="potatoLocalitySelect" class="filter-select" onchange="renderPotatoLocalityWidget()" style="background: #291102; color: #FCD34D; font-weight: 700; border-color: #92400E; max-width: 280px;">
             <option value="Farrukhabad" selected>🥔 फर्रुखाबाद (आलू राजधानी - कुफरी बहार)</option>
             <option value="Agra">🏢 आगरा कोल्ड स्टोरेज एक्सचेंज (लाल आलू/सिंदूरी)</option>
@@ -137,8 +137,8 @@
       <div style="background: rgba(0, 0, 0, 0.3); border: 1px dashed rgba(253, 230, 138, 0.4); border-radius: var(--radius-sm); padding: 10px 16px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
         <div style="display: flex; align-items: center; gap: 8px; font-size: 0.82rem;">
           <span style="display: inline-block; width: 8px; height: 8px; background: #FCD34D; border-radius: 50%; box-shadow: 0 0 8px #FCD34D;"></span>
-          <strong>यूपी आलू आवक इंजन:</strong>
-          <span style="opacity: 0.9;">आज की कुल आवक: 85,000 बोरी / कट्टा (50kg) | मंडी समिति लाइव</span>
+          <strong data-i18n="potatoArrivalsLabel">यूपी आलू आवक इंजन:</strong>
+          <span style="opacity: 0.9;" data-i18n="potatoArrivalsSub">आज की कुल आवक: 85,000 बोरी / कट्टा (50kg) | मंडी समिति लाइव</span>
         </div>
         <div style="font-size: 0.85rem; font-weight: 800; color: #FCD34D;" id="potatoEngineStatusTag">
           फर्रुखाबाद बेंचमार्क: ₹1,420 / कुंतल (₹710 / 50kg कट्टा) (+3.20% ▲)
@@ -153,19 +153,17 @@
     <!-- ALL 75 UP DISTRICTS MENTHA OIL LOCALITY & BACKGROUND MCX ENGINE WIDGET -->
     <section style="background: linear-gradient(135deg, #064E3B 0%, #0F5A47 100%); border-radius: var(--radius-md); padding: 22px 28px; color: white; margin-bottom: 24px; box-shadow: var(--shadow-md);">
       
-      <!-- Top Header: Background Engine Banner + All 75 UP Districts Selector -->
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
         <div style="display: flex; align-items: center; gap: 12px;">
           <span style="font-size: 2.2rem;">🌿</span>
           <div>
-            <h3 style="font-size: 1.25rem; font-weight: 800;" id="txtWidgetTitle">उत्तर प्रदेश के सभी 75 जिलों के मंडी भाव</h3>
-            <p style="font-size: 0.85rem; opacity: 0.9;" id="txtWidgetSub">लाइव एमसीएक्स (MCX) भाव के आधार पर आपके जिले का सीधा मंडी रेट।</p>
+            <h3 style="font-size: 1.25rem; font-weight: 800;" id="txtWidgetTitle" data-i18n="widgetTitle">उत्तर प्रदेश के सभी 75 जिलों के मंडी भाव</h3>
+            <p style="font-size: 0.85rem; opacity: 0.9;" id="txtWidgetSub" data-i18n="widgetSub">लाइव एमसीएक्स (MCX) भाव के आधार पर आपके जिले का सीधा मंडी रेट।</p>
           </div>
         </div>
 
-        <!-- All 75 UP Districts Selector Dropdown -->
         <div style="display: flex; align-items: center; gap: 10px;">
-          <span style="font-size: 0.85rem; font-weight: 700;" id="txtSelectDistrictLabel">📍 अपना जिला चुनें:</span>
+          <span style="font-size: 0.85rem; font-weight: 700;" id="txtSelectDistrictLabel" data-i18n="selectDistrictLabel">📍 अपना जिला चुनें:</span>
           <select id="menthaLocalitySelect" class="filter-select" onchange="renderMenthaLocalityWidget()" style="background: #092B22; color: #4ADE80; font-weight: 700; border-color: #144738; max-width: 280px;">
             <optgroup label="⭐ मुख्य मेंटहा उत्पादक क्षेत्र">
               <option value="Sambhal" selected>संभल मंडी (मुख्य केंद्र)</option>
@@ -194,68 +192,66 @@
         </div>
       </div>
 
-      <!-- Background MCX ET Reference Engine Status Bar -->
       <div style="background: rgba(0, 0, 0, 0.25); border: 1px dashed rgba(74, 222, 128, 0.4); border-radius: var(--radius-sm); padding: 10px 16px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
         <div style="display: flex; align-items: center; gap: 8px; font-size: 0.82rem;">
           <span style="display: inline-block; width: 8px; height: 8px; background: #4ADE80; border-radius: 50%; box-shadow: 0 0 8px #4ADE80;"></span>
-          <strong id="txtMcxLabel">बैकग्राउंड लाइव इंजन:</strong>
-          <span style="opacity: 0.9;" id="txtMcxSub">इकोनॉमिक टाइम्स / MCX वायदा बाजार (MENTHAOIL)</span>
+          <strong id="txtMcxLabel" data-i18n="mcxLabel">बैकग्राउंड लाइव इंजन:</strong>
+          <span style="opacity: 0.9;" id="txtMcxSub" data-i18n="mcxSub">इकोनॉमिक टाइम्स / MCX वायदा बाजार (MENTHAOIL)</span>
         </div>
         <div style="font-size: 0.85rem; font-weight: 800; color: #4ADE80;" id="mcxEngineStatusTag">
           MCX बेंचमार्क: ₹1,215.50 / Kg (+2.45% ▲)
         </div>
       </div>
 
-      <!-- Locality Live Price Card Grid -->
       <div id="menthaLocalityGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
         <!-- Rendered via app.js -->
       </div>
     </section>
 
-    <!-- 7-Day Harvest Weather & Moisture Advisory Widget -->
+    <!-- 7-Day Harvest Weather Advisory Widget -->
     <section class="weather-advisory-banner">
       <div class="weather-header">
         <div style="display: flex; align-items: center; gap: 10px;">
           <span style="font-size: 1.8rem;">🌤️</span>
           <div>
-            <h4 style="font-size: 1rem; color: var(--primary);" id="txtWeatherTitle">7-दिवसीय मौसम, मेंटहा पेराई व आलू कोल्ड स्टोरेज निकासी सलाह</h4>
-            <span style="font-size: 0.8rem; color: var(--text-muted);" id="txtWeatherRegion">क्षेत्र: उत्तर प्रदेश मेंटहा व आलू बेल्ट (फर्रुखाबाद, आगरा व संभल) | लाइव अपडेट</span>
+            <h4 style="font-size: 1rem; color: var(--primary);" id="txtWeatherTitle" data-i18n="weatherTitle">7-दिवसीय मौसम, मेंटहा पेराई व आलू कोल्ड स्टोरेज निकासी सलाह</h4>
+            <span style="font-size: 0.8rem; color: var(--text-muted);" id="txtWeatherRegion" data-i18n="weatherRegion">क्षेत्र: उत्तर प्रदेश मेंटहा व आलू बेल्ट (फर्रुखाबाद, आगरा व संभल) | लाइव अपडेट</span>
           </div>
         </div>
-        <div class="weather-badge-safe" id="txtWeatherStatus">
+        <div class="weather-badge-safe" id="txtWeatherStatus" data-i18n="weatherStatus">
           ✅ भाप आसवन पेराई एवं आलू लोड/अनलोड हेतु उत्तम मौसम
         </div>
       </div>
       <div class="weather-forecast-row">
         <div class="weather-day-card">
-          <span class="day-name">गुरुवार (आज)</span>
+          <span class="day-name" data-i18n="dayThu">गुरुवार (आज)</span>
           <span class="day-icon">☀️</span>
           <span class="day-temp">31°C / 18°C</span>
-          <span class="day-risk text-safe">शुष्क • 0% बारिश</span>
+          <span class="day-risk text-safe" data-i18n="weatherSafe1">शुष्क • 0% बारिश</span>
         </div>
         <div class="weather-day-card">
-          <span class="day-name">शुक्रवार</span>
+          <span class="day-name" data-i18n="dayFri">शुक्रवार</span>
           <span class="day-icon">🌤️</span>
           <span class="day-temp">30°C / 19°C</span>
-          <span class="day-risk text-safe">धूप • 5% बारिश</span>
+          <span class="day-risk text-safe" data-i18n="weatherSafe2">धूप • 5% बारिश</span>
         </div>
         <div class="weather-day-card">
-          <span class="day-name">शनिवार</span>
+          <span class="day-name" data-i18n="daySat">शनिवार</span>
           <span class="day-icon">⛅</span>
           <span class="day-temp">29°C / 18°C</span>
-          <span class="day-risk text-warn">ड्रम ढकें • 20% बारिश</span>
+          <span class="day-risk text-warn" data-i18n="weatherWarn">ड्रम ढकें • 20% बारिश</span>
         </div>
         <div class="weather-day-card">
-          <span class="day-name">रविवार</span>
+          <span class="day-name" data-i18n="daySun">रविवार</span>
           <span class="day-icon">🌧️</span>
           <span class="day-temp">27°C / 17°C</span>
-          <span class="day-risk text-danger">⚠️ हल्की बारिश चेतावनी</span>
+          <span class="day-risk text-danger" data-i18n="weatherDanger">⚠️ हल्की बारिश चेतावनी</span>
         </div>
         <div class="weather-day-card">
-          <span class="day-name">सोमवार</span>
+          <span class="day-name" data-i18n="dayMon">सोमवार</span>
           <span class="day-icon">☀️</span>
           <span class="day-temp">32°C / 18°C</span>
-          <span class="day-risk text-safe">साफ आसमान</span>
+          <span class="day-risk text-safe" data-i18n="weatherSafe3">साफ आसमान</span>
         </div>
       </div>
     </section>
@@ -264,15 +260,15 @@
     <section class="filter-toolbar">
       <div class="search-box">
         <span class="search-icon">🔍</span>
-        <input type="text" id="searchInput" placeholder="फसल खोजें (उदा. मेंटहा तेल, फर्रुखाबाद आलू 3797, शरबाती गेहूं)..." oninput="renderApp()">
+        <input type="text" id="searchInput" data-i18n-placeholder="searchPlaceholder" placeholder="फसल खोजें (उदा. मेंटहा तेल, फर्रुखाबाद आलू 3797, शरबाती गेहूं)..." oninput="renderApp()">
         <button class="voice-search-btn" id="voiceSearchBtn" onclick="startVoiceRecognition()" title="अपनी मातृभाषा में बोलकर खोजें">
-          🎙️ <span id="txtVoiceBtn">बोलकर खोजें</span>
+          🎙️ <span id="txtVoiceBtn" data-i18n="voiceBtn">बोलकर खोजें</span>
         </button>
       </div>
 
       <div class="filter-group">
         <select class="filter-select" id="cropFilter" onchange="renderApp()">
-          <option value="all">🌾 सभी फसल श्रेणियां</option>
+          <option value="all" data-i18n="cropFilterAll">🌾 सभी फसल श्रेणियां</option>
           <option value="Potato">🥔 आलू (Kufri Potato kattas)</option>
           <option value="Mentha Oil">🌿 मेंटहा तेल (Menthol)</option>
           <option value="Wheat">🌾 गेहूं (Wheat Grains)</option>
@@ -283,7 +279,7 @@
         </select>
 
         <select class="filter-select" id="gradeFilter" onchange="renderApp()">
-          <option value="all">⭐ सभी गुणवत्ता ग्रेड</option>
+          <option value="all" data-i18n="gradeFilterAll">⭐ सभी गुणवत्ता ग्रेड</option>
           <option value="Grade A+">ग्रेड A+ (निर्यात / बड़ा आकार 55mm+)</option>
           <option value="Grade A">ग्रेड A (मानक मंडी / कट्टा)</option>
           <option value="Grade B">Grade B (प्रसंस्करण / मध्यम)</option>
@@ -294,22 +290,22 @@
     <!-- Main Navigation Tabs -->
     <nav class="section-tabs">
       <button class="tab-btn active" id="tabSamples" onclick="switchTab('samples')">
-        🌾 <span id="tabLabelSamples">फसल नमूने व बोलियां</span>
+        🌾 <span id="tabLabelSamples" data-i18n="tabSamples">फसल नमूने व बोलियां</span>
       </button>
       <button class="tab-btn" id="tabMandi" onclick="switchTab('mandi')">
-        📊 <span id="tabLabelMandi">लाइव मंडी भाव</span>
+        📊 <span id="tabLabelMandi" data-i18n="tabMandi">लाइव मंडी भाव</span>
       </button>
       <button class="tab-btn" id="tabLogistics" onclick="switchTab('logistics')">
-        🚛 <span id="tabLabelLogistics">भाड़ा कैलकुलेटर</span>
+        🚛 <span id="tabLabelLogistics" data-i18n="tabLogistics">भाड़ा कैलकुलेटर</span>
       </button>
       <button class="tab-btn" id="tabColdstorage" onclick="switchTab('coldstorage')">
-        🧊 <span id="tabLabelCold">कोल्ड स्टोरेज बुकिंग</span>
+        🧊 <span id="tabLabelCold" data-i18n="tabCold">कोल्ड स्टोरेज बुकिंग</span>
       </button>
       <button class="tab-btn" id="tabQuality" onclick="switchTab('quality')">
-        🧪 <span id="tabLabelQuality">गुणवत्ता जांच (AI)</span>
+        🧪 <span id="tabLabelQuality" data-i18n="tabQuality">गुणवत्ता जांच (AI)</span>
       </button>
       <button class="tab-btn" id="tabDeals" onclick="switchTab('deals')">
-        📜 <span id="tabLabelDeals">पक्के सौदे एवं एस्क्रो</span>
+        📜 <span id="tabLabelDeals" data-i18n="tabDeals">पक्के सौदे एवं एस्क्रो</span>
       </button>
     </nav>
 
@@ -323,19 +319,19 @@
     <!-- TAB 2: Live Mandi & Mentha Rates -->
     <section id="viewMandi" class="tab-view" style="display: none;">
       <div class="section-card">
-        <h3 class="section-title" id="txtMandiTabTitle">📊 उत्तर प्रदेश के सभी 75 जिलों के मंडी व आलू भाव</h3>
-        <p class="section-subtitle" id="txtMandiTabSub">विभिन्न एपीएमसी मंडियों, संभल व बाराबंकी सुगंधित तेल बाजारों, फर्रुखाबाद आलू मंडी और एमसीएक्स (MCX) के रेट की तुलना करें।</p>
+        <h3 class="section-title" id="txtMandiTabTitle" data-i18n="mandiTabTitle">📊 उत्तर प्रदेश के सभी 75 जिलों के मंडी व आलू भाव</h3>
+        <p class="section-subtitle" id="txtMandiTabSub" data-i18n="mandiTabSub">विभिन्न एपीएमसी मंडियों, संभल व बाराबंकी सुगंधित तेल बाजारों, फर्रुखाबाद आलू मंडी और एमसीएक्स (MCX) के रेट की तुलना करें।</p>
         <div class="mandi-table-wrap">
           <table class="custom-table">
             <thead>
               <tr>
-                <th>मंडी / बाजार</th>
-                <th>राज्य</th>
-                <th>फसल किस्म</th>
-                <th>न्यूनतम भाव</th>
-                <th>अधिकतम भाव</th>
-                <th>मॉडल (औसत) रेट</th>
-                <th>24h रुझान</th>
+                <th data-i18n="thMandi">मंडी / बाजार</th>
+                <th data-i18n="thState">राज्य</th>
+                <th data-i18n="thCrop">फसल किस्म</th>
+                <th data-i18n="thMin">न्यूनतम भाव</th>
+                <th data-i18n="thMax">अधिकतम भाव</th>
+                <th data-i18n="thModal">मॉडल (औसत) रेट</th>
+                <th data-i18n="thTrend">24h रुझान</th>
               </tr>
             </thead>
             <tbody id="mandiTableBody">
@@ -349,24 +345,24 @@
     <!-- TAB 3: Logistics Estimator -->
     <section id="viewLogistics" class="tab-view" style="display: none;">
       <div class="section-card">
-        <h3 class="section-title">🚛 डोरस्टेप ट्रक भाड़ा एवं आलू कट्टा/ड्रम परिवहन कैलकुलेटर</h3>
-        <p class="section-subtitle">खेत या कोल्ड स्टोरेज से सीधे खरीदार के गोदाम तक आलू की बोरियां (कट्टे) या मेंटहा ड्रम पहुंचाने का अनुमानित भाड़ा ज्ञात करें।</p>
+        <h3 class="section-title" data-i18n="logisticsTitle">🚛 डोरस्टेप ट्रक भाड़ा एवं आलू कट्टा/ड्रम परिवहन कैलकुलेटर</h3>
+        <p class="section-subtitle" data-i18n="logisticsSub">खेत या कोल्ड स्टोरेज से सीधे खरीदार के गोदाम तक आलू की बोरियां (कट्टे) या मेंटहा ड्रम पहुंचाने का अनुमानित भाड़ा ज्ञात करें।</p>
         
         <div class="calculator-grid">
           <div class="calc-form">
             <div class="form-group">
-              <label>अनुमानित दूरी (किलोमीटर) *</label>
+              <label data-i18n="lblDistance">अनुमानित दूरी (किलोमीटर) *</label>
               <input type="number" class="form-control" id="logisticsDistance" value="45" placeholder="उदा. 45 किमी" oninput="calculateFreight()">
             </div>
 
             <div class="form-group">
-              <label>फसल का वजन या कट्टे (कुंतल / 50kg कट्टे) *</label>
+              <label data-i18n="lblWeight">फसल का वजन या कट्टे (कुंतल / 50kg कट्टे) *</label>
               <input type="number" class="form-control" id="logisticsWeight" value="120" placeholder="उदा. 120 कुंतल या 240 कट्टे" oninput="calculateFreight()">
             </div>
           </div>
 
           <div style="background: var(--bg-subtle); padding: 20px; border-radius: var(--radius-md);">
-            <h4 style="color: var(--primary); margin-bottom: 12px;">🚛 परिवहन दर तुलना</h4>
+            <h4 style="color: var(--primary); margin-bottom: 12px;" data-i18n="freightQuotesTitle">🚛 परिवहन दर तुलना</h4>
             <div id="freightQuotesList">
               <!-- Rendered via app.js -->
             </div>
@@ -378,15 +374,15 @@
     <!-- TAB 4: Cold Storage Booking -->
     <section id="viewColdstorage" class="tab-view" style="display: none;">
       <div class="section-card">
-        <h3 class="section-title">🧊 आलू एवं फसल कोल्ड स्टोरेज चैंबर व स्लॉट बुकिंग (UP Cold Storage)</h3>
-        <p class="section-subtitle">फर्रुखाबाद, आगरा, संभल व कन्नौज के सत्यापित आलू कोल्ड स्टोरेज में मार्च से नवंबर तक सुरक्षित भंडारण हेतु कट्टा/बोरी स्लॉट बुक करें।</p>
+        <h3 class="section-title" data-i18n="coldTitle">🧊 आलू एवं फसल कोल्ड स्टोरेज चैंबर व स्लॉट बुकिंग (UP Cold Storage)</h3>
+        <p class="section-subtitle" data-i18n="coldSub">फर्रुखाबाद, आगरा, संभल व कन्नौज के सत्यापित आलू कोल्ड स्टोरेज में मार्च से नवंबर तक सुरक्षित भंडारण हेतु कट्टा/बोरी स्लॉट बुक करें।</p>
         
         <div class="listings-grid" id="coldStorageGrid">
           <!-- Rendered via app.js -->
         </div>
 
         <div style="margin-top: 30px;" id="coldStorageBookingsSection">
-          <h4 style="margin-bottom: 12px; color: var(--primary);">📋 आपकी आरक्षित कोल्ड स्टोरेज बुकिंग</h4>
+          <h4 style="margin-bottom: 12px; color: var(--primary);" data-i18n="coldBookingsTitle">📋 आपकी आरक्षित कोल्ड स्टोरेज बुकिंग</h4>
           <div id="coldBookingsList">
             <!-- Rendered via app.js -->
           </div>
@@ -397,26 +393,26 @@
     <!-- TAB 5: AI Quality & Mentha Estimator -->
     <section id="viewQuality" class="tab-view" style="display: none;">
       <div class="section-card">
-        <h3 class="section-title">🧪 आलू, फसल एवं मेंटहा तेल गुणवत्ता जांच (AI Quality Estimator)</h3>
-        <p class="section-subtitle">आलू का साइज़ (mm), वैरायटी (3797 / चिपसोना) या मेंटहा एल-मेंटॉल % चुनकर संभावित कट्टा व कुंतल भाव आंकें।</p>
+        <h3 class="section-title" data-i18n="qualityTitle">🧪 आलू, फसल एवं मेंटहा तेल गुणवत्ता जांच (AI Quality Estimator)</h3>
+        <p class="section-subtitle" data-i18n="qualitySub">आलू का साइज़ (mm), वैरायटी (3797 / चिपसोना) या मेंटहा एल-मेंटॉल % चुनकर संभावित कट्टा व कुंतल भाव आंकें।</p>
         
         <div class="calculator-grid">
           <div class="calc-form">
             <div class="form-group">
-              <label>फसल श्रेणी</label>
+              <label data-i18n="lblCropCategory">फसल श्रेणी</label>
               <select class="form-control" id="calcCropType" onchange="calculateQualityScore()">
                 <option value="Potato">🥔 आलू (Kufri Bahar 3797 / Chipsona)</option>
                 <option value="Mentha Oil">🌿 मेंटहा तेल (सुगंधित मिंट ऑयल)</option>
-                <option value="Wheat">शरबाती गेहूं</option>
-                <option value="Rice">1121 बासमती चावल</option>
-                <option value="Cotton">कच्ची कपास</option>
-                <option value="Soybean">पीली सोयाबीन</option>
-                <option value="Apples">हिमाचली रॉयल सेब</option>
+                <option value="Wheat">Sharbaati Wheat</option>
+                <option value="Rice">1121 Basmati Rice</option>
+                <option value="Cotton">Cotton</option>
+                <option value="Soybean">Yellow Soybean</option>
+                <option value="Apples">Himachali Royal Apples</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label>नमी / आलू साइज (mm) - उत्तम आलू: &gt;55mm बड़ा कट्टा</label>
+              <label data-i18n="lblMoistureSize">नमी / आलू साइज (mm) - उत्तम आलू: &gt;55mm बड़ा कट्टा</label>
               <div class="range-slider-wrap">
                 <input type="range" id="sliderMoisture" min="0" max="65" value="55" step="1" oninput="calculateQualityScore()">
                 <strong id="valMoisture">55 mm</strong>
@@ -424,7 +420,7 @@
             </div>
 
             <div class="form-group">
-              <label>शुद्धता / आलू ठोस मात्रा (Dry Matter) %</label>
+              <label data-i18n="lblPurityDry">शुद्धता / आलू ठोस मात्रा (Dry Matter) %</label>
               <div class="range-slider-wrap">
                 <input type="range" id="sliderPurity" min="65" max="100" value="88" oninput="calculateQualityScore()">
                 <strong id="valPurity">88%</strong>
@@ -432,7 +428,7 @@
             </div>
 
             <div class="form-group">
-              <label>अशुद्धि / कटा-छटा या हरा आलू (%)</label>
+              <label data-i18n="lblForeignDefect">अशुद्धि / कटा-छटा या हरा आलू (%)</label>
               <div class="range-slider-wrap">
                 <input type="range" id="sliderForeign" min="0" max="10" value="0.5" step="0.1" oninput="calculateQualityScore()">
                 <strong id="valForeign">0.5%</strong>
@@ -448,7 +444,7 @@
               </div>
             </div>
             <h4 style="margin-bottom: 6px;" id="calcEstimatedVal">अनुमानित रेट: ₹1,420 / कुंतल (₹710 / 50kg कट्टा)</h4>
-            <p style="font-size: 0.85rem; color: var(--text-muted);">फर्रुखाबाद व आगरा आलू मंडी में बड़ा साइज (55mm+) पर प्रीमियम भाव मिलता है।</p>
+            <p style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="calcNote">फर्रुखाबाद व आगरा आलू मंडी में बड़ा साइज (55mm+) पर प्रीमियम भाव मिलता है।</p>
           </div>
         </div>
       </div>
@@ -457,8 +453,8 @@
     <!-- TAB 6: Sealed Deals -->
     <section id="viewDeals" class="tab-view" style="display: none;">
       <div class="section-card">
-        <h3 class="section-title">📜 पक्के सौदे एवं एस्क्रो तिजोरी रसीद</h3>
-        <p class="section-subtitle">किसान और सत्यापित खरीदार के बीच एस्क्रो तिजोरी में टोकन राशि के साथ पक्के आलू व फसल व्यापारिक अनुबंध।</p>
+        <h3 class="section-title" data-i18n="dealsTitle">📜 पक्के सौदे एवं एस्क्रो तिजोरी रसीद</h3>
+        <p class="section-subtitle" data-i18n="dealsSub">किसान और सत्यापित खरीदार के बीच एस्क्रो तिजोरी में टोकन राशि के साथ पक्के आलू व फसल व्यापारिक अनुबंध।</p>
         <div id="dealsHistoryList">
           <!-- Rendered via app.js -->
         </div>
@@ -467,11 +463,192 @@
 
   </main>
 
+  <!-- EXACT IMAGE MATCH SITE FOOTER (IndianPotato / KrishiDeal 5-Column Theme) -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        
+        <!-- Column 1: Brand & Tagline + Contact + Purple WhatsApp Button -->
+        <div class="footer-col">
+          <h3 class="footer-brand-title" data-i18n="footerBrandName">IndianPotato</h3>
+          <p class="footer-brand-desc" data-i18n="footerBrandTagline">
+            India's only intelligence platform for the potato industry. Connecting farmers, traders, processors, and exporters with actionable insights.
+          </p>
+
+          <div class="footer-contact-item">
+            <span>📞</span> <span>+91 94996 68498</span>
+          </div>
+          <div class="footer-contact-item">
+            <span>✉️</span> <span>info@indpotato.com</span>
+          </div>
+
+          <button class="btn-whatsapp-join" onclick="openWhatsAppModal()">
+            <span>Join WhatsApp Group</span> <span>→</span>
+          </button>
+        </div>
+
+        <!-- Column 2: EXPLORE -->
+        <div class="footer-col">
+          <h4 class="footer-col-title" data-i18n="colExplore">EXPLORE</h4>
+          <ul class="footer-links-list">
+            <li><a href="#" onclick="openInfoModal('about'); return false;" data-i18n="linkAboutUs">About Us</a></li>
+            <li><a href="#" onclick="openInfoModal('editor'); return false;" data-i18n="linkAboutEditor">About the Editor</a></li>
+            <li><a href="#" onclick="openInfoModal('contact'); return false;" data-i18n="linkContactUs">Contact Us</a></li>
+            <li><a href="#" onclick="openInfoModal('advertise'); return false;" data-i18n="linkAdvertise">Advertise</a></li>
+            <li><a href="#" onclick="openInfoModal('publish'); return false;" data-i18n="linkHowWePublish">How We Publish</a></li>
+            <li><a href="#" onclick="openInfoModal('policy'); return false;" data-i18n="linkPublishingPolicy">Publishing Policy</a></li>
+            <li><a href="#" onclick="openInfoModal('collaborate'); return false;" data-i18n="linkCollaborate">Collaborate</a></li>
+            <li><a href="#" onclick="openInfoModal('services'); return false;" data-i18n="linkServicesFees">Services & Fees</a></li>
+            <li><a href="#" onclick="openInfoModal('careers'); return false;" data-i18n="linkCareers">Careers</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: CATEGORIES -->
+        <div class="footer-col">
+          <h4 class="footer-col-title" data-i18n="colCategories">CATEGORIES</h4>
+          <ul class="footer-links-list">
+            <li><a href="#" onclick="openInfoModal('companies'); return false;" data-i18n="linkCompaniesPeople">Companies & People</a></li>
+            <li><a href="#" onclick="openInfoModal('schemes'); return false;" data-i18n="linkGovtSchemes">Government Schemes</a></li>
+            <li><a href="#" onclick="openInfoModal('guides'); return false;" data-i18n="linkGuidesResearch">Guides & Research</a></li>
+            <li><a href="#" onclick="openInfoModal('events'); return false;" data-i18n="linkPotatoEvents">Potato Events</a></li>
+            <li><a href="#" onclick="switchTab('mandi'); return false;" data-i18n="linkMarketIntel">Market Intelligence</a></li>
+            <li><a href="#" onclick="switchTab('samples'); return false;" data-i18n="linkTradeExports">Trade & Exports</a></li>
+            <li><a href="#" onclick="openInfoModal('processing'); return false;" data-i18n="linkProcessingTech">Processing & Technology</a></li>
+            <li><a href="#" onclick="openInfoModal('seeds'); return false;" data-i18n="linkSeedsFarming">Seeds & Farming</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: RESOURCES & Potato Varieties Sub-list -->
+        <div class="footer-col">
+          <h4 class="footer-col-title" data-i18n="colResources">RESOURCES</h4>
+          <ul class="footer-links-list">
+            <li><a href="#" onclick="switchTab('mandi'); return false;" data-i18n="linkPotatoPrices">Potato Prices</a></li>
+            <li><a href="#" onclick="switchTab('mandi'); return false;" data-i18n="linkMarketIntel">Market Intelligence</a></li>
+            <li><a href="#" onclick="openInfoModal('guides'); return false;" data-i18n="linkGuides">Guides</a></li>
+            <li><a href="#" onclick="openInfoModal('statereports'); return false;" data-i18n="linkStateReports">State Reports</a></li>
+            <li><a href="#" onclick="openInfoModal('companies'); return false;" data-i18n="linkCompanyDir">Company Directory</a></li>
+            <li><a href="#" onclick="openInfoModal('events'); return false;" data-i18n="linkIndustryEvents">Industry Events</a></li>
+            <li>
+              <a href="#" onclick="openInfoModal('varieties'); return false;" style="font-weight: 700; color: #FFFFFF;" data-i18n="linkPotatoVarieties">Potato Varieties</a>
+              <ul class="sub-variety-list">
+                <li><a href="#" onclick="filterVariety('CPRI Kufri'); return false;">› ICAR-CPRI Kufri</a></li>
+                <li><a href="#" onclick="filterVariety('MHZPC'); return false;">› MHZPC (Mahindra-HZPC)</a></li>
+                <li><a href="#" onclick="filterVariety('Technico'); return false;">› Technico (ITC)</a></li>
+                <li><a href="#" onclick="filterVariety('SV Agri'); return false;">› SV Agri (Agrico)</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 5: CONNECT -->
+        <div class="footer-col">
+          <h4 class="footer-col-title" data-i18n="colConnect">CONNECT</h4>
+          <ul class="footer-links-list">
+            <li><a href="#" onclick="openInfoModal('social_linkedin_p'); return false;">LinkedIn (Personal)</a></li>
+            <li><a href="#" onclick="openInfoModal('social_linkedin_c'); return false;">LinkedIn (Company)</a></li>
+            <li><a href="#" onclick="openWhatsAppModal(); return false;">WhatsApp</a></li>
+            <li><a href="mailto:info@indpotato.com">Email Us</a></li>
+            <li><a href="tel:+919499668498">📞 +91 94996 68498</a></li>
+            <li><a href="#" onclick="openInfoModal('rss'); return false;">RSS Feed</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom Copyright & Terms Bar -->
+      <div class="footer-bottom-bar">
+        <div data-i18n="copyrightText">
+          © 2026 Indpotato Private Limited. All rights reserved.
+        </div>
+        <div class="footer-bottom-links">
+          <a href="#" onclick="openInfoModal('terms'); return false;" data-i18n="linkTerms">Terms</a>
+          <a href="#" onclick="openInfoModal('privacy'); return false;" data-i18n="linkPrivacyPolicy">Privacy Policy</a>
+          <a href="#" onclick="openInfoModal('disclaimer'); return false;" data-i18n="linkDisclaimer">Disclaimer</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- EXPANDED FLOATING ACTION BUTTON FOR CHAT WITH AGRIPLUS AI (ALL PLATFORM FEATURES) -->
+  <button class="chatbot-fab-btn" onclick="openChatBotModal()">
+    <span class="chat-badge-dot"></span>
+    <span data-i18n="btnChatAiPotato">Chat with AgriPlus AI</span>
+  </button>
+
+  <!-- MODAL FOR CHAT WITH AGRIPLUS AI BOT (ALL PLATFORM CROPS & FEATURES) -->
+  <div class="modal-backdrop" id="chatBotModal">
+    <div class="modal-container" style="max-width: 600px;">
+      <div class="modal-header" style="background: linear-gradient(135deg, #0F5A47, #16A34A); color: white; padding: 18px 24px; border-radius: var(--radius-lg) var(--radius-lg) 0 0; margin: -28px -28px 20px -28px;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <span style="font-size: 1.8rem;">🤖</span>
+          <div>
+            <h3 class="modal-title" style="color: #4ADE80; font-size: 1.15rem;" data-i18n="botModalTitle">AgriPlus AI Platform Assistant</h3>
+            <span style="font-size: 0.75rem; opacity: 0.9;" data-i18n="botModalSub">24x7 Help: Potato, Mentha, Wheat, Rice, Cotton, Freight, Cold Storage & Escrow</span>
+          </div>
+        </div>
+        <button class="close-modal-btn" onclick="closeModal('chatBotModal')" style="color: white;">&times;</button>
+      </div>
+
+      <!-- Quick Action Prompt Chips across ALL platform features -->
+      <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px;">
+        <button class="btn-secondary" style="font-size: 0.75rem; padding: 4px 10px;" onclick="askBotQuestion('Farrukhabad Potato Rate Today')">🥔 Potato Rate</button>
+        <button class="btn-secondary" style="font-size: 0.75rem; padding: 4px 10px;" onclick="askBotQuestion('Mentha MCX Rate')">🌿 Mentha MCX</button>
+        <button class="btn-secondary" style="font-size: 0.75rem; padding: 4px 10px;" onclick="askBotQuestion('Sharbati Wheat & Basmati Rice Rates')">🌾 Wheat & Rice</button>
+        <button class="btn-secondary" style="font-size: 0.75rem; padding: 4px 10px;" onclick="askBotQuestion('Truck Freight Calculation')">🚛 Freight Calc</button>
+        <button class="btn-secondary" style="font-size: 0.75rem; padding: 4px 10px;" onclick="askBotQuestion('Cold Storage Booking')">🧊 Cold Storage</button>
+        <button class="btn-secondary" style="font-size: 0.75rem; padding: 4px 10px;" onclick="askBotQuestion('Escrow Vault Help')">🔒 Escrow Vault</button>
+      </div>
+
+      <!-- Chat History Container -->
+      <div id="chatMessagesBox" style="background: var(--bg-subtle); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 16px; height: 290px; overflow-y: auto; margin-bottom: 16px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="background: var(--bg-card); border-left: 4px solid #16A34A; padding: 10px 14px; border-radius: var(--radius-sm); font-size: 0.88rem;">
+          <strong>🤖 AgriPlus AI Assistant:</strong>
+          <p style="margin-top: 4px;" data-i18n="botWelcomeMsg">Welcome to AgriPlus AI! Ask me anything about Potato, Mentha Oil, Wheat, Rice, Cotton, Soybean, Apples, Truck Freight rates, Cold Storage booking, or Escrow Token security.</p>
+        </div>
+      </div>
+
+      <!-- Input Form -->
+      <form onsubmit="handleBotFormSubmit(event)" style="display: flex; gap: 10px;">
+        <input type="text" class="form-control" id="chatInputText" data-i18n-placeholder="botInputPlaceholder" placeholder="Ask AgriPlus AI (e.g., Sharbati Wheat rate, Truck freight, Cold storage)..." required style="flex: 1;">
+        <button type="submit" class="btn-primary" style="background: #16A34A; padding: 10px 18px;" data-i18n="botSendBtn">Ask AI 🚀</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- WHATSAPP GROUP JOIN MODAL -->
+  <div class="modal-backdrop" id="whatsAppModal">
+    <div class="modal-container" style="max-width: 480px; text-align: center;">
+      <div style="font-size: 3rem; margin-bottom: 10px;">📱</div>
+      <h3 style="color: #A855F7; margin-bottom: 8px;">Join IndianPotato WhatsApp Group</h3>
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 20px;">Get daily Farrukhabad, Agra & UP mandi potato price alerts, trade opportunities, and CPRI seed updates directly on WhatsApp.</p>
+      <div style="background: var(--bg-subtle); padding: 14px; border-radius: var(--radius-md); margin-bottom: 20px; font-weight: 700;">
+        📞 Helpline & Group Admin: +91 94996 68498
+      </div>
+      <button class="btn-primary" style="background: #25D366; width: 100%; padding: 12px; font-size: 1rem;" onclick="window.open('https://wa.me/919499668498?text=Hello%20IndianPotato%20Team%2C%20please%20add%20me%20to%20the%20WhatsApp%20Potato%20Price%20Group', '_blank'); closeModal('whatsAppModal');">
+        💬 Open WhatsApp & Join Now
+      </button>
+      <button class="btn-secondary" style="width: 100%; margin-top: 10px;" onclick="closeModal('whatsAppModal')">Cancel</button>
+    </div>
+  </div>
+
+  <!-- MODAL FOR EXPLORE, CATEGORIES, RESOURCES & LEGAL PAGES -->
+  <div class="modal-backdrop" id="infoPagesModal">
+    <div class="modal-container" style="max-width: 680px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="infoModalTitle">IndianPotato Platform Information</h3>
+        <button class="close-modal-btn" onclick="closeModal('infoPagesModal')">&times;</button>
+      </div>
+      <div id="infoModalBodyContent" style="font-size: 0.92rem; line-height: 1.7; max-height: 480px; overflow-y: auto; color: var(--text-main);">
+        <!-- Rendered via app.js -->
+      </div>
+    </div>
+  </div>
+
   <!-- SMS & WhatsApp Log Modal -->
   <div class="modal-backdrop" id="smsLogsModal">
     <div class="modal-container" style="max-width: 500px;">
       <div class="modal-header">
-        <h3 class="modal-title">📱 व्यापार एसएमएस व व्हाट्सएप अलर्ट</h3>
+        <h3 class="modal-title" data-i18n="smsModalTitle">📱 trade SMS & WhatsApp Alerts</h3>
         <button class="close-modal-btn" onclick="closeModal('smsLogsModal')">&times;</button>
       </div>
       <div id="smsLogsList" style="max-height: 400px; overflow-y: auto;">
@@ -484,51 +661,51 @@
   <div class="modal-backdrop" id="authModal">
     <div class="modal-container" style="max-width: 560px;">
       <div class="modal-header">
-        <h3 class="modal-title" id="authModalTitle">🔑 कृषिडील लॉगिन / पंजीकरण</h3>
+        <h3 class="modal-title" id="authModalTitle" data-i18n="authModalTitle">🔑 Sign In / Register</h3>
         <button class="close-modal-btn" onclick="closeModal('authModal')">&times;</button>
       </div>
 
       <div style="display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
-        <button id="authSubTabLogin" class="tab-btn active" onclick="switchAuthTab('login')">साइन इन (Sign In)</button>
-        <button id="authSubTabRegister" class="tab-btn" onclick="switchAuthTab('register')">नया पंजीकरण</button>
+        <button id="authSubTabLogin" class="tab-btn active" onclick="switchAuthTab('login')" data-i18n="subTabSignIn">Sign In</button>
+        <button id="authSubTabRegister" class="tab-btn" onclick="switchAuthTab('register')" data-i18n="subTabRegister">New Registration</button>
       </div>
 
       <form id="loginForm" onsubmit="handleLogin(event)">
         <div class="form-group">
-          <label>मोबाइल नंबर या ईमेल *</label>
-          <input type="text" class="form-control" id="loginIdentifier" placeholder="उदा. 9876543210 या dharamvir@menthafarmer.in" required>
+          <label data-i18n="lblMobileEmail">Mobile Number or Email *</label>
+          <input type="text" class="form-control" id="loginIdentifier" placeholder="e.g. 9499668498 or farmer@indpotato.com" required>
         </div>
 
         <div class="form-group">
-          <label>पासवर्ड *</label>
-          <input type="password" class="form-control" id="loginPassword" placeholder="अपना पासवर्ड दर्ज करें" required>
+          <label data-i18n="lblPassword">Password *</label>
+          <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password" required>
         </div>
 
         <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 16px;">
-          💡 <strong>डेमो लॉगिन क्रेडेंशियल:</strong><br>
-          • आलू/मेंटहा किसान: <code>9876543210</code> / <code>password123</code><br>
-          • मंडी आढ़ती / खरीदार: <code>9123456789</code> / <code>password123</code>
+          💡 <strong data-i18n="demoCredentials">Demo Login Credentials:</strong><br>
+          • Potato Farmer: <code>9876543210</code> / <code>password123</code><br>
+          • Mandi Trader / Buyer: <code>9123456789</code> / <code>password123</code>
         </div>
 
-        <button type="submit" class="btn-primary" style="width: 100%; padding: 12px;">
-          🔓 लॉगिन करें
+        <button type="submit" class="btn-primary" style="width: 100%; padding: 12px;" data-i18n="btnSubmitLogin">
+          🔓 Sign In
         </button>
       </form>
 
       <form id="registerForm" onsubmit="handleRegister(event)" style="display: none;">
         <div class="form-group">
-          <label style="font-size: 0.95rem; color: var(--primary);">खाता पंजीकरण प्रकार *</label>
+          <label style="font-size: 0.95rem; color: var(--primary);" data-i18n="lblAccountRole">Account Role *</label>
           <select class="form-control" id="regRole" onchange="toggleRegRoleFields()" style="font-weight: 700;">
-            <option value="farmer">🧑‍🌾 किसान पंजीकरण (आलू, मेंटहा व फसल विक्रेता)</option>
-            <option value="buyer">🏢 खरीदार पंजीकरण (आलू आढ़ती / तेल निर्यातक / मंडी व्यापारी)</option>
+            <option value="farmer">🧑‍🌾 Farmer Registration (Potato & Produce Seller)</option>
+            <option value="buyer">🏢 Buyer Registration (Potato Trader / Exporter / Processor)</option>
           </select>
         </div>
 
         <!-- ALL INDIAN LANGUAGES SELECTION AT REGISTRATION TIME -->
         <div class="form-group" style="background: var(--bg-subtle); padding: 12px 14px; border-radius: var(--radius-sm); border: 1px dashed var(--primary);">
-          <label style="font-size: 0.9rem; color: var(--primary); font-weight: 800;">🌐 अपनी मातृभाषा चुनें (Select Native Language) *</label>
+          <label style="font-size: 0.9rem; color: var(--primary); font-weight: 800;" data-i18n="lblSelectLanguage">🌐 Select Native Language *</label>
           <select class="form-control" id="regLanguage" style="font-weight: 700; margin-top: 4px;">
-            <option value="hi" selected>🇮🇳 हिंदी (Hindi) - उत्तर प्रदेश व उत्तर भारत की भाषा</option>
+            <option value="hi" selected>🇮🇳 हिंदी (Hindi)</option>
             <option value="en">🇬🇧 English</option>
             <option value="pa">🌾 ਪੰਜਾਬੀ (Punjabi)</option>
             <option value="gu">🌻 ગુજરાતી (Gujarati)</option>
@@ -542,76 +719,76 @@
             <option value="as">🏔️ অসমীয়া (Assamese)</option>
             <option value="ur">📜 اردو (Urdu)</option>
           </select>
-          <span style="font-size: 0.75rem; color: var(--text-muted);">लॉगिन करने पर पोर्टल स्वतः आपकी इसी चुनी हुई मातृभाषा में खुलेगा।</span>
+          <span style="font-size: 0.75rem; color: var(--text-muted);" data-i18n="langInfoSub">Portal automatically launches in your selected language upon sign in.</span>
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
           <div class="form-group">
-            <label>पूरा नाम *</label>
-            <input type="text" class="form-control" id="regName" placeholder="उदा. राम प्रकाश राजपूत" required>
+            <label data-i18n="lblFullName">Full Name *</label>
+            <input type="text" class="form-control" id="regName" placeholder="e.g. Ram Prakash Rajput" required>
           </div>
           <div class="form-group">
-            <label>मोबाइल नंबर *</label>
-            <input type="tel" class="form-control" id="regPhone" placeholder="10-अंकों का मोबाइल नंबर" required>
+            <label data-i18n="lblMobile">Mobile Number *</label>
+            <input type="tel" class="form-control" id="regPhone" placeholder="10-digit mobile number" required>
           </div>
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
           <div class="form-group">
-            <label>पासवर्ड *</label>
-            <input type="password" class="form-control" id="regPassword" placeholder="कम से कम 6 अक्षर" required>
+            <label data-i18n="lblPassword">Password *</label>
+            <input type="password" class="form-control" id="regPassword" placeholder="Min 6 characters" required>
           </div>
           <div class="form-group">
-            <label>ईमेल पता</label>
+            <label data-i18n="lblEmail">Email Address</label>
             <input type="email" class="form-control" id="regEmail" placeholder="name@domain.com">
           </div>
         </div>
 
         <div class="form-group">
-          <label>जिला एवं राज्य *</label>
-          <input type="text" class="form-control" id="regLocation" placeholder="उदा. फर्रुखाबाद, उत्तर प्रदेश" required>
+          <label data-i18n="lblLocation">District & State *</label>
+          <input type="text" class="form-control" id="regLocation" placeholder="e.g. Farrukhabad, Uttar Pradesh" required>
         </div>
 
         <div id="sectionFarmerVerification" style="background: var(--bg-subtle); padding: 16px; border-radius: var(--radius-md); border: 1px solid var(--border-color); margin-bottom: 16px;">
-          <h4 style="color: var(--primary); font-size: 0.95rem; margin-bottom: 10px;">🛡️ असली किसान सत्यापन विवरण</h4>
+          <h4 style="color: var(--primary); font-size: 0.95rem; margin-bottom: 10px;" data-i18n="farmerVerificationTitle">🛡️ Farmer Land Record Verification</h4>
           <div class="form-group">
-            <label>खसरा / खतौनी भूमि रिकॉर्ड संख्या *</label>
-            <input type="text" class="form-control" id="regKhasraNo" placeholder="उदा. UP-FRK-4402 (खसरा संख्या)">
+            <label data-i18n="lblKhasra">Khasra / Land Record No. *</label>
+            <input type="text" class="form-control" id="regKhasraNo" placeholder="e.g. UP-FRK-4402">
           </div>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
             <div class="form-group">
-              <label>किसान क्रेडिट कार्ड (KCC) आईडी</label>
-              <input type="text" class="form-control" id="regKccId" placeholder="उदा. KCC-UP-9901">
+              <label data-i18n="lblKcc">KCC Card ID</label>
+              <input type="text" class="form-control" id="regKccId" placeholder="e.g. KCC-UP-9901">
             </div>
             <div class="form-group">
-              <label>आलू / खेती का क्षेत्रफल (एकड़)</label>
-              <input type="text" class="form-control" id="regLandAcres" placeholder="उदा. 8 एकड़">
+              <label data-i18n="lblLandArea">Farming Land (Acres)</label>
+              <input type="text" class="form-control" id="regLandAcres" placeholder="e.g. 8 Acres">
             </div>
           </div>
         </div>
 
         <div id="sectionBuyerVerification" style="background: var(--gold-light); padding: 16px; border-radius: var(--radius-md); border: 1px solid #FCD34D; margin-bottom: 16px; display: none;">
-          <h4 style="color: var(--gold-hover); font-size: 0.95rem; margin-bottom: 10px;">🏢 असली खरीदार लाइसेंस विवरण</h4>
+          <h4 style="color: var(--gold-hover); font-size: 0.95rem; margin-bottom: 10px;" data-i18n="buyerVerificationTitle">🏢 Buyer License Verification</h4>
           <div class="form-group">
-            <label>व्यापारिक फर्म प्रकार *</label>
+            <label data-i18n="lblFirmType">Firm Business Type *</label>
             <select class="form-control" id="regFirmType">
-              <option value="Potato Mandi Wholesaler & Exporter">आलू मंडी आढ़ती एवं थोक व्यापारी</option>
-              <option value="Potato Cold Storage Owner">कोल्ड स्टोरेज मालिक एवं व्यापारी</option>
-              <option value="Essential Oil Distiller & Exporter">सुगंधित तेल निर्यातक एवं आसवन इकाई</option>
+              <option value="Potato Mandi Wholesaler & Exporter">Potato Mandi Wholesaler & Exporter</option>
+              <option value="Potato Cold Storage Owner">Potato Cold Storage Owner</option>
+              <option value="Processing Industry Trader">Potato Processing Industry Trader (Chips/Flakes)</option>
             </select>
           </div>
           <div class="form-group">
-            <label>जीएसटी (GSTIN) पंजीकरण संख्या *</label>
-            <input type="text" class="form-control" id="regGstin" placeholder="उदा. 09AGRA5512K1ZN">
+            <label data-i18n="lblGstin">GSTIN Number *</label>
+            <input type="text" class="form-control" id="regGstin" placeholder="e.g. 09AGRA5512K1ZN">
           </div>
           <div class="form-group" style="margin-bottom: 0;">
-            <label>एपीएमसी मंडी लाइसेंस संख्या *</label>
-            <input type="text" class="form-control" id="regMandiLicense" placeholder="उदा. UP-FRK-APMC-9901">
+            <label data-i18n="lblMandiLicense">APMC Mandi License No. *</label>
+            <input type="text" class="form-control" id="regMandiLicense" placeholder="e.g. UP-FRK-APMC-9901">
           </div>
         </div>
 
-        <button type="submit" class="btn-primary btn-gold" style="width: 100%; padding: 12px; font-size: 1rem;">
-          🛡️ पंजीकरण करें एवं खाता सत्यापित करें
+        <button type="submit" class="btn-primary btn-gold" style="width: 100%; padding: 12px; font-size: 1rem;" data-i18n="btnSubmitRegister">
+          🛡️ Register & Verify Account
         </button>
       </form>
     </div>
@@ -621,79 +798,79 @@
   <div class="modal-backdrop" id="postSampleModal">
     <div class="modal-container">
       <div class="modal-header">
-        <h3 class="modal-title">🥔 आलू या मेंटहा / फसल का नमूना पोस्ट करें</h3>
+        <h3 class="modal-title" data-i18n="postModalTitle">🥔 Post Produce Sample</h3>
         <button class="close-modal-btn" onclick="closeModal('postSampleModal')">&times;</button>
       </div>
       <form id="postSampleForm" onsubmit="handlePostSample(event)">
         <div class="form-group">
-          <label>फसल का नाम एवं किस्म *</label>
-          <input type="text" class="form-control" id="formCropTitle" placeholder="उदा. फर्रुखाबाद कुफरी बहार 3797 आलू (बड़ा साइज़ 55mm+)" required>
+          <label data-i18n="lblCropName">Crop Name & Variety *</label>
+          <input type="text" class="form-control" id="formCropTitle" placeholder="e.g. Farrukhabad Kufri Bahar 3797 Potato (Large 55mm+)" required>
         </div>
 
         <div class="form-group">
-          <label>फसल श्रेणी *</label>
+          <label data-i18n="lblCategory">Crop Category *</label>
           <select class="form-control" id="formCategory" required>
-            <option value="Potato">🥔 आलू (Potato Kattas / Bags)</option>
-            <option value="Mentha Oil">🌿 मेंटहा तेल (सुगंधित तेल)</option>
-            <option value="Wheat">गेहूं (Wheat Grains)</option>
-            <option value="Rice">बासमती चावल (Rice)</option>
-            <option value="Cotton">कपास (Cotton)</option>
-            <option value="Soybean">सोयाबीन (Soybean)</option>
-            <option value="Apples">कोल्ड स्टोरेज सेब</option>
+            <option value="Potato">🥔 Potato (Kufri Potato Kattas / Bags)</option>
+            <option value="Mentha Oil">🌿 Mentha Oil</option>
+            <option value="Wheat">Wheat</option>
+            <option value="Rice">Basmati Rice</option>
+            <option value="Cotton">Cotton</option>
+            <option value="Soybean">Soybean</option>
+            <option value="Apples">Apples</option>
           </select>
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
           <div class="form-group">
-            <label>मात्रा (बोरियां/कट्टे या कुंतल/किग्रा) *</label>
-            <input type="number" class="form-control" id="formQuantity" placeholder="उदा. 500 कट्टे" required>
+            <label data-i18n="lblQuantity">Quantity (Bags or Qtl) *</label>
+            <input type="number" class="form-control" id="formQuantity" placeholder="e.g. 500 Bags" required>
           </div>
           <div class="form-group">
-            <label>अपेक्षित भाव (₹ प्रति कट्टा या कुंतल/किग्रा) *</label>
-            <input type="number" class="form-control" id="formPrice" placeholder="उदा. 710 (प्रति 50kg कट्टा)" required>
+            <label data-i18n="lblReservePrice">Expected Rate (₹ per Bag/Qtl) *</label>
+            <input type="number" class="form-control" id="formPrice" placeholder="e.g. 710 (per 50kg Bag)" required>
           </div>
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
           <div class="form-group">
-            <label>नमी (%) / आलू साइज (mm) *</label>
-            <input type="number" step="0.1" class="form-control" id="formMoisture" placeholder="उदा. 55mm (बड़ा आलू)" required>
+            <label data-i18n="lblMoistureSize">Size (mm) / Moisture (%) *</label>
+            <input type="number" step="0.1" class="form-control" id="formMoisture" placeholder="e.g. 55mm (Large Potato)" required>
           </div>
           <div class="form-group">
-            <label>गुणवत्ता ग्रेड *</label>
+            <label data-i18n="lblGrade">Quality Grade *</label>
             <select class="form-control" id="formGrade" required>
-              <option value="Grade A+">ग्रेड A+ (बड़ा आकार 55mm+)</option>
-              <option value="Grade A">ग्रेड A (मानक मंडी कट्टा)</option>
-              <option value="Grade B">ग्रेड B (मध्यम साइज)</option>
+              <option value="Grade A+">Grade A+ (Large Size 55mm+)</option>
+              <option value="Grade A">Grade A (Standard Mandi Katta)</option>
+              <option value="Grade B">Grade B (Medium Size)</option>
             </select>
           </div>
         </div>
 
         <div class="form-group">
-          <label>जिला, मंडी या कोल्ड स्टोरेज स्थान *</label>
-          <input type="text" class="form-control" id="formLocation" placeholder="उदा. गंगा कोल्ड स्टोरेज, फर्रुखाबाद, उत्तर प्रदेश" required>
+          <label data-i18n="lblLocation">Location / Cold Storage *</label>
+          <input type="text" class="form-control" id="formLocation" placeholder="e.g. Ganga Cold Storage, Farrukhabad, UP" required>
         </div>
 
         <div class="form-group">
-          <label>खसरा संख्या (सत्यापन बैज के लिए)</label>
-          <input type="text" class="form-control" id="formKhasraNo" placeholder="उदा. UP-FRK-4402">
+          <label data-i18n="lblKhasra">Khasra Number</label>
+          <input type="text" class="form-control" id="formKhasraNo" placeholder="e.g. UP-FRK-4402">
         </div>
 
         <div class="form-group">
-          <label>नमूना फोटो चुनें</label>
+          <label data-i18n="lblSamplePhoto">Select Sample Photo</label>
           <select class="form-control" id="formImageSelect">
-            <option value="assets/potato.png">🥔 ताज़ा कुफरी आलू फोटो</option>
-            <option value="assets/mentha.png">🌿 शुद्ध मेंटहा तेल फोटो</option>
-            <option value="assets/wheat.png">🌾 शरबाती गेहूं नमूना फोटो</option>
-            <option value="assets/rice.png">🍚 1121 बासमती चावल फोटो</option>
-            <option value="assets/cotton.png">☁️ कच्ची कपास फोटो</option>
-            <option value="assets/soybean.png">🫘 पीली सोयाबीन फोटो</option>
-            <option value="assets/apples.png">🍎 हिमाचली सेब फोटो</option>
+            <option value="assets/potato.png">🥔 Fresh Kufri Potato Photo</option>
+            <option value="assets/mentha.png">🌿 Pure Mentha Oil Photo</option>
+            <option value="assets/wheat.png">🌾 Sharbati Wheat Photo</option>
+            <option value="assets/rice.png">🍚 1121 Basmati Rice Photo</option>
+            <option value="assets/cotton.png">☁️ Raw Cotton Photo</option>
+            <option value="assets/soybean.png">🫘 Yellow Soybean Photo</option>
+            <option value="assets/apples.png">🍎 Royal Apple Photo</option>
           </select>
         </div>
 
-        <button type="submit" class="btn-primary" style="width: 100%; margin-top: 14px; padding: 12px;">
-          🚀 मंडी एवं खरीदारों की बोली हेतु पोस्ट करें
+        <button type="submit" class="btn-primary" style="width: 100%; margin-top: 14px; padding: 12px;" data-i18n="btnSubmitSample">
+          🚀 Post Produce Sample
         </button>
       </form>
     </div>
@@ -703,48 +880,48 @@
   <div class="modal-backdrop" id="bidModal">
     <div class="modal-container">
       <div class="modal-header">
-        <h3 class="modal-title" id="bidModalTitle">🏢 डोरस्टेप बोली (Offer) जमा करें</h3>
+        <h3 class="modal-title" id="bidModalTitle" data-i18n="bidModalTitle">🏢 Submit Doorstep Buyer Bid</h3>
         <button class="close-modal-btn" onclick="closeModal('bidModal')">&times;</button>
       </div>
       <form id="bidForm" onsubmit="handlePlaceBid(event)">
         <input type="hidden" id="bidSampleId">
         <div style="background: var(--bg-subtle); padding: 14px; border-radius: var(--radius-sm); margin-bottom: 16px;">
-          <h4 id="bidCropName" style="color: var(--primary);">फर्रुखाबाद कुफरी बहार आलू</h4>
-          <p id="bidCropDetails" style="font-size: 0.85rem; color: var(--text-muted);">मात्रा: 500 कट्टे | अपेक्षित रेट: ₹710/कट्टा | स्थान: फर्रुखाबाद, यूपी</p>
+          <h4 id="bidCropName" style="color: var(--primary);">Farrukhabad Kufri Bahar Potato</h4>
+          <p id="bidCropDetails" style="font-size: 0.85rem; color: var(--text-muted);">Quantity: 500 Bags | Expected Rate: ₹710/Bag | Location: Farrukhabad, UP</p>
         </div>
 
         <div class="form-group">
-          <label>खरीदार / मंडी फर्म का नाम *</label>
-          <input type="text" class="form-control" id="buyerEntity" placeholder="उदा. आगरा कोल्ड चेन एंड होलसेलर्स" required>
+          <label data-i18n="lblBuyerName">Buyer / Firm Name *</label>
+          <input type="text" class="form-control" id="buyerEntity" placeholder="e.g. Agra Cold Chain Wholesale Traders" required>
         </div>
 
         <div class="form-group">
-          <label>जीएसटी (GSTIN) पंजीकरण संख्या</label>
-          <input type="text" class="form-control" id="buyerGstin" placeholder="उदा. 09AGRA5512K1ZN">
+          <label data-i18n="lblGstin">GSTIN Number</label>
+          <input type="text" class="form-control" id="buyerGstin" placeholder="e.g. 09AGRA5512K1ZN">
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
           <div class="form-group">
-            <label>प्रस्तावित दर (₹ / कट्टा या कुंतल) *</label>
-            <input type="number" class="form-control" id="offeredPrice" placeholder="उदा. 730" required>
+            <label data-i18n="lblOfferedPrice">Offered Rate (₹ / Bag or Qtl) *</label>
+            <input type="number" class="form-control" id="offeredPrice" placeholder="e.g. 730" required>
           </div>
           <div class="form-group">
-            <label>टोकन एडवांस (₹) *</label>
-            <input type="number" class="form-control" id="tokenAdvance" placeholder="उदा. 35000" required>
+            <label data-i18n="lblTokenAdvance">Token Advance (₹) *</label>
+            <input type="number" class="form-control" id="tokenAdvance" placeholder="e.g. 35000" required>
           </div>
         </div>
 
         <div class="form-group">
-          <label>परिवहन व पिकअप विकल्प *</label>
+          <label data-i18n="lblPickupTerm">Pickup Term *</label>
           <select class="form-control" id="pickupTerm" required>
-            <option value="Direct Cold Storage Bay Pickup">🚛 सीधे कोल्ड स्टोरेज बे से पिकअप</option>
-            <option value="Buyer Doorstep Pickup">🚛 खरीदार ट्रक भेजकर पिकअप करेगा</option>
-            <option value="Mandi Delivery Bonus">🏢 किसान मंडी आढ़त तक पहुंचाएगा (+₹20/कट्टा बोनस)</option>
+            <option value="Direct Cold Storage Bay Pickup">🚛 Direct Cold Storage Bay Pickup</option>
+            <option value="Buyer Doorstep Pickup">🚛 Buyer Trucks Doorstep Pickup</option>
+            <option value="Mandi Delivery Bonus">🏢 Mandi Delivery (+₹20/Bag Bonus)</option>
           </select>
         </div>
 
-        <button type="submit" class="btn-primary btn-gold" style="width: 100%; margin-top: 14px; padding: 12px;">
-          🤝 बोली भेजें एवं किसान को एसएमएस अलर्ट जारी करें
+        <button type="submit" class="btn-primary btn-gold" style="width: 100%; margin-top: 14px; padding: 12px;" data-i18n="btnSubmitBid">
+          🤝 Submit Bid & Alert Farmer
         </button>
       </form>
     </div>
@@ -754,7 +931,7 @@
   <div class="modal-backdrop" id="offersModal">
     <div class="modal-container" style="max-width: 700px;">
       <div class="modal-header">
-        <h3 class="modal-title" id="offersModalTitle">📋 प्राप्त बोलियां व गुणवत्ता जांच पर्ची</h3>
+        <h3 class="modal-title" id="offersModalTitle" data-i18n="offersModalTitle">📋 Received Bids & Quality Slip</h3>
         <button class="close-modal-btn" onclick="closeModal('offersModal')">&times;</button>
       </div>
       <div id="offersModalContent">
@@ -767,15 +944,15 @@
   <div class="modal-backdrop" id="contractModal">
     <div class="modal-container" style="max-width: 650px;">
       <div class="modal-header">
-        <h3 class="modal-title">🤝 पक्का सौदा अनुबंध पत्र एवं एस्क्रो रसीद</h3>
+        <h3 class="modal-title" data-i18n="contractModalTitle">🤝 Sealed Trade Contract & Escrow Receipt</h3>
         <button class="close-modal-btn" onclick="closeModal('contractModal')">&times;</button>
       </div>
       <div id="contractModalContent">
         <!-- Rendered via app.js -->
       </div>
       <div style="margin-top: 20px; display: flex; gap: 12px;">
-        <button class="btn-primary" onclick="window.print()">🖨️ अनुबंध पत्र प्रिंट करें</button>
-        <button class="btn-secondary" onclick="closeModal('contractModal')">बंद करें</button>
+        <button class="btn-primary" onclick="window.print()" data-i18n="btnPrintContract">🖨️ Print Contract Note</button>
+        <button class="btn-secondary" onclick="closeModal('contractModal')" data-i18n="btnClose">Close</button>
       </div>
     </div>
   </div>
