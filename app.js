@@ -1,5 +1,5 @@
 /* ==========================================================================
-   KrishiDeal - Direct Farmer Platform (v2.2.0 ET/MCX Live Mentha Rates)
+   KrishiDeal - Direct Farmer Platform (v2.3.0 Live Automated Polling Client)
    ========================================================================== */
 
 const API_BASE_URL = "http://localhost:5000/api";
@@ -126,7 +126,28 @@ document.addEventListener("DOMContentLoaded", async () => {
   calculateFreight();
   renderColdStorage();
   updateSmsBadge();
+
+  // Poll live ET endpoint every 30 seconds for continuous real-time updates
+  setInterval(fetchLiveMenthaRateFromBackend, 30000);
 });
+
+async function fetchLiveMenthaRateFromBackend() {
+  try {
+    const res = await fetch(`${API_BASE_URL}/mentha/live-rate`);
+    if (res.ok) {
+      const data = await res.json();
+      if (data.success) {
+        if (data.localityRates) {
+          MENTHA_LOCALITY_RATES = data.localityRates;
+          renderMenthaLocalityWidget();
+          initTicker();
+        }
+      }
+    }
+  } catch (e) {
+    console.log("Live rate refresh fallback active.");
+  }
+}
 
 function loadUserSession() {
   const savedUser = localStorage.getItem("krishi_user_session");
@@ -353,9 +374,10 @@ function renderMenthaLocalityWidget() {
 
   container.innerHTML = html;
 
-  // Update Hero Stat with Live Rate
   const statMentha = document.getElementById("statActiveMentha");
-  if (statMentha) statMentha.innerText = `₹1,215.50/Kg`;
+  if (statMentha && MENTHA_LOCALITY_RATES[0]) {
+    statMentha.innerText = `₹${MENTHA_LOCALITY_RATES[0].modalPriceKg.toFixed(2)}/Kg`;
+  }
 }
 
 // Multilingual Voice Search
@@ -567,7 +589,7 @@ async function fetchFromBackend() {
         const dataDeals = await resDeals.json();
         if (dataDeals.success) sealedDeals = dataDeals.data;
 
-        console.log("⚡ Connected to KrishiDeal Express REST API (ET/MCX Rates)!");
+        console.log("⚡ Connected to KrishiDeal Express REST API!");
         return;
       }
     }
@@ -831,7 +853,7 @@ function calculateQualityScore() {
   if (score >= 90) grade = "Grade A+ (Export Pure)";
   else if (score >= 78) grade = "Grade A (Mandi Standard)";
 
-  let basePrice = 1215.50; // Live ET MCX rate for Mentha Oil
+  let basePrice = MENTHA_LOCALITY_RATES[0] ? MENTHA_LOCALITY_RATES[0].modalPriceKg : 1215.50;
   let unitLabel = "Kg";
 
   if (crop === "Wheat") { basePrice = 4650; unitLabel = "Quintal"; }
