@@ -1,5 +1,5 @@
 /* ==========================================================================
-   KrishiDeal - Direct Farmer Platform (v2.4.0 Background MCX Engine & Local Options)
+   KrishiDeal - Direct Farmer Platform (v2.5.0 All 75 UP Districts Support)
    ========================================================================== */
 
 const API_BASE_URL = "http://localhost:5000/api";
@@ -10,8 +10,8 @@ const INITIAL_SAMPLES = [
     title: "Pure Shivalik Mentha Oil (81%+ L-Menthol)",
     category: "Mentha Oil",
     variety: "Shivalik Steam Distilled Mentha Oil",
-    quantity: 45, // Kg / Drums
-    reservePrice: 1208, // Calculated from MCX Live benchmark minus local Sambhal spread
+    quantity: 45,
+    reservePrice: 1208,
     moisture: 0.4,
     purity: 81.5,
     grade: "Grade A+ (Export Pure)",
@@ -93,10 +93,10 @@ let backgroundMcxEngine = {
 };
 
 let MENTHA_LOCALITY_RATES = [
-  { mandi: "Sambhal APMC Mandi", district: "Sambhal", state: "Uttar Pradesh", modalPriceKg: 1208.00, minPriceKg: 1195.00, maxPriceKg: 1222.00, trend: "+2.45%", source: "APMC Sambhal Mandi Register (Derived from MCX Live Feed)", status: "Primary Locality Trading Belt" },
-  { mandi: "Barabanki Mint Market", district: "Barabanki", state: "Uttar Pradesh", modalPriceKg: 1198.00, minPriceKg: 1180.00, maxPriceKg: 1215.00, trend: "+2.45%", source: "Barabanki Essential Oils Exchange (ex-Barabanki)", status: "Primary Distillation Hub" },
-  { mandi: "Chandausi Grain & Oil Mandi", district: "Sambhal", state: "Uttar Pradesh", modalPriceKg: 1212.00, minPriceKg: 1198.00, maxPriceKg: 1226.00, trend: "+2.45%", source: "APMC Chandausi Yard Register", status: "Major Export Yard" },
-  { mandi: "Rampur Mandi Yard", district: "Rampur", state: "Uttar Pradesh", modalPriceKg: 1192.00, minPriceKg: 1175.00, maxPriceKg: 1205.00, trend: "+2.45%", source: "Rampur Mandi Committee Register", status: "Regional Mandi Yard" }
+  { mandi: "Sambhal APMC Mandi", district: "Sambhal", state: "Uttar Pradesh", modalPriceKg: 1208.00, minPriceKg: 1195.00, maxPriceKg: 1222.00, trend: "+2.45%", source: "APMC Sambhal Mandi Register (Derived from MCX Live Feed)", status: "Primary Mentha Belt" },
+  { mandi: "Barabanki Mint Market", district: "Barabanki", state: "Uttar Pradesh", modalPriceKg: 1198.00, minPriceKg: 1180.00, maxPriceKg: 1215.00, trend: "+2.45%", source: "Barabanki Essential Oils Exchange", status: "Primary Distillation Hub" },
+  { mandi: "Chandausi Export Mandi", district: "Chandausi", state: "Uttar Pradesh", modalPriceKg: 1212.00, minPriceKg: 1198.00, maxPriceKg: 1226.00, trend: "+2.45%", source: "APMC Chandausi Register", status: "Major Mentha Export Yard" },
+  { mandi: "Rampur Mandi Yard", district: "Rampur", state: "Uttar Pradesh", modalPriceKg: 1192.00, minPriceKg: 1175.00, maxPriceKg: 1205.00, trend: "+2.45%", source: "Rampur Mandi Committee", status: "Regional Distillation Yard" }
 ];
 
 let MANDI_RATES = [
@@ -136,7 +136,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 async function fetchLiveMenthaRateFromBackend() {
   try {
-    const res = await fetch(`${API_BASE_URL}/mentha/rates`);
+    const selectEl = document.getElementById("menthaLocalitySelect");
+    const selectedDist = selectEl ? selectEl.value : "Sambhal";
+    
+    const res = await fetch(`${API_BASE_URL}/mentha/rates?district=${selectedDist}`);
     if (res.ok) {
       const data = await res.json();
       if (data.success) {
@@ -261,7 +264,7 @@ async function handleLogin(e) {
     } else if (identifier === "9123456789" || identifier === "trader@barabankimentha.com") {
       currentUser = { id: "USR-102", name: "Barabanki Essential Oils & Distillers", phone: "9123456789", role: "buyer", location: "Barabanki Mandi, UP", verified: true, gstin: "09AABCB5512K1ZN" };
     } else {
-      currentUser = { id: "USR-" + Date.now(), name: identifier.split('@')[0], phone: identifier, role: "farmer", location: "India", verified: true };
+      currentUser = { id: "USR-" + Date.now(), name: identifier.split('@')[0], phone: identifier, role: "farmer", location: "Uttar Pradesh", verified: true };
     }
   }
 
@@ -333,8 +336,8 @@ function handleSignOut() {
   showToast("You have signed out of KrishiDeal.");
 }
 
-// RENDER SPECIAL MENTHA OIL LOCAL DISTRICT OPTIONS (Driven by background MCX Live Feed)
-function renderMenthaLocalityWidget() {
+// RENDER ALL 75 UP DISTRICT LOCALITY PRICES (Driven by background MCX Live Feed)
+async function renderMenthaLocalityWidget() {
   const selectEl = document.getElementById("menthaLocalitySelect");
   const container = document.getElementById("menthaLocalityGrid");
   const engineTag = document.getElementById("mcxEngineStatusTag");
@@ -345,15 +348,31 @@ function renderMenthaLocalityWidget() {
   }
 
   const selectedLocality = selectEl.value;
+
+  if (isBackendConnected) {
+    try {
+      const res = await fetch(`${API_BASE_URL}/mentha/rates?district=${selectedLocality}`);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.success && data.allLocalMandis) {
+          MENTHA_LOCALITY_RATES = data.allLocalMandis;
+        }
+      }
+    } catch (e) {
+      console.log("Locality fetch fallback active.");
+    }
+  }
   
   const sorted = [...MENTHA_LOCALITY_RATES].sort((a, b) => {
-    if (a.mandi.toLowerCase().includes(selectedLocality.toLowerCase())) return -1;
-    if (b.mandi.toLowerCase().includes(selectedLocality.toLowerCase())) return 1;
+    if (a.district.toLowerCase() === selectedLocality.toLowerCase()) return -1;
+    if (b.district.toLowerCase() === selectedLocality.toLowerCase()) return 1;
     return 0;
   });
 
+  const displayList = sorted.slice(0, 4);
+
   let html = "";
-  sorted.forEach((item, idx) => {
+  displayList.forEach((item, idx) => {
     const isPrimary = idx === 0;
 
     html += `
@@ -361,12 +380,12 @@ function renderMenthaLocalityWidget() {
         <div>
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
             <span style="font-size: 0.72rem; font-weight: 800; background: ${isPrimary ? '#16A34A' : '#1E2D4A'}; color: white; padding: 2px 8px; border-radius: 99px;">
-              ${isPrimary ? '📍 LOCAL DISTRICT PRIMARY' : '🏛️ REGIONAL MANDI'}
+              ${isPrimary ? '📍 SELECTED UP DISTRICT' : '🏛️ REGIONAL MANDI'}
             </span>
             <span style="font-size: 0.75rem; color: #4ADE80; font-weight: 700;">${item.trend} ▲</span>
           </div>
           <h4 style="font-size: 1.08rem; font-weight: 800; margin-top: 4px;">${item.mandi}</h4>
-          <span style="font-size: 0.75rem; opacity: 0.85;">${item.district}, ${item.state}</span>
+          <span style="font-size: 0.75rem; opacity: 0.85;">District: ${item.district}, UP</span>
         </div>
 
         <div style="margin-top: 12px; border-top: 1px dashed rgba(255,255,255,0.2); padding-top: 8px;">
@@ -381,8 +400,8 @@ function renderMenthaLocalityWidget() {
   container.innerHTML = html;
 
   const statMentha = document.getElementById("statActiveMentha");
-  if (statMentha && sorted[0]) {
-    statMentha.innerText = `₹${sorted[0].modalPriceKg.toFixed(2)}/Kg`;
+  if (statMentha && displayList[0]) {
+    statMentha.innerText = `₹${displayList[0].modalPriceKg.toFixed(2)}/Kg`;
   }
 }
 
@@ -428,7 +447,7 @@ function simulateVoiceSearch() {
   voiceBtn.innerText = "🎙️ Listening...";
 
   setTimeout(() => {
-    const samplesVoice = ["Mentha Oil", "Sambhal Mentha", "Sharbati Wheat", "Basmati Rice"];
+    const samplesVoice = ["Mentha Oil", "Sambhal Mentha", "Barabanki Mentha", "Sharbati Wheat"];
     const randomCrop = samplesVoice[Math.floor(Math.random() * samplesVoice.length)];
     searchInput.value = randomCrop;
     voiceBtn.classList.remove("listening");
