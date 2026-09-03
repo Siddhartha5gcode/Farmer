@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KrishiDeal - All 75 UP Districts Mentha Oil & Commodity Platform</title>
-  <meta name="description" content="Direct agricultural dealing platform for Mentha Oil (Essential Oil), Wheat, Basmati Rice across all 75 Uttar Pradesh districts. Real-time Mentha mandi prices powered by background MCX live feeds.">
+  <title>KrishiDeal - Native Language Mentha & Farmer Commodity Platform</title>
+  <meta name="description" content="Direct agricultural dealing platform for Mentha Oil (Essential Oil), Wheat, Basmati Rice across all 75 Uttar Pradesh districts. Real-time Mentha mandi prices with native language support.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -23,24 +23,35 @@
         <div class="brand-icon">🌿</div>
         <div class="brand-text">
           <h1>KrishiDeal</h1>
-          <span>All 75 UP Districts Platform</span>
+          <span id="txtBrandSubtitle">All 75 UP Districts Platform</span>
         </div>
       </div>
 
       <!-- Role Switcher (Farmer vs Buyer) -->
       <div class="role-switcher-container">
         <button id="farmerRoleBtn" class="role-btn active" onclick="setRole('farmer')">
-          <span>🧑‍🌾</span> Farmer (Seller)
+          <span>🧑‍🌾</span> <span id="txtRoleFarmer">Farmer (Seller)</span>
         </button>
         <button id="buyerRoleBtn" class="role-btn" onclick="setRole('buyer')">
-          <span>🏢</span> Buyer / Mandi Trader
+          <span>🏢</span> <span id="txtRoleBuyer">Buyer / Mandi Trader</span>
         </button>
       </div>
 
-      <!-- Nav Actions -->
+      <!-- Nav Actions & Native Language Selector -->
       <div class="nav-actions">
+        <!-- NATIVE LANGUAGE SELECTOR DROPDOWN -->
+        <div style="display: flex; align-items: center; gap: 6px; background: var(--bg-subtle); padding: 4px 10px; border-radius: var(--radius-full); border: 1px solid var(--border-color);" title="Change Native Language">
+          <span style="font-size: 1rem;">🌐</span>
+          <select id="languageSelect" onchange="changeLanguage(this.value)" style="background: transparent; border: none; font-size: 0.85rem; font-weight: 700; color: var(--text-main); cursor: pointer; outline: none;">
+            <option value="hi" selected>🇮🇳 हिंदी (Hindi)</option>
+            <option value="en">🇬🇧 English</option>
+            <option value="pa">🌾 ਪੰਜਾਬੀ (Punjabi)</option>
+            <option value="gu">🌻 ગુજરાતી (Gujarati)</option>
+          </select>
+        </div>
+
         <button class="btn-secondary" onclick="openSmsLogsModal()" title="View SMS & WhatsApp Alerts">
-          📱 Trade SMS (<span id="smsBadgeCount">2</span>)
+          📱 <span id="txtSmsAlertsBtn">Trade SMS</span> (<span id="smsBadgeCount">2</span>)
         </button>
 
         <div id="authNavContainer">
@@ -54,7 +65,7 @@
         </button>
 
         <button class="post-sample-btn" id="actionBtn" onclick="openPostSampleModal()">
-          <span>➕</span> Post Produce Sample
+          <span>➕</span> <span id="txtPostBtn">Post Produce Sample</span>
         </button>
       </div>
     </div>
@@ -67,21 +78,21 @@
     <section class="hero-banner" id="heroBanner">
       <div class="hero-content">
         <div class="hero-text">
-          <h2 id="heroTitle">Mentha Oil & Crop Direct Dealing Across All 75 UP Districts 🌿🏡</h2>
-          <p id="heroSubtitle">Connect with verified Essential Oil exporters, APMC Mandi buyers, and Flour Mills. Select any of UP's 75 districts for live Mandi prices calculated dynamically from background MCX live feeds.</p>
+          <h2 id="heroTitle">मेंटहा तेल और फसल सीधा व्यापार (उत्तर प्रदेश के सभी 75 जिले) 🌿🏡</h2>
+          <p id="heroSubtitle">सत्यापित सुगंधित तेल निर्यातकों, मंडी व्यापारियों और आटा मिलों से सीधे जुड़ें। अपने जिले (संभल, बाराबंकी, चंदौसी) के लाइव मेंटहा मंडी भाव देखें।</p>
         </div>
         <div class="hero-stats">
           <div class="hero-stat-card">
             <div class="hero-stat-num" id="statActiveSamples">28</div>
-            <div class="hero-stat-label">Active Samples</div>
+            <div class="hero-stat-label" id="txtStatActive">सक्रिय नमूने</div>
           </div>
           <div class="hero-stat-card">
             <div class="hero-stat-num" id="statActiveMentha">₹1,208/Kg</div>
-            <div class="hero-stat-label">Local Mentha Rate</div>
+            <div class="hero-stat-label" id="txtStatRate">स्थानीय मेंटहा रेट</div>
           </div>
           <div class="hero-stat-card">
             <div class="hero-stat-num">75 UP Mandis</div>
-            <div class="hero-stat-label">Districts Coverage</div>
+            <div class="hero-stat-label" id="txtStatDistricts">75 जिले कवरेज</div>
           </div>
         </div>
       </div>
@@ -95,105 +106,105 @@
         <div style="display: flex; align-items: center; gap: 12px;">
           <span style="font-size: 2.2rem;">🌿</span>
           <div>
-            <h3 style="font-size: 1.25rem; font-weight: 800;">All 75 Uttar Pradesh District Mandi Prices</h3>
-            <p style="font-size: 0.85rem; opacity: 0.9;">Real-time mandi rates calculated dynamically for your district.</p>
+            <h3 style="font-size: 1.25rem; font-weight: 800;" id="txtWidgetTitle">उत्तर प्रदेश के सभी 75 जिलों के मंडी भाव</h3>
+            <p style="font-size: 0.85rem; opacity: 0.9;" id="txtWidgetSub">लाइव एमसीएक्स (MCX) भाव के आधार पर आपके जिले का सीधा मंडी रेट।</p>
           </div>
         </div>
 
         <!-- All 75 UP Districts Selector Dropdown -->
         <div style="display: flex; align-items: center; gap: 10px;">
-          <span style="font-size: 0.85rem; font-weight: 700;">📍 Select UP District:</span>
+          <span style="font-size: 0.85rem; font-weight: 700;" id="txtSelectDistrictLabel">📍 अपना जिला चुनें:</span>
           <select id="menthaLocalitySelect" class="filter-select" onchange="renderMenthaLocalityWidget()" style="background: #092B22; color: #4ADE80; font-weight: 700; border-color: #144738; max-width: 280px;">
-            <optgroup label="⭐ Primary Mentha Distillation Belt">
-              <option value="Sambhal" selected>Sambhal Mandi (Primary Hub)</option>
-              <option value="Barabanki">Barabanki Mint Market</option>
-              <option value="Chandausi">Chandausi Export Mandi</option>
-              <option value="Rampur">Rampur Mandi Yard</option>
-              <option value="Badaun">Badaun Grain & Mint Mandi</option>
-              <option value="Moradabad">Moradabad APMC Mandi</option>
-              <option value="Bareilly">Bareilly Grain Market</option>
-              <option value="Shahjahanpur">Shahjahanpur Mandi Samiti</option>
-              <option value="Sitapur">Sitapur Mint Yard</option>
-              <option value="Lakhimpur Kheri">Lakhimpur Kheri Mandi</option>
-              <option value="Hardoi">Hardoi Grain & Mint Mandi</option>
-              <option value="Pilibhit">Pilibhit Mandi Yard</option>
-              <option value="Bijnor">Bijnor Essential Oil Yard</option>
+            <optgroup label="⭐ मुख्य मेंटहा उत्पादक क्षेत्र">
+              <option value="Sambhal" selected>संभल मंडी (मुख्य केंद्र)</option>
+              <option value="Barabanki">बाराबंकी मिंट मार्केट</option>
+              <option value="Chandausi">चंदौसी निर्यात मंडी</option>
+              <option value="Rampur">रामपुर मंडी यार्ड</option>
+              <option value="Badaun">बदायूं अनाज एवं तेल मंडी</option>
+              <option value="Moradabad">मुरादाबाद एपीएमसी मंडी</option>
+              <option value="Bareilly">बरेली गल्ला मंडी</option>
+              <option value="Shahjahanpur">शाहजहाँपुर मंडी समिति</option>
+              <option value="Sitapur">सीतापुर मिंट यार्ड</option>
+              <option value="Lakhimpur Kheri">लखीमपुर खीरी मंडी</option>
+              <option value="Hardoi">हरदोई मंडी समिति</option>
+              <option value="Pilibhit">पीलीभीत मंडी यार्ड</option>
+              <option value="Bijnor">बिजनौर तेल यार्ड</option>
             </optgroup>
 
-            <optgroup label="🏢 Central & NCR UP Districts">
-              <option value="Lucknow">Lucknow Dubagga Mandi</option>
-              <option value="Kanpur Nagar">Kanpur APMC Yard</option>
-              <option value="Agra">Agra APMC Mandi</option>
-              <option value="Aligarh">Aligarh APMC Yard</option>
-              <option value="Baghpat">Baghpat Mandi Samiti</option>
-              <option value="Bulandshahr">Bulandshahr APMC Mandi</option>
-              <option value="Gautam Buddha Nagar">Noida / Dadri Mandi</option>
-              <option value="Ghaziabad">Ghaziabad APMC Mandi</option>
-              <option value="Hapur">Hapur Grain & Oil Market</option>
-              <option value="Mathura">Mathura APMC Mandi</option>
-              <option value="Meerut">Meerut APMC Yard</option>
-              <option value="Muzaffarnagar">Muzaffarnagar Mandi</option>
-              <option value="Saharanpur">Saharanpur Mandi Yard</option>
-              <option value="Shamli">Shamli APMC Mandi</option>
-              <option value="Kannauj">Kannauj Perfume & Mint Mandi</option>
-              <option value="Farrukhabad">Farrukhabad Potato & Mint</option>
-              <option value="Unnao">Unnao APMC Mandi</option>
-              <option value="Ayodhya">Ayodhya APMC Mandi</option>
-              <option value="Rae Bareli">Rae Bareli APMC Yard</option>
-              <option value="Amethi">Amethi Gauriganj Mandi</option>
-              <option value="Sultanpur">Sultanpur Mandi Samiti</option>
+            <optgroup label="🏢 मध्य एवं एनसीआर यूपी">
+              <option value="Lucknow">लखनऊ दुबग्गा मंडी</option>
+              <option value="Kanpur Nagar">कानपुर एपीएमसी यार्ड</option>
+              <option value="Agra">आगरा एपीएमसी मंडी</option>
+              <option value="Aligarh">अलीगढ़ एपीएमसी यार्ड</option>
+              <option value="Baghpat">बागपत मंडी समिति</option>
+              <option value="Bulandshahr">बुलंदशहर एपीएमसी मंडी</option>
+              <option value="Gautam Buddha Nagar">नोएडा / दादरी मंडी</option>
+              <option value="Ghaziabad">गाजियाबाद एपीएमसी मंडी</option>
+              <option value="Hapur">हापुड़ गल्ला मंडी</option>
+              <option value="Mathura">मथुरा एपीएमसी मंडी</option>
+              <option value="Meerut">मेरठ एपीएमसी यार्ड</option>
+              <option value="Muzaffarnagar">मुजफ्फरनगर मंडी</option>
+              <option value="Saharanpur">सहारनपुर मंडी यार्ड</option>
+              <option value="Shamli">शामली एपीएमसी मंडी</option>
+              <option value="Kannauj">कन्नौज इत्र एवं मिंट मंडी</option>
+              <option value="Farrukhabad">फर्रुखाबाद मंडी</option>
+              <option value="Unnao">उन्नाव एपीएमसी मंडी</option>
+              <option value="Ayodhya">अयोध्या एपीएमसी मंडी</option>
+              <option value="Rae Bareli">रायबरेली एपीएमसी यार्ड</option>
+              <option value="Amethi">अमेठी गौरीगंज मंडी</option>
+              <option value="Sultanpur">सुल्तानपुर मंडी समिति</option>
             </optgroup>
 
-            <optgroup label="🏛️ Eastern UP & Purvanchal">
-              <option value="Varanasi">Varanasi APMC Mandi</option>
-              <option value="Prayagraj">Prayagraj Mundera Mandi</option>
-              <option value="Gorakhpur">Gorakhpur APMC Yard</option>
-              <option value="Azamgarh">Azamgarh Mandi Samiti</option>
-              <option value="Ballia">Ballia APMC Mandi</option>
-              <option value="Basti">Basti APMC Mandi</option>
-              <option value="Deoria">Deoria APMC Yard</option>
-              <option value="Ghazipur">Ghazipur APMC Mandi</option>
-              <option value="Jaunpur">Jaunpur APMC Mandi</option>
-              <option value="Kushinagar">Kushinagar Kasia Mandi</option>
-              <option value="Maharajganj">Maharajganj APMC Mandi</option>
-              <option value="Mau">Mau APMC Mandi</option>
-              <option value="Mirzapur">Mirzapur APMC Mandi</option>
-              <option value="Pratapgarh">Pratapgarh APMC Mandi</option>
-              <option value="Sant Kabir Nagar">Khalilabad APMC Mandi</option>
-              <option value="Siddharthnagar">Siddharthnagar Naugarh</option>
-              <option value="Bhadohi">Bhadohi APMC Yard</option>
-              <option value="Chandauli">Chandauli APMC Mandi</option>
-              <option value="Sonbhadra">Sonbhadra Robertsganj</option>
+            <optgroup label="🏛️ पूर्वांचल (पूर्वी उत्तर प्रदेश)">
+              <option value="Varanasi">वाराणसी एपीएमसी मंडी</option>
+              <option value="Prayagraj">प्रयागराज मुंडेरा मंडी</option>
+              <option value="Gorakhpur">गोरखपुर एपीएमसी यार्ड</option>
+              <option value="Azamgarh">आजमगढ़ मंडी समिति</option>
+              <option value="Ballia">बलिया एपीएमसी मंडी</option>
+              <option value="Basti">बस्ती एपीएमसी मंडी</option>
+              <option value="Deoria">देवरिया एपीएमसी यार्ड</option>
+              <option value="Ghazipur">गाजीपुर एपीएमसी मंडी</option>
+              <option value="Jaunpur">जौनपुर एपीएमसी मंडी</option>
+              <option value="Kushinagar">कुशीनगर कसिया मंडी</option>
+              <option value="Maharajganj">महाराजगंज एपीएमसी मंडी</option>
+              <option value="Mau">मऊ एपीएमसी मंडी</option>
+              <option value="Mirzapur">मिर्जापुर एपीएमसी मंडी</option>
+              <option value="Pratapgarh">प्रतापगढ़ एपीएमसी मंडी</option>
+              <option value="Sant Kabir Nagar">खलीलाबाद एपीएमसी मंडी</option>
+              <option value="Siddharthnagar">सिद्धार्थनगर नौगढ़ मंडी</option>
+              <option value="Bhadohi">भदोही एपीएमसी यार्ड</option>
+              <option value="Chandauli">चंदौली एपीएमसी मंडी</option>
+              <option value="Sonbhadra">सोनभद्र रॉबर्ट्सगंज मंडी</option>
             </optgroup>
 
-            <optgroup label="🌾 Terai & Devipatan Zone">
-              <option value="Bahraich">Bahraich APMC Mandi</option>
-              <option value="Balrampur">Balrampur APMC Mandi</option>
-              <option value="Gonda">Gonda APMC Mandi</option>
-              <option value="Shravasti">Shravasti Bhinaga Mandi</option>
+            <optgroup label="🌾 तराई एवं देवीपाटन मंडल">
+              <option value="Bahraich">बहराइच एपीएमसी मंडी</option>
+              <option value="Balrampur">बलरामपुर एपीएमसी मंडी</option>
+              <option value="Gonda">गोंडा एपीएमसी मंडी</option>
+              <option value="Shravasti">श्रावस्ती भिनगा मंडी</option>
             </optgroup>
 
-            <optgroup label="🌄 Bundelkhand Zone">
-              <option value="Jhansi">Jhansi APMC Mandi</option>
-              <option value="Banda">Banda APMC Mandi</option>
-              <option value="Chitrakoot">Chitrakoot Karwi Mandi</option>
-              <option value="Hamirpur">Hamirpur APMC Mandi</option>
-              <option value="Jalaun">Jalaun Orai Mandi</option>
-              <option value="Lalitpur">Lalitpur APMC Mandi</option>
-              <option value="Mahoba">Mahoba APMC Mandi</option>
+            <optgroup label="🌄 बुंदेलखंड अंचल">
+              <option value="Jhansi">झांसी एपीएमसी मंडी</option>
+              <option value="Banda">बांदा एपीएमसी मंडी</option>
+              <option value="Chitrakoot">चित्रकूट कर्वी मंडी</option>
+              <option value="Hamirpur">हमीरपुर एपीएमसी मंडी</option>
+              <option value="Jalaun">जालौन उरई मंडी</option>
+              <option value="Lalitpur">ललितपुर एपीएमसी मंडी</option>
+              <option value="Mahoba">महोबा एपीएमसी मंडी</option>
             </optgroup>
 
-            <optgroup label="🏞️ Other UP Districts">
-              <option value="Amroha">Amroha APMC Mandi</option>
-              <option value="Fatehpur">Fatehpur APMC Mandi</option>
-              <option value="Kaushambi">Kaushambi Mandi</option>
-              <option value="Etah">Etah APMC Mandi</option>
-              <option value="Etawah">Etawah APMC Mandi</option>
-              <option value="Kasganj">Kasganj APMC Mandi</option>
-              <option value="Mainpuri">Mainpuri APMC Mandi</option>
-              <option value="Firozabad">Firozabad APMC Mandi</option>
-              <option value="Kanpur Dehat">Kanpur Dehat Mandi</option>
-              <option value="Auraiya">Auraiya APMC Yard</option>
+            <optgroup label="🏞️ अन्य जिले">
+              <option value="Amroha">अमरोहा एपीएमसी मंडी</option>
+              <option value="Fatehpur">फतेहपुर एपीएमसी मंडी</option>
+              <option value="Kaushambi">कौशांबी मंडी</option>
+              <option value="Etah">एटा एपीएमसी मंडी</option>
+              <option value="Etawah">इटावा एपीएमसी मंडी</option>
+              <option value="Kasganj">कासगंज एपीएमसी मंडी</option>
+              <option value="Mainpuri">मैनपुरी एपीएमसी मंडी</option>
+              <option value="Firozabad">फिरोजाबाद एपीएमसी मंडी</option>
+              <option value="Kanpur Dehat">कानपुर देहात मंडी</option>
+              <option value="Auraiya">औरैया एपीएमसी यार्ड</option>
             </optgroup>
           </select>
         </div>
@@ -203,11 +214,11 @@
       <div style="background: rgba(0, 0, 0, 0.25); border: 1px dashed rgba(74, 222, 128, 0.4); border-radius: var(--radius-sm); padding: 10px 16px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
         <div style="display: flex; align-items: center; gap: 8px; font-size: 0.82rem;">
           <span style="display: inline-block; width: 8px; height: 8px; background: #4ADE80; border-radius: 50%; box-shadow: 0 0 8px #4ADE80;"></span>
-          <strong>BACKGROUND REFERENCE ENGINE:</strong>
-          <span style="opacity: 0.9;">Economic Times / MCX Futures Live Feed (`symbol: MENTHAOIL`)</span>
+          <strong id="txtMcxLabel">बैकग्राउंड लाइव इंजन:</strong>
+          <span style="opacity: 0.9;" id="txtMcxSub">इकोनॉमिक टाइम्स / MCX वायदा बाजार (MENTHAOIL)</span>
         </div>
         <div style="font-size: 0.85rem; font-weight: 800; color: #4ADE80;" id="mcxEngineStatusTag">
-          MCX Benchmark: ₹1,215.50 / Kg (+2.45% ▲)
+          MCX बेंचमार्क: ₹1,215.50 / Kg (+2.45% ▲)
         </div>
       </div>
 
@@ -223,44 +234,44 @@
         <div style="display: flex; align-items: center; gap: 10px;">
           <span style="font-size: 1.8rem;">🌤️</span>
           <div>
-            <h4 style="font-size: 1rem; color: var(--primary);">7-Day Harvest Weather & Mentha Distillation Moisture Advisory</h4>
-            <span style="font-size: 0.8rem; color: var(--text-muted);">Region: UP Mentha Belt (Sambhal & Barabanki) | Updated Live</span>
+            <h4 style="font-size: 1rem; color: var(--primary);" id="txtWeatherTitle">7-दिवसीय मौसम एवं मेंटहा पेराई (आसवन) नमी सलाह</h4>
+            <span style="font-size: 0.8rem; color: var(--text-muted);" id="txtWeatherRegion">क्षेत्र: उत्तर प्रदेश मेंटहा बेल्ट (संभल व बाराबंकी) | लाइव अपडेट</span>
           </div>
         </div>
-        <div class="weather-badge-safe">
-          ✅ Optimal Steam Distillation Window
+        <div class="weather-badge-safe" id="txtWeatherStatus">
+          ✅ भाप आसवन पेराई हेतु उत्तम मौसम
         </div>
       </div>
       <div class="weather-forecast-row">
         <div class="weather-day-card">
-          <span class="day-name">Thu (Today)</span>
+          <span class="day-name">गुरुवार (आज)</span>
           <span class="day-icon">☀️</span>
           <span class="day-temp">31°C / 18°C</span>
-          <span class="day-risk text-safe">Dry • 0% Rain</span>
+          <span class="day-risk text-safe">शुष्क • 0% बारिश</span>
         </div>
         <div class="weather-day-card">
-          <span class="day-name">Fri</span>
+          <span class="day-name">शुक्रवार</span>
           <span class="day-icon">🌤️</span>
           <span class="day-temp">30°C / 19°C</span>
-          <span class="day-risk text-safe">Sunny • 5% Rain</span>
+          <span class="day-risk text-safe">धूप • 5% बारिश</span>
         </div>
         <div class="weather-day-card">
-          <span class="day-name">Sat</span>
+          <span class="day-name">शनिवार</span>
           <span class="day-icon">⛅</span>
           <span class="day-temp">29°C / 18°C</span>
-          <span class="day-risk text-warn">Cover Drum • 20% Rain</span>
+          <span class="day-risk text-warn">ड्रम ढकें • 20% बारिश</span>
         </div>
         <div class="weather-day-card">
-          <span class="day-name">Sun</span>
+          <span class="day-name">रविवार</span>
           <span class="day-icon">🌧️</span>
           <span class="day-temp">27°C / 17°C</span>
-          <span class="day-risk text-danger">⚠️ Light Rain Alert</span>
+          <span class="day-risk text-danger">⚠️ हल्की बारिश चेतावनी</span>
         </div>
         <div class="weather-day-card">
-          <span class="day-name">Mon</span>
+          <span class="day-name">सोमवार</span>
           <span class="day-icon">☀️</span>
           <span class="day-temp">32°C / 18°C</span>
-          <span class="day-risk text-safe">Clear Sky</span>
+          <span class="day-risk text-safe">साफ आसमान</span>
         </div>
       </div>
     </section>
@@ -269,28 +280,28 @@
     <section class="filter-toolbar">
       <div class="search-box">
         <span class="search-icon">🔍</span>
-        <input type="text" id="searchInput" placeholder="Search crops (e.g. Mentha Oil, Sharbati Wheat, Sambhal)..." oninput="renderApp()">
-        <button class="voice-search-btn" id="voiceSearchBtn" onclick="startVoiceRecognition()" title="Click to Speak Search in Hindi / English">
-          🎙️ Speak
+        <input type="text" id="searchInput" placeholder="फसल खोजें (उदा. मेंटहा तेल, शरबाती गेहूं, संभल)..." oninput="renderApp()">
+        <button class="voice-search-btn" id="voiceSearchBtn" onclick="startVoiceRecognition()" title="हिंदी या अंग्रेजी में बोलकर खोजें">
+          🎙️ <span id="txtVoiceBtn">बोलकर खोजें</span>
         </button>
       </div>
 
       <div class="filter-group">
         <select class="filter-select" id="cropFilter" onchange="renderApp()">
-          <option value="all">🌾 All Produce Categories</option>
-          <option value="Mentha Oil">🌿 Mentha Oil (Menthol)</option>
-          <option value="Wheat">🌾 Wheat / Grains</option>
-          <option value="Rice">🍚 Paddy & Rice</option>
-          <option value="Cotton">☁️ Cotton Bales</option>
-          <option value="Soybean">🫘 Soybeans & Pulses</option>
-          <option value="Apples">🍎 Cold Storage Apples</option>
+          <option value="all">🌾 सभी फसल श्रेणियां</option>
+          <option value="Mentha Oil">🌿 मेंटहा तेल (Menthol)</option>
+          <option value="Wheat">🌾 गेहूं (Wheat Grains)</option>
+          <option value="Rice">🍚 बासमती चावल (Rice)</option>
+          <option value="Cotton">☁️ कपास (Cotton)</option>
+          <option value="Soybean">🫘 सोयाबीन (Soybean)</option>
+          <option value="Apples">🍎 कोल्ड स्टोरेज सेब</option>
         </select>
 
         <select class="filter-select" id="gradeFilter" onchange="renderApp()">
-          <option value="all">⭐ All Quality Grades</option>
-          <option value="Grade A+">Grade A+ (Export / Pure L-Menthol)</option>
-          <option value="Grade A">Grade A (Standard Mandi)</option>
-          <option value="Grade B">Grade B (Processing Bulk)</option>
+          <option value="all">⭐ सभी गुणवत्ता ग्रेड</option>
+          <option value="Grade A+">ग्रेड A+ (निर्यात शुद्ध एल-मेंटॉल)</option>
+          <option value="Grade A">ग्रेड A (मानक मंडी)</option>
+          <option value="Grade B">Grade B (प्रसंस्करण)</option>
         </select>
       </div>
     </section>
@@ -298,22 +309,22 @@
     <!-- Main Navigation Tabs -->
     <nav class="section-tabs">
       <button class="tab-btn active" id="tabSamples" onclick="switchTab('samples')">
-        🌾 Crop Samples & Bids
+        🌾 <span id="tabLabelSamples">फसल नमूने व बोलियां</span>
       </button>
       <button class="tab-btn" id="tabMandi" onclick="switchTab('mandi')">
-        📊 Live Mandi & Mentha Rates
+        📊 <span id="tabLabelMandi">लाइव मंडी भाव</span>
       </button>
       <button class="tab-btn" id="tabLogistics" onclick="switchTab('logistics')">
-        🚛 Logistics Freight Estimator
+        🚛 <span id="tabLabelLogistics">भाड़ा कैलकुलेटर</span>
       </button>
       <button class="tab-btn" id="tabColdstorage" onclick="switchTab('coldstorage')">
-        🧊 Cold Storage Booking
+        🧊 <span id="tabLabelCold">कोल्ड स्टोरेज बुकिंग</span>
       </button>
       <button class="tab-btn" id="tabQuality" onclick="switchTab('quality')">
-        🧪 AI Quality Estimator
+        🧪 <span id="tabLabelQuality">गुणवत्ता जांच (AI)</span>
       </button>
       <button class="tab-btn" id="tabDeals" onclick="switchTab('deals')">
-        📜 Sealed Deals & Escrow
+        📜 <span id="tabLabelDeals">पक्के सौदे एवं एस्क्रो</span>
       </button>
     </nav>
 
@@ -327,19 +338,19 @@
     <!-- TAB 2: Live Mandi & Mentha Rates -->
     <section id="viewMandi" class="tab-view" style="display: none;">
       <div class="section-card">
-        <h3 class="section-title">📊 Live Mandi Rates across all 75 UP Districts</h3>
-        <p class="section-subtitle">Compare live market rates across major APMC Mandis, Sambhal/Barabanki essential oil hubs, and MCX Futures.</p>
+        <h3 class="section-title" id="txtMandiTabTitle">📊 उत्तर प्रदेश के सभी 75 जिलों के मंडी भाव</h3>
+        <p class="section-subtitle" id="txtMandiTabSub">विभिन्न एपीएमसी मंडियों, संभल व बाराबंकी सुगंधित तेल बाजारों और एमसीएक्स (MCX) के रेट की तुलना करें।</p>
         <div class="mandi-table-wrap">
           <table class="custom-table">
             <thead>
               <tr>
-                <th>Mandi / Exchange</th>
-                <th>State</th>
-                <th>Crop Variety</th>
-                <th>Min Rate</th>
-                <th>Max Rate</th>
-                <th>Modal Price</th>
-                <th>24h Trend</th>
+                <th>मंडी / बाजार</th>
+                <th>राज्य</th>
+                <th>फसल किस्म</th>
+                <th>न्यूनतम भाव</th>
+                <th>अधिकतम भाव</th>
+                <th>मॉडल (औसत) रेट</th>
+                <th>24h रुझान</th>
               </tr>
             </thead>
             <tbody id="mandiTableBody">
@@ -353,24 +364,24 @@
     <!-- TAB 3: Logistics Estimator -->
     <section id="viewLogistics" class="tab-view" style="display: none;">
       <div class="section-card">
-        <h3 class="section-title">🚛 Doorstep Truck Freight & Logistics Calculator</h3>
-        <p class="section-subtitle">Estimate transport costs for shipping grain samples or Mentha oil drums directly from farm gate to buyer godown.</p>
+        <h3 class="section-title">🚛 डोरस्टेप ट्रक भाड़ा एवं परिवहन कैलकुलेटर</h3>
+        <p class="section-subtitle">खेत से सीधे खरीदार के गोदाम तक मेंटहा तेल के ड्रम या अनाज पहुंचाने का अनुमानित भाड़ा ज्ञात करें।</p>
         
         <div class="calculator-grid">
           <div class="calc-form">
             <div class="form-group">
-              <label>Estimated Distance (Kilometers) *</label>
-              <input type="number" class="form-control" id="logisticsDistance" value="45" placeholder="e.g. 45 km" oninput="calculateFreight()">
+              <label>अनुमानित दूरी (किलोमीटर) *</label>
+              <input type="number" class="form-control" id="logisticsDistance" value="45" placeholder="उदा. 45 किमी" oninput="calculateFreight()">
             </div>
 
             <div class="form-group">
-              <label>Crop Load Weight (Quintals / Drums) *</label>
-              <input type="number" class="form-control" id="logisticsWeight" value="120" placeholder="e.g. 120 Qtl" oninput="calculateFreight()">
+              <label>फसल या ड्रम का वजन (कुंतल / ड्रम) *</label>
+              <input type="number" class="form-control" id="logisticsWeight" value="120" placeholder="उदा. 120 कुंतल" oninput="calculateFreight()">
             </div>
           </div>
 
           <div style="background: var(--bg-subtle); padding: 20px; border-radius: var(--radius-md);">
-            <h4 style="color: var(--primary); margin-bottom: 12px;">🚛 Freight Quotes Comparison</h4>
+            <h4 style="color: var(--primary); margin-bottom: 12px;">🚛 परिवहन दर तुलना</h4>
             <div id="freightQuotesList">
               <!-- Rendered via app.js -->
             </div>
@@ -382,15 +393,15 @@
     <!-- TAB 4: Cold Storage Booking -->
     <section id="viewColdstorage" class="tab-view" style="display: none;">
       <div class="section-card">
-        <h3 class="section-title">🧊 Cold Storage Chamber & Slot Reservations</h3>
-        <p class="section-subtitle">Reserve temperature-controlled chambers near your district for Apples, Onions, Potatoes, and Pulses.</p>
+        <h3 class="section-title">🧊 कोल्ड स्टोरेज चैंबर एवं स्लॉट बुकिंग</h3>
+        <p class="section-subtitle">अपने जिले के पास आलू, प्याज, दालों एवं सेब के सुरक्षित भंडारण हेतु कोल्ड स्टोरेज स्लॉट बुक करें।</p>
         
         <div class="listings-grid" id="coldStorageGrid">
           <!-- Rendered via app.js -->
         </div>
 
         <div style="margin-top: 30px;" id="coldStorageBookingsSection">
-          <h4 style="margin-bottom: 12px; color: var(--primary);">📋 Your Reserved Storage Slots</h4>
+          <h4 style="margin-bottom: 12px; color: var(--primary);">📋 आपकी आरक्षित कोल्ड स्टोरेज बुकिंग</h4>
           <div id="coldBookingsList">
             <!-- Rendered via app.js -->
           </div>
@@ -401,25 +412,25 @@
     <!-- TAB 5: AI Quality & Mentha Estimator -->
     <section id="viewQuality" class="tab-view" style="display: none;">
       <div class="section-card">
-        <h3 class="section-title">🧪 Instant Crop & Mentha Oil Quality Estimator</h3>
-        <p class="section-subtitle">Adjust sample test parameters (Moisture, Purity, L-Menthol %) to estimate expected doorstep mandi price.</p>
+        <h3 class="section-title">🧪 फसल एवं मेंटहा तेल गुणवत्ता जांच (AI Estimator)</h3>
+        <p class="section-subtitle">नमी (Moisture), शुद्धता और एल-मेंटॉल (L-Menthol %) का चयन करके संभावित मंडी भाव आंकें।</p>
         
         <div class="calculator-grid">
           <div class="calc-form">
             <div class="form-group">
-              <label>Crop Category</label>
+              <label>फसल श्रेणी</label>
               <select class="form-control" id="calcCropType" onchange="calculateQualityScore()">
-                <option value="Mentha Oil">🌿 Mentha Oil (Essential Mint Oil)</option>
-                <option value="Wheat">Sharbati Wheat Grains</option>
-                <option value="Rice">1121 Basmati Rice</option>
-                <option value="Cotton">Raw Cotton Bales</option>
-                <option value="Soybean">Yellow Soybean Seeds</option>
-                <option value="Apples">Himachal Royal Delicious Apples</option>
+                <option value="Mentha Oil">🌿 मेंटहा तेल (सुगंधित मिंट ऑयल)</option>
+                <option value="Wheat">शरबाती गेहूं</option>
+                <option value="Rice">1121 बासमती चावल</option>
+                <option value="Cotton">कच्ची कपास</option>
+                <option value="Soybean">पीली सोयाबीन</option>
+                <option value="Apples">हिमाचली रॉयल सेब</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label>Moisture Content (%) - Optimal: Mentha &lt;0.5%, Wheat 10-12%</label>
+              <label>नमी की मात्रा (%) - उत्तम: मेंटहा &lt;0.5%, गेहूं 10-12%</label>
               <div class="range-slider-wrap">
                 <input type="range" id="sliderMoisture" min="0" max="22" value="0.4" step="0.1" oninput="calculateQualityScore()">
                 <strong id="valMoisture">0.4%</strong>
@@ -427,7 +438,7 @@
             </div>
 
             <div class="form-group">
-              <label>Purity / L-Menthol Content (%)</label>
+              <label>शुद्धता / एल-मेंटॉल (L-Menthol) %</label>
               <div class="range-slider-wrap">
                 <input type="range" id="sliderPurity" min="65" max="100" value="81" oninput="calculateQualityScore()">
                 <strong id="valPurity">81%</strong>
@@ -435,7 +446,7 @@
             </div>
 
             <div class="form-group">
-              <label>Foreign Matter & Terpene Impurities (%)</label>
+              <label>अशुद्धि एवं टरपीन मात्रा (%)</label>
               <div class="range-slider-wrap">
                 <input type="range" id="sliderForeign" min="0" max="10" value="0.5" step="0.1" oninput="calculateQualityScore()">
                 <strong id="valForeign">0.5%</strong>
@@ -447,11 +458,11 @@
             <div class="score-circle">
               <div class="score-circle-inner">
                 <div class="score-number" id="calcScoreNum">95</div>
-                <div class="score-grade" id="calcGradeTag">Grade A+</div>
+                <div class="score-grade" id="calcGradeTag">ग्रेड A+</div>
               </div>
             </div>
-            <h4 style="margin-bottom: 6px;" id="calcEstimatedVal">Estimated Value: ₹1,208 / Kg</h4>
-            <p style="font-size: 0.85rem; color: var(--text-muted);">81%+ L-Menthol purity commands premium in Sambhal & Barabanki markets.</p>
+            <h4 style="margin-bottom: 6px;" id="calcEstimatedVal">अनुमानित रेट: ₹1,208 / Kg</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">81%+ एल-मेंटॉल शुद्धता पर संभल एवं बाराबंकी बाजार में प्रीमियम भाव मिलता है।</p>
           </div>
         </div>
       </div>
@@ -460,8 +471,8 @@
     <!-- TAB 6: Sealed Deals -->
     <section id="viewDeals" class="tab-view" style="display: none;">
       <div class="section-card">
-        <h3 class="section-title">📜 Sealed Doorstep Deals & Escrow Vault Receipts</h3>
-        <p class="section-subtitle">Confirmed trade agreements between farmers and verified buyers with token deposits locked in Escrow vault.</p>
+        <h3 class="section-title">📜 पक्के पक्के सौदे एवं एस्क्रो तिजोरी रसीद</h3>
+        <p class="section-subtitle">किसान और सत्यापित खरीदार के बीच एस्क्रो तिजोरी में टोकन राशि के साथ पक्के व्यापारिक अनुबंध।</p>
         <div id="dealsHistoryList">
           <!-- Rendered via app.js -->
         </div>
@@ -474,7 +485,7 @@
   <div class="modal-backdrop" id="smsLogsModal">
     <div class="modal-container" style="max-width: 500px;">
       <div class="modal-header">
-        <h3 class="modal-title">📱 SMS & WhatsApp Trade Alerts</h3>
+        <h3 class="modal-title">📱 व्यापार एसएमएस व व्हाट्सएप अलर्ट</h3>
         <button class="close-modal-btn" onclick="closeModal('smsLogsModal')">&times;</button>
       </div>
       <div id="smsLogsList" style="max-height: 400px; overflow-y: auto;">
@@ -483,117 +494,129 @@
     </div>
   </div>
 
-  <!-- AUTH MODAL -->
+  <!-- AUTH MODAL WITH NATIVE LANGUAGE SELECTION AT REGISTRATION -->
   <div class="modal-backdrop" id="authModal">
     <div class="modal-container" style="max-width: 560px;">
       <div class="modal-header">
-        <h3 class="modal-title" id="authModalTitle">🔑 Sign In to KrishiDeal</h3>
+        <h3 class="modal-title" id="authModalTitle">🔑 कृषिडील लॉगिन / पंजीकरण</h3>
         <button class="close-modal-btn" onclick="closeModal('authModal')">&times;</button>
       </div>
 
       <div style="display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
-        <button id="authSubTabLogin" class="tab-btn active" onclick="switchAuthTab('login')">Sign In</button>
-        <button id="authSubTabRegister" class="tab-btn" onclick="switchAuthTab('register')">New Registration</button>
+        <button id="authSubTabLogin" class="tab-btn active" onclick="switchAuthTab('login')">साइन इन (Sign In)</button>
+        <button id="authSubTabRegister" class="tab-btn" onclick="switchAuthTab('register')">नया पंजीकरण</button>
       </div>
 
       <form id="loginForm" onsubmit="handleLogin(event)">
         <div class="form-group">
-          <label>Mobile Number or Email *</label>
-          <input type="text" class="form-control" id="loginIdentifier" placeholder="e.g. 9876543210 or dharamvir@menthafarmer.in" required>
+          <label>मोबाइल नंबर या ईमेल *</label>
+          <input type="text" class="form-control" id="loginIdentifier" placeholder="उदा. 9876543210 या dharamvir@menthafarmer.in" required>
         </div>
 
         <div class="form-group">
-          <label>Password *</label>
-          <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password" required>
+          <label>पासवर्ड *</label>
+          <input type="password" class="form-control" id="loginPassword" placeholder="अपना पासवर्ड दर्ज करें" required>
         </div>
 
         <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 16px;">
-          💡 <strong>Demo Verified Credentials:</strong><br>
-          • Mentha Farmer: <code>9876543210</code> / <code>password123</code><br>
-          • Essential Oil Buyer: <code>9123456789</code> / <code>password123</code>
+          💡 <strong>डेमो लॉगिन क्रेडेंशियल:</strong><br>
+          • मेंटहा किसान: <code>9876543210</code> / <code>password123</code><br>
+          • सुगंधित तेल खरीदार: <code>9123456789</code> / <code>password123</code>
         </div>
 
         <button type="submit" class="btn-primary" style="width: 100%; padding: 12px;">
-          🔓 Sign In
+          🔓 लॉगिन करें
         </button>
       </form>
 
       <form id="registerForm" onsubmit="handleRegister(event)" style="display: none;">
         <div class="form-group">
-          <label style="font-size: 0.95rem; color: var(--primary);">Account Registration Type *</label>
+          <label style="font-size: 0.95rem; color: var(--primary);">खाता पंजीकरण प्रकार *</label>
           <select class="form-control" id="regRole" onchange="toggleRegRoleFields()" style="font-weight: 700;">
-            <option value="farmer">🧑‍🌾 FARMER REGISTRATION (Mentha / Crop Seller)</option>
-            <option value="buyer">🏢 BUYER REGISTRATION (Essential Oil Exporter / Mandi Trader)</option>
+            <option value="farmer">🧑‍🌾 किसान पंजीकरण (मेंटहा व फसल विक्रेता)</option>
+            <option value="buyer">🏢 खरीदार पंजीकरण (तेल निर्यातक / मंडी व्यापारी)</option>
           </select>
         </div>
 
+        <!-- PREFERRED NATIVE LANGUAGE SELECTOR AT REGISTRATION TIME -->
+        <div class="form-group" style="background: var(--bg-subtle); padding: 12px 14px; border-radius: var(--radius-sm); border: 1px dashed var(--primary);">
+          <label style="font-size: 0.9rem; color: var(--primary); font-weight: 800;">🌐 अपनी पसंदीदा मातृभाषा चुनें (Preferred Native Language) *</label>
+          <select class="form-control" id="regLanguage" style="font-weight: 700; margin-top: 4px;">
+            <option value="hi" selected>🇮🇳 हिंदी (Hindi) - उत्तर प्रदेश व उत्तर भारत की भाषा</option>
+            <option value="en">🇬🇧 English</option>
+            <option value="pa">🌾 ਪੰਜਾਬੀ (Punjabi)</option>
+            <option value="gu">🌻 ગુજરાતી (Gujarati)</option>
+          </select>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">लॉगिन करने पर पोर्टल स्वतः आपकी इसी चुनी हुई मातृभाषा में खुलेगा।</span>
+        </div>
+
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
           <div class="form-group">
-            <label>Full Name / Owner Name *</label>
-            <input type="text" class="form-control" id="regName" placeholder="e.g. Dharamvir Singh" required>
+            <label>पूरा नाम *</label>
+            <input type="text" class="form-control" id="regName" placeholder="उदा. धर्मवीर सिंह" required>
           </div>
           <div class="form-group">
-            <label>Mobile Number *</label>
-            <input type="tel" class="form-control" id="regPhone" placeholder="10-digit mobile number" required>
+            <label>मोबाइल नंबर *</label>
+            <input type="tel" class="form-control" id="regPhone" placeholder="10-अंकों का मोबाइल नंबर" required>
           </div>
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
           <div class="form-group">
-            <label>Password *</label>
-            <input type="password" class="form-control" id="regPassword" placeholder="Min 6 characters" required>
+            <label>पासवर्ड *</label>
+            <input type="password" class="form-control" id="regPassword" placeholder="कम से कम 6 अक्षर" required>
           </div>
           <div class="form-group">
-            <label>Email Address</label>
+            <label>ईमेल पता</label>
             <input type="email" class="form-control" id="regEmail" placeholder="name@domain.com">
           </div>
         </div>
 
         <div class="form-group">
-          <label>District & State Location *</label>
-          <input type="text" class="form-control" id="regLocation" placeholder="e.g. Sambhal, UP or Barabanki, UP" required>
+          <label>जिला एवं राज्य *</label>
+          <input type="text" class="form-control" id="regLocation" placeholder="उदा. संभल, उत्तर प्रदेश" required>
         </div>
 
         <div id="sectionFarmerVerification" style="background: var(--bg-subtle); padding: 16px; border-radius: var(--radius-md); border: 1px solid var(--border-color); margin-bottom: 16px;">
-          <h4 style="color: var(--primary); font-size: 0.95rem; margin-bottom: 10px;">🛡️ Genuine Farmer Verification Details</h4>
+          <h4 style="color: var(--primary); font-size: 0.95rem; margin-bottom: 10px;">🛡️ असली किसान सत्यापन विवरण</h4>
           <div class="form-group">
-            <label>Khasra / Khatoni Land Record No. *</label>
-            <input type="text" class="form-control" id="regKhasraNo" placeholder="e.g. UP-SMB-902 (Verifies land ownership)">
+            <label>खसरा / खतौनी भूमि रिकॉर्ड संख्या *</label>
+            <input type="text" class="form-control" id="regKhasraNo" placeholder="उदा. UP-SMB-902 (खसरा संख्या)">
           </div>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
             <div class="form-group">
-              <label>Kisan Credit Card (KCC) ID</label>
-              <input type="text" class="form-control" id="regKccId" placeholder="e.g. KCC-UP-9901">
+              <label>किसान क्रेडिट कार्ड (KCC) आईडी</label>
+              <input type="text" class="form-control" id="regKccId" placeholder="उदा. KCC-UP-9901">
             </div>
             <div class="form-group">
-              <label>Mentha Cultivation Area (Acres)</label>
-              <input type="text" class="form-control" id="regLandAcres" placeholder="e.g. 5 Acres">
+              <label>मेंटहा खेती का क्षेत्रफल (एकड़)</label>
+              <input type="text" class="form-control" id="regLandAcres" placeholder="उदा. 5 एकड़">
             </div>
           </div>
         </div>
 
         <div id="sectionBuyerVerification" style="background: var(--gold-light); padding: 16px; border-radius: var(--radius-md); border: 1px solid #FCD34D; margin-bottom: 16px; display: none;">
-          <h4 style="color: var(--gold-hover); font-size: 0.95rem; margin-bottom: 10px;">🏢 Genuine Essential Oil Buyer License</h4>
+          <h4 style="color: var(--gold-hover); font-size: 0.95rem; margin-bottom: 10px;">🏢 असली खरीदार लाइसेंस विवरण</h4>
           <div class="form-group">
-            <label>Buyer Firm Type *</label>
+            <label>व्यापारिक फर्म प्रकार *</label>
             <select class="form-control" id="regFirmType">
-              <option value="Essential Oil Distiller & Exporter">Essential Oil Distiller & Exporter</option>
-              <option value="APMC Mandi Wholesaler">APMC Mandi Commission Agent</option>
-              <option value="Pharma & Fragrance Processor">Pharma & Fragrance Processing Unit</option>
+              <option value="Essential Oil Distiller & Exporter">सुगंधित तेल निर्यातक एवं आसवन इकाई</option>
+              <option value="APMC Mandi Wholesaler">एपीएमसी मंडी आढ़ती / थोक व्यापारी</option>
+              <option value="Pharma & Fragrance Processor">फार्मा व इत्र प्रसंस्करण इकाई</option>
             </select>
           </div>
           <div class="form-group">
-            <label>GSTIN Registration Number *</label>
-            <input type="text" class="form-control" id="regGstin" placeholder="e.g. 09AABCB5512K1ZN">
+            <label>जीएसटी (GSTIN) पंजीकरण संख्या *</label>
+            <input type="text" class="form-control" id="regGstin" placeholder="उदा. 09AABCB5512K1ZN">
           </div>
           <div class="form-group" style="margin-bottom: 0;">
-            <label>APMC Mandi License Number *</label>
-            <input type="text" class="form-control" id="regMandiLicense" placeholder="e.g. UP-BBK-APMC-9901">
+            <label>एपीएमसी मंडी लाइसेंस संख्या *</label>
+            <input type="text" class="form-control" id="regMandiLicense" placeholder="उदा. UP-BBK-APMC-9901">
           </div>
         </div>
 
         <button type="submit" class="btn-primary btn-gold" style="width: 100%; padding: 12px; font-size: 1rem;">
-          🛡️ Register Account & Verify Credentials
+          🛡️ पंजीकरण करें एवं खाता सत्यापित करें
         </button>
       </form>
     </div>
@@ -603,77 +626,77 @@
   <div class="modal-backdrop" id="postSampleModal">
     <div class="modal-container">
       <div class="modal-header">
-        <h3 class="modal-title">🌿 Share Mentha Oil or Crop Sample</h3>
+        <h3 class="modal-title">🌿 मेंटहा तेल या फसल का नमूना पोस्ट करें</h3>
         <button class="close-modal-btn" onclick="closeModal('postSampleModal')">&times;</button>
       </div>
       <form id="postSampleForm" onsubmit="handlePostSample(event)">
         <div class="form-group">
-          <label>Crop Name & Variety *</label>
-          <input type="text" class="form-control" id="formCropTitle" placeholder="e.g. Pure Shivalik Mentha Oil (81%+ Menthol)" required>
+          <label>फसल का नाम एवं किस्म *</label>
+          <input type="text" class="form-control" id="formCropTitle" placeholder="उदा. शुद्ध शिवालिक मेंटहा तेल (81%+ एल-मेंटॉल)" required>
         </div>
 
         <div class="form-group">
-          <label>Produce Category *</label>
+          <label>फसल श्रेणी *</label>
           <select class="form-control" id="formCategory" required>
-            <option value="Mentha Oil">🌿 Mentha Oil (Essential Mint Oil)</option>
-            <option value="Wheat">Wheat / Grains</option>
-            <option value="Rice">Paddy & Basmati Rice</option>
-            <option value="Cotton">Cotton Bales</option>
-            <option value="Soybean">Soybeans & Pulses</option>
-            <option value="Apples">Fruits / Cold Storage Apples</option>
+            <option value="Mentha Oil">🌿 मेंटहा तेल (सुगंधित तेल)</option>
+            <option value="Wheat">गेहूं (Wheat Grains)</option>
+            <option value="Rice">बासमती चावल (Rice)</option>
+            <option value="Cotton">कपास (Cotton)</option>
+            <option value="Soybean">सोयाबीन (Soybean)</option>
+            <option value="Apples">कोल्ड स्टोरेज सेब</option>
           </select>
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
           <div class="form-group">
-            <label>Quantity (Kg for Oil / Qtl for Grain) *</label>
-            <input type="number" class="form-control" id="formQuantity" placeholder="e.g. 45" required>
+            <label>मात्रा (तेल के लिए किग्रा / अनाज के लिए कुंतल) *</label>
+            <input type="number" class="form-control" id="formQuantity" placeholder="उदा. 45" required>
           </div>
           <div class="form-group">
-            <label>Reserve Price (₹ per Kg/Qtl) *</label>
-            <input type="number" class="form-control" id="formPrice" placeholder="e.g. 1208" required>
+            <label>अपेक्षित भाव (₹ प्रति किग्रा/कुंतल) *</label>
+            <input type="number" class="form-control" id="formPrice" placeholder="उदा. 1208" required>
           </div>
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
           <div class="form-group">
-            <label>Moisture Content (%) *</label>
-            <input type="number" step="0.1" class="form-control" id="formMoisture" placeholder="e.g. 0.4" required>
+            <label>नमी (%) *</label>
+            <input type="number" step="0.1" class="form-control" id="formMoisture" placeholder="उदा. 0.4" required>
           </div>
           <div class="form-group">
-            <label>Quality Grade *</label>
+            <label>गुणवत्ता ग्रेड *</label>
             <select class="form-control" id="formGrade" required>
-              <option value="Grade A+">Grade A+ (Export / Pure L-Menthol)</option>
-              <option value="Grade A">Grade A (Standard Mandi)</option>
-              <option value="Grade B">Grade B (Bulk Commercial)</option>
+              <option value="Grade A+">ग्रेड A+ (निर्यात शुद्ध एल-मेंटॉल)</option>
+              <option value="Grade A">ग्रेड A (मानक मंडी)</option>
+              <option value="Grade B">ग्रेड B (सामान्य वाणिज्यिक)</option>
             </select>
           </div>
         </div>
 
         <div class="form-group">
-          <label>District & Village Location *</label>
-          <input type="text" class="form-control" id="formLocation" placeholder="e.g. Sambhal, Uttar Pradesh (Pin: 244302)" required>
+          <label>जिला एवं गांव *</label>
+          <input type="text" class="form-control" id="formLocation" placeholder="उदा. संभल, उत्तर प्रदेश (पिन: 244302)" required>
         </div>
 
         <div class="form-group">
-          <label>Khasra Land Record No. (For Verification Badge)</label>
-          <input type="text" class="form-control" id="formKhasraNo" placeholder="e.g. UP-SMB-902">
+          <label>खसरा संख्या (सत्यापन बैज के लिए)</label>
+          <input type="text" class="form-control" id="formKhasraNo" placeholder="उदा. UP-SMB-902">
         </div>
 
         <div class="form-group">
-          <label>Sample Photo Selection</label>
+          <label>नमूना फोटो चुनें</label>
           <select class="form-control" id="formImageSelect">
-            <option value="assets/mentha.png">🌿 Pure Mentha Mint Oil Photo</option>
-            <option value="assets/wheat.png">🌾 Sharbati Wheat Sample Photo</option>
-            <option value="assets/rice.png">🍚 1121 Basmati Rice Sample Photo</option>
-            <option value="assets/cotton.png">☁️ Natural Raw Cotton Photo</option>
-            <option value="assets/soybean.png">🫘 Organic Yellow Soybean Photo</option>
-            <option value="assets/apples.png">🍎 Cold Storage Himachali Apples Photo</option>
+            <option value="assets/mentha.png">🌿 शुद्ध मेंटहा तेल फोटो</option>
+            <option value="assets/wheat.png">🌾 शरबाती गेहूं नमूना फोटो</option>
+            <option value="assets/rice.png">🍚 1121 बासमती चावल फोटो</option>
+            <option value="assets/cotton.png">☁️ कच्ची कपास फोटो</option>
+            <option value="assets/soybean.png">🫘 पीली सोयाबीन फोटो</option>
+            <option value="assets/apples.png">🍎 हिमाचली सेब फोटो</option>
           </select>
         </div>
 
         <button type="submit" class="btn-primary" style="width: 100%; margin-top: 14px; padding: 12px;">
-          🚀 Publish Sample for Mandi & Exporter Bids
+          🚀 मंडी एवं खरीदारों की बोली हेतु पोस्ट करें
         </button>
       </form>
     </div>
@@ -683,47 +706,47 @@
   <div class="modal-backdrop" id="bidModal">
     <div class="modal-container">
       <div class="modal-header">
-        <h3 class="modal-title" id="bidModalTitle">🏢 Submit Doorstep Price Offer</h3>
+        <h3 class="modal-title" id="bidModalTitle">🏢 डोरस्टेप बोली (Offer) जमा करें</h3>
         <button class="close-modal-btn" onclick="closeModal('bidModal')">&times;</button>
       </div>
       <form id="bidForm" onsubmit="handlePlaceBid(event)">
         <input type="hidden" id="bidSampleId">
         <div style="background: var(--bg-subtle); padding: 14px; border-radius: var(--radius-sm); margin-bottom: 16px;">
-          <h4 id="bidCropName" style="color: var(--primary);">Pure Shivalik Mentha Oil</h4>
-          <p id="bidCropDetails" style="font-size: 0.85rem; color: var(--text-muted);">Quantity: 45 Kg | Reserve: ₹1,208/Kg | Location: Sambhal, UP</p>
+          <h4 id="bidCropName" style="color: var(--primary);">शुद्ध शिवालिक मेंटहा तेल</h4>
+          <p id="bidCropDetails" style="font-size: 0.85rem; color: var(--text-muted);">मात्रा: 45 किग्रा | अपेक्षित रेट: ₹1,208/किग्रा | स्थान: संभल, यूपी</p>
         </div>
 
         <div class="form-group">
-          <label>Buyer / Mandi Entity Name *</label>
-          <input type="text" class="form-control" id="buyerEntity" placeholder="e.g. Barabanki Essential Oils & Distillers" required>
+          <label>खरीदार / मंडी फर्म का नाम *</label>
+          <input type="text" class="form-control" id="buyerEntity" placeholder="उदा. बाराबंकी एसेंशियल ऑयल्स" required>
         </div>
 
         <div class="form-group">
-          <label>GSTIN Registration No. (For Verified Buyer Badge)</label>
-          <input type="text" class="form-control" id="buyerGstin" placeholder="e.g. 09AABCB5512K1ZN">
+          <label>जीएसटी (GSTIN) पंजीकरण संख्या</label>
+          <input type="text" class="form-control" id="buyerGstin" placeholder="उदा. 09AABCB5512K1ZN">
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
           <div class="form-group">
-            <label>Offered Price (₹ / Kg or Qtl) *</label>
-            <input type="number" class="form-control" id="offeredPrice" placeholder="e.g. 1220" required>
+            <label>प्रस्तावित दर (₹ / किग्रा या कुंतल) *</label>
+            <input type="number" class="form-control" id="offeredPrice" placeholder="उदा. 1220" required>
           </div>
           <div class="form-group">
-            <label>Token Deposit Advance (₹) *</label>
-            <input type="number" class="form-control" id="tokenAdvance" placeholder="e.g. 25000" required>
+            <label>टोकन एडवांस (₹) *</label>
+            <input type="number" class="form-control" id="tokenAdvance" placeholder="उदा. 25000" required>
           </div>
         </div>
 
         <div class="form-group">
-          <label>Logistics & Pickup Option *</label>
+          <label>परिवहन व पिकअप विकल्प *</label>
           <select class="form-control" id="pickupTerm" required>
-            <option value="Buyer Doorstep Drum Pickup">🚛 Buyer Arranges Drum Doorstep Pickup</option>
-            <option value="Mandi Delivery Bonus">🏢 Farmer Delivers to Mandi Yard (+₹20/Kg Bonus)</option>
+            <option value="Buyer Doorstep Drum Pickup">🚛 खरीदार ड्रम का डोरस्टेप पिकअप करेगा</option>
+            <option value="Mandi Delivery Bonus">🏢 किसान मंडी तक पहुंचाएगा (+₹20/किग्रा बोनस)</option>
           </select>
         </div>
 
         <button type="submit" class="btn-primary btn-gold" style="width: 100%; margin-top: 14px; padding: 12px;">
-          🤝 Send Direct Offer & Dispatch SMS Alert
+          🤝 बोली भेजें एवं किसान को एसएमएस अलर्ट जारी करें
         </button>
       </form>
     </div>
@@ -733,7 +756,7 @@
   <div class="modal-backdrop" id="offersModal">
     <div class="modal-container" style="max-width: 700px;">
       <div class="modal-header">
-        <h3 class="modal-title" id="offersModalTitle">📋 Sample Offers & Quality Test Sheet</h3>
+        <h3 class="modal-title" id="offersModalTitle">📋 प्राप्त बोलियां व गुणवत्ता जांच पर्ची</h3>
         <button class="close-modal-btn" onclick="closeModal('offersModal')">&times;</button>
       </div>
       <div id="offersModalContent">
@@ -746,15 +769,15 @@
   <div class="modal-backdrop" id="contractModal">
     <div class="modal-container" style="max-width: 650px;">
       <div class="modal-header">
-        <h3 class="modal-title">🤝 Sealed Trade Deal Contract & Escrow Note</h3>
+        <h3 class="modal-title">🤝 पक्का सौदा अनुबंध पत्र एवं एस्क्रो रसीद</h3>
         <button class="close-modal-btn" onclick="closeModal('contractModal')">&times;</button>
       </div>
       <div id="contractModalContent">
         <!-- Rendered via app.js -->
       </div>
       <div style="margin-top: 20px; display: flex; gap: 12px;">
-        <button class="btn-primary" onclick="window.print()">🖨️ Print Trade Note</button>
-        <button class="btn-secondary" onclick="closeModal('contractModal')">Close</button>
+        <button class="btn-primary" onclick="window.print()">🖨️ अनुबंध पत्र प्रिंट करें</button>
+        <button class="btn-secondary" onclick="closeModal('contractModal')">बंद करें</button>
       </div>
     </div>
   </div>
