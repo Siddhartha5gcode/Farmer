@@ -1,130 +1,179 @@
 /* ==========================================================================
-   KrishiDeal - Direct Farmer Platform (v2.6.0 Native Multilingual Suite)
+   KrishiDeal - Direct Farmer Platform (v2.7.0 All Indian Languages Suite)
    ========================================================================== */
 
 const API_BASE_URL = "http://localhost:5000/api";
 
-// Multilingual Dictionaries (Hindi, English, Punjabi, Gujarati)
+// Full Translation Dictionaries for ALL 13 Official Indian Languages
 const TRANSLATIONS = {
   hi: {
-    brandSubtitle: "उत्तर प्रदेश के सभी 75 जिले",
-    roleFarmer: "किसान (विक्रेता)",
-    roleBuyer: "खरीदार / मंडी व्यापारी",
-    smsAlertsBtn: "व्यापार एसएमएस",
-    postBtn: "फसल नमूना पोस्ट करें",
+    brandSubtitle: "उत्तर प्रदेश के सभी 75 जिले", roleFarmer: "किसान (विक्रेता)", roleBuyer: "खरीदार / मंडी व्यापारी",
+    smsAlertsBtn: "व्यापार एसएमएस", postBtn: "फसल नमूना पोस्ट करें",
     heroTitle: "मेंटहा तेल और फसल सीधा व्यापार (उत्तर प्रदेश के सभी 75 जिले) 🌿🏡",
-    heroSubtitle: "सत्यापित सुगंधित तेल निर्यातकों, मंडी व्यापारियों और आटा मिलों से सीधे जुड़ें। अपने जिले (संभल, बाराबंकी, चंदौसी) के लाइव मेंटहा मंडी भाव देखें।",
-    statActive: "सक्रिय नमूने",
-    statRate: "स्थानीय मेंटहा रेट",
-    statDistricts: "75 जिले कवरेज",
-    widgetTitle: "उत्तर प्रदेश के सभी 75 जिलों के मंडी भाव",
-    widgetSub: "लाइव एमसीएक्स (MCX) भाव के आधार पर आपके जिले का सीधा मंडी रेट।",
-    selectDistrictLabel: "📍 अपना जिला चुनें:",
-    mcxLabel: "बैकग्राउंड लाइव इंजन:",
-    mcxSub: "इकोनॉमिक टाइम्स / MCX वायदा बाजार (MENTHAOIL)",
-    weatherTitle: "7-दिवसीय मौसम एवं मेंटहा पेराई (आसवन) नमी सलाह",
-    weatherRegion: "क्षेत्र: उत्तर प्रदेश मेंटहा बेल्ट (संभल व बाराबंकी) | लाइव अपडेट",
-    weatherStatus: "✅ भाप आसवन पेराई हेतु उत्तम मौसम",
-    voiceBtn: "बोलकर खोजें",
-    searchPlaceholder: "फसल खोजें (उदा. मेंटहा तेल, शरबाती गेहूं, संभल)...",
-    tabSamples: "फसल नमूने व बोलियां",
-    tabMandi: "लाइव मंडी भाव",
-    tabLogistics: "भाड़ा कैलकुलेटर",
-    tabCold: "कोल्ड स्टोरेज बुकिंग",
-    tabQuality: "गुणवत्ता जांच (AI)",
-    tabDeals: "पक्के सौदे एवं एस्क्रो",
-    mandiTabTitle: "📊 उत्तर प्रदेश के सभी 75 जिलों के मंडी भाव",
-    mandiTabSub: "विभिन्न एपीएमसी मंडियों, संभल व बाराबंकी सुगंधित तेल बाजारों और एमसीएक्स (MCX) के रेट की तुलना करें।"
+    heroSubtitle: "सत्यापित सुगंधित तेल निर्यातकों, मंडी व्यापारियों और आटा मिलों से सीधे जुड़ें। अपने जिले के लाइव मेंटहा मंडी भाव देखें।",
+    statActive: "सक्रिय नमूने", statRate: "स्थानीय मेंटहा रेट", statDistricts: "75 जिले कवरेज",
+    widgetTitle: "उत्तर प्रदेश के सभी 75 जिलों के मंडी भाव", widgetSub: "लाइव एमसीएक्स (MCX) भाव के आधार पर आपके जिले का सीधा मंडी रेट।",
+    selectDistrictLabel: "📍 अपना जिला चुनें:", mcxLabel: "बैकग्राउंड लाइव इंजन:", mcxSub: "इकोनॉमिक टाइम्स / MCX वायदा बाजार (MENTHAOIL)",
+    weatherTitle: "7-दिवसीय मौसम एवं मेंटहा पेराई (आसवन) नमी सलाह", weatherRegion: "क्षेत्र: उत्तर प्रदेश मेंटहा बेल्ट (संभल व बाराबंकी) | लाइव अपडेट",
+    weatherStatus: "✅ भाप आसवन पेराई हेतु उत्तम मौसम", voiceBtn: "बोलकर खोजें", searchPlaceholder: "फसल खोजें (उदा. मेंटहा तेल, शरबाती गेहूं, संभल)...",
+    tabSamples: "फसल नमूने व बोलियां", tabMandi: "लाइव मंडी भाव", tabLogistics: "भाड़ा कैलकुलेटर", tabCold: "कोल्ड स्टोरेज बुकिंग", tabQuality: "गुणवत्ता जांच (AI)", tabDeals: "पक्के सौदे एवं एस्क्रो",
+    mandiTabTitle: "📊 उत्तर प्रदेश के सभी 75 जिलों के मंडी भाव", mandiTabSub: "विभिन्न एपीएमसी मंडियों, संभल व बाराबंकी सुगंधित तेल बाजारों और एमसीएक्स (MCX) के रेट की तुलना करें।"
   },
   en: {
-    brandSubtitle: "All 75 UP Districts Platform",
-    roleFarmer: "Farmer (Seller)",
-    roleBuyer: "Buyer / Mandi Trader",
-    smsAlertsBtn: "Trade SMS",
-    postBtn: "Post Produce Sample",
+    brandSubtitle: "All 75 UP Districts Platform", roleFarmer: "Farmer (Seller)", roleBuyer: "Buyer / Mandi Trader",
+    smsAlertsBtn: "Trade SMS", postBtn: "Post Produce Sample",
     heroTitle: "Mentha Oil & Crop Direct Trade Across All 75 UP Districts 🌿🏡",
     heroSubtitle: "Connect directly with verified essential oil exporters, APMC Mandi buyers, and flour mills. Track live Mentha mandi rates for your district.",
-    statActive: "Active Samples",
-    statRate: "Local Mentha Rate",
-    statDistricts: "75 UP Districts",
-    widgetTitle: "All 75 Uttar Pradesh District Mandi Rates",
-    widgetSub: "Live APMC Mandi rates computed relative to background MCX benchmark.",
-    selectDistrictLabel: "📍 Select UP District:",
-    mcxLabel: "BACKGROUND ENGINE:",
-    mcxSub: "Economic Times / MCX Live Feed (MENTHAOIL)",
-    weatherTitle: "7-Day Harvest Weather & Mentha Distillation Advisory",
-    weatherRegion: "Region: UP Mentha Belt (Sambhal & Barabanki) | Live Update",
-    weatherStatus: "✅ Optimal Steam Distillation Window",
-    voiceBtn: "Voice Search",
-    searchPlaceholder: "Search crops (e.g. Mentha Oil, Sharbati Wheat, Sambhal)...",
-    tabSamples: "Crop Samples & Bids",
-    tabMandi: "Live Mandi Rates",
-    tabLogistics: "Logistics Estimator",
-    tabCold: "Cold Storage Slot",
-    tabQuality: "AI Quality Score",
-    tabDeals: "Sealed Deals & Escrow",
-    mandiTabTitle: "📊 Live Mandi Rates Across All 75 UP Districts",
-    mandiTabSub: "Compare APMC Mandi benchmark rates with Sambhal & Barabanki distillation hubs."
+    statActive: "Active Samples", statRate: "Local Mentha Rate", statDistricts: "75 UP Districts",
+    widgetTitle: "All 75 Uttar Pradesh District Mandi Rates", widgetSub: "Live APMC Mandi rates computed relative to background MCX benchmark.",
+    selectDistrictLabel: "📍 Select UP District:", mcxLabel: "BACKGROUND ENGINE:", mcxSub: "Economic Times / MCX Live Feed (MENTHAOIL)",
+    weatherTitle: "7-Day Harvest Weather & Mentha Distillation Advisory", weatherRegion: "Region: UP Mentha Belt (Sambhal & Barabanki) | Live Update",
+    weatherStatus: "✅ Optimal Steam Distillation Window", voiceBtn: "Voice Search", searchPlaceholder: "Search crops (e.g. Mentha Oil, Sharbati Wheat, Sambhal)...",
+    tabSamples: "Crop Samples & Bids", tabMandi: "Live Mandi Rates", tabLogistics: "Logistics Estimator", tabCold: "Cold Storage Slot", tabQuality: "AI Quality Score", tabDeals: "Sealed Deals & Escrow",
+    mandiTabTitle: "📊 Live Mandi Rates Across All 75 UP Districts", mandiTabSub: "Compare APMC Mandi benchmark rates with Sambhal & Barabanki distillation hubs."
   },
   pa: {
-    brandSubtitle: "ਯੂਪੀ ਦੇ ਸਾਰੇ 75 ਜ਼ਿਲ੍ਹੇ ਪਲੇਟਫਾਰਮ",
-    roleFarmer: "ਕਿਸਾਨ (ਵੇਚਣ ਵਾਲਾ)",
-    roleBuyer: "ਖਰੀਦਦਾਰ / ਮੰਡੀ ਵਪਾਰੀ",
-    smsAlertsBtn: "ਵਪਾਰ ਐਸਐਮਐਸ",
-    postBtn: "ਫਸਲ ਦਾ ਨਮੂਨਾ ਪੋਸਟ ਕਰੋ",
+    brandSubtitle: "ਯੂਪੀ ਦੇ ਸਾਰੇ 75 ਜ਼ਿਲ੍ਹੇ ਪਲੇਟਫਾਰਮ", roleFarmer: "ਕਿਸਾਨ (ਵੇਚਣ ਵਾਲਾ)", roleBuyer: "ਖਰੀਦਦਾਰ / ਮੰਡੀ ਵਪਾਰੀ",
+    smsAlertsBtn: "ਵਪਾਰ ਐਸਐਮਐਸ", postBtn: "ਫਸਲ ਦਾ ਨਮੂਨਾ ਪੋਸਟ ਕਰੋ",
     heroTitle: "ਮੈਂਥਾ ਤੇਲ ਅਤੇ ਫਸਲਾਂ ਦਾ ਸਿੱਧਾ ਵਪਾਰ (ਯੂਪੀ ਦੇ 75 ਜ਼ਿਲ੍ਹੇ) 🌿🏡",
     heroSubtitle: "ਪ੍ਰਮਾਣਿਤ ਜ਼ਰੂਰੀ ਤੇਲ ਨਿਰਯਾਤਕਾਂ ਅਤੇ ਮੰਡੀ ਖਰੀਦਦਾਰਾਂ ਨਾਲ ਸਿੱਧੇ ਜੁੜੋ। ਆਪਣੀ ਮੰਡੀ ਦੇ ਲਾਈਵ ਭਾਅ ਵੇਖੋ।",
-    statActive: "ਸਰਗਰਮ ਨਮੂਨੇ",
-    statRate: "ਸਥਾਨਕ ਮੈਂਥਾ ਰੇਟ",
-    statDistricts: "75 ਜ਼ਿਲ੍ਹੇ ਕਵਰੇਜ",
-    widgetTitle: "ਉੱਤਰ ਪ੍ਰਦੇਸ਼ ਦੇ ਸਾਰੇ 75 ਜ਼ਿਲ੍ਹਿਆਂ ਦੇ ਮੰਡੀ ਭਾਅ",
-    widgetSub: "ਲਾਈਵ ਐਮਸੀਐਕਸ ਭਾਅ ਦੇ ਆਧਾਰ 'ਤੇ ਤੁਹਾਡੇ ਜ਼ਿਲ੍ਹੇ ਦਾ ਸਿੱਧਾ ਮੰਡੀ ਰੇਟ।",
-    selectDistrictLabel: "📍 ਆਪਣਾ ਜ਼ਿਲ੍ਹਾ ਚੁਣੋ:",
-    mcxLabel: "ਬੈਕਗ੍ਰਾਊਂਡ ਲਾਈਵ ਇੰਜਣ:",
-    mcxSub: "ਇਕੋਨਾਮਿਕ ਟਾਈਮਜ਼ / MCX ਫਿਊਚਰਜ਼ (MENTHAOIL)",
-    weatherTitle: "7-ਦਿਨਾਂ ਮੌਸਮ ਅਤੇ ਮੈਂਥਾ ਪੀੜਾਈ ਦੀ ਸਲਾਹ",
-    weatherRegion: "ਖੇਤਰ: ਯੂਪੀ ਮੈਂਥਾ ਬੈਲਟ (ਸੰਭਲ ਅਤੇ ਬਾਰਾਬੰਕੀ) | ਲਾਈਵ ਅਪਡੇਟ",
-    weatherStatus: "✅ ਭਾਫ਼ ਕੱਢਣ ਲਈ ਵਧੀਆ ਮੌਸਮ",
-    voiceBtn: "ਬੋਲ ਕੇ ਖੋਜੋ",
-    searchPlaceholder: "ਫਸਲ ਖੋਜੋ (ਜਿਵੇਂ ਮੈਂਥਾ ਤੇਲ, ਕਣਕ, ਸੰਭਲ)...",
-    tabSamples: "ਫਸਲ ਦੇ ਨਮੂਨੇ ਅਤੇ ਬੋਲੀਆਂ",
-    tabMandi: "ਲਾਈਵ ਮੰਡੀ ਭਾਅ",
-    tabLogistics: "ਭਾੜਾ ਕੈਲਕੁਲੇਟਰ",
-    tabCold: "ਕੋਲਡ ਸਟੋਰੇਜ ਬੁਕਿੰਗ",
-    tabQuality: "ਗੁਣਵੱਤਾ ਜਾਂਚ (AI)",
-    tabDeals: "ਪੱਕੇ ਸੌਦੇ ਅਤੇ ਐਸਕਰੋ",
-    mandiTabTitle: "📊 ਯੂਪੀ ਦੇ ਸਾਰੇ 75 ਜ਼ਿਲ੍ਹਿਆਂ ਦੇ ਮੰਡੀ ਭਾਅ",
-    mandiTabSub: "ਮੰਡੀ ਰੇਟਾਂ ਦੀ ਤੁਲਨਾ ਕਰੋ।"
+    statActive: "ਸਰਗਰਮ ਨਮੂਨੇ", statRate: "ਸਥਾਨਕ ਮੈਂਥਾ ਰੇਟ", statDistricts: "75 ਜ਼ਿਲ੍ਹੇ ਕਵਰੇਜ",
+    widgetTitle: "ਉੱਤਰ ਪ੍ਰਦੇਸ਼ ਦੇ ਸਾਰੇ 75 ਜ਼ਿਲ੍ਹਿਆਂ ਦੇ ਮੰਡੀ ਭਾਅ", widgetSub: "ਲਾਈਵ ਐਮਸੀਐਕਸ ਭਾਅ ਦੇ ਆਧਾਰ 'ਤੇ ਤੁਹਾਡੇ ਜ਼ਿਲ੍ਹੇ ਦਾ ਸਿੱਧਾ ਮੰਡੀ ਰੇਟ।",
+    selectDistrictLabel: "📍 ਆਪਣਾ ਜ਼ਿਲ੍ਹਾ ਚੁਣੋ:", mcxLabel: "ਬੈਕਗ੍ਰਾਊਂਡ ਲਾਈਵ ਇੰਜਣ:", mcxSub: "ਇਕੋਨਾਮਿਕ ਟਾਈਮਜ਼ / MCX ਫਿਊਚਰਜ਼ (MENTHAOIL)",
+    weatherTitle: "7-ਦਿਨਾਂ ਮੌਸਮ ਅਤੇ ਮੈਂਥਾ ਪੀੜਾਈ ਦੀ ਸਲਾਹ", weatherRegion: "ਖੇਤਰ: ਯੂਪੀ ਮੈਂਥਾ ਬੈਲਟ (ਸੰਭਲ ਅਤੇ ਬਾਰਾਬੰਕੀ) | ਲਾਈਵ ਅਪਡੇਟ",
+    weatherStatus: "✅ ਭਾਫ਼ ਕੱਢਣ ਲਈ ਵਧੀਆ ਮੌਸਮ", voiceBtn: "ਬੋਲ ਕੇ ਖੋਜੋ", searchPlaceholder: "ਫਸਲ ਖੋਜੋ (ਜਿਵੇਂ ਮੈਂਥਾ ਤੇਲ, ਕਣਕ, ਸੰਭਲ)...",
+    tabSamples: "ਫਸਲ ਦੇ ਨਮੂਨੇ ਅਤੇ ਬੋਲੀਆਂ", tabMandi: "ਲਾਈਵ ਮੰਡੀ ਭਾਅ", tabLogistics: "ਭਾੜਾ ਕੈਲਕੁਲੇਟਰ", tabCold: "ਕੋਲਡ ਸਟੋਰੇਜ ਬੁਕਿੰਗ", tabQuality: "ਗੁਣਵੱਤਾ ਜਾਂਚ (AI)", tabDeals: "ਪੱਕੇ ਸੌਦੇ ਅਤੇ ਐਸਕਰੋ",
+    mandiTabTitle: "📊 ਯੂਪੀ ਦੇ ਸਾਰੇ 75 ਜ਼ਿਲ੍ਹਿਆਂ ਦੇ ਮੰਡੀ ਭਾਅ", mandiTabSub: "ਮੰਡੀ ਰੇਟਾਂ ਦੀ ਤੁਲਨਾ ਕਰੋ।"
   },
   gu: {
-    brandSubtitle: "યુપીના તમામ 75 જિલ્લાઓ પ્લેટફોર્મ",
-    roleFarmer: "ખેડૂત (વિક્રેતા)",
-    roleBuyer: "ખરીદદાર / મંડી વેપારી",
-    smsAlertsBtn: "વેપાર SMS",
-    postBtn: "પાક નમૂનો પોઇન્ટ કરો",
+    brandSubtitle: "યુપીના તમામ 75 જિલ્લાઓ પ્લેટફોર્મ", roleFarmer: "ખેડૂત (વિક્રેતા)", roleBuyer: "ખરીદદાર / મંડી વેપારી",
+    smsAlertsBtn: "વેપાર SMS", postBtn: "પાક નમૂનો પોઇન્ટ કરો",
     heroTitle: "મેન્થા ઓઇલ અને પાક સીધો વેપાર (યુપીના 75 જિલ્લાઓ) 🌿🏡",
     heroSubtitle: "પ્રમાણિત એસેન્શિયલ ઓઇલ નિકાસકારો અને મંડી ખરીદદારો સાથે સીધા જોડાઓ.",
-    statActive: "સક્રિય નમૂનાઓ",
-    statRate: "સ્થાનિક મેન્થા રેટ",
-    statDistricts: "75 જિલ્લા કવરેજ",
-    widgetTitle: "ઉત્તર પ્રદેશના તમામ 75 જિલ્લાના મંડી ભાવ",
-    widgetSub: "લાઈવ MCX ભાવના આધારે તમારા જિલ્લાનો સીધો મંડી રેટ.",
-    selectDistrictLabel: "📍 તમારો જિલ્લો પસંદ કરો:",
-    mcxLabel: "બેકગ્રાઉન્ડ લાઈવ એન્જિન:",
-    mcxSub: "ઇકોનોમિક ટાઇમ્સ / MCX લાઈવ ફીડ (MENTHAOIL)",
-    weatherTitle: "7-દિવસ હવામાન અને મેન્થા પિલાણ સલાહ",
-    weatherRegion: "વિસ્તાર: યુપી મેન્થા બેલ્ટ (સંભલ અને બારાબંકી) | લાઈવ અપડેટ",
-    weatherStatus: "✅ સ્ટીમ ડિસ્ટિલેશન માટે ઉત્તમ હવામાન",
-    voiceBtn: "બોલીને શોધો",
-    searchPlaceholder: "પાક શોધો (જેમ કે મેન્થા ઓઇલ, ઘઉં)...",
-    tabSamples: "પાકના નમૂના અને બોલીઓ",
-    tabMandi: "લાઈવ મંડી ભાવ",
-    tabLogistics: "ભાડા કેલ્ક્યુલેટર",
-    tabCold: "કોલ્ડ સ્ટોરેજ બુકિંગ",
-    tabQuality: "ગુણવત્તા તપાસ (AI)",
-    tabDeals: "પાકા સોદા અને એસ્ક્રો",
-    mandiTabTitle: "📊 યુપીના તમામ 75 જિલ્લાના મંડી ભાવ",
-    mandiTabSub: "મંડી દરો સરખાવો."
+    statActive: "સક્રિય નમૂનાઓ", statRate: "સ્થાનિક મેન્થા રેટ", statDistricts: "75 જિલ્લા કવરેજ",
+    widgetTitle: "ઉત્તર પ્રદેશના તમામ 75 જિલ્લાના મંડી ભાવ", widgetSub: "લાઈવ MCX ભાવના આધારે તમારા જિલ્લાનો સીધો મંડી રેટ.",
+    selectDistrictLabel: "📍 તમારો જિલ્લો પસંદ કરો:", mcxLabel: "બેકગ્રાઉન્ડ લાઈવ એન્જિન:", mcxSub: "ઇકોનોમિક ટાઇમ્સ / MCX લાઈવ ફીડ (MENTHAOIL)",
+    weatherTitle: "7-દિવસ હવામાન અને મેન્થા પિલાણ સલાહ", weatherRegion: "વિસ્તાર: યુપી મેન્થા બેલ્ટ (સંભલ અને બારાબંકી) | લાઈવ અપડેટ",
+    weatherStatus: "✅ સ્ટીમ ડિસ્ટિલેશન માટે ઉત્તમ હવામાન", voiceBtn: "બોલીને શોધો", searchPlaceholder: "પાક શોધો (જેમ કે મેન્થા ઓઇલ, ઘઉં)...",
+    tabSamples: "પાકના નમૂના અને બોલીઓ", tabMandi: "લાઈવ મંડી ભાવ", tabLogistics: "ભાડા કેલ્ક્યુલેટર", tabCold: "કોલ્ડ સ્ટોરેજ બુકિંગ", tabQuality: "ગુણવત્તા તપાસ (AI)", tabDeals: "પાકા સોદા અને એસ્ક્રો",
+    mandiTabTitle: "📊 યુપીના તમામ 75 જિલ્લાના મંડી ભાવ", mandiTabSub: "મંડી દરો સરખાવો."
+  },
+  mr: {
+    brandSubtitle: "उत्तर प्रदेशातील सर्व 75 जिल्हे", roleFarmer: "शेतकरी (विक्रेता)", roleBuyer: "खरेदीदार / व्यापारी",
+    smsAlertsBtn: "व्यापार एसएमएस", postBtn: "पिकाचा नमुना पोस्ट करा",
+    heroTitle: "मेन्था तेल व पीक थेट व्यापार (यूपी मधील 75 जिल्हे) 🌿🏡",
+    heroSubtitle: "प्रमाणित निर्यातदार आणि व्यापारी यांच्याशी थेट कनेक्ट व्हा.",
+    statActive: "सक्रिय नमुने", statRate: "स्थानिक मेन्था दर", statDistricts: "75 जिल्हे",
+    widgetTitle: "उत्तर प्रदेशातील सर्व 75 जिल्ह्यांचे मंडी भाव", widgetSub: "थेट MCX भावावर आधारित दर.",
+    selectDistrictLabel: "📍 आपला जिल्हा निवडा:", mcxLabel: "बॅकग्राउंड इंजिन:", mcxSub: "इकॉनॉमिक टाईम्स / MCX फ्युचर्स",
+    weatherTitle: "7-दिवसीय हवामान आणि मेन्था पिकाचा सल्ला", weatherRegion: "प्रदेश: यूपी मेन्था बेल्ट | थेट अपडेट",
+    weatherStatus: "✅ वाफेच्या प्रक्रियेसाठी उत्तम हवामान", voiceBtn: "बोलून शोधा", searchPlaceholder: "पिके शोधा (उदा. मेन्था तेल, गहू)...",
+    tabSamples: "पिकांचे नमुने व बोली", tabMandi: "थेट मंडी दर", tabLogistics: "वाहतूक भाडे", tabCold: "कोल्ड स्टोरेज बुकिंग", tabQuality: "गुणवत्ता तपासणी", tabDeals: "पक्के सौदे",
+    mandiTabTitle: "📊 सर्व 75 जिल्ह्यांचे थेट मंडी दर", mandiTabSub: "दर तुलना करा."
+  },
+  bn: {
+    brandSubtitle: "উত্তর প্রদেশের সমস্ত ৭৫টি জেলা", roleFarmer: "কৃষক (বিক্রেতা)", roleBuyer: "ক্রেতা / মান্ডি ব্যবসায়ী",
+    smsAlertsBtn: "ট্রেড এসএমএস", postBtn: "ফসলের নমুনা পোস্ট করুন",
+    heroTitle: "মেন্থা তেল এবং ফসল সরাসরি ব্যবসা 🌿🏡",
+    heroSubtitle: "সরাসরি যাচাইকৃত মেন্থা তেল রফতানিকারকদের সাথে যোগাযোগ করুন।",
+    statActive: "সক্রিয় নমুনা", statRate: "লোকাল মেন্থা রেট", statDistricts: "৭৫টি জেলা",
+    widgetTitle: "উত্তর প্রদেশের ৭৫টি জেলার মান্ডি রেট", widgetSub: "লাইভ MCX হারের উপর ভিত্তি করে স্থানীয় রেট।",
+    selectDistrictLabel: "📍 আপনার জেলা নির্বাচন করুন:", mcxLabel: "ব্যাকগ্রাউন্ড ইঞ্জিন:", mcxSub: "ইকোনমিক টাইমস / MCX লাইভ",
+    weatherTitle: "৭ দিনের আবহাওয়া ও পরামর্শ", weatherRegion: "অঞ্চল: ইউপি মেন্থা বেল্ট | লাইভ আপডেট",
+    weatherStatus: "✅ পাতনের জন্য উপযুক্ত আবহাওয়া", voiceBtn: "ভয়েস সার্চ", searchPlaceholder: "ফসল খুঁজুন (যেমন মেন্থা তেল, গম)...",
+    tabSamples: "ফসলের নমুনা ও বিড", tabMandi: "লাইভ মান্ডি দর", tabLogistics: "পরিবহন ভাড়া", tabCold: "কোল্ড স্টোরেজ বুকিং", tabQuality: "গুণমান পরীক্ষা", tabDeals: "সম্পন্ন চুক্তি",
+    mandiTabTitle: "📊 ৭৫টি জেলার লাইভ মান্ডি দর", mandiTabSub: "দর তুলনা করুন।"
+  },
+  ta: {
+    brandSubtitle: "உத்தரபிரதேசத்தின் 75 மாவட்டங்கள்", roleFarmer: "விவசாயி (விற்பனையாளர்)", roleBuyer: "வாங்குபவர் / மண்டிகடை",
+    smsAlertsBtn: "வணிக SMS", postBtn: "பயிர் மாதிரியைப் பதிவேற்றுக",
+    heroTitle: "மெந்தா எண்ணெய் & பயிர் நேரடி வணிகம் 🌿🏡",
+    heroSubtitle: "சரிபார்க்கப்பட்ட ஏற்றுமதியாளர்களுடன் நேரடியாக இணையுங்கள்.",
+    statActive: "செயலில் உள்ள மாதிரிகள்", statRate: "உள்ளூர் மெந்தா விலை", statDistricts: "75 மாவட்டங்கள்",
+    widgetTitle: "75 மாவட்டங்களின் மண்டி விலைகள்", widgetSub: "MCX நேரடி விலையின் அடிப்படையில்.",
+    selectDistrictLabel: "📍 உங்கள் மாவட்டத்தைத் தேர்ந்தெடுக்கவும்:", mcxLabel: "பின்னணி எஞ்சின்:", mcxSub: "Economic Times / MCX Live",
+    weatherTitle: "7-நாள் வானிலை ஆலோசனை", weatherRegion: "பகுதி: UP மெந்தா பகுதி | நேரடி அப்டேட்",
+    weatherStatus: "✅ நீராவி வடித்தலுக்கு உகந்த வானிலை", voiceBtn: "குரல் தேடல்", searchPlaceholder: "பயிர்களைத் தேடுங்கள்...",
+    tabSamples: "பயிர் மாதிரிகள் & ஏலம்", tabMandi: "நேரடி மண்டி விலை", tabLogistics: "போக்குவரத்து கட்டணம்", tabCold: "குளிர்பதன சேமிப்பு", tabQuality: "தர சோதனை", tabDeals: "உறுதி செய்யப்பட்ட ஒப்பந்தங்கள்",
+    mandiTabTitle: "📊 75 மாவட்டங்களின் நேரடி மண்டி விலை", mandiTabSub: "விலைகளை ஒப்பிடுக."
+  },
+  te: {
+    brandSubtitle: "ఉత్తర ప్రదేశ్ 75 జిల్లాల ప్లాట్‌ఫారమ్", roleFarmer: "రైతు (అమ్మకందారు)", roleBuyer: "కొనుగోలుదారు / మండి వ్యాపారి",
+    smsAlertsBtn: "ట్రేడ్ SMS", postBtn: "పంట నమూనాను పోస్ట్ చేయండి",
+    heroTitle: "మెంథా ఆయిల్ & పంటల నేరుగా వ్యాపారం 🌿🏡",
+    heroSubtitle: "ధృవీకరించబడిన ఎగుమతిదారులతో నేరుగా కనెక్ట్ అవ్వండి.",
+    statActive: "యాక్టివ్ శాంపిల్స్", statRate: "లోకల్ మెంథా రేటు", statDistricts: "75 జిల్లాలు",
+    widgetTitle: "75 జిల్లాల మండి ధరలు", widgetSub: "MCX లైవ్ రేట్ల ఆధారంగా లోకల్ ధరలు.",
+    selectDistrictLabel: "📍 మీ జిల్లాను ఎంచుకోండి:", mcxLabel: "బ్యాక్‌గ్రౌండ్ ఇంజిన్:", mcxSub: "Economic Times / MCX Live",
+    weatherTitle: "7 రోజుల వాతావరణ సలహా", weatherRegion: "ప్రాంతం: UP మెంథా బెల్ట్ | లైవ్ అప్‌డేట్",
+    weatherStatus: "✅ ఆవిరి స్వేదనానికి అనుకూలమైన వాతావరణం", voiceBtn: "వాయిస్ సెర్చ్", searchPlaceholder: "పంటలను వెతకండి...",
+    tabSamples: "పంట నమూనాలు & బిడ్లు", tabMandi: "లైవ్ మండి ధరలు", tabLogistics: "రవాణా ఛార్జీలు", tabCold: "కోల్డ్ స్టోరేజ్ బుకింగ్", tabQuality: "నాణ్యత పరిశీలన", tabDeals: "ఖాయమైన ఒప్పందాలు",
+    mandiTabTitle: "📊 75 జిల్లాల లైవ్ మండి ధరలు", mandiTabSub: "ధరలను పోల్చండి."
+  },
+  kn: {
+    brandSubtitle: "ಉತ್ತರ ಪ್ರದೇಶದ ಎಲ್ಲಾ 75 ಜಿಲ್ಲೆಗಳು", roleFarmer: "ರೈತ (ಮಾರಾಟಗಾರ)", roleBuyer: "ಖರೀದಿದಾರ / ಮಂಡಿ ವ್ಯಾಪಾರಿ",
+    smsAlertsBtn: "ಟ್ರೇಡ್ SMS", postBtn: "ಬೆಳೆ ಮಾದರಿ ಪೋಸ್ಟ್ ಮಾಡಿ",
+    heroTitle: "ಮೆಂಥಾ ಎಣ್ಣೆ ಮತ್ತು ಬೆಳೆಗಳ ನೇರ ವ್ಯಾಪಾರ 🌿🏡",
+    heroSubtitle: "ದೃಢೀಕೃತ ರಫ್ತುದಾರರೊಂದಿಗೆ ನೇರವಾಗಿ ಸಂಪರ್ಕ ಸಾಧಿಸಿ.",
+    statActive: "ಸಕ್ರಿಯ ಮಾದರಿಗಳು", statRate: "ಸ್ಥಳೀಯ ಮೆಂಥಾ ದರ", statDistricts: "75 ಜಿಲ್ಲೆಗಳು",
+    widgetTitle: "75 ಜಿಲ್ಲೆಗಳ ಮಂಡಿ ದರಗಳು", widgetSub: "MCX ಲೈವ್ ದರಗಳ ಆಧಾರದ ಮೇಲೆ.",
+    selectDistrictLabel: "📍 ನಿಮ್ಮ ಜಿಲ್ಲೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ:", mcxLabel: "ಹಿನ್ನೆಲೆ ಎಂಜಿನ್:", mcxSub: "Economic Times / MCX Live",
+    weatherTitle: "7 ದಿನಗಳ ಹವಾಮಾನ ಸಲಹೆ", weatherRegion: "ಪ್ರದೇಶ: UP ಮೆಂಥಾ ಬೆಲ್ಟ್ | ಲೈವ್ ಅಪ್‌ಡೇಟ್",
+    weatherStatus: "✅ ಮಂಥನಕ್ಕೆ ಸೂಕ್ತವಾದ ಹವಾಮಾನ", voiceBtn: "ಧ್ವನಿ ಶೋಧನೆ", searchPlaceholder: "ಬೆಳೆಗಳನ್ನು ಹುಡುಕಿ...",
+    tabSamples: "ಬೆಳೆ ಮಾದರಿಗಳು & ಬಿಡ್‌ಗಳು", tabMandi: "ಲೈವ್ ಮಂಡಿ ದರಗಳು", tabLogistics: "ಸಾರಿಗೆ ವೆಚ್ಚ", tabCold: "ಕೋಲ್ಡ್ ಸ್ಟೋರೇಜ್ ಬುಕಿಂಗ್", tabQuality: "ಗುಣಮಟ್ಟ ಪರೀಕ್ಷೆ", tabDeals: "ಖಚಿತ ಒಪ್ಪಂದಗಳು",
+    mandiTabTitle: "📊 75 ಜಿಲ್ಲೆಗಳ ಲೈವ್ ಮಂಡಿ ದರಗಳು", mandiTabSub: "ದರಗಳನ್ನು ಹೋಲಿಕೆ ಮಾಡಿ."
+  },
+  ml: {
+    brandSubtitle: "ഉത്തർപ്രദേശിലെ 75 ജില്ലകൾ", roleFarmer: "കർഷകൻ (വിൽപ്പനക്കാരൻ)", roleBuyer: "വാങ്ങുന്നയാൾ / മണ്ഡി വ്യാപാരി",
+    smsAlertsBtn: "ട്രേഡ് SMS", postBtn: "വിള സാമ്പിൾ പോസ്റ്റ് ചെയ്യുക",
+    heroTitle: "മെന്ത എണ്ണയും വിളകളും നേരിട്ട് വ്യാപാരം 🌿🏡",
+    heroSubtitle: "അംഗീകൃത വ്യാപാരികളുമായി നേരിട്ട് ബന്ധപ്പെടുക.",
+    statActive: "സജീവ സാമ്പിളുകൾ", statRate: "പ്രാദേശിക മെന്ത നിരക്ക്", statDistricts: "75 ജില്ലകൾ",
+    widgetTitle: "75 ജില്ലകളിലെ മണ്ഡി നിരക്കുകൾ", widgetSub: "MCX ലൈവ് നിരക്കുകളെ അടിസ്ഥാനമാക്കി.",
+    selectDistrictLabel: "📍 നിങ്ങളുടെ ജില്ല തിരഞ്ഞെടുക്കുക:", mcxLabel: "ബാക്ക്ഗ്രൗണ്ട് എഞ്ചിൻ:", mcxSub: "Economic Times / MCX Live",
+    weatherTitle: "7 ദിവസത്തെ കാലാവസ്ഥ പ്രവചനം", weatherRegion: "മേഖല: UP മെന്ത ബെൽറ്റ് | ലൈവ് അപ്ഡേറ്റ്",
+    weatherStatus: "✅ വാറ്റിയെടുക്കാൻ അനുയോജ്യമായ കാലാവസ്ഥ", voiceBtn: "വോയ്‌സ് സെർച്ച്", searchPlaceholder: "വിളകൾ തിരയുക...",
+    tabSamples: "വിള സാമ്പിളുകളും ലേലവും", tabMandi: "ലൈവ് മണ്ഡി നിരക്കുകൾ", tabLogistics: "ഗതാഗത നിരക്ക്", tabCold: "കോൾഡ് സ്റ്റോറേജ് ബുക്കിംഗ്", tabQuality: "ഗുണനിലവാര പരിശോധന", tabDeals: "ഉറപ്പിച്ച കരാറുകൾ",
+    mandiTabTitle: "📊 75 ജില്ലകളിലെ ലൈവ് മണ്ഡി നിരക്കുകൾ", mandiTabSub: "നിരക്കുകൾ താരതമ്യം ചെയ്യുക."
+  },
+  or: {
+    brandSubtitle: "ଉତ୍ତର ପ୍ରଦେଶର ସମସ୍ତ ୭୫ ଜିଲ୍ଲା", roleFarmer: "କୃଷକ (ବିକ୍ରେତା)", roleBuyer: "କ୍ରେତା / ମଣ୍ଡି ବ୍ୟବସାୟୀ",
+    smsAlertsBtn: "ଟ୍ରେଡ୍ SMS", postBtn: "ଫସଲ ନମୁନା ପୋଷ୍ଟ କରନ୍ତୁ",
+    heroTitle: "ମେନ୍ଥା ତେଲ ଏବଂ ଫସଲ ସିଧାସଳଖ ବ୍ୟବସାୟ 🌿🏡",
+    heroSubtitle: "ଯାଞ୍ଚ ହୋଇଥିବା ରପ୍ତାନିବାରକଙ୍କ ସହ ସିଧାସଳଖ ଯୋଡିହୁଅନ୍ତୁ।",
+    statActive: "ସକ୍ରିୟ ନମୁନା", statRate: "ସ୍ଥାନୀୟ ମେନ୍ଥା ଦର", statDistricts: "୭୫ ଜିଲ୍ଲା",
+    widgetTitle: "୭୫ ଜିଲ୍ଲାର ମଣ୍ଡି ଦର", widgetSub: "ଲାଇଭ୍ MCX ଦର ଆଧାରରେ।",
+    selectDistrictLabel: "📍 ଆପଣଙ୍କ ଜିଲ୍ଲା ବାଛନ୍ତୁ:", mcxLabel: "ବ୍ୟାକଗ୍ରାଉଣ୍ଡ ଇଞ୍ଜିନ୍:", mcxSub: "Economic Times / MCX Live",
+    weatherTitle: "୭ ଦିନର ପାଣିପାଗ ପରାମର୍ଶ", weatherRegion: "ଅଞ୍ଚଳ: UP ମେନ୍ଥା ବେଲ୍ଟ | ଲାଇଭ୍ ଅପଡେଟ୍",
+    weatherStatus: "✅ ପେଷିବା ପାଇଁ ଉତ୍ତମ ପାଣିପାଗ", voiceBtn: "ଭଏସ୍ ସର୍ଚ୍ଚ", searchPlaceholder: "ଫସଲ ଖୋଜନ୍ତୁ...",
+    tabSamples: "ଫସଲ ନମୁନା ଓ ନିଲାମ", tabMandi: "ଲାଇଭ୍ ମଣ୍ଡି ଦର", tabLogistics: "ପରିବହନ ଖର୍ଚ୍ଚ", tabCold: "କୋଲ୍ଡ ଷ୍ଟୋରେଜ୍ ବୁକିଂ", tabQuality: "ଗୁଣବତ୍ତା ଯାଞ୍ଚ", tabDeals: "ପକ୍କା ସୌଦା",
+    mandiTabTitle: "📊 ୭୫ ଜିଲ୍ଲାର ଲାଇଭ୍ ମଣ୍ଡି ଦର", mandiTabSub: "ଦର ତୁଳନା କରନ୍ତୁ।"
+  },
+  as: {
+    brandSubtitle: "উত্তৰ প্ৰদেশৰ ৭৫ টা জিলা", roleFarmer: "কৃষক (বিক্ৰেতা)", roleBuyer: "ক্ৰেতা / মন্ডি ব্যৱসায়ী",
+    smsAlertsBtn: "ট্ৰেড SMS", postBtn: "শস্যৰ নমুনা প'ষ্ট কৰক",
+    heroTitle: "মেন্থা তেল আৰু শস্য প্ৰত্যক্ষ ব্যৱসায় 🌿🏡",
+    heroSubtitle: "প্ৰমাণিত ৰপ্তানিকাৰকসকলৰ সৈতে পোনপটীয়াকৈ সংযোগ কৰক।",
+    statActive: "সক্ৰিয় নমুনা", statRate: "স্থানীয় মেন্থা দৰ", statDistricts: "৭৫ টা জিলা",
+    widgetTitle: "৭৫ টা জিলাৰ মন্ডি দৰ", widgetSub: "লাইভ MCX দৰৰ ওপৰত আধাৰিত।",
+    selectDistrictLabel: "📍 আপোনাৰ জিলা বাছক:", mcxLabel: "বেকগ্ৰাউণ্ড ইঞ্জিন:", mcxSub: "Economic Times / MCX Live",
+    weatherTitle: "৭ দিনৰ বতৰৰ পৰামৰ্শ", weatherRegion: "অঞ্চল: UP মেন্থা বেল্ট | লাইভ আপডেট",
+    weatherStatus: "✅ নিষ্কাশনৰ বাবে উত্তম বতৰ", voiceBtn: "ভয়েচ চাৰ্চ", searchPlaceholder: "শস্য বিচাৰক...",
+    tabSamples: "শস্যৰ নমুনা আৰু নিলাম", tabMandi: "লাইভ মন্ডি দৰ", tabLogistics: "পৰিবহন খৰচ", tabCold: "ক'ল্ড ষ্ট'ৰেজ বুকিং", tabQuality: "গুণমান পৰীক্ষা", tabDeals: "সম্পূৰ্ণ চুক্তি",
+    mandiTabTitle: "📊 ৭৫ টা জিলাৰ লাইভ মন্ডি দৰ", mandiTabSub: "দৰ তুলনা কৰক।"
+  },
+  ur: {
+    brandSubtitle: "اتر پردیش کے تمام 75 اضلاع", roleFarmer: "کسان (فروخت کنندہ)", roleBuyer: "خریدار / منڈی تاجر",
+    smsAlertsBtn: "تجارت SMS", postBtn: "فصل کا نمونہ پوسٹ کریں",
+    heroTitle: "مینتھا آئل اور فصلوں کی براہ راست تجارت 🌿🏡",
+    heroSubtitle: "تصدیق شدہ برآمد کنندگان اور منڈی تاجروں سے براہ راست جڑیں۔",
+    statActive: "فعال نمونے", statRate: "مقامی مینتھا ریٹ", statDistricts: "75 اضلاع",
+    widgetTitle: "تمام 75 اضلاع کے منڈی کے بھاؤ", widgetSub: "لائیو MCX قیمتوں پر مبنی ریٹ۔",
+    selectDistrictLabel: "📍 اپنا ضلع منتخب کریں:", mcxLabel: "بیک گراؤنڈ انجن:", mcxSub: "Economic Times / MCX Live",
+    weatherTitle: "7 دنوں کا موسم اور مشورہ", weatherRegion: "علاقہ: UP مینتھا بیلٹ | لائیو اپ ڈیٹ",
+    weatherStatus: "✅ کشید کاری کے لیے بہترین موسم", voiceBtn: "آواز سے تلاش کریں", searchPlaceholder: "فصلیں تلاش کریں...",
+    tabSamples: "فصل کے نمونے اور بولیاں", tabMandi: "لائیو منڈی بھاؤ", tabLogistics: "ٹرانسپورٹ کرایہ", tabCold: "کولڈ اسٹوریج بکنگ", tabQuality: "کوالٹی چیک", tabDeals: "پکے سودے",
+    mandiTabTitle: "📊 75 اضلاع کے لائیو منڈی بھاؤ", mandiTabSub: "قیمتوں کا موازنہ کریں۔"
   }
 };
 
@@ -174,7 +223,7 @@ let smsLogs = [];
 let currentRole = "farmer";
 let currentTheme = "light";
 let currentTab = "samples";
-let currentLanguage = "hi"; // Default Native Language for UP Farmers: Hindi
+let currentLanguage = "hi"; // Default Native Language: Hindi
 let samples = [];
 let sealedDeals = [];
 let isBackendConnected = false;
@@ -214,7 +263,7 @@ function loadUserSession() {
   renderAuthNav();
 }
 
-// DYNAMIC LANGUAGE SWITCHING SYSTEM
+// DYNAMIC LANGUAGE SWITCHING SYSTEM (SUPPORT FOR ALL 13 OFFICIAL INDIAN LANGUAGES)
 function changeLanguage(langCode) {
   currentLanguage = langCode;
   if (currentUser) {
@@ -228,11 +277,12 @@ function changeLanguage(langCode) {
 }
 
 function getLanguageName(code) {
-  if (code === 'hi') return "हिंदी (Hindi)";
-  if (code === 'en') return "English";
-  if (code === 'pa') return "ਪੰਜਾਬੀ (Punjabi)";
-  if (code === 'gu') return "ગુજરાતી (Gujarati)";
-  return "Hindi";
+  const names = {
+    hi: "हिंदी (Hindi)", en: "English", pa: "ਪੰਜਾਬੀ (Punjabi)", gu: "ગુજરાતી (Gujarati)",
+    mr: "मराठी (Marathi)", bn: "বাংলা (Bengali)", ta: "தமிழ் (Tamil)", te: "తెలుగు (Telugu)",
+    kn: "ಕನ್ನಡ (Kannada)", ml: "മലയാളം (Malayalam)", or: "ଓଡ଼ିଆ (Odia)", as: "অসমীয়া (Assamese)", ur: "اردو (Urdu)"
+  };
+  return names[code] || "Hindi";
 }
 
 function applyLanguageTranslations(lang) {
@@ -324,7 +374,7 @@ function switchAuthTab(tab) {
     registerForm.style.display = "block";
     tabLogin.classList.remove("active");
     tabRegister.classList.add("active");
-    title.innerText = "🛡️ Verified Account Registration / नया पंजीकरण";
+    title.innerText = "🛡️ Verified Registration / नया पंजीकरण";
     toggleRegRoleFields();
   }
 }
@@ -438,13 +488,12 @@ async function handleRegister(e) {
   localStorage.setItem("krishi_user_session", JSON.stringify(currentUser));
   setRole(currentUser.role);
   
-  // Set preferred language selected during registration!
   changeLanguage(preferredLanguage);
 
   closeModal("authModal");
   document.getElementById("registerForm").reset();
   renderAuthNav();
-  showToast(`🎉 Registration successful! Portal opened in your preferred native language: ${getLanguageName(preferredLanguage)}.`);
+  showToast(`🎉 Registration successful! Portal opened in ${getLanguageName(preferredLanguage)}.`);
 }
 
 function handleSignOut() {
@@ -583,7 +632,7 @@ function simulateVoiceSearch() {
   voiceBtn.innerText = "🎙️ Listening...";
 
   setTimeout(() => {
-    const samplesVoice = ["मेंटहा तेल", "संभल मंडी", "बाराबंकी मिंट", "शरबाती गेहूं"];
+    const samplesVoice = ["मेंटहा तेल", "সংভল মন্দি", "સંભલ મંડી", "ਮੈਂਥਾ ਤੇਲ"];
     const randomCrop = samplesVoice[Math.floor(Math.random() * samplesVoice.length)];
     searchInput.value = randomCrop;
     voiceBtn.classList.remove("listening");
@@ -599,7 +648,6 @@ async function calculateFreight() {
   if (!kmEl || !qtlEl) return;
 
   const distance = parseFloat(kmEl.value || 45);
-  const weight = parseFloat(qtlEl.value || 120);
 
   let rates = {
     erickshaw: Math.round(distance * 25 + 300),

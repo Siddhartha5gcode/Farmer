@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KrishiDeal - Native Language Mentha & Farmer Commodity Platform</title>
-  <meta name="description" content="Direct agricultural dealing platform for Mentha Oil (Essential Oil), Wheat, Basmati Rice across all 75 Uttar Pradesh districts. Real-time Mentha mandi prices with native language support.">
+  <title>KrishiDeal - All Indian Languages Mentha & Farmer Commodity Platform</title>
+  <meta name="description" content="Direct agricultural dealing platform for Mentha Oil (Essential Oil), Wheat, Basmati Rice across all 75 Uttar Pradesh districts. Real-time Mentha mandi prices supporting all official Indian languages.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -37,16 +37,25 @@
         </button>
       </div>
 
-      <!-- Nav Actions & Native Language Selector -->
+      <!-- Nav Actions & All Indian Languages Selector -->
       <div class="nav-actions">
-        <!-- NATIVE LANGUAGE SELECTOR DROPDOWN -->
-        <div style="display: flex; align-items: center; gap: 6px; background: var(--bg-subtle); padding: 4px 10px; border-radius: var(--radius-full); border: 1px solid var(--border-color);" title="Change Native Language">
+        <!-- ALL INDIAN LANGUAGES SELECTOR DROPDOWN -->
+        <div style="display: flex; align-items: center; gap: 6px; background: var(--bg-subtle); padding: 4px 10px; border-radius: var(--radius-full); border: 1px solid var(--border-color);" title="Change Native Indian Language">
           <span style="font-size: 1rem;">🌐</span>
-          <select id="languageSelect" onchange="changeLanguage(this.value)" style="background: transparent; border: none; font-size: 0.85rem; font-weight: 700; color: var(--text-main); cursor: pointer; outline: none;">
+          <select id="languageSelect" onchange="changeLanguage(this.value)" style="background: transparent; border: none; font-size: 0.85rem; font-weight: 700; color: var(--text-main); cursor: pointer; outline: none; max-width: 150px;">
             <option value="hi" selected>🇮🇳 हिंदी (Hindi)</option>
             <option value="en">🇬🇧 English</option>
             <option value="pa">🌾 ਪੰਜਾਬੀ (Punjabi)</option>
             <option value="gu">🌻 ગુજરાતી (Gujarati)</option>
+            <option value="mr">🐯 मराठी (Marathi)</option>
+            <option value="bn">🌾 বাংলা (Bengali)</option>
+            <option value="ta">☕ தமிழ் (Tamil)</option>
+            <option value="te">🥥 తెలుగు (Telugu)</option>
+            <option value="kn">🌴 ಕನ್ನಡ (Kannada)</option>
+            <option value="ml">🌊 മലയാളം (Malayalam)</option>
+            <option value="or">🏛️ ଓଡ଼ିଆ (Odia)</option>
+            <option value="as">🏔️ অসমীয়া (Assamese)</option>
+            <option value="ur">📜 اردو (Urdu)</option>
           </select>
         </div>
 
@@ -281,7 +290,7 @@
       <div class="search-box">
         <span class="search-icon">🔍</span>
         <input type="text" id="searchInput" placeholder="फसल खोजें (उदा. मेंटहा तेल, शरबाती गेहूं, संभल)..." oninput="renderApp()">
-        <button class="voice-search-btn" id="voiceSearchBtn" onclick="startVoiceRecognition()" title="हिंदी या अंग्रेजी में बोलकर खोजें">
+        <button class="voice-search-btn" id="voiceSearchBtn" onclick="startVoiceRecognition()" title="अपनी मातृभाषा में बोलकर खोजें">
           🎙️ <span id="txtVoiceBtn">बोलकर खोजें</span>
         </button>
       </div>
@@ -494,7 +503,7 @@
     </div>
   </div>
 
-  <!-- AUTH MODAL WITH NATIVE LANGUAGE SELECTION AT REGISTRATION -->
+  <!-- AUTH MODAL WITH ALL INDIAN LANGUAGES SELECTION AT REGISTRATION -->
   <div class="modal-backdrop" id="authModal">
     <div class="modal-container" style="max-width: 560px;">
       <div class="modal-header">
@@ -538,14 +547,23 @@
           </select>
         </div>
 
-        <!-- PREFERRED NATIVE LANGUAGE SELECTOR AT REGISTRATION TIME -->
+        <!-- ALL INDIAN LANGUAGES SELECTION AT REGISTRATION TIME -->
         <div class="form-group" style="background: var(--bg-subtle); padding: 12px 14px; border-radius: var(--radius-sm); border: 1px dashed var(--primary);">
-          <label style="font-size: 0.9rem; color: var(--primary); font-weight: 800;">🌐 अपनी पसंदीदा मातृभाषा चुनें (Preferred Native Language) *</label>
+          <label style="font-size: 0.9rem; color: var(--primary); font-weight: 800;">🌐 अपनी मातृभाषा चुनें (Select All Indian Languages) *</label>
           <select class="form-control" id="regLanguage" style="font-weight: 700; margin-top: 4px;">
             <option value="hi" selected>🇮🇳 हिंदी (Hindi) - उत्तर प्रदेश व उत्तर भारत की भाषा</option>
             <option value="en">🇬🇧 English</option>
             <option value="pa">🌾 ਪੰਜਾਬੀ (Punjabi)</option>
             <option value="gu">🌻 ગુજરાતી (Gujarati)</option>
+            <option value="mr">🐯 मराठी (Marathi)</option>
+            <option value="bn">🌾 বাংলা (Bengali)</option>
+            <option value="ta">☕ தமிழ் (Tamil)</option>
+            <option value="te">🥥 తెలుగు (Telugu)</option>
+            <option value="kn">🌴 ಕನ್ನಡ (Kannada)</option>
+            <option value="ml">🌊 മലയാളം (Malayalam)</option>
+            <option value="or">🏛️ ଓଡ଼ିଆ (Odia)</option>
+            <option value="as">🏔️ অসমীয়া (Assamese)</option>
+            <option value="ur">📜 اردو (Urdu)</option>
           </select>
           <span style="font-size: 0.75rem; color: var(--text-muted);">लॉगिन करने पर पोर्टल स्वतः आपकी इसी चुनी हुई मातृभाषा में खुलेगा।</span>
         </div>
