@@ -1,0 +1,23 @@
+{
+  "name": "krishideal-backend",
+  "version": "1.1.0",
+  "description": "REST API Backend for KrishiDeal Farmer Direct Trading Platform",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "agriculture",
+    "farmer",
+    "mandi",
+    "apmc",
+    "trading"
+  ],
+  "author": "KrishiDeal Team",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}

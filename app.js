@@ -1,7 +1,9 @@
 /* ==========================================================================
-   KrishiDeal - Direct Farmer Dealing Platform
+   KrishiDeal - Direct Farmer Dealing Platform (v1.1.0 Backend Sync)
    Application Core Logic & Reactive State Store
    ========================================================================== */
+
+const API_BASE_URL = "http://localhost:5000/api";
 
 const INITIAL_SAMPLES = [
   {
@@ -95,7 +97,7 @@ const INITIAL_SAMPLES = [
   }
 ];
 
-const MANDI_RATES = [
+let MANDI_RATES = [
   { mandi: "Indore APMC Mandi", state: "Madhya Pradesh", crop: "Sharbati Wheat", min: 4500, max: 4850, modal: 4720, trend: "+1.8%" },
   { mandi: "Azadpur APMC Market", state: "Delhi NCR", crop: "1121 Basmati Rice", min: 4100, max: 4450, modal: 4320, trend: "+2.4%" },
   { mandi: "Yavatmal Cotton Market", state: "Maharashtra", crop: "Raw Cotton (29mm)", min: 7200, max: 7650, modal: 7450, trend: "-0.5%" },
@@ -109,13 +111,45 @@ let currentTheme = "light";
 let currentTab = "samples";
 let samples = [];
 let sealedDeals = [];
+let isBackendConnected = false;
 
-document.addEventListener("DOMContentLoaded", () => {
-  loadStore();
+document.addEventListener("DOMContentLoaded", async () => {
+  await fetchFromBackend();
   initTicker();
   renderApp();
   calculateQualityScore();
 });
+
+async function fetchFromBackend() {
+  try {
+    const res = await fetch(`${API_BASE_URL}/samples`);
+    if (res.ok) {
+      const data = await res.json();
+      if (data.success && data.data) {
+        samples = data.data;
+        isBackendConnected = true;
+
+        // Fetch Mandi Rates
+        const resMandi = await fetch(`${API_BASE_URL}/mandi-rates`);
+        const dataMandi = await resMandi.json();
+        if (dataMandi.success) MANDI_RATES = dataMandi.data;
+
+        // Fetch Deals
+        const resDeals = await fetch(`${API_BASE_URL}/deals`);
+        const dataDeals = await resDeals.json();
+        if (dataDeals.success) sealedDeals = dataDeals.data;
+
+        console.log("⚡ Connected to KrishiDeal Express REST API Backend!");
+        return;
+      }
+    }
+  } catch (err) {
+    console.log("ℹ️ Backend server offline. Operating in LocalStorage mode.");
+  }
+
+  // Fallback to LocalStorage
+  loadStore();
+}
 
 function loadStore() {
   const savedSamples = localStorage.getItem("krishi_samples");
@@ -154,6 +188,7 @@ function saveStore() {
 
 function initTicker() {
   const tickerEl = document.getElementById("mandiTicker");
+  if (!tickerEl) return;
   let tickerHTML = "";
   const allRates = [...MANDI_RATES, ...MANDI_RATES];
   
@@ -239,11 +274,13 @@ function renderApp() {
 }
 
 function updateStats() {
-  document.getElementById("statActiveSamples").innerText = samples.length;
+  const statEl = document.getElementById("statActiveSamples");
+  if (statEl) statEl.innerText = samples.length;
 }
 
 function renderListings() {
   const grid = document.getElementById("listingsGrid");
+  if (!grid) return;
   const searchQuery = document.getElementById("searchInput").value.toLowerCase();
   const cropFilter = document.getElementById("cropFilter").value;
   const gradeFilter = document.getElementById("gradeFilter").value;
@@ -342,6 +379,7 @@ function renderListings() {
 
 function renderMandiTable() {
   const tbody = document.getElementById("mandiTableBody");
+  if (!tbody) return;
   let html = "";
   MANDI_RATES.forEach(r => {
     const isUp = r.trend.startsWith("+");
@@ -362,7 +400,9 @@ function renderMandiTable() {
 }
 
 function calculateQualityScore() {
-  const crop = document.getElementById("calcCropType").value;
+  const cropEl = document.getElementById("calcCropType");
+  if (!cropEl) return;
+  const crop = cropEl.value;
   const moisture = parseFloat(document.getElementById("sliderMoisture").value);
   const purity = parseFloat(document.getElementById("sliderPurity").value);
   const foreign = parseFloat(document.getElementById("sliderForeign").value);
@@ -400,7 +440,7 @@ function openPostSampleModal() {
   document.getElementById("postSampleModal").classList.add("active");
 }
 
-function handlePostSample(e) {
+async function handlePostSample(e) {
   e.preventDefault();
   const title = document.getElementById("formCropTitle").value;
   const category = document.getElementById("formCategory").value;
@@ -411,25 +451,35 @@ function handlePostSample(e) {
   const location = document.getElementById("formLocation").value;
   const image = document.getElementById("formImageSelect").value;
 
-  const newSample = {
-    id: "SMP-" + (Math.floor(Math.random() * 900) + 100),
-    title,
-    category,
-    variety: category + " (Farmer Direct Sample)",
-    quantity,
-    reservePrice,
-    moisture,
-    purity: 97.5,
-    grade,
-    location,
-    farmerName: "Self (Farmer Home Posting)",
-    harvestDate: new Date().toISOString().split("T")[0],
-    image,
-    offers: []
-  };
+  const sampleData = { title, category, quantity, reservePrice, moisture, grade, location, image, farmerName: "Self (Farmer Home Posting)" };
 
-  samples.unshift(newSample);
-  saveStore();
+  if (isBackendConnected) {
+    try {
+      const res = await fetch(`${API_BASE_URL}/samples`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(sampleData)
+      });
+      const data = await res.json();
+      if (data.success) {
+        samples.unshift(data.sample);
+      }
+    } catch (err) {
+      console.error("Backend error, falling back to local state", err);
+    }
+  } else {
+    const newSample = {
+      id: "SMP-" + (Math.floor(Math.random() * 900) + 100),
+      ...sampleData,
+      variety: category + " (Farmer Direct Sample)",
+      purity: 97.5,
+      harvestDate: new Date().toISOString().split("T")[0],
+      offers: []
+    };
+    samples.unshift(newSample);
+    saveStore();
+  }
+
   closeModal("postSampleModal");
   document.getElementById("postSampleForm").reset();
   renderApp();
@@ -446,7 +496,7 @@ function openBidModal(sampleId) {
   document.getElementById("bidModal").classList.add("active");
 }
 
-function handlePlaceBid(e) {
+async function handlePlaceBid(e) {
   e.preventDefault();
   const sampleId = document.getElementById("bidSampleId").value;
   const buyerEntity = document.getElementById("buyerEntity").value;
@@ -454,22 +504,42 @@ function handlePlaceBid(e) {
   const tokenAdvance = parseFloat(document.getElementById("tokenAdvance").value);
   const pickupTerm = document.getElementById("pickupTerm").value;
 
-  const item = samples.find(s => s.id === sampleId);
-  if (item) {
-    if (!item.offers) item.offers = [];
-    item.offers.unshift({
-      buyerName: buyerEntity,
-      offerPrice: offeredPrice,
-      token: tokenAdvance,
-      term: pickupTerm,
-      date: new Date().toISOString().split("T")[0]
-    });
-    saveStore();
-    closeModal("bidModal");
-    document.getElementById("bidForm").reset();
-    renderApp();
-    showToast(`🤝 Direct price offer of ₹${offeredPrice}/Qtl submitted to farmer!`);
+  const bidPayload = { buyerName: buyerEntity, offerPrice: offeredPrice, token: tokenAdvance, term: pickupTerm };
+
+  if (isBackendConnected) {
+    try {
+      const res = await fetch(`${API_BASE_URL}/samples/${sampleId}/bids`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(bidPayload)
+      });
+      const data = await res.json();
+      if (data.success) {
+        const item = samples.find(s => s.id === sampleId);
+        if (item) {
+          if (!item.offers) item.offers = [];
+          item.offers.unshift(data.offer);
+        }
+      }
+    } catch (err) {
+      console.error("Backend error placing bid", err);
+    }
+  } else {
+    const item = samples.find(s => s.id === sampleId);
+    if (item) {
+      if (!item.offers) item.offers = [];
+      item.offers.unshift({
+        ...bidPayload,
+        date: new Date().toISOString().split("T")[0]
+      });
+      saveStore();
+    }
   }
+
+  closeModal("bidModal");
+  document.getElementById("bidForm").reset();
+  renderApp();
+  showToast(`🤝 Direct price offer of ₹${offeredPrice}/Qtl submitted to farmer!`);
 }
 
 function viewOffers(sampleId) {
@@ -530,30 +600,50 @@ function viewOffers(sampleId) {
   document.getElementById("offersModal").classList.add("active");
 }
 
-function acceptDeal(sampleId, offerIndex) {
+async function acceptDeal(sampleId, offerIndex) {
   const item = samples.find(s => s.id === sampleId);
   if (!item || !item.offers || !item.offers[offerIndex]) return;
 
   const offer = item.offers[offerIndex];
-  const totalAmount = offer.offerPrice * item.quantity;
+  let newDeal;
 
-  const newDeal = {
-    dealId: "DEAL-" + (Math.floor(Math.random() * 9000) + 1000),
-    sampleTitle: item.title,
-    farmerName: item.farmerName,
-    buyerName: offer.buyerName,
-    quantity: item.quantity,
-    pricePerQtl: offer.offerPrice,
-    totalAmount: totalAmount,
-    tokenDeposit: offer.token,
-    pickupTerm: offer.term,
-    location: item.location,
-    date: new Date().toISOString().split("T")[0]
-  };
+  if (isBackendConnected) {
+    try {
+      const res = await fetch(`${API_BASE_URL}/deals/accept`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sampleId, offerIndex })
+      });
+      const data = await res.json();
+      if (data.success) {
+        newDeal = data.deal;
+        sealedDeals.unshift(newDeal);
+        samples = samples.filter(s => s.id !== sampleId);
+      }
+    } catch (err) {
+      console.error("Backend deal acceptance error", err);
+    }
+  }
 
-  sealedDeals.unshift(newDeal);
-  samples = samples.filter(s => s.id !== sampleId);
-  saveStore();
+  if (!newDeal) {
+    const totalAmount = offer.offerPrice * item.quantity;
+    newDeal = {
+      dealId: "DEAL-" + (Math.floor(Math.random() * 9000) + 1000),
+      sampleTitle: item.title,
+      farmerName: item.farmerName,
+      buyerName: offer.buyerName,
+      quantity: item.quantity,
+      pricePerQtl: offer.offerPrice,
+      totalAmount: totalAmount,
+      tokenDeposit: offer.token,
+      pickupTerm: offer.term,
+      location: item.location,
+      date: new Date().toISOString().split("T")[0]
+    };
+    sealedDeals.unshift(newDeal);
+    samples = samples.filter(s => s.id !== sampleId);
+    saveStore();
+  }
 
   closeModal("offersModal");
   renderApp();
@@ -610,6 +700,7 @@ function showContractModal(deal) {
 
 function renderDeals() {
   const container = document.getElementById("dealsHistoryList");
+  if (!container) return;
   if (sealedDeals.length === 0) {
     container.innerHTML = `
       <div style="text-align: center; padding: 40px; background: var(--bg-card); border-radius: var(--radius-md); border: 1px dashed var(--border-color);">
@@ -648,6 +739,7 @@ function closeModal(id) {
 
 function showToast(msg) {
   const container = document.getElementById("toastContainer");
+  if (!container) return;
   const toast = document.createElement("div");
   toast.className = "toast";
   toast.innerHTML = `<span>🌾</span> ${msg}`;
