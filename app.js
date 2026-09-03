@@ -1,5 +1,5 @@
 /* ==========================================================================
-   KrishiDeal - Direct Farmer Platform (v2.7.0 All Indian Languages Suite)
+   KrishiDeal - Direct Farmer Platform (v2.8.0 UP Mentha & Potato Market Suite)
    ========================================================================== */
 
 const API_BASE_URL = "http://localhost:5000/api";
@@ -9,181 +9,61 @@ const TRANSLATIONS = {
   hi: {
     brandSubtitle: "उत्तर प्रदेश के सभी 75 जिले", roleFarmer: "किसान (विक्रेता)", roleBuyer: "खरीदार / मंडी व्यापारी",
     smsAlertsBtn: "व्यापार एसएमएस", postBtn: "फसल नमूना पोस्ट करें",
-    heroTitle: "मेंटहा तेल और फसल सीधा व्यापार (उत्तर प्रदेश के सभी 75 जिले) 🌿🏡",
-    heroSubtitle: "सत्यापित सुगंधित तेल निर्यातकों, मंडी व्यापारियों और आटा मिलों से सीधे जुड़ें। अपने जिले के लाइव मेंटहा मंडी भाव देखें।",
+    heroTitle: "मेंटहा तेल और आलू सीधा मंडी व्यापार (फर्रुखाबाद, आगरा व संभल) 🌿🥔",
+    heroSubtitle: "सत्यापित सुगंधित तेल निर्यातकों, कोल्ड स्टोरेज व्यापारियों और आलू मंडी आढ़तियों से सीधे जुड़ें। अपने जिले के लाइव आलू (कट्टा/कुंतल) व मेंटहा मंडी भाव देखें।",
     statActive: "सक्रिय नमूने", statRate: "स्थानीय मेंटहा रेट", statDistricts: "75 जिले कवरेज",
     widgetTitle: "उत्तर प्रदेश के सभी 75 जिलों के मंडी भाव", widgetSub: "लाइव एमसीएक्स (MCX) भाव के आधार पर आपके जिले का सीधा मंडी रेट।",
     selectDistrictLabel: "📍 अपना जिला चुनें:", mcxLabel: "बैकग्राउंड लाइव इंजन:", mcxSub: "इकोनॉमिक टाइम्स / MCX वायदा बाजार (MENTHAOIL)",
-    weatherTitle: "7-दिवसीय मौसम एवं मेंटहा पेराई (आसवन) नमी सलाह", weatherRegion: "क्षेत्र: उत्तर प्रदेश मेंटहा बेल्ट (संभल व बाराबंकी) | लाइव अपडेट",
-    weatherStatus: "✅ भाप आसवन पेराई हेतु उत्तम मौसम", voiceBtn: "बोलकर खोजें", searchPlaceholder: "फसल खोजें (उदा. मेंटहा तेल, शरबाती गेहूं, संभल)...",
+    weatherTitle: "7-दिवसीय मौसम, मेंटहा पेराई व आलू कोल्ड स्टोरेज निकासी सलाह", weatherRegion: "क्षेत्र: उत्तर प्रदेश मेंटहा व आलू बेल्ट (फर्रुखाबाद, आगरा व संभल) | लाइव अपडेट",
+    weatherStatus: "✅ भाप आसवन पेराई एवं आलू लोड/अनलोड हेतु उत्तम मौसम", voiceBtn: "बोलकर खोजें", searchPlaceholder: "फसल खोजें (उदा. मेंटहा तेल, फर्रुखाबाद आलू 3797, शरबाती गेहूं)...",
     tabSamples: "फसल नमूने व बोलियां", tabMandi: "लाइव मंडी भाव", tabLogistics: "भाड़ा कैलकुलेटर", tabCold: "कोल्ड स्टोरेज बुकिंग", tabQuality: "गुणवत्ता जांच (AI)", tabDeals: "पक्के सौदे एवं एस्क्रो",
-    mandiTabTitle: "📊 उत्तर प्रदेश के सभी 75 जिलों के मंडी भाव", mandiTabSub: "विभिन्न एपीएमसी मंडियों, संभल व बाराबंकी सुगंधित तेल बाजारों और एमसीएक्स (MCX) के रेट की तुलना करें।"
+    mandiTabTitle: "📊 उत्तर प्रदेश के सभी 75 जिलों के मंडी व आलू भाव", mandiTabSub: "विभिन्न एपीएमसी मंडियों, संभल व बाराबंकी सुगंधित तेल बाजारों, फर्रुखाबाद आलू मंडी और एमसीएक्स (MCX) के रेट की तुलना करें।"
   },
   en: {
     brandSubtitle: "All 75 UP Districts Platform", roleFarmer: "Farmer (Seller)", roleBuyer: "Buyer / Mandi Trader",
     smsAlertsBtn: "Trade SMS", postBtn: "Post Produce Sample",
-    heroTitle: "Mentha Oil & Crop Direct Trade Across All 75 UP Districts 🌿🏡",
-    heroSubtitle: "Connect directly with verified essential oil exporters, APMC Mandi buyers, and flour mills. Track live Mentha mandi rates for your district.",
+    heroTitle: "Mentha Oil & UP Potato Direct Trade (Farrukhabad & Agra) 🌿🥔",
+    heroSubtitle: "Connect directly with essential oil exporters, cold storage owners, and UP Potato APMC wholesalers. Track live Mentha & Potato rates.",
     statActive: "Active Samples", statRate: "Local Mentha Rate", statDistricts: "75 UP Districts",
     widgetTitle: "All 75 Uttar Pradesh District Mandi Rates", widgetSub: "Live APMC Mandi rates computed relative to background MCX benchmark.",
     selectDistrictLabel: "📍 Select UP District:", mcxLabel: "BACKGROUND ENGINE:", mcxSub: "Economic Times / MCX Live Feed (MENTHAOIL)",
-    weatherTitle: "7-Day Harvest Weather & Mentha Distillation Advisory", weatherRegion: "Region: UP Mentha Belt (Sambhal & Barabanki) | Live Update",
-    weatherStatus: "✅ Optimal Steam Distillation Window", voiceBtn: "Voice Search", searchPlaceholder: "Search crops (e.g. Mentha Oil, Sharbati Wheat, Sambhal)...",
+    weatherTitle: "7-Day Weather & Potato Cold Storage Advisory", weatherRegion: "Region: UP Mentha & Potato Belt (Farrukhabad & Agra) | Live Update",
+    weatherStatus: "✅ Optimal Steam Distillation & Potato Storage Window", voiceBtn: "Voice Search", searchPlaceholder: "Search crops (e.g. Mentha Oil, Farrukhabad Potato 3797)...",
     tabSamples: "Crop Samples & Bids", tabMandi: "Live Mandi Rates", tabLogistics: "Logistics Estimator", tabCold: "Cold Storage Slot", tabQuality: "AI Quality Score", tabDeals: "Sealed Deals & Escrow",
-    mandiTabTitle: "📊 Live Mandi Rates Across All 75 UP Districts", mandiTabSub: "Compare APMC Mandi benchmark rates with Sambhal & Barabanki distillation hubs."
-  },
-  pa: {
-    brandSubtitle: "ਯੂਪੀ ਦੇ ਸਾਰੇ 75 ਜ਼ਿਲ੍ਹੇ ਪਲੇਟਫਾਰਮ", roleFarmer: "ਕਿਸਾਨ (ਵੇਚਣ ਵਾਲਾ)", roleBuyer: "ਖਰੀਦਦਾਰ / ਮੰਡੀ ਵਪਾਰੀ",
-    smsAlertsBtn: "ਵਪਾਰ ਐਸਐਮਐਸ", postBtn: "ਫਸਲ ਦਾ ਨਮੂਨਾ ਪੋਸਟ ਕਰੋ",
-    heroTitle: "ਮੈਂਥਾ ਤੇਲ ਅਤੇ ਫਸਲਾਂ ਦਾ ਸਿੱਧਾ ਵਪਾਰ (ਯੂਪੀ ਦੇ 75 ਜ਼ਿਲ੍ਹੇ) 🌿🏡",
-    heroSubtitle: "ਪ੍ਰਮਾਣਿਤ ਜ਼ਰੂਰੀ ਤੇਲ ਨਿਰਯਾਤਕਾਂ ਅਤੇ ਮੰਡੀ ਖਰੀਦਦਾਰਾਂ ਨਾਲ ਸਿੱਧੇ ਜੁੜੋ। ਆਪਣੀ ਮੰਡੀ ਦੇ ਲਾਈਵ ਭਾਅ ਵੇਖੋ।",
-    statActive: "ਸਰਗਰਮ ਨਮੂਨੇ", statRate: "ਸਥਾਨਕ ਮੈਂਥਾ ਰੇਟ", statDistricts: "75 ਜ਼ਿਲ੍ਹੇ ਕਵਰੇਜ",
-    widgetTitle: "ਉੱਤਰ ਪ੍ਰਦੇਸ਼ ਦੇ ਸਾਰੇ 75 ਜ਼ਿਲ੍ਹਿਆਂ ਦੇ ਮੰਡੀ ਭਾਅ", widgetSub: "ਲਾਈਵ ਐਮਸੀਐਕਸ ਭਾਅ ਦੇ ਆਧਾਰ 'ਤੇ ਤੁਹਾਡੇ ਜ਼ਿਲ੍ਹੇ ਦਾ ਸਿੱਧਾ ਮੰਡੀ ਰੇਟ।",
-    selectDistrictLabel: "📍 ਆਪਣਾ ਜ਼ਿਲ੍ਹਾ ਚੁਣੋ:", mcxLabel: "ਬੈਕਗ੍ਰਾਊਂਡ ਲਾਈਵ ਇੰਜਣ:", mcxSub: "ਇਕੋਨਾਮਿਕ ਟਾਈਮਜ਼ / MCX ਫਿਊਚਰਜ਼ (MENTHAOIL)",
-    weatherTitle: "7-ਦਿਨਾਂ ਮੌਸਮ ਅਤੇ ਮੈਂਥਾ ਪੀੜਾਈ ਦੀ ਸਲਾਹ", weatherRegion: "ਖੇਤਰ: ਯੂਪੀ ਮੈਂਥਾ ਬੈਲਟ (ਸੰਭਲ ਅਤੇ ਬਾਰਾਬੰਕੀ) | ਲਾਈਵ ਅਪਡੇਟ",
-    weatherStatus: "✅ ਭਾਫ਼ ਕੱਢਣ ਲਈ ਵਧੀਆ ਮੌਸਮ", voiceBtn: "ਬੋਲ ਕੇ ਖੋਜੋ", searchPlaceholder: "ਫਸਲ ਖੋਜੋ (ਜਿਵੇਂ ਮੈਂਥਾ ਤੇਲ, ਕਣਕ, ਸੰਭਲ)...",
-    tabSamples: "ਫਸਲ ਦੇ ਨਮੂਨੇ ਅਤੇ ਬੋਲੀਆਂ", tabMandi: "ਲਾਈਵ ਮੰਡੀ ਭਾਅ", tabLogistics: "ਭਾੜਾ ਕੈਲਕੁਲੇਟਰ", tabCold: "ਕੋਲਡ ਸਟੋਰੇਜ ਬੁਕਿੰਗ", tabQuality: "ਗੁਣਵੱਤਾ ਜਾਂਚ (AI)", tabDeals: "ਪੱਕੇ ਸੌਦੇ ਅਤੇ ਐਸਕਰੋ",
-    mandiTabTitle: "📊 ਯੂਪੀ ਦੇ ਸਾਰੇ 75 ਜ਼ਿਲ੍ਹਿਆਂ ਦੇ ਮੰਡੀ ਭਾਅ", mandiTabSub: "ਮੰਡੀ ਰੇਟਾਂ ਦੀ ਤੁਲਨਾ ਕਰੋ।"
-  },
-  gu: {
-    brandSubtitle: "યુપીના તમામ 75 જિલ્લાઓ પ્લેટફોર્મ", roleFarmer: "ખેડૂત (વિક્રેતા)", roleBuyer: "ખરીદદાર / મંડી વેપારી",
-    smsAlertsBtn: "વેપાર SMS", postBtn: "પાક નમૂનો પોઇન્ટ કરો",
-    heroTitle: "મેન્થા ઓઇલ અને પાક સીધો વેપાર (યુપીના 75 જિલ્લાઓ) 🌿🏡",
-    heroSubtitle: "પ્રમાણિત એસેન્શિયલ ઓઇલ નિકાસકારો અને મંડી ખરીદદારો સાથે સીધા જોડાઓ.",
-    statActive: "સક્રિય નમૂનાઓ", statRate: "સ્થાનિક મેન્થા રેટ", statDistricts: "75 જિલ્લા કવરેજ",
-    widgetTitle: "ઉત્તર પ્રદેશના તમામ 75 જિલ્લાના મંડી ભાવ", widgetSub: "લાઈવ MCX ભાવના આધારે તમારા જિલ્લાનો સીધો મંડી રેટ.",
-    selectDistrictLabel: "📍 તમારો જિલ્લો પસંદ કરો:", mcxLabel: "બેકગ્રાઉન્ડ લાઈવ એન્જિન:", mcxSub: "ઇકોનોમિક ટાઇમ્સ / MCX લાઈવ ફીડ (MENTHAOIL)",
-    weatherTitle: "7-દિવસ હવામાન અને મેન્થા પિલાણ સલાહ", weatherRegion: "વિસ્તાર: યુપી મેન્થા બેલ્ટ (સંભલ અને બારાબંકી) | લાઈવ અપડેટ",
-    weatherStatus: "✅ સ્ટીમ ડિસ્ટિલેશન માટે ઉત્તમ હવામાન", voiceBtn: "બોલીને શોધો", searchPlaceholder: "પાક શોધો (જેમ કે મેન્થા ઓઇલ, ઘઉં)...",
-    tabSamples: "પાકના નમૂના અને બોલીઓ", tabMandi: "લાઈવ મંડી ભાવ", tabLogistics: "ભાડા કેલ્ક્યુલેટર", tabCold: "કોલ્ડ સ્ટોરેજ બુકિંગ", tabQuality: "ગુણવત્તા તપાસ (AI)", tabDeals: "પાકા સોદા અને એસ્ક્રો",
-    mandiTabTitle: "📊 યુપીના તમામ 75 જિલ્લાના મંડી ભાવ", mandiTabSub: "મંડી દરો સરખાવો."
-  },
-  mr: {
-    brandSubtitle: "उत्तर प्रदेशातील सर्व 75 जिल्हे", roleFarmer: "शेतकरी (विक्रेता)", roleBuyer: "खरेदीदार / व्यापारी",
-    smsAlertsBtn: "व्यापार एसएमएस", postBtn: "पिकाचा नमुना पोस्ट करा",
-    heroTitle: "मेन्था तेल व पीक थेट व्यापार (यूपी मधील 75 जिल्हे) 🌿🏡",
-    heroSubtitle: "प्रमाणित निर्यातदार आणि व्यापारी यांच्याशी थेट कनेक्ट व्हा.",
-    statActive: "सक्रिय नमुने", statRate: "स्थानिक मेन्था दर", statDistricts: "75 जिल्हे",
-    widgetTitle: "उत्तर प्रदेशातील सर्व 75 जिल्ह्यांचे मंडी भाव", widgetSub: "थेट MCX भावावर आधारित दर.",
-    selectDistrictLabel: "📍 आपला जिल्हा निवडा:", mcxLabel: "बॅकग्राउंड इंजिन:", mcxSub: "इकॉनॉमिक टाईम्स / MCX फ्युचर्स",
-    weatherTitle: "7-दिवसीय हवामान आणि मेन्था पिकाचा सल्ला", weatherRegion: "प्रदेश: यूपी मेन्था बेल्ट | थेट अपडेट",
-    weatherStatus: "✅ वाफेच्या प्रक्रियेसाठी उत्तम हवामान", voiceBtn: "बोलून शोधा", searchPlaceholder: "पिके शोधा (उदा. मेन्था तेल, गहू)...",
-    tabSamples: "पिकांचे नमुने व बोली", tabMandi: "थेट मंडी दर", tabLogistics: "वाहतूक भाडे", tabCold: "कोल्ड स्टोरेज बुकिंग", tabQuality: "गुणवत्ता तपासणी", tabDeals: "पक्के सौदे",
-    mandiTabTitle: "📊 सर्व 75 जिल्ह्यांचे थेट मंडी दर", mandiTabSub: "दर तुलना करा."
-  },
-  bn: {
-    brandSubtitle: "উত্তর প্রদেশের সমস্ত ৭৫টি জেলা", roleFarmer: "কৃষক (বিক্রেতা)", roleBuyer: "ক্রেতা / মান্ডি ব্যবসায়ী",
-    smsAlertsBtn: "ট্রেড এসএমএস", postBtn: "ফসলের নমুনা পোস্ট করুন",
-    heroTitle: "মেন্থা তেল এবং ফসল সরাসরি ব্যবসা 🌿🏡",
-    heroSubtitle: "সরাসরি যাচাইকৃত মেন্থা তেল রফতানিকারকদের সাথে যোগাযোগ করুন।",
-    statActive: "সক্রিয় নমুনা", statRate: "লোকাল মেন্থা রেট", statDistricts: "৭৫টি জেলা",
-    widgetTitle: "উত্তর প্রদেশের ৭৫টি জেলার মান্ডি রেট", widgetSub: "লাইভ MCX হারের উপর ভিত্তি করে স্থানীয় রেট।",
-    selectDistrictLabel: "📍 আপনার জেলা নির্বাচন করুন:", mcxLabel: "ব্যাকগ্রাউন্ড ইঞ্জিন:", mcxSub: "ইকোনমিক টাইমস / MCX লাইভ",
-    weatherTitle: "৭ দিনের আবহাওয়া ও পরামর্শ", weatherRegion: "অঞ্চল: ইউপি মেন্থা বেল্ট | লাইভ আপডেট",
-    weatherStatus: "✅ পাতনের জন্য উপযুক্ত আবহাওয়া", voiceBtn: "ভয়েস সার্চ", searchPlaceholder: "ফসল খুঁজুন (যেমন মেন্থা তেল, গম)...",
-    tabSamples: "ফসলের নমুনা ও বিড", tabMandi: "লাইভ মান্ডি দর", tabLogistics: "পরিবহন ভাড়া", tabCold: "কোল্ড স্টোরেজ বুকিং", tabQuality: "গুণমান পরীক্ষা", tabDeals: "সম্পন্ন চুক্তি",
-    mandiTabTitle: "📊 ৭৫টি জেলার লাইভ মান্ডি দর", mandiTabSub: "দর তুলনা করুন।"
-  },
-  ta: {
-    brandSubtitle: "உத்தரபிரதேசத்தின் 75 மாவட்டங்கள்", roleFarmer: "விவசாயி (விற்பனையாளர்)", roleBuyer: "வாங்குபவர் / மண்டிகடை",
-    smsAlertsBtn: "வணிக SMS", postBtn: "பயிர் மாதிரியைப் பதிவேற்றுக",
-    heroTitle: "மெந்தா எண்ணெய் & பயிர் நேரடி வணிகம் 🌿🏡",
-    heroSubtitle: "சரிபார்க்கப்பட்ட ஏற்றுமதியாளர்களுடன் நேரடியாக இணையுங்கள்.",
-    statActive: "செயலில் உள்ள மாதிரிகள்", statRate: "உள்ளூர் மெந்தா விலை", statDistricts: "75 மாவட்டங்கள்",
-    widgetTitle: "75 மாவட்டங்களின் மண்டி விலைகள்", widgetSub: "MCX நேரடி விலையின் அடிப்படையில்.",
-    selectDistrictLabel: "📍 உங்கள் மாவட்டத்தைத் தேர்ந்தெடுக்கவும்:", mcxLabel: "பின்னணி எஞ்சின்:", mcxSub: "Economic Times / MCX Live",
-    weatherTitle: "7-நாள் வானிலை ஆலோசனை", weatherRegion: "பகுதி: UP மெந்தா பகுதி | நேரடி அப்டேட்",
-    weatherStatus: "✅ நீராவி வடித்தலுக்கு உகந்த வானிலை", voiceBtn: "குரல் தேடல்", searchPlaceholder: "பயிர்களைத் தேடுங்கள்...",
-    tabSamples: "பயிர் மாதிரிகள் & ஏலம்", tabMandi: "நேரடி மண்டி விலை", tabLogistics: "போக்குவரத்து கட்டணம்", tabCold: "குளிர்பதன சேமிப்பு", tabQuality: "தர சோதனை", tabDeals: "உறுதி செய்யப்பட்ட ஒப்பந்தங்கள்",
-    mandiTabTitle: "📊 75 மாவட்டங்களின் நேரடி மண்டி விலை", mandiTabSub: "விலைகளை ஒப்பிடுக."
-  },
-  te: {
-    brandSubtitle: "ఉత్తర ప్రదేశ్ 75 జిల్లాల ప్లాట్‌ఫారమ్", roleFarmer: "రైతు (అమ్మకందారు)", roleBuyer: "కొనుగోలుదారు / మండి వ్యాపారి",
-    smsAlertsBtn: "ట్రేడ్ SMS", postBtn: "పంట నమూనాను పోస్ట్ చేయండి",
-    heroTitle: "మెంథా ఆయిల్ & పంటల నేరుగా వ్యాపారం 🌿🏡",
-    heroSubtitle: "ధృవీకరించబడిన ఎగుమతిదారులతో నేరుగా కనెక్ట్ అవ్వండి.",
-    statActive: "యాక్టివ్ శాంపిల్స్", statRate: "లోకల్ మెంథా రేటు", statDistricts: "75 జిల్లాలు",
-    widgetTitle: "75 జిల్లాల మండి ధరలు", widgetSub: "MCX లైవ్ రేట్ల ఆధారంగా లోకల్ ధరలు.",
-    selectDistrictLabel: "📍 మీ జిల్లాను ఎంచుకోండి:", mcxLabel: "బ్యాక్‌గ్రౌండ్ ఇంజిన్:", mcxSub: "Economic Times / MCX Live",
-    weatherTitle: "7 రోజుల వాతావరణ సలహా", weatherRegion: "ప్రాంతం: UP మెంథా బెల్ట్ | లైవ్ అప్‌డేట్",
-    weatherStatus: "✅ ఆవిరి స్వేదనానికి అనుకూలమైన వాతావరణం", voiceBtn: "వాయిస్ సెర్చ్", searchPlaceholder: "పంటలను వెతకండి...",
-    tabSamples: "పంట నమూనాలు & బిడ్లు", tabMandi: "లైవ్ మండి ధరలు", tabLogistics: "రవాణా ఛార్జీలు", tabCold: "కోల్డ్ స్టోరేజ్ బుకింగ్", tabQuality: "నాణ్యత పరిశీలన", tabDeals: "ఖాయమైన ఒప్పందాలు",
-    mandiTabTitle: "📊 75 జిల్లాల లైవ్ మండి ధరలు", mandiTabSub: "ధరలను పోల్చండి."
-  },
-  kn: {
-    brandSubtitle: "ಉತ್ತರ ಪ್ರದೇಶದ ಎಲ್ಲಾ 75 ಜಿಲ್ಲೆಗಳು", roleFarmer: "ರೈತ (ಮಾರಾಟಗಾರ)", roleBuyer: "ಖರೀದಿದಾರ / ಮಂಡಿ ವ್ಯಾಪಾರಿ",
-    smsAlertsBtn: "ಟ್ರೇಡ್ SMS", postBtn: "ಬೆಳೆ ಮಾದರಿ ಪೋಸ್ಟ್ ಮಾಡಿ",
-    heroTitle: "ಮೆಂಥಾ ಎಣ್ಣೆ ಮತ್ತು ಬೆಳೆಗಳ ನೇರ ವ್ಯಾಪಾರ 🌿🏡",
-    heroSubtitle: "ದೃಢೀಕೃತ ರಫ್ತುದಾರರೊಂದಿಗೆ ನೇರವಾಗಿ ಸಂಪರ್ಕ ಸಾಧಿಸಿ.",
-    statActive: "ಸಕ್ರಿಯ ಮಾದರಿಗಳು", statRate: "ಸ್ಥಳೀಯ ಮೆಂಥಾ ದರ", statDistricts: "75 ಜಿಲ್ಲೆಗಳು",
-    widgetTitle: "75 ಜಿಲ್ಲೆಗಳ ಮಂಡಿ ದರಗಳು", widgetSub: "MCX ಲೈವ್ ದರಗಳ ಆಧಾರದ ಮೇಲೆ.",
-    selectDistrictLabel: "📍 ನಿಮ್ಮ ಜಿಲ್ಲೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ:", mcxLabel: "ಹಿನ್ನೆಲೆ ಎಂಜಿನ್:", mcxSub: "Economic Times / MCX Live",
-    weatherTitle: "7 ದಿನಗಳ ಹವಾಮಾನ ಸಲಹೆ", weatherRegion: "ಪ್ರದೇಶ: UP ಮೆಂಥಾ ಬೆಲ್ಟ್ | ಲೈವ್ ಅಪ್‌ಡೇಟ್",
-    weatherStatus: "✅ ಮಂಥನಕ್ಕೆ ಸೂಕ್ತವಾದ ಹವಾಮಾನ", voiceBtn: "ಧ್ವನಿ ಶೋಧನೆ", searchPlaceholder: "ಬೆಳೆಗಳನ್ನು ಹುಡುಕಿ...",
-    tabSamples: "ಬೆಳೆ ಮಾದರಿಗಳು & ಬಿಡ್‌ಗಳು", tabMandi: "ಲೈವ್ ಮಂಡಿ ದರಗಳು", tabLogistics: "ಸಾರಿಗೆ ವೆಚ್ಚ", tabCold: "ಕೋಲ್ಡ್ ಸ್ಟೋರೇಜ್ ಬುಕಿಂಗ್", tabQuality: "ಗುಣಮಟ್ಟ ಪರೀಕ್ಷೆ", tabDeals: "ಖಚಿತ ಒಪ್ಪಂದಗಳು",
-    mandiTabTitle: "📊 75 ಜಿಲ್ಲೆಗಳ ಲೈವ್ ಮಂಡಿ ದರಗಳು", mandiTabSub: "ದರಗಳನ್ನು ಹೋಲಿಕೆ ಮಾಡಿ."
-  },
-  ml: {
-    brandSubtitle: "ഉത്തർപ്രദേശിലെ 75 ജില്ലകൾ", roleFarmer: "കർഷകൻ (വിൽപ്പനക്കാരൻ)", roleBuyer: "വാങ്ങുന്നയാൾ / മണ്ഡി വ്യാപാരി",
-    smsAlertsBtn: "ട്രേഡ് SMS", postBtn: "വിള സാമ്പിൾ പോസ്റ്റ് ചെയ്യുക",
-    heroTitle: "മെന്ത എണ്ണയും വിളകളും നേരിട്ട് വ്യാപാരം 🌿🏡",
-    heroSubtitle: "അംഗീകൃത വ്യാപാരികളുമായി നേരിട്ട് ബന്ധപ്പെടുക.",
-    statActive: "സജീവ സാമ്പിളുകൾ", statRate: "പ്രാദേശിക മെന്ത നിരക്ക്", statDistricts: "75 ജില്ലകൾ",
-    widgetTitle: "75 ജില്ലകളിലെ മണ്ഡി നിരക്കുകൾ", widgetSub: "MCX ലൈവ് നിരക്കുകളെ അടിസ്ഥാനമാക്കി.",
-    selectDistrictLabel: "📍 നിങ്ങളുടെ ജില്ല തിരഞ്ഞെടുക്കുക:", mcxLabel: "ബാക്ക്ഗ്രൗണ്ട് എഞ്ചിൻ:", mcxSub: "Economic Times / MCX Live",
-    weatherTitle: "7 ദിവസത്തെ കാലാവസ്ഥ പ്രവചനം", weatherRegion: "മേഖല: UP മെന്ത ബെൽറ്റ് | ലൈവ് അപ്ഡേറ്റ്",
-    weatherStatus: "✅ വാറ്റിയെടുക്കാൻ അനുയോജ്യമായ കാലാവസ്ഥ", voiceBtn: "വോയ്‌സ് സെർച്ച്", searchPlaceholder: "വിളകൾ തിരയുക...",
-    tabSamples: "വിള സാമ്പിളുകളും ലേലവും", tabMandi: "ലൈവ് മണ്ഡി നിരക്കുകൾ", tabLogistics: "ഗതാഗത നിരക്ക്", tabCold: "കോൾഡ് സ്റ്റോറേജ് ബുക്കിംഗ്", tabQuality: "ഗുണനിലവാര പരിശോധന", tabDeals: "ഉറപ്പിച്ച കരാറുകൾ",
-    mandiTabTitle: "📊 75 ജില്ലകളിലെ ലൈവ് മണ്ഡി നിരക്കുകൾ", mandiTabSub: "നിരക്കുകൾ താരതമ്യം ചെയ്യുക."
-  },
-  or: {
-    brandSubtitle: "ଉତ୍ତର ପ୍ରଦେଶର ସମସ୍ତ ୭୫ ଜିଲ୍ଲା", roleFarmer: "କୃଷକ (ବିକ୍ରେତା)", roleBuyer: "କ୍ରେତା / ମଣ୍ଡି ବ୍ୟବସାୟୀ",
-    smsAlertsBtn: "ଟ୍ରେଡ୍ SMS", postBtn: "ଫସଲ ନମୁନା ପୋଷ୍ଟ କରନ୍ତୁ",
-    heroTitle: "ମେନ୍ଥା ତେଲ ଏବଂ ଫସଲ ସିଧାସଳଖ ବ୍ୟବସାୟ 🌿🏡",
-    heroSubtitle: "ଯାଞ୍ଚ ହୋଇଥିବା ରପ୍ତାନିବାରକଙ୍କ ସହ ସିଧାସଳଖ ଯୋଡିହୁଅନ୍ତୁ।",
-    statActive: "ସକ୍ରିୟ ନମୁନା", statRate: "ସ୍ଥାନୀୟ ମେନ୍ଥା ଦର", statDistricts: "୭୫ ଜିଲ୍ଲା",
-    widgetTitle: "୭୫ ଜିଲ୍ଲାର ମଣ୍ଡି ଦର", widgetSub: "ଲାଇଭ୍ MCX ଦର ଆଧାରରେ।",
-    selectDistrictLabel: "📍 ଆପଣଙ୍କ ଜିଲ୍ଲା ବାଛନ୍ତୁ:", mcxLabel: "ବ୍ୟାକଗ୍ରାଉଣ୍ଡ ଇଞ୍ଜିନ୍:", mcxSub: "Economic Times / MCX Live",
-    weatherTitle: "୭ ଦିନର ପାଣିପାଗ ପରାମର୍ଶ", weatherRegion: "ଅଞ୍ଚଳ: UP ମେନ୍ଥା ବେଲ୍ଟ | ଲାଇଭ୍ ଅପଡେଟ୍",
-    weatherStatus: "✅ ପେଷିବା ପାଇଁ ଉତ୍ତମ ପାଣିପାଗ", voiceBtn: "ଭଏସ୍ ସର୍ଚ୍ଚ", searchPlaceholder: "ଫସଲ ଖୋଜନ୍ତୁ...",
-    tabSamples: "ଫସଲ ନମୁନା ଓ ନିଲାମ", tabMandi: "ଲାଇଭ୍ ମଣ୍ଡି ଦର", tabLogistics: "ପରିବହନ ଖର୍ଚ୍ଚ", tabCold: "କୋଲ୍ଡ ଷ୍ଟୋରେଜ୍ ବୁକିଂ", tabQuality: "ଗୁଣବତ୍ତା ଯାଞ୍ଚ", tabDeals: "ପକ୍କା ସୌଦା",
-    mandiTabTitle: "📊 ୭୫ ଜିଲ୍ଲାର ଲାଇଭ୍ ମଣ୍ଡି ଦର", mandiTabSub: "ଦର ତୁଳନା କରନ୍ତୁ।"
-  },
-  as: {
-    brandSubtitle: "উত্তৰ প্ৰদেশৰ ৭৫ টা জিলা", roleFarmer: "কৃষক (বিক্ৰেতা)", roleBuyer: "ক্ৰেতা / মন্ডি ব্যৱসায়ী",
-    smsAlertsBtn: "ট্ৰেড SMS", postBtn: "শস্যৰ নমুনা প'ষ্ট কৰক",
-    heroTitle: "মেন্থা তেল আৰু শস্য প্ৰত্যক্ষ ব্যৱসায় 🌿🏡",
-    heroSubtitle: "প্ৰমাণিত ৰপ্তানিকাৰকসকলৰ সৈতে পোনপটীয়াকৈ সংযোগ কৰক।",
-    statActive: "সক্ৰিয় নমুনা", statRate: "স্থানীয় মেন্থা দৰ", statDistricts: "৭৫ টা জিলা",
-    widgetTitle: "৭৫ টা জিলাৰ মন্ডি দৰ", widgetSub: "লাইভ MCX দৰৰ ওপৰত আধাৰিত।",
-    selectDistrictLabel: "📍 আপোনাৰ জিলা বাছক:", mcxLabel: "বেকগ্ৰাউণ্ড ইঞ্জিন:", mcxSub: "Economic Times / MCX Live",
-    weatherTitle: "৭ দিনৰ বতৰৰ পৰামৰ্শ", weatherRegion: "অঞ্চল: UP মেন্থা বেল্ট | লাইভ আপডেট",
-    weatherStatus: "✅ নিষ্কাশনৰ বাবে উত্তম বতৰ", voiceBtn: "ভয়েচ চাৰ্চ", searchPlaceholder: "শস্য বিচাৰক...",
-    tabSamples: "শস্যৰ নমুনা আৰু নিলাম", tabMandi: "লাইভ মন্ডি দৰ", tabLogistics: "পৰিবহন খৰচ", tabCold: "ক'ল্ড ষ্ট'ৰেজ বুকিং", tabQuality: "গুণমান পৰীক্ষা", tabDeals: "সম্পূৰ্ণ চুক্তি",
-    mandiTabTitle: "📊 ৭৫ টা জিলাৰ লাইভ মন্ডি দৰ", mandiTabSub: "দৰ তুলনা কৰক।"
-  },
-  ur: {
-    brandSubtitle: "اتر پردیش کے تمام 75 اضلاع", roleFarmer: "کسان (فروخت کنندہ)", roleBuyer: "خریدار / منڈی تاجر",
-    smsAlertsBtn: "تجارت SMS", postBtn: "فصل کا نمونہ پوسٹ کریں",
-    heroTitle: "مینتھا آئل اور فصلوں کی براہ راست تجارت 🌿🏡",
-    heroSubtitle: "تصدیق شدہ برآمد کنندگان اور منڈی تاجروں سے براہ راست جڑیں۔",
-    statActive: "فعال نمونے", statRate: "مقامی مینتھا ریٹ", statDistricts: "75 اضلاع",
-    widgetTitle: "تمام 75 اضلاع کے منڈی کے بھاؤ", widgetSub: "لائیو MCX قیمتوں پر مبنی ریٹ۔",
-    selectDistrictLabel: "📍 اپنا ضلع منتخب کریں:", mcxLabel: "بیک گراؤنڈ انجن:", mcxSub: "Economic Times / MCX Live",
-    weatherTitle: "7 دنوں کا موسم اور مشورہ", weatherRegion: "علاقہ: UP مینتھا بیلٹ | لائیو اپ ڈیٹ",
-    weatherStatus: "✅ کشید کاری کے لیے بہترین موسم", voiceBtn: "آواز سے تلاش کریں", searchPlaceholder: "فصلیں تلاش کریں...",
-    tabSamples: "فصل کے نمونے اور بولیاں", tabMandi: "لائیو منڈی بھاؤ", tabLogistics: "ٹرانسپورٹ کرایہ", tabCold: "کولڈ اسٹوریج بکنگ", tabQuality: "کوالٹی چیک", tabDeals: "پکے سودے",
-    mandiTabTitle: "📊 75 اضلاع کے لائیو منڈی بھاؤ", mandiTabSub: "قیمتوں کا موازنہ کریں۔"
+    mandiTabTitle: "📊 Live Mandi Rates Across UP Districts & Farrukhabad Potato", mandiTabSub: "Compare APMC Mandi benchmark rates with Farrukhabad & Agra Potato hubs."
   }
 };
 
 const INITIAL_SAMPLES = [
+  {
+    id: "SMP-POTATO-201",
+    title: "Farrukhabad Kufri Bahar 3797 Potato (AAA Grade)",
+    category: "Potato",
+    variety: "Kufri Bahar (3797 Table Potato)",
+    quantity: 500, // 500 Kattas = 250 Quintal
+    unit: "Kattas (50kg Bags)",
+    reservePrice: 710, // ₹ per 50kg bag
+    pricePerQtl: 1420,
+    moisture: 11.2,
+    purity: 98.5,
+    grade: "Grade A+ (Large 55mm+)",
+    location: "Farrukhabad Cold Storage, UP (Pin: 209625)",
+    farmerName: "Ram Prakash Rajput",
+    verifiedFarmer: true,
+    khasraNo: "UP-FRK-4402",
+    harvestDate: "2026-08-28",
+    image: "assets/potato.png",
+    offers: [
+      { buyerName: "Agra Cold Chain Wholesale Traders", offerPrice: 730, token: 35000, term: "Direct Cold Storage Bay Delivery", verifiedBuyer: true, gstin: "09AGRA5512K1ZN", date: "2026-09-02" }
+    ]
+  },
   {
     id: "SMP-MENTHA-101",
     title: "Pure Shivalik Mentha Oil (81%+ L-Menthol)",
     category: "Mentha Oil",
     variety: "Shivalik Steam Distilled Mentha Oil",
     quantity: 45,
+    unit: "Kg",
     reservePrice: 1208,
     moisture: 0.4,
     purity: 81.5,
@@ -200,6 +80,23 @@ const INITIAL_SAMPLES = [
   }
 ];
 
+let backgroundPotatoEngine = {
+  symbol: "POTATO_UP",
+  exchange: "UP APMC Mandi Samiti & Farrukhabad Exchange",
+  benchmarkPriceQtl: 1420.00,
+  benchmarkPriceKatta: 710.00,
+  dailyArrivalKattas: 85000,
+  changePercent: "+3.20%"
+};
+
+let UP_POTATO_BELTS = [
+  { district: "Farrukhabad", mandi: "Farrukhabad Potato APMC Mandi", variety: "Kufri Bahar (3797)", modalQtl: 1420, minQtl: 1350, maxQtl: 1480, kattaPrice: 710, arrivalsKattas: 35000, status: "UP Potato Capital 🥔" },
+  { district: "Agra", mandi: "Agra Cold Storage & APMC Mandi", variety: "Kufri Bahar & Red Sindhuri", modalQtl: 1450, minQtl: 1380, maxQtl: 1520, kattaPrice: 725, arrivalsKattas: 28000, status: "Cold Chain Hub" },
+  { district: "Kannauj", mandi: "Kannauj Potato Trade Yard", variety: "Kufri Pukhraj", modalQtl: 1380, minQtl: 1320, maxQtl: 1440, kattaPrice: 690, arrivalsKattas: 18000, status: "Major Potato Belt" },
+  { district: "Firozabad", mandi: "Firozabad Potato Market", variety: "Kufri Bahar (3797)", modalQtl: 1410, minQtl: 1340, maxQtl: 1460, kattaPrice: 705, arrivalsKattas: 14000, status: "Cold Storage Zone" },
+  { district: "Hathras", mandi: "Hathras Potato Yard", variety: "Kufri Chipsona 1 (Chips Grade)", modalQtl: 1650, minQtl: 1580, maxQtl: 1720, kattaPrice: 825, arrivalsKattas: 12000, status: "Processing Potato Belt" }
+];
+
 let backgroundMcxEngine = {
   symbol: "MENTHAOIL",
   benchmarkPriceKg: 1215.50,
@@ -207,15 +104,19 @@ let backgroundMcxEngine = {
 };
 
 let MENTHA_LOCALITY_RATES = [
-  { mandi: "Sambhal APMC Mandi", district: "Sambhal", state: "Uttar Pradesh", modalPriceKg: 1208.00, minPriceKg: 1195.00, maxPriceKg: 1222.00, trend: "+2.45%", source: "APMC Sambhal Mandi Register (Derived from MCX Live Feed)", status: "Primary Mentha Belt" }
+  { mandi: "Sambhal APMC Mandi", district: "Sambhal", state: "Uttar Pradesh", modalPriceKg: 1208.00, minPriceKg: 1195.00, maxPriceKg: 1222.00, trend: "+2.45%", source: "APMC Sambhal Mandi Register", status: "Primary Mentha Belt" }
 ];
 
 let MANDI_RATES = [
+  { mandi: "Farrukhabad APMC Mandi", state: "Uttar Pradesh", crop: "Potato (Kufri Bahar 3797)", min: 1350.00, max: 1480.00, modal: 1420.00, trend: "+3.20%" },
+  { mandi: "Agra Cold Storage Exchange", state: "Uttar Pradesh", crop: "Potato (Red Sindhuri)", min: 1380.00, max: 1520.00, modal: 1450.00, trend: "+2.80%" },
   { mandi: "Sambhal APMC Mandi", state: "Uttar Pradesh", crop: "Mentha Oil (Menthol)", min: 1195.00, max: 1222.00, modal: 1208.00, trend: "+2.45%" }
 ];
 
 let COLD_STORAGES = [
-  { id: "CS-101", name: "Malwa Central Cold Chain", district: "Indore, MP", capacity: "500 MT", available: "140 MT", temp: "2°C - 4°C", ratePerDay: 4.5 }
+  { id: "CS-POTATO-UP1", name: "Farrukhabad Ganga Cold Storage & Logistics", district: "Farrukhabad, UP", capacity: "12,000 MT (2,40,000 Kattas)", available: "18,500 Kattas Available", temp: "2°C - 4°C (Humidity 90%)", ratePerDay: 0.85, rateFullSeasonKatta: 140 },
+  { id: "CS-POTATO-UP2", name: "Agra Yamuna Highway Cold Chain", district: "Agra, UP", capacity: "15,000 MT (3,00,000 Kattas)", available: "24,000 Kattas Available", temp: "3°C (CCTV Managed)", ratePerDay: 0.90, rateFullSeasonKatta: 145 },
+  { id: "CS-101", name: "Malwa Central Cold Chain", district: "Indore, MP", capacity: "500 MT", available: "140 MT", temp: "2°C - 4°C", ratePerDay: 4.5, rateFullSeasonKatta: 150 }
 ];
 
 let coldBookings = [];
@@ -223,7 +124,7 @@ let smsLogs = [];
 let currentRole = "farmer";
 let currentTheme = "light";
 let currentTab = "samples";
-let currentLanguage = "hi"; // Default Native Language: Hindi
+let currentLanguage = "hi";
 let samples = [];
 let sealedDeals = [];
 let isBackendConnected = false;
@@ -233,6 +134,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   loadUserSession();
   await fetchFromBackend();
   initTicker();
+  renderPotatoLocalityWidget();
   renderMenthaLocalityWidget();
   renderApp();
   calculateQualityScore();
@@ -263,7 +165,6 @@ function loadUserSession() {
   renderAuthNav();
 }
 
-// DYNAMIC LANGUAGE SWITCHING SYSTEM (SUPPORT FOR ALL 13 OFFICIAL INDIAN LANGUAGES)
 function changeLanguage(langCode) {
   currentLanguage = langCode;
   if (currentUser) {
@@ -272,6 +173,7 @@ function changeLanguage(langCode) {
   }
   applyLanguageTranslations(langCode);
   renderApp();
+  renderPotatoLocalityWidget();
   renderMenthaLocalityWidget();
   showToast(`🌐 Native Language set to: ${getLanguageName(langCode)}`);
 }
@@ -323,6 +225,76 @@ function applyLanguageTranslations(lang) {
 function setElText(id, text) {
   const el = document.getElementById(id);
   if (el && text) el.innerText = text;
+}
+
+// RENDER UP POTATO LOCALITY MANDI WIDGET
+async function renderPotatoLocalityWidget() {
+  const selectEl = document.getElementById("potatoLocalitySelect");
+  const container = document.getElementById("potatoLocalityGrid");
+  const engineTag = document.getElementById("potatoEngineStatusTag");
+  if (!container || !selectEl) return;
+
+  const selectedLocality = selectEl.value;
+
+  if (isBackendConnected) {
+    try {
+      const res = await fetch(`${API_BASE_URL}/potato/rates?district=${selectedLocality}`);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.success && data.potatoBelts) {
+          UP_POTATO_BELTS = data.potatoBelts;
+          if (data.engine) backgroundPotatoEngine = data.engine;
+        }
+      }
+    } catch (e) {
+      console.log("Potato rates fetch fallback active.");
+    }
+  }
+
+  if (engineTag && backgroundPotatoEngine) {
+    engineTag.innerText = `फर्रुखाबाद बेंचमार्क: ₹${backgroundPotatoEngine.benchmarkPriceQtl.toFixed(2)} / कुंतल (₹${backgroundPotatoEngine.benchmarkPriceKatta.toFixed(2)} / 50kg कट्टा) (${backgroundPotatoEngine.changePercent} ▲)`;
+  }
+
+  const sorted = [...UP_POTATO_BELTS].sort((a, b) => {
+    if (a.district.toLowerCase() === selectedLocality.toLowerCase()) return -1;
+    if (b.district.toLowerCase() === selectedLocality.toLowerCase()) return 1;
+    return 0;
+  });
+
+  const displayList = sorted.slice(0, 4);
+
+  let html = "";
+  displayList.forEach((item, idx) => {
+    const isPrimary = idx === 0;
+
+    html += `
+      <div style="background: ${isPrimary ? '#3F1A05' : 'rgba(255,255,255,0.08)'}; border: ${isPrimary ? '2px solid #FCD34D' : '1px solid rgba(255,255,255,0.15)'}; border-radius: var(--radius-md); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; color: white;">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <span style="font-size: 0.72rem; font-weight: 800; background: ${isPrimary ? '#D97706' : '#78350F'}; color: white; padding: 2px 8px; border-radius: 99px;">
+              ${isPrimary ? '🥔 SELECTED POTATO BELT' : '🏢 UP POTATO MANDI'}
+            </span>
+            <span style="font-size: 0.75rem; color: #FCD34D; font-weight: 700;">+3.20% ▲</span>
+          </div>
+          <h4 style="font-size: 1.05rem; font-weight: 800; margin-top: 4px; color: #FDE68A;">${item.mandi}</h4>
+          <span style="font-size: 0.75rem; opacity: 0.85;">किस्म: ${item.variety}</span>
+        </div>
+
+        <div style="margin-top: 12px; border-top: 1px dashed rgba(255,255,255,0.2); padding-top: 8px;">
+          <div style="font-size: 1.4rem; font-weight: 900; color: #FCD34D;">₹${item.kattaPrice} <span style="font-size: 0.75rem; font-weight: normal; color: white;">/ 50kg कट्टा (Bag)</span></div>
+          <div style="font-size: 0.82rem; font-weight: 700; color: #FEF08A; margin-top: 2px;">₹${item.modalQtl} / कुंतal (Qtl)</div>
+          <div style="font-size: 0.72rem; opacity: 0.85; margin-top: 4px;">आज की आवक: ${item.arrivalsKattas.toLocaleString()} कट्टे</div>
+        </div>
+      </div>
+    `;
+  });
+
+  container.innerHTML = html;
+
+  const statPotato = document.getElementById("statActivePotatoRate");
+  if (statPotato && displayList[0]) {
+    statPotato.innerText = `₹${displayList[0].kattaPrice}/कट्टा`;
+  }
 }
 
 function renderAuthNav() {
@@ -418,9 +390,9 @@ async function handleLogin(e) {
 
   if (!currentUser) {
     if (identifier === "9876543210" || identifier === "dharamvir@menthafarmer.in") {
-      currentUser = { id: "USR-101", name: "Chaudhary Dharamvir Singh", phone: "9876543210", role: "farmer", location: "Sambhal, UP", verified: true, khasraNo: "UP-SMB-902", preferredLanguage: "hi" };
+      currentUser = { id: "USR-101", name: "Chaudhary Dharamvir Singh", phone: "9876543210", role: "farmer", location: "Sambhal & Farrukhabad, UP", verified: true, khasraNo: "UP-SMB-902", preferredLanguage: "hi" };
     } else if (identifier === "9123456789" || identifier === "trader@barabankimentha.com") {
-      currentUser = { id: "USR-102", name: "Barabanki Essential Oils & Distillers", phone: "9123456789", role: "buyer", location: "Barabanki Mandi, UP", verified: true, gstin: "09AABCB5512K1ZN", preferredLanguage: "hi" };
+      currentUser = { id: "USR-102", name: "Barabanki & Agra Wholesale Traders", phone: "9123456789", role: "buyer", location: "Farrukhabad Mandi, UP", verified: true, gstin: "09AGRA5512K1ZN", preferredLanguage: "hi" };
     } else {
       currentUser = { id: "USR-" + Date.now(), name: identifier.split('@')[0], phone: identifier, role: "farmer", location: "Uttar Pradesh", verified: true, preferredLanguage: "hi" };
     }
@@ -632,7 +604,7 @@ function simulateVoiceSearch() {
   voiceBtn.innerText = "🎙️ Listening...";
 
   setTimeout(() => {
-    const samplesVoice = ["मेंटहा तेल", "সংভল মন্দি", "સંભલ મંડી", "ਮੈਂਥਾ ਤੇਲ"];
+    const samplesVoice = ["फर्रुखाबाद आलू", "मेंटहा तेल", "संभल मंडी", "आगरा कोल्ड स्टोरेज"];
     const randomCrop = samplesVoice[Math.floor(Math.random() * samplesVoice.length)];
     searchInput.value = randomCrop;
     voiceBtn.classList.remove("listening");
@@ -661,22 +633,22 @@ async function calculateFreight() {
   container.innerHTML = `
     <div class="freight-card">
       <div>
-        <strong>🛺 E-Rickshaw / Mini Drum Loader (Max 15 Qtl/Drums)</strong>
-        <p style="font-size: 0.8rem; color: var(--text-muted);">Short distance farm-to-mandi delivery</p>
+        <strong>🛺 E-Rickshaw / Mini Loader (Max 30 Potato Kattas/Drums)</strong>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">Farm to local cold storage or mandi delivery</p>
       </div>
       <div style="font-size: 1.15rem; font-weight: 800; color: var(--primary);">₹${rates.erickshaw.toLocaleString()}</div>
     </div>
     <div class="freight-card">
       <div>
-        <strong>🚛 10-Tonne Eicher Truck (Max 100 Qtl/Drums)</strong>
-        <p style="font-size: 0.8rem; color: var(--text-muted);">Standard interstate Mentha & grain shipment</p>
+        <strong>🚛 10-Tonne Eicher Truck (Max 200 Potato Kattas / 100 Qtl)</strong>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">Standard Farrukhabad to Delhi/Kanpur Mandi shipment</p>
       </div>
       <div style="font-size: 1.15rem; font-weight: 800; color: var(--primary);">₹${rates.eicher10T.toLocaleString()}</div>
     </div>
     <div class="freight-card">
       <div>
-        <strong>🚛 16-Tonne Heavy Multi-Axle Truck</strong>
-        <p style="font-size: 0.8rem; color: var(--text-muted);">Bulk exporter plant shipment</p>
+        <strong>🚛 16-Tonne Multi-Axle Heavy Truck (350+ Kattas)</strong>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">Bulk potato & Mentha interstate shipment</p>
       </div>
       <div style="font-size: 1.15rem; font-weight: 800; color: var(--primary);">₹${rates.multiAxle16T.toLocaleString()}</div>
     </div>
@@ -690,26 +662,37 @@ function renderColdStorage() {
   COLD_STORAGES.forEach(cs => {
     html += `
       <div class="sample-card">
-        <div style="background: linear-gradient(135deg, #0284C7, #0369A1); padding: 24px; color: white; text-align: center;">
-          <span style="font-size: 2.2rem;">🧊</span>
-          <h3 style="margin-top: 6px; font-size: 1.15rem;">${cs.name}</h3>
+        <div style="background: linear-gradient(135deg, #92400E, #451A03); padding: 24px; color: white; text-align: center;">
+          <span style="font-size: 2.2rem;">🥔</span>
+          <h3 style="margin-top: 6px; font-size: 1.15rem; color: #FCD34D;">${cs.name}</h3>
           <span style="font-size: 0.8rem; opacity: 0.9;">📍 ${cs.district}</span>
         </div>
         <div class="card-body">
           <div class="spec-grid">
             <div class="spec-item"><span>Chamber Temp</span><strong>${cs.temp}</strong></div>
-            <div class="spec-item"><span>Available Space</span><strong>${cs.available}</strong></div>
-            <div class="spec-item"><span>Daily Rate</span><strong>₹${cs.ratePerDay} / Qtl</strong></div>
-            <div class="spec-item"><span>Security</span><strong>CCTV & Humidity Managed</strong></div>
+            <div class="spec-item"><span>Available Kattas</span><strong>${cs.available}</strong></div>
+            <div class="spec-item"><span>Full Season Rate</span><strong>₹${cs.rateFullSeasonKatta || 140} / 50kg कट्टा</strong></div>
+            <div class="spec-item"><span>Daily Rate</span><strong>₹${cs.ratePerDay} / Bag</strong></div>
           </div>
-          <button class="btn-primary" onclick="bookColdStorageSlot('${cs.id}')">
-            🧊 Reserve Cold Storage Slot
+          <button class="btn-primary btn-gold" onclick="bookColdStorageSlot('${cs.id}')">
+            🥔 Reserve Potato Cold Storage Slot
           </button>
         </div>
       </div>
     `;
   });
   grid.innerHTML = html;
+}
+
+function bookColdStorageSlot(csId) {
+  const cs = COLD_STORAGES.find(c => c.id === csId);
+  if (!cs) return;
+  
+  const kattas = prompt(`Enter number of Potato Kattas (50kg bags) to reserve at ${cs.name}:`, "200");
+  if (kattas && !isNaN(kattas)) {
+    const totalCost = parseInt(kattas) * (cs.rateFullSeasonKatta || 140);
+    showToast(`✅ Reserved ${kattas} Kattas at ${cs.name}! Estimated season storage cost: ₹${totalCost.toLocaleString()}`);
+  }
 }
 
 function updateSmsBadge() {
@@ -750,6 +733,13 @@ async function fetchFromBackend() {
       if (data.success && data.data) {
         samples = data.data;
         isBackendConnected = true;
+
+        const resPotato = await fetch(`${API_BASE_URL}/potato/rates`);
+        const dataPotato = await resPotato.json();
+        if (dataPotato.success && dataPotato.potatoBelts) {
+          UP_POTATO_BELTS = dataPotato.potatoBelts;
+          if (dataPotato.engine) backgroundPotatoEngine = dataPotato.engine;
+        }
 
         const resMentha = await fetch(`${API_BASE_URL}/mentha/rates`);
         const dataMentha = await resMentha.json();
@@ -801,9 +791,10 @@ function initTicker() {
     const isUp = r.trend.startsWith("+");
     const trendClass = isUp ? "rate-up" : "rate-down";
     const arrow = isUp ? "▲" : "▼";
+    const unitText = r.crop.includes('Mentha') ? '/Kg' : (r.crop.includes('Potato') ? '/Katta' : '/Qtl');
     tickerHTML += `
       <div class="ticker-item">
-        <strong>${r.crop}</strong> (${r.mandi}): ₹${r.modal.toFixed(2)}${r.crop.includes('Mentha') ? '/Kg' : '/Qtl'} 
+        <strong>${r.crop}</strong> (${r.mandi}): ₹${r.modal.toFixed(2)}${unitText} 
         <span class="${trendClass}">${arrow} ${r.trend}</span>
       </div>
     `;
@@ -907,12 +898,14 @@ function renderListings() {
     const offersCount = item.offers ? item.offers.length : 0;
     const topOffer = offersCount > 0 ? Math.max(...item.offers.map(o => o.offerPrice)) : null;
     const isMentha = item.category === "Mentha Oil";
-    const unitText = isMentha ? "Kg" : "Qtl";
+    const isPotato = item.category === "Potato";
+    const unitText = isMentha ? "Kg" : (isPotato ? "Kattas (50kg Bags)" : "Qtl");
+    const rateUnitText = isMentha ? "/Kg" : (isPotato ? "/Katta" : "/Qtl");
 
     html += `
       <div class="sample-card">
         <div class="card-img-wrap">
-          <img src="${item.image}" alt="${item.title}" onerror="this.src='assets/mentha.png'">
+          <img src="${item.image}" alt="${item.title}" onerror="this.src='assets/potato.png'">
           <span class="badge-grade">${item.grade}</span>
           <span class="badge-location">📍 ${item.location.split(',')[0]}</span>
         </div>
@@ -926,15 +919,15 @@ function renderListings() {
           <div class="spec-grid">
             <div class="spec-item">
               <span>मात्रा / Quantity</span>
-              <strong>${item.quantity} ${unitText}</strong>
+              <strong>${item.quantity} ${isPotato ? 'कट्टे (Bags)' : unitText}</strong>
             </div>
             <div class="spec-item">
-              <span>${isMentha ? 'L-Menthol %' : 'Moisture %'}</span>
-              <strong>${isMentha ? item.purity + '%' : item.moisture + '%'}</strong>
+              <span>${isMentha ? 'L-Menthol %' : (isPotato ? 'Size (mm)' : 'Moisture %')}</span>
+              <strong>${isMentha ? item.purity + '%' : (isPotato ? item.moisture + 'mm' : item.moisture + '%')}</strong>
             </div>
             <div class="spec-item">
-              <span>शुद्धता स्कोर</span>
-              <strong>${item.purity}%</strong>
+              <span>शुद्धता / ग्रेड</span>
+              <strong>${item.purity || 98.5}%</strong>
             </div>
             <div class="spec-item">
               <span>किसान</span>
@@ -945,12 +938,12 @@ function renderListings() {
           <div class="price-row">
             <div>
               <span class="unit-label">अपेक्षित भाव</span>
-              <div class="reserve-price">₹${item.reservePrice.toLocaleString()} <span style="font-size: 0.8rem; font-weight: normal; color: var(--text-muted);">/ ${unitText}</span></div>
+              <div class="reserve-price">₹${item.reservePrice.toLocaleString()} <span style="font-size: 0.8rem; font-weight: normal; color: var(--text-muted);">${rateUnitText}</span></div>
             </div>
             ${topOffer ? `
               <div style="text-align: right;">
                 <span class="unit-label" style="color: var(--success); font-weight: 700;">उच्चतम बोली</span>
-                <div style="font-size: 1.15rem; font-weight: 800; color: var(--success);">₹${topOffer.toLocaleString()} / ${unitText}</div>
+                <div style="font-size: 1.15rem; font-weight: 800; color: var(--success);">₹${topOffer.toLocaleString()} ${rateUnitText}</div>
               </div>
             ` : ''}
           </div>
@@ -984,7 +977,7 @@ function renderMandiTable() {
   MANDI_RATES.forEach(r => {
     const isUp = r.trend.startsWith("+");
     const trendClass = isUp ? "trend-up" : "trend-down";
-    const unitText = r.crop.includes("Mentha") ? "/Kg" : "/Qtl";
+    const unitText = r.crop.includes("Mentha") ? "/Kg" : (r.crop.includes("Potato") ? "/Qtl" : "/Qtl");
     html += `
       <tr>
         <td><strong>${r.mandi}</strong></td>
@@ -1008,12 +1001,15 @@ function calculateQualityScore() {
   const purity = parseFloat(document.getElementById("sliderPurity").value);
   const foreign = parseFloat(document.getElementById("sliderForeign").value);
 
-  document.getElementById("valMoisture").innerText = moisture + "%";
+  document.getElementById("valMoisture").innerText = moisture + (crop === 'Potato' ? ' mm' : '%');
   document.getElementById("valPurity").innerText = purity + "%";
   document.getElementById("valForeign").innerText = foreign + "%";
 
   let score = 100;
-  if (crop === "Mentha Oil") {
+  if (crop === "Potato") {
+    if (moisture < 45) score -= (45 - moisture) * 1.5; // Potato size below 45mm is smaller
+    score -= foreign * 5;
+  } else if (crop === "Mentha Oil") {
     if (moisture > 0.5) score -= (moisture - 0.5) * 15;
     score -= (85 - purity) * 1.5;
     score -= foreign * 8;
@@ -1026,11 +1022,11 @@ function calculateQualityScore() {
   score = Math.max(50, Math.min(99, Math.round(score)));
 
   let grade = "Grade B";
-  if (score >= 90) grade = "Grade A+ (Export Pure)";
+  if (score >= 90) grade = "Grade A+ (Large 55mm+ / Export)";
   else if (score >= 78) grade = "Grade A (Mandi Standard)";
 
-  let basePrice = MENTHA_LOCALITY_RATES[0] ? MENTHA_LOCALITY_RATES[0].modalPriceKg : 1208.00;
-  let unitLabel = "Kg";
+  let basePrice = crop === "Potato" ? 1420.00 : (MENTHA_LOCALITY_RATES[0] ? MENTHA_LOCALITY_RATES[0].modalPriceKg : 1208.00);
+  let unitLabel = crop === "Potato" ? "कुंतल (₹710/कट्टा)" : "Kg";
 
   const estimatedPrice = Math.round(basePrice * (score / 90));
 
@@ -1057,9 +1053,9 @@ async function handlePostSample(e) {
   const grade = document.getElementById("formGrade").value;
   const location = document.getElementById("formLocation").value;
   const image = document.getElementById("formImageSelect").value;
-  const khasraNo = document.getElementById("formKhasraNo").value || (currentUser ? currentUser.khasraNo : "UP-SMB-902");
+  const khasraNo = document.getElementById("formKhasraNo").value || (currentUser ? currentUser.khasraNo : "UP-FRK-4402");
 
-  const farmerName = currentUser ? currentUser.name : "Chaudhary Dharamvir Singh";
+  const farmerName = currentUser ? currentUser.name : "Ram Prakash Rajput";
   const sampleData = { title, category, quantity, reservePrice, moisture, grade, location, image, farmerName, khasraNo, verifiedFarmer: true };
 
   if (isBackendConnected) {
@@ -1081,7 +1077,7 @@ async function handlePostSample(e) {
       id: "SMP-" + (Math.floor(Math.random() * 900) + 100),
       ...sampleData,
       variety: category + " (Farmer Direct Sample)",
-      purity: category === "Mentha Oil" ? 81.5 : 97.5,
+      purity: category === "Mentha Oil" ? 81.5 : 98.5,
       harvestDate: new Date().toISOString().split("T")[0],
       offers: []
     };
@@ -1092,14 +1088,17 @@ async function handlePostSample(e) {
   closeModal("postSampleModal");
   document.getElementById("postSampleForm").reset();
   renderApp();
-  showToast("🌿 फसल का नमूना सफलतापूर्वक पोस्ट किया गया!");
+  showToast("🥔/🌿 फसल का नमूना सफलतापूर्वक पोस्ट किया गया!");
 }
 
 function openBidModal(sampleId) {
   const item = samples.find(s => s.id === sampleId);
   if (!item) return;
 
-  const unitText = item.category === "Mentha Oil" ? "Kg" : "Qtl";
+  const isMentha = item.category === "Mentha Oil";
+  const isPotato = item.category === "Potato";
+  const unitText = isMentha ? "Kg" : (isPotato ? "Kattas" : "Qtl");
+  
   document.getElementById("bidSampleId").value = sampleId;
   document.getElementById("bidCropName").innerText = item.title;
   document.getElementById("bidCropDetails").innerText = `मात्रा: ${item.quantity} ${unitText} | अपेक्षित भाव: ₹${item.reservePrice.toLocaleString()}/${unitText} | स्थान: ${item.location}`;
@@ -1119,7 +1118,7 @@ async function handlePlaceBid(e) {
   const offeredPrice = parseFloat(document.getElementById("offeredPrice").value);
   const tokenAdvance = parseFloat(document.getElementById("tokenAdvance").value);
   const pickupTerm = document.getElementById("pickupTerm").value;
-  const gstin = document.getElementById("buyerGstin").value || (currentUser ? currentUser.gstin : "09AABCB5512K1ZN");
+  const gstin = document.getElementById("buyerGstin").value || (currentUser ? currentUser.gstin : "09AGRA5512K1ZN");
 
   const item = samples.find(s => s.id === sampleId);
   const bidPayload = { buyerName: buyerEntity, offerPrice: offeredPrice, token: tokenAdvance, term: pickupTerm, gstin, verifiedBuyer: true };
@@ -1165,7 +1164,9 @@ async function handlePlaceBid(e) {
 function viewOffers(sampleId) {
   const item = samples.find(s => s.id === sampleId);
   if (!item) return;
-  const unitText = item.category === "Mentha Oil" ? "Kg" : "Qtl";
+  const isMentha = item.category === "Mentha Oil";
+  const isPotato = item.category === "Potato";
+  const unitText = isMentha ? "Kg" : (isPotato ? "Kattas (50kg Bags)" : "Qtl");
 
   document.getElementById("offersModalTitle").innerText = `📋 ${item.title} हेतु प्राप्त बोलियां`;
   const container = document.getElementById("offersModalContent");
@@ -1176,7 +1177,7 @@ function viewOffers(sampleId) {
         <div><strong>कुल मात्रा:</strong> ${item.quantity} ${unitText}</div>
         <div><strong>अपेक्षित रेट:</strong> ₹${item.reservePrice.toLocaleString()} / ${unitText}</div>
         <div><strong>किसान सत्यापन:</strong> <span style="color: var(--success); font-weight: 700;">असली किसान ✅</span></div>
-        <div><strong>खसरा संख्या:</strong> ${item.khasraNo || 'UP-SMB-902'}</div>
+        <div><strong>खसरा संख्या:</strong> ${item.khasraNo || 'UP-FRK-4402'}</div>
       </div>
     </div>
     <h4 style="margin-bottom: 12px; color: var(--primary);">खरीदारों की डोरस्टेप बोलियां (${item.offers ? item.offers.length : 0})</h4>
@@ -1196,7 +1197,7 @@ function viewOffers(sampleId) {
           <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
             <div>
               <h4 style="color: var(--text-main); font-size: 1.1rem;">${off.buyerName} <span style="font-size: 0.75rem; color: var(--success); background: var(--primary-light); padding: 2px 8px; border-radius: 99px;">APMC Verified Buyer ✅</span></h4>
-              <span style="font-size: 0.8rem; color: var(--text-muted);">GSTIN: ${off.gstin || '09AABCB5512K1ZN'} | दिनांक: ${off.date}</span>
+              <span style="font-size: 0.8rem; color: var(--text-muted);">GSTIN: ${off.gstin || '09AGRA5512K1ZN'} | दिनांक: ${off.date}</span>
             </div>
             <div style="text-align: right;">
               <div style="font-size: 1.3rem; font-weight: 800; color: var(--primary);">₹${off.offerPrice.toLocaleString()} <span style="font-size: 0.8rem; color: var(--text-muted);">/ ${unitText}</span></div>
@@ -1279,7 +1280,7 @@ function showContractModal(deal) {
     <div class="contract-paper">
       <div class="contract-header">
         <h2 style="color: #0F5A47;">🌿 कृषिडील सत्यापित व्यापार अनुबंध पत्र</h2>
-        <p style="font-size: 0.85rem; color: #64748B;">आधिकारिक फसल खरीद सौदा रसीद एवं एस्क्रो तिजोरी प्रमाण</p>
+        <p style="font-size: 0.85rem; color: #64748B;">आधिकारिक आलू व फसल खरीद सौदा रसीद एवं एस्क्रो तिजोरी प्रमाण</p>
         <span style="font-size: 0.8rem; font-weight: 700; background: #EAEFEA; padding: 4px 12px; border-radius: 99px;">अनुबंध संख्या: ${deal.dealId}</span>
       </div>
 
@@ -1287,24 +1288,24 @@ function showContractModal(deal) {
         <div>
           <strong>🧑‍🌾 किसान विवरण (सत्यापित ✅):</strong>
           <p>${deal.farmerName}</p>
-          <p style="font-size: 0.8rem; color: #64748B;">खसरा संख्या: ${deal.khasraNo || 'UP-SMB-902'}</p>
+          <p style="font-size: 0.8rem; color: #64748B;">खसरा संख्या: ${deal.khasraNo || 'UP-FRK-4402'}</p>
           <p style="font-size: 0.8rem; color: #64748B;">${deal.location}</p>
         </div>
         <div>
           <strong>🏢 खरीदार फर्म विवरण (सत्यापित ✅):</strong>
           <p>${deal.buyerName}</p>
           <p style="font-size: 0.8rem; color: #64748B;">एपीएमसी मंडी लाइसेंस सत्यापित</p>
-          <p style="font-size: 0.8rem; color: #64748B;">जीएसटी: ${deal.gstin || '09AABCB5512K1ZN'}</p>
+          <p style="font-size: 0.8rem; color: #64748B;">जीएसटी: ${deal.gstin || '09AGRA5512K1ZN'}</p>
         </div>
       </div>
 
       <div style="background: #F4EAD3; padding: 14px; border-radius: 8px; margin-bottom: 20px;">
         <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
           <span>फसल: <strong>${deal.sampleTitle}</strong></span>
-          <span>मात्रा: <strong>${deal.quantity} ${deal.sampleTitle.includes('Mentha') ? 'Kg' : 'Qtl'}</strong></span>
+          <span>मात्रा: <strong>${deal.quantity} ${deal.sampleTitle.includes('Mentha') ? 'Kg' : (deal.sampleTitle.includes('Potato') ? 'Kattas' : 'Qtl')}</strong></span>
         </div>
         <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
-          <span>तय दर: <strong>₹${deal.pricePerQtl.toLocaleString()} / ${deal.sampleTitle.includes('Mentha') ? 'Kg' : 'Qtl'}</strong></span>
+          <span>तय दर: <strong>₹${deal.pricePerQtl.toLocaleString()} / ${deal.sampleTitle.includes('Mentha') ? 'Kg' : (deal.sampleTitle.includes('Potato') ? 'Katta' : 'Qtl')}</strong></span>
           <span>कुल सौदा राशि: <strong style="color: #0F5A47; font-size: 1.1rem;">₹${deal.totalAmount.toLocaleString()}</strong></span>
         </div>
         <div style="display: flex; justify-content: space-between; border-top: 1px dashed #C27B0C; padding-top: 6px; margin-top: 6px;">
@@ -1315,7 +1316,7 @@ function showContractModal(deal) {
 
       <div style="text-align: center;">
         <div class="qr-placeholder">VERIFIED ESCROW DEAL</div>
-        <p style="font-size: 0.75rem; color: #64748B; margin-top: 6px;">मंडी गेट जांच अधिकारियों एवं चेकपोस्ट हेतु मान्य प्रमाण पत्र</p>
+        <p style="font-size: 0.75rem; color: #64748B; margin-top: 6px;">मंडी गेट जांच अधिकारियों एवं कोल्ड स्टोरेज चेकपोस्ट हेतु मान्य प्रमाण पत्र</p>
       </div>
     </div>
   `;
@@ -1340,7 +1341,7 @@ function renderDeals() {
       <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 20px; margin-bottom: 16px; box-shadow: var(--shadow-sm); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
         <div>
           <span style="font-size: 0.75rem; font-weight: 700; color: var(--primary); background: var(--bg-subtle); padding: 4px 10px; border-radius: var(--radius-full);">${d.dealId}</span>
-          <h4 style="margin-top: 6px; font-size: 1.1rem;">${d.sampleTitle} (${d.quantity} ${d.sampleTitle.includes('Mentha') ? 'Kg' : 'Qtl'})</h4>
+          <h4 style="margin-top: 6px; font-size: 1.1rem;">${d.sampleTitle} (${d.quantity} ${d.sampleTitle.includes('Mentha') ? 'Kg' : 'Kattas'})</h4>
           <p style="font-size: 0.85rem; color: var(--text-muted);">किसान: ${d.farmerName} ✅ ➔ खरीदार: ${d.buyerName} ✅</p>
         </div>
         <div style="text-align: right;">
